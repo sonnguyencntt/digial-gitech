@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    Route::get('/','HomeController@index')->name('home.index');
-});
+Route::get('/','HomeController@index')->name('home.index');
+
 
 Route::group(['prefix'=> 'category'], function(){
     Route::get('/','Manage\CategoryController@index')->name('manage.category.index');
