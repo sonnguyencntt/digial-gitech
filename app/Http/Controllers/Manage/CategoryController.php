@@ -1,12 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Manage;
+use App\Categori;
+use Illuminate\Http\Requests;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\category\CreateCategoryRequest;
+use App\Repositories\category\CategoryRepositoryInterface;
+use App\Service\CategoryService;
+use App\Exceptions\category\CategoryException;
 class CategoryController extends Controller
 {
+    protected $productRepo;
+    public function __construct(CategoryRepositoryInterface $productRepo)
+    {
+        $this->productRepo = $productRepo;
+    }
+   
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->productRepo->getID(2);
+        return $products;
     }
 
     /**
@@ -24,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -33,9 +44,31 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        
+        try{
+            if($request->has('image')){
+                $file=$request->image;
+                $etx=$request->image->extension();
+                $file_name=time().'-'.'category.'.$etx;
+                $file->move(public_path('images\category'),$file_name);
+            }
+            $category=categori::create([
+                'name_category'=>$request->name_category,
+                'image'=>$file_name,
+            ]);
+            Session()->flash('success','thêm danh mục thành công ');
+            return redirect()->back();
+        }
+
+        catch(\throwable $err){
+            
+            Session()->flash('error','thêm danh mục thất bại ');
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -46,7 +79,16 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        // try {
+        //     $user = CategoryService::search($id);
+        //     $showCategory = $this->productRepo->getID($id);
+        //     return response()->json($showCategory);
+        // } catch (CategoryException $exception) {
+        //     throw $exception;
+        // }
+        // return redirect()->back();
+        
+        
     }
 
     /**
@@ -67,9 +109,49 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(CreateCategoryRequest $request, $id)
+    {   
+        $image=$request->input('image');
+        $nameCategory=$request->input('name_category');
+        if($request->hasFile('image')){
+            
+            try{
+            $delete='public/images/category/'.$updateCategory->image;
+            if(file_exists($delete)){
+                unlink($delete);
+            };
+            $file=$request->input('image');
+            $etx=$request->image->extension();
+            $file_name=time().'-'.'category.'.$etx;
+            $file->move(public_path('images\category'),$file_name);
+            $nameCategory=$request->input('name_category');
+            $updateCategory = $this->productRepo->getID($id);
+            $update = Categori::where('id', $id)
+                    ->update([
+                        'name_category' => $nameCategory,
+                        'image' => $file_name,
+                    ]);
+            return "thanh cong";
+            }
+            catch(\throwable $err){
+                return "that bai";
+            }
+        }
+        else{
+            try{
+                $updateCategory = $this->productRepo->getID($id);
+                $updateCategory->name_category=$nameCategory;
+                $updateCategory->save();
+                return "thanhf coong";
+            }
+            catch(\throwable $err){
+                return "that bai";
+            }
+            
+        }
+        
+        
+
     }
 
     /**
@@ -80,6 +162,22 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $updateCategory = $this->productRepo->getID($id);
+            
+            $delete='public/images/category/'.$updateCategory->image;
+            
+            if(file_exists($delete)){
+                unlink($delete);
+            };
+            $updateCategory->delete();
+            return "thanh cong";
+        
+            
+        }
+        catch(\throwable $th){
+            Session()->flash('error','xóa danh mục thất bại');
+            return "that bai";
+        }
     }
 }
