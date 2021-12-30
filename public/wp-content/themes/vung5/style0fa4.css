@@ -1,0 +1,812 @@
+/*
+Theme Name:        Vung 5
+Theme URI:         https://fptmiennam.vn/
+Author:            Fpt telecom
+Author URI:        https://fptmiennam.vn/
+Description:       Đại lý Fpt telecom
+Version:           3.13.3
+Requires at least: 5.0.0
+Requires PHP:      5.6.20
+Text Domain:       Vùng 5
+License:          https://fptmiennam.vn/
+License URI:     https://fptmiennam.vn/
+*/
+@font-face {
+        font-family: 'UTM Akashi';
+    src:   url('fonts/UTM%20Akashi.ttf') format('truetype');
+}
+@font-face {
+        font-family: 'Aristote';
+    src:   url('fonts/UTM%20Aristote.ttf') format('truetype');
+}
+@font-face {
+        font-family: 'UTM Avo';
+    src:   url('fonts/UTM%20Avo.ttf') format('truetype');
+}
+@font-face {
+        ccc
+    src:   url('fonts/UTM%20AvoBold.ttf') format('truetype');
+}
+li{ list-style: none !important; background: url(images/icon-li.png) no-repeat left 7px; padding-lefT: 25px; margin-lefT: 0px !important}
+.goi_cuoc_home{ width: 100%; clear: both; overflow: hidden; margin-left: 0px !important; padding-left: 0px !important; }
+.goi_cuoc_home li.col_li-3,.goi_cuoc_home_mb{ width:31%; float: left; list-style: none !important; margin-left: 0px !important;border: 1px solid #e6e6e6; border-radius: 10px;
+    background: #efefef;
+    box-shadow: 0px 6px 4px rgb(0 0 0 / 25%);    padding-left: 0px;
+}
+.goi_cuoc_home li.col_li-3:nth-child(2n+2){ margin: 0 3.5% !important}
+.goi_cuoc_home li h3, .goi_cuoc_home_mb h3{      background-image: linear-gradient(to right,#e05705, #f98640, #e05705);  margin-bottom: 0;    text-transform: uppercase;
+    text-align: center;
+    padding: 10px;
+    font-size: 28px;
+    border-radius: 10px 10px 00 0; font-family: 'UTM Akashi';
+    color: #fff; }
+.thongtin-goicuoc{    padding: 15px 20px 5px 20px;}
+.thongtin-goicuoc .gia-goicuoc {text-align: center;margin-bottom:5px;
+    font-size: 29px;
+    font-family: system-ui;
+    font-family: 'UTM AvoBold';
+    color: #e25c0b;}
+.thongtin-goicuoc .gia-goicuoc span{     font-size: 16px;font-family: 'UTM Avo';    font-weight: 700;}
+.tocdo-goicuoc{    text-align: center;font-family: 'UTM Avo';
+    font-size: 27px;
+    font-weight: bold;     color: #202020;
+    line-height: 30px;    border-bottom: 1px solid #d1d0d0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;}
+.tocdo-goicuoc .tocdogoi{ font-size: 15px;font-family: 'UTM Avo';} 
+.tocdo-goicuoc .sotcodo{    font-size: 16px;font-family: 'UTM Avo';
+    color: #5c5a5a;
+    font-weight: normal;}
+.mota_goicuoc{ text-align:left;font-family: 'UTM Avo';    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+.mota_goicuoc p{    margin-bottom: 10px;font-family: 'UTM Avo';}
+.bt_dangky{text-align: center;
+    margin-top: 20px;
+    overflow: hidden;
+    background: #fff;
+    padding: 19px 20px;
+    border-radius: 0 0 10px 10px;}
+.bt_dangky a{
+        background-image: linear-gradient(to right, #e05806, #f68a48 , #e25a09);
+    color: #fff;
+    padding: 10px 25px;
+    text-transform: uppercase;font-family: 'UTM Avo';
+    border-radius: 20px; font-size: 15px;
+    font-weight: 700;
+}
+.goi_cuoc_home li.col_li-3:hover .bt_dangky a, .goi_cuoc_home li.col_li-3:hover h3, .goi_cuoc_home li.col_li-4:hover .bt_dangky a, .goi_cuoc_home li.col_li-4:hover h3{
+       background-image: linear-gradient(to right, #034ea2, #5fa9fc , #034ea2);}
+.goi_cuoc_home li.col_li-4{ width:23%; float: left; list-style: none !important; margin-left: 0px !important;border: 1px solid #e6e6e6; border-radius: 10px;    padding-left: 0px;
+    background: #efefef;
+    box-shadow: 0px 6px 4px rgb(0 0 0 / 25%);
+}
+.goi_cuoc_home .title-phu{     font-family: 'Aristote';
+    font-size: 26px;
+    text-transform: capitalize;
+    font-weight: 100;} 
+.goi_cuoc_home li.col_li-4:nth-child(2){ margin: 0 2.6% !important}.goi_cuoc_home li.col_li-4:nth-child(4){ margin-left: 2.6% !important}
+#footer p, #footer a{ color: #fff;font-family: 'UTM Avo';
+}
+#footer .is-divider{ background-color: #fff}
+#footer .fptft { overflow: hidden}
+#footer .fptft li{ width: 20%; float: left;font-family: 'UTM Avo';}
+#footer .pull-left{ float: none !important; text-align:center;font-family: 'UTM Avo';}
+#footer  span.widget-title{ font-family: 'UTM AvoBold';font-weight: normal;
+    font-size: 18px;
+}
+.camera-home{ background: #efefef;
+    border-radius: 10px;    box-shadow: 0px 6px 4px rgb(0 0 0 / 25%);
+}
+.camera-home h3{
+    background-image: linear-gradient(to right,#e05705, #f98640, #e05705);
+    text-align: center;
+    font-size: 23px;
+    font-family: 'UTM AvoBold';
+    color: #fff;
+    padding: 10px 0;
+    text-transform: uppercase;
+    border-radius: 10px 10px 0 0;}
+.camera-home h3 a{color: #fff;}
+.noidung-camera{ padding: 20px;  width: 100%; overflow:hidden}
+.noidung-camera .img-thumb{ width: 30%;
+    float: left;}
+.noidung-camera .text-content{ width: 65%; float: left; margin-left: 5%; font-family: 'UTM Avo'; font-size: 16px}
+.buttom-ft{    width: 100%;
+    overflow: hidden;
+    clear: both;    background: #fff;
+    padding: 20px;border-radius: 0 0 10px 10px;}
+.buttom-ft .chitietbt,.buttom-ft .dangkybt{    width: 50%;
+    float: left;}
+.buttom-ft .chitietbt a{border: 2px solid #034ea2;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-family: 'UTM Avo';}
+.buttom-ft .chitietbt:hover a{border: 2px solid #f37021; color: #f37021} 
+.buttom-ft .dangkybt{ text-align:right}
+.buttom-ft .dangkybt a{    background-image: linear-gradient(to right, #e05806, #f68a48 , #e25a09);
+    color: #fff;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    font-family: 'UTM Avo';
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;}
+.buttom-ft .dangkybt:hover a{background-image: linear-gradient(to right, #034ea2, #5fa9fc , #034ea2);}
+.khuyenmai-home .post-item .col-inner{ background: #efefef;
+    border-radius: 10px;
+    border: 1px solid #efefef;}
+.khuyenmai-home .post-item .col-inner .box-text-inner{ padding: 0 20px;}
+.khuyenmai-home .box-text .is-large{     font-size: 16px;
+    height: 72px ; line-height: 22px}
+.khuyenmai-home .post-item .col-inner:hover h5.is-large{ color: #f37021}
+.tabtintuc-home li.tab  a{font-family: 'UTM AvoBold' !important;
+       font-size: 24px !important;
+    color: #555;
+    border: 2px solid #cdcdcd;
+    padding: 5px 25px;
+    border-radius: 49px;
+}
+.tabtintuc-home li.active a, .tabtintuc-home li:hover a{  color:#f37021;border: 2px solid #f37021;}
+.internet-doanh-nghiep .mota_goicuoc{ height:120px}.internet-ca-nhan-page{ background: url(images/bg-2.png) no-repeat center}
+.internet-ca-nhan-page h1{font-size: 32px;    margin-bottom: 0px;
+    color: #fff;
+    font-family: 'UTM AvoBold' !important; display: inherit !important;    text-align: center;}
+.internet-ca-nhan-page h1 b{ display: none !important}
+.internet-ca-nhan-page .section-title-container{    padding: 65px 0; margin-bottom: 0px}
+.internet-ca-nhan-page .col{ margin-bottom: 0px}
+.banggia-camera td{border: 1px solid #f17124;
+    padding: 5px 20px;
+    font-family: 'UTM Avo';
+    font-size: 16px;}
+.banggia-camera td p span {
+    font-size: 21px;
+    font-family: 'UTM AvoBold';
+}
+.camera-fpt{ background: url(images/IP66.jpg) no-repeat center}
+.camera-fpt .large-12, .fpt-playbox .large-12,.fpt-playbox2020 .large-12{ margin-bottom: 0px !important; padding: 83px 0; }
+.camera-fpt .large-12 h1, .fpt-playbox .large-12 h1, .fpt-playbox2020 h1{ margin-bottom: 0px;    font-size: 32px;
+    color: #fff;
+    font-family: 'UTM AvoBold' !important;}
+.goicamera {
+   border: 1px solid #d0cfd1;
+    border-radius: 10px;
+    padding-bottom: 0px;
+    background: #ffffffe0;
+}.goicamera h3 {
+    background-image: linear-gradient(to right,#e05705, #f98640, #e05705);
+    margin-bottom: 0;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 22px;
+    border-radius: 10px 10px 00 0;
+    font-family: 'UTM AvoBold';
+    color: #fff;
+}
+.goicamera .giacamera {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'UTM AvoBold';
+    color: #e05705;
+    line-height: 24px;
+    margin-top: 30px;
+}.thongtinkem {
+    margin-left: 0px !important;
+    padding-left: 20px !important;
+    margin-top: 20px;
+}.thongtinkem li {
+    list-style: none !important;
+    background: url(images/ico-check.png) no-repeat left;
+    padding-left: 25px;
+    background-size: 15px;
+    margin-left: 18px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-family: 'UTM Avo';
+}.goicamera:hover .thongtinkem li {
+    background: url(images/ico-check1.png) no-repeat left;
+    background-size: 15px;
+} .goicamera .donvitinh {
+    font-size: 16px;
+    color: #6a6a6a;
+    font-family: 'UTM Avo';
+}.goicamera:hover h3 {
+    background-image: linear-gradient(to right, #034ea2, #5fa9fc , #034ea2);
+}
+.goicamera:hover .giacamera{ color:#034ea2}
+.bt_dangky:hover a, .goicamera:hover .bt_dangky a{    background-image: linear-gradient(to right, #034ea2, #5fa9fc , #034ea2);}
+.fpt-playbox{ background: url(images/playbox.jpg) no-repeat center} 
+.textgioithieu-playbox p{ margin-bottom: 0px !important;    font-size: 21px;
+    color: #5e5e5e;}
+.fpt-playboxs .large-12,.blog-archive .large-12, .bando-lienhepage .large-12{ padding: 0px !important}
+.titletopbox h2, .titletopbox h3{    font-family: 'UTM AvoBold';
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 5px !important; text-transform:uppercase}
+.titletopbox h2{ color: #fff}
+.titletopbox h3{ color: #f26522}
+#content .lefttopbox li,#content .right-top-playbox li{ list-style: none !important; font-family: 'UTM Avo';
+    font-size: 23px;
+    color: #fff; background: none !important; }
+.rowbox1 {
+    margin-top: 35px;
+    text-align: right;
+}
+.rowbox2 {margin-top: 80px;
+    text-align: right;padding-right: 80px;
+}
+.rowbox3 {    margin-top: 90px;
+    text-align: right;
+}.rowbox1, .rowbox3 {
+    padding-right: 30px;
+}.lefttopbox, .right-top-playbox{padding-top: 40px;}
+.row1box {
+    margin-top: 35px;
+}.row2box {
+    margin-top: 90px;padding-left: 50px;
+}.row3box {
+    margin-top: 80px;
+}
+.thong-so-kt td{border: 1px solid #f26522;
+    font-family: 'UTM Avo';
+    font-size: 16px;
+    color: #000;
+    padding: 5px 15px;
+    background: #f5f6fbb8;}.thong-so-kt table{    border-collapse: collapse;}
+.giasp {
+        font-size: 26px;
+    font-family: 'UTM AvoBold';
+    color: #f37021;
+    float: left;
+}.dangkydungthu {
+    animation-name: pulse;
+    text-align: center;
+    -webkit-animation-name: pulse;
+    animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;}
+.dangkydungthu a {
+    background: #f27228;
+    padding: 10px 35px;
+    border-radius: 30px;
+    border-bottom: 3px solid #a44108;
+    font-family: 'UTM AvoBold';
+    font-size: 20px;
+    color: #fff;
+}
+.backgroung-uudien{ background: url(images/bg-1-1.jpg) no-repeat; background-size:100%; color: #000}
+.backgroung-uudien h2, .backgroung-uudien h3{    font-size: 26px;
+    font-family: 'UTM AvoBold';}
+.backgroung-uudien .giaitrithagatext h3{ color: #f37021;  font-size: 30px;}
+.uudiencamera-page{ background: url(images/bg-camera-1.jpg) no-repeat; background-size:100%; }
+.uudiencamera-page .large-12{ padding-bottom:0px}
+.tinhnang-camera li{ list-style: none !important ; color: #6d6d6d;
+    font-size:18px;
+    font-family: 'UTM Avo';padding-lefT: 55px
+}
+.tinhnang-1{ background: url(images/icon-qs.jpg) no-repeat left;     padding: 5px 0 5px 55px;}
+.tinhnang-2{ background: url(images/icon-2.jpg) no-repeat left; }
+.tinhnang-3{ background: url(images/icon-3.jpg) no-repeat left;margin-left: 90px !important}
+.tinhnang-4{ background: url(images/icon-4.jpg) no-repeat left;}
+.tinhnang-5{ background: url(images/icon-5.jpg) no-repeat left;padding: 5px 0 7px 55px;}
+.tinhnang-2, .tinhnang-4{ margin-left: 60px !important}
+.tinhnang-3, .tinhnang-2, .tinhnang-4, .tinhnang-5{ margin-top: 40px}
+#top-bar li{ background: none !important; margin: 0 17px !important}
+#masthead .nav>li{ background: none !important; margin: 0px !important;padding: 24px 0;}
+#masthead .nav>li>ul>li{background: none !important; }
+footer li{ background: none !important; margin: 0px !important; padding-left: 0px !important}
+#content li.tab{ background: none !important}
+.fpt-playbox2020{background: url(images/bg-playbox.jpg) no-repeat left;}
+header .html_topbar_left a{font-family: 'UTM AvoBold'; font-size: 22px;}
+.nav-uppercase>li:hover>a,.nav-uppercase>li.active>a  { color: #f37021;border: 1px solid;
+    padding: 9px 15px;}
+.archive-page-header{ background: #dfdfdf;margin-bottom: 50px;}
+.blog-archive{ padding-top: 0px }
+.archive-page-header h1{    padding: 25px 0;
+    color: #4b4b4b;
+    font-family: 'UTM AvoBold';
+    font-size: 32px;
+    margin-bottom: 0px;}
+.blog-single .large-9{ padding-left: 40px}
+#secondary h3.widget-title {background: #f37021;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    color: #fff;
+    padding: 5px 0; text-transform:uppercase
+}
+.is-divider{ display: none}
+.posted-on{ color:#646363;  text-transform: none;}
+aside{    background: #efefef;
+    border-radius: 0 10px 10px; padding-bottom:20px}
+aside div, #recent-posts-2 ul{ padding: 0 10px}
+.tagcloud a, footer.entry-meta a{font-size: 13px;
+    border: 1px solid #a8a6a5;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 10px; margin-bottom:10px;font-family: 'UTM Avo';}
+footer.entry-meta{ background: #efefef;
+    padding-left: 10px;
+    font-size: 16px;
+      font-family: 'UTM AvoBold';
+    color: #f37021;}
+.nav-small.nav>li.html a{padding: 2px 0px;
+    font-size: 21px;
+    font-family: 'UTM AvoBold';}
+.tabtintuc-home .box-text {
+    padding: 15px 0;}
+#footer a.back-to-top { color: #f37021;}
+#footer .widget   div{ padding-top: 15px}
+.textmobile{ display: none !important}
+.textdesktop{ display: block}.pum-theme-326 .pum-content + .pum-close, .pum-theme-lightbox .pum-content + .pum-close{ right:-35px;}
+.form-popup input{border-radius: 10px;}
+.form-popup form{text-align: center;}
+.form-popup input[type="submit"]{     background: #f37021;
+    font-weight: bold;}
+.form-popup .wpcf7{margin-top: 20px;}
+.form-popup input[type="submit"]:hover{ background: #034ea2;}
+#top-bar li.current-dropdown>.nav-dropdown, #top-bar  .next-prev-thumbs li.has-dropdown:hover>.nav-dropdown,#top-bar  .no-js li.has-dropdown:hover>.nav-dropdown{     margin-top: 1px;}
+/*********** css trang chủ 2**************/
+.banner-top .large-8{ padding-left: 0px !important;padding-right: 0px !important; }
+.banner-top .large-4{ padding-right: 0px !important; }
+.tab-sanpham-home .large-12{ padding: 0px}
+.tab-sanpham-home li.tab  a{border: 1px solid;
+    border-radius: 100px;
+    padding: 5px 25px;
+    font-size: 18px !important;}
+.tab-sanpham-home .section-title b {
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    height: 2px;
+    opacity: 0.5;
+    background-color: #f37021;
+}
+.whychooes .icon-box-text {background: #efefef;
+    margin-top: -67px;
+    padding: 70px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 4px rgb(0 0 0 / 25%); height:268px;}
+.whychooes .icon-box-text:hover, .whychooes .icon-box-text:hover strong {    background-image: linear-gradient(to right, #e05806, #f68a48 , #e25a09); color: #fff}
+.tab-sanpham-home ul.nav { width: auto; margin: 0 auto}
+.titlevisao span{    border: 1px solid #e35d0d;
+    border-radius: 100px;
+    padding: 7px 25px;
+    font-size: 23px !important;
+    color: #e45e0e;}
+.tintuckhuyenmai li.tab a{ font-size: 23px !important;}
+.stuck  .nav>li{     padding: 14px 0 !important;}
+.giasp{width: 48%;
+    clear: both;}
+.text-content .giasp{ width: 100%}
+.giasp p{text-align: left;
+    margin-bottom: 0px;
+    padding-top: 9px;
+    width: 100%;
+    clear: both;
+    font-size: 16px;
+    color: #9b9797;
+    font-weight: 500;
+    font-family: 'UTM Avo';}
+.gia-left, .gia-right{ float: left;}
+.gia-left{ text-align:left; width: 30%}
+.gia-right{width: 70%;
+    text-align: right;}
+.text-content p{ margin-bottom: 10px !important}
+.giasp{ display: block}
+.giasp-mb{ display: none;}
+@media screen and (max-width: 764px){
+	#logo img{ max-height: 55px !important;}
+.sildehome .small-12{ padding: 0px !important}.goi_cuoc_home_mb{ margin-bottom:20px;}
+.section-title-normal{ font-size: 18px;}
+.tabtintuc-home li.tab a{     font-size: 16px !important;}
+.buttom-ft .chitietbt a{ padding: 6px 14px;}
+.camera-home h3{ font-size: 21px;}
+.vc-post-styling .slick-next {
+    right: 14px !important;
+}.noidung-camera .text-content p{ margin-bottom:5px !important}
+.banggia-camera{ overflow: scroll}
+.banggia-camera td{padding: 5px 5px;}
+.banggia-camera .bt_dangky{     padding: 19px 0px;}
+.banggia-camera .bt_dangky a {
+    padding: 10px 10px;
+    font-size: 11px;
+}.giasp{     overflow: hidden;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;}
+.tinhnang-camera li{ margin-top: 0px !important}
+.tinhnang-2, .tinhnang-4,.tinhnang-3{
+    margin-left: 0px !important;
+}.fpt-playboxs .col1-mbxoa{ display: none !important} 
+.fpt-playboxs .col-inner{ margin-left:0px !important}
+.logo-playboxs .has-hover{ margin: 0 auto;}.lefttopbox, .right-top-playbox{     padding-top: 0px;}
+.rowbox1, .rowbox2, .rowbox3, .right-top-playbox li{
+    margin-top: 0px;
+    text-align: left;
+}.textmobile{ display: block !important}
+.textdesktop{ display: none !important}
+.row2box{ padding-lefT: 25px}
+.small-columns-1>.col, .small-columns-1 .flickity-slider>.col{ max-width:100%}
+.blog-archive .col{ padding: 0 10px 30px;}
+.blog-single .large-9 {
+    padding-left: 15px;
+}#header  .stuck .header-main {
+    height: 50px!important;
+}#header .stuck #logo img {
+    max-height: 40px!important;
+}.camera-fpt .large-12, .fpt-playbox .large-12, .fpt-playbox2020 .large-12 {
+    margin-bottom: 0px !important;
+    padding: 30px 0;
+}
+.internet-ca-nhan-page .small-12{ margin-bottom: 0px !important}
+.internet-ca-nhan-page .section-title-container {
+    padding: 30px 0;}
+.banner-top .large-4{ display: none !important;}
+.tab-danhmuc-sp li.tab, .tab-danhmuc-sp li.tab a{width: 100%;}
+.tab-danhmuc-sp li.tab{ margin-bottom:10px;     margin-right: 0px;}
+.tab-sanpham-home li.tab a{ font-size: 15px !important}
+.titlevisao span{ font-size: 17px !important}
+.giasp{ display: none !important}
+.giasp-mb{ display: block !important; padding: 0 20px;    font-size: 20px;
+    font-family: 'UTM AvoBold';
+    color: #f37021;}
+.gia-right {
+    width: 60%;
+    text-align: right;
+}.gia-left {
+    text-align: left;
+    width: 40%;
+}.giasp-mb p{text-align: left;
+    margin-bottom: 0px;
+    padding-top: 9px;
+    width: 100%;
+    clear: both;
+    font-size: 16px;
+    color: #9b9797;
+    font-weight: 500;
+    font-family: 'UTM Avo';     margin-bottom: 20px;}
+.buttom-ft .chitietbt{ display: none !important;}
+.buttom-ft .dangkybt{ width: 100%;    text-align: center;}
+}
+	.ls-overflow-visible {
+    margin-bottom: 0px !important;
+}
+.hotline-phone-ring-wrap {
+  position: fixed;
+  bottom: 70px;
+  right: 0;
+  z-index: 999999;
+}
+.hotline-phone-ring {
+  position: relative;
+  visibility: visible;
+  background-color: transparent; 
+  width: 110px;
+  height: 110px;
+  cursor: pointer;
+  z-index: 11;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transition: visibility .5s;
+  left: 0;
+  bottom: 0;
+  display: block;
+}
+.hotline-phone-ring-circle {
+	width: 85px;
+  height: 85px;
+  top: 10px;
+  left: 25px;
+  position: absolute;
+  background-color: transparent;
+  border-radius: 100%;
+  border: 2px solid #e80404;
+  -webkit-animation: phonering-alo-circle-anim 1.2s infinite ease-in-out;
+  animation: phonering-alo-circle-anim 1.2s infinite ease-in-out;
+  transition: all .5s;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  opacity: 0.5;
+}
+.hotline-phone-ring-circle-fill {
+	width: 55px;
+  height: 55px;
+  top: 25px;
+  left: 39px;
+  position: absolute;
+  background-color:#e80404;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  -webkit-animation: phonering-alo-circle-fill-anim 2.3s infinite ease-in-out;
+  animation: phonering-alo-circle-fill-anim 2.3s infinite ease-in-out;
+  transition: all .5s;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+.hotline-phone-ring-img-circle {
+	background-color: #e80404;
+	width: 45px;
+  height: 45px;
+  top: 30px;
+  left: 45px;
+  position: absolute;
+  background-size: 20px;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  -webkit-animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+  animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hotline-phone-ring-img-circle .pps-btn-img {
+	display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.hotline-phone-ring-img-circle .pps-btn-img img {
+	width: 30px;
+	height: 30px;
+}
+.hotline-bar {
+  position: absolute;
+  background:#e80404;
+  height: 40px;
+  width: 180px;
+  line-height: 40px;
+  border-radius: 3px;
+  padding: 0 10px;
+  background-size: 100%;
+  cursor: pointer;
+  transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  z-index: 9;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50px !important;
+  /* width: 175px !important; */
+  right: 33px;
+  bottom: 37px;
+}
+.hotline-bar > a {
+  color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-indent: 50px;
+    padding-left: 8px;
+    letter-spacing: 1px;
+    line-height: 43px;
+    font-family: Arial;
+}
+.hotline-bar > a:hover,
+.hotline-bar > a:active {
+  color: #fff;
+}
+.dailyhome{    margin-top: -45px;
+    position: relative;
+    z-index: 9999999;
+        background: #30303061;}
+.daily1{width: 50%;
+    float: left;
+    text-align: right;padding-right: 30px;    padding-top: 15px;    color: #fff;
+    font-size: 16px;}
+.daily2{ floaT: right; float: left; width: 50%; padding-left: 30px;    padding-top: 15px;    color: #fff;
+    font-size: 16px;}
+.dangkyngay:hover a {
+    background: #f17124; color: #fff
+	}
+html.pum-open.pum-open-overlay, html.pum-open.pum-open-overlay.pum-open-fixed .pum-overlay{ overflow-y:auto !important;}	
+@-webkit-keyframes phonering-alo-circle-anim {
+  0% {
+    -webkit-transform: rotate(0) scale(0.5) skew(1deg);
+    -webkit-opacity: 0.1;
+  }
+  30% {
+    -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+    -webkit-opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1) skew(1deg);
+    -webkit-opacity: 0.1;
+  }
+}
+@-webkit-keyframes phonering-alo-circle-fill-anim {
+  0% {
+    -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+    opacity: 0.6;
+  }
+  50% {
+    -webkit-transform: rotate(0) scale(1) skew(1deg);
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+    opacity: 0.6;
+  }
+}
+@-webkit-keyframes phonering-alo-circle-img-anim {
+  0% {
+    -webkit-transform: rotate(0) scale(1) skew(1deg);
+  }
+  10% {
+    -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+  }
+  20% {
+    -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+  }
+  30% {
+    -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+  }
+  40% {
+    -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+  }
+  50% {
+    -webkit-transform: rotate(0) scale(1) skew(1deg);
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1) skew(1deg);
+  }
+}
+@media (max-width: 768px) {
+  .hotline-bar, .dailyhome{
+    display: none;
+  }.hotline-phone-ring-img-circle{     background-color: #e80f0f;}
+  .hotline-phone-ring-circle{border: 2px solid #e80f0f;}
+  .hotline-phone-ring-wrap{ bottom: 45px;}.zalo-container { bottom: 158px !important;}
+ 
+}.zalo-container img {
+      max-width: 102%;
+    height: auto;
+    padding: 10px;
+}
+
+.zalo-container {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 160px;
+  z-index: 9999999;
+}
+
+.zalo-container:not(.right) {
+  right: 1.5rem;
+}
+
+.zalo-container.right {
+  left: 2.5rem;
+}
+
+.zalo-container a {
+	display: block;
+}
+
+.zalo-container span {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1182FC;
+  position: relative;
+}
+
+@keyframes zoomIn_zalo {
+	from {
+		opacity: 0;
+		transform: scale3d(.3, .3, .3);
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+.zoomIn_zalo {
+  animation-name: zoomIn_zalo;
+}
+
+.animated_zalo {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animated_zalo.infinite {
+  animation-iteration-count: infinite;
+}
+
+.cmoz-alo-circle {
+  width: 50px;
+  height: 50px;
+  top: -5px;
+  right: -5px;
+  position: absolute;
+  background-color: transparent;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: 2px solid rgba(17, 130, 252, .8);
+  opacity: .1;
+  border-color: #1182FC;
+  opacity: .5;
+}
+
+.cmoz-alo-circle-fill {
+  width: 60px;
+  height: 60px;
+  top: -10px;
+  position: absolute;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+  background-color: rgba(17, 130, 252, 0.45);
+  opacity: .75;
+  right: -10px;
+}
+
+@-webkit-keyframes pulse_zalo {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse_zalo {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse_zalo {
+  -webkit-animation-name: pulse_zalo;
+  animation-name: pulse_zalo;
+}

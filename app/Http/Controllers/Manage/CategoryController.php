@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Manage;
-use App\Categori;
+use App\Category;
 use Illuminate\Http\Requests;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\category\CreateCategoryRequest;
-use App\Repositories\category\CategoryRepositoryInterface;
+use App\Http\Requests\Category\CreateCategoryRequest;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Service\CategoryService;
-use App\Exceptions\category\CategoryException;
+use App\Exceptions\Category\CategoryException;
 class CategoryController extends Controller
 {
     protected $productRepo;
@@ -54,7 +54,7 @@ class CategoryController extends Controller
                 $file_name=time().'-'.'category.'.$etx;
                 $file->move(public_path('images\category'),$file_name);
             }
-            $category=categori::create([
+            $category=Category::create([
                 'name_category'=>$request->name_category,
                 'image'=>$file_name,
             ]);
@@ -126,7 +126,7 @@ class CategoryController extends Controller
             $file->move(public_path('images\category'),$file_name);
             $nameCategory=$request->input('name_category');
             $updateCategory = $this->productRepo->getID($id);
-            $update = Categori::where('id', $id)
+            $update = Category::where('id', $id)
                     ->update([
                         'name_category' => $nameCategory,
                         'image' => $file_name,

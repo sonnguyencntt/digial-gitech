@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return \auto_redirect(\view("welcome") , "ajax");
+        return \auto_redirect(\view("pages.home.index") , "ajax");
     }
 
     /**
