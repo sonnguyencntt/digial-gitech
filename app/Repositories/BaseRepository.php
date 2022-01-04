@@ -33,7 +33,7 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->all();
     }
 
-    public function find($id)
+    public function findById($id)
     {
         $result = $this->model->find($id);
 
@@ -45,9 +45,9 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->create($attributes);
     }
 
-    public function update($id, $attributes = [])
+    public function updateById($id, $attributes = [])
     {
-        $result = $this->find($id);
+        $result = $this->findById($id);
         if ($result) {
             $result->update($attributes);
             return $result;
@@ -56,9 +56,9 @@ abstract class BaseRepository implements RepositoryInterface
         return false;
     }
 
-    public function delete($id)
+    public function deleteById($id)
     {
-        $result = $this->find($id);
+        $result = $this->findById($id);
         if ($result) {
             $result->delete();
 
@@ -66,5 +66,11 @@ abstract class BaseRepository implements RepositoryInterface
         }
 
         return false;
+    }
+
+        public function count()
+    {
+        return $this->model->count();
+
     }
 }

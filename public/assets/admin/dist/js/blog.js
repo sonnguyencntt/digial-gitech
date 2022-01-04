@@ -16,7 +16,7 @@ var btnCust = '<button type="button" class="btn btn-secondary" title="Add pictur
  'onclick="alert(\'Call your custom code here.\')">' +
  '<i class="glyphicon glyphicon-tag"></i>' +
  '</button>'; 
-   $("[name=hinhanh]").fileinput({
+   $("[name=image]").fileinput({
  overwriteInitial: true,
  maxFileSize: 1500,
  showClose: false,
@@ -35,7 +35,7 @@ var btnCust = '<button type="button" class="btn btn-secondary" title="Add pictur
 
 function validate()
 {
-  if (func.ValidateId(["hinhanh", "tieude" , "iddanhmuc" ,"noidung"], [], []) === true) {
+  if (func.ValidateId(["image", "tieude" , "iddanhmuc" ,"noidung"], [], []) === true) {
     return true
 }
 
@@ -47,17 +47,14 @@ function validate_update()
 }
 
 return false;}
-function removeFunc($id) {
-  $('.alert-remove').html("<p>Bạn có muốn xóa bài viết ID :  " + $id + "?</p>")
-  $("[name = baiviet]").val($id);
+function removeFunc($id , $name) {
+  $('.alert-remove').html("<p>Bạn có muốn xóa bài viết  :  " + $name + "?</p>")
+  var action=$('#remove').attr('action');
+  $('#remove').attr('action', `${action}/${$id}`);
+
 }
 
-$(".remove_blog").on("click", function(e){
-  e.preventDefault();
-  var id = $("[name = baiviet]").val();
 
-  $('#remove').attr('action', "/manage/blog/"+id).submit();
-});
 
 function showBlog($id){
   $(".title-blog > b").text("#"+$id);

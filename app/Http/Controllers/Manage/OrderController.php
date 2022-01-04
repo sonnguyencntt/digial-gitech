@@ -1,11 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Manage;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Order\OrderRepositoryInterface;
 
-class MainController extends Controller
+class OrderController extends Controller
 {
+
+
+    protected $orderRepo;
+    protected $title = "Đơn hàng";
+
+    public function __construct(OrderRepositoryInterface $orderRepo)
+    {
+        $this->orderRepo = $orderRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,9 @@ class MainController extends Controller
      */
     public function index()
     {
-        //
+        $list_order = $this->orderRepo->all();
+        
+        return \auto_redirect(\view("pages.admin.order.index" , ['list_order' => $list_order , 'title' => $this->title]) ,  $list_order);
     }
 
     /**

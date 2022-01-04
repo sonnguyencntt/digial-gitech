@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Manage;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contact\ContactRepositoryInterface;
+use App\Repositories\Posts\PostsRepositoryInterface;
+use App\Repositories\Order\OrderRepositoryInterface;
 
 class DashboardController extends Controller
 {
@@ -12,10 +15,31 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $postsRepo;
+    protected $contactRepo;
+    protected $orderRepo;
+
+
+    protected $title = "Bảng điều khiển";
+
+
+    public function __construct(contactRepositoryInterface $contactRepo , PostsRepositoryInterface $postsRepo , OrderRepositoryInterface $orderRepo)
+    {
+        $this->contactRepo = $contactRepo;
+        $this->postsRepo = $postsRepo;
+        $this->orderRepo = $orderRepo;
+
+
+    }
+
     public function index()
     {
-        return "admin";
-        // return \auto_redirect(\view("pages.admin.dashboard.index") , "ajax");
+        $count_contact = $this->contactRepo->count();
+        $count_posts = $this->postsRepo->count();
+        $count_order = $this->orderRepo->count();
+
+        return \auto_redirect(\view("pages.admin.dashboard.index" , ["count_contact"=> $count_contact , "count_posts" => $count_posts , "count_order" => $count_order ,  "title" => $this->title]) , "ajax");
 
     }
 

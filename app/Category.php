@@ -10,4 +10,10 @@ class Category extends Model
     protected $primaryKey = 'id';
 
     protected $guarded = [];
+    public $timestamps = true;
+
+    public function internet()
+    {
+        return $this->hasOne(Internet::class , 'category_id' , 'id');
+    }
 }

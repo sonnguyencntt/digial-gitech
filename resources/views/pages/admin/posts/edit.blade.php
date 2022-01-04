@@ -5,11 +5,11 @@
     <section class="content-header">
       <h1>
         Chỉnh sửa
-        <small>Bài viết</small>
+        <small>{{$title}}</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Bảng điều khiển</a></li>
-        <li class="active">Chỉnh sửa bài viết</li>
+        <li class="active">Chỉnh sửa {{$title}}</li>
       </ol>
     </section>
 
@@ -23,19 +23,21 @@
         <div class="col-md-12 col-xs-12">
     
           
-    
+          @include('components.admin.popup_error')
+
     
     
     
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" action="{{route("manage.blog.update" , blog->id_bai_viet)}}" method="POST" onsubmit="return validate_update();"  enctype="multipart/form-data">
+            <form role="form" action="{{route("manage.posts.update" , $posts->id)}}" method="POST"   enctype="multipart/form-data">
               @method('PUT')  
               <div class="box-body">
                 <div class="form-group">
                   <label>Image Preview: </label>
-                  <img src="{{asset("blog->hinh_anh")}}" width="150" height="150" class="img-circle">
+                  <img src="{{asset($posts->image_url)}}" width="150" height="150" class="img-circle">
+                  <input type="hidden" value="{{$posts->image_url}}" name = "image_url_string"/>
                 </div>
     
                 <div class="form-group">
@@ -43,7 +45,7 @@
                   <label for="product_image">Ảnh</label>
                   <div class="kv-avatar">
                     <div class="file-loading">
-                      <input id="hinhanh" name="hinhanh" type="file" >
+                      <input id="image" name="image" type="file" >
     
                     </div>
                   </div>
@@ -52,64 +54,44 @@
                   
                 <div class="form-group">
                   <label for="product_name" >ID bài viết</label>
-                  <input type="text" class="form-control" id="idbaiviet" value="{{blog->id_bai_viet}}"  name="idbaiviet" placeholder="Tự động" autocomplete="off"  disabled />
+                  <input type="text" class="form-control" id="id" value="{{$posts->id}}"  name="id" placeholder="Tự động" autocomplete="off"  disabled />
     
                 </div>
 
                   <div class="form-group">
                     <label for="product_name" >Ngày đăng</label>
-                    <input type="text" class="form-control" id="ngaydang" value="{{blog->ngay_dang}}"  name="ngaydang" placeholder="Tự động" autocomplete="off"  disabled />
+                    <input type="text" class="form-control" id="created_at" value="{{$posts->created_at}}"  name="created_at" placeholder="Tự động" autocomplete="off"  disabled />
       
                   </div>
     
                 
                   <div class="form-group">
                     <label for="product_name" >Tiêu đề</label>
-                    <input type="text" class="form-control" id="tieude" value="{{blog->tieu_de}}" name="tieude" placeholder="Nhập tiêu đề" autocomplete="off" />
-                    <p id="err_tieude" class="hide-elm text-danger">Tiêu đề không được để trống</p>
+                    <input type="text" class="form-control" id="title" value="{{$posts->title}}" name="title" placeholder="Nhập tiêu đề" autocomplete="off" />
+                    <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
       
                   </div>
-                  
                   <div class="form-group">
-                      <label for="category">Danh mục</label>
-                      <select class="form-control " id="iddanhmuc"  name="iddanhmuc">
-                        <option value="" selected >--- Chọn danh mục ---</option>
+                    <label for="status" >Loại bài viết</label>
+                    <select name="status" id=""  class="form-control">
+                      <option value="0" {{$posts->status == 0 ? "selected" : null}}>Thường</option>
+                      <option value="1" {{$posts->status == 1 ? "selected" : null}}>Mới</option>
   
-                       @if (\count(category) > 0)
-                        @foreach(category as key => value)
-                        <option value="{{value->id_danh_muc}}" 
-
-                          @if((string)value->id_danh_muc === (string)blog->id_danh_muc)
-                            selected
-                          @endif
-                          
-                          >{{value->ten_danh_muc}}</option>
-                        @endforeach
-    
-                        @else
-                        <option value=""  >--- Không có danh mục nào ---</option>
-  
-                        @endif 
-                      </select>
-                      <p id="err_iddanhmuc" class="hide-elm text-danger">Danh mục không được để trống</p>
-        
-                    </div>
-  
-                    <div class="form-group">
-                      <label for="category">Nội dung</label>
-                      <textarea name="noidung" class="form-control"  id="noidung">{{blog->noi_dung}}</textarea>
-                      <p id="err_noidung" class="hide-elm text-danger">Nội dung không được để trống</p>
-        
-                    </div>
-                
-                   
+                    </select>
+                    <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
       
-                </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Nội dung </label>
+                   
+                    <textarea id="description"  name = "description">{{$posts->description}}</textarea>
+  
+                  </div>
               <!-- /.box-body -->
     
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                <a href="manage_song.php" class="btn btn-warning">Trở về</a>
+                <a href="{{ url()->previous() }}" class="btn btn-warning">Trở về</a>
               </div>
             </form>
             <!-- /.box-body -->
@@ -126,10 +108,14 @@
   </div>
   @stop
   @section('javascript')
-  <script src={{asset("/assets/admin/dist/js/blog.js?ver=01")}}></script>       
+  <script src={{asset("/assets/admin/dist/js/blog.js?ver=02")}}></script>       
 
-  <script src={{ asset('assets/admin/ckeditor/ckeditor.js?ver=02') }}></script>
-  <script src={{ asset('assets/admin/ckfinder/ckfinder.js') }}></script>
+  <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
 
-  <script> CKEDITOR.replace('noidung'); </script>  
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
+
+<script src={{asset("/assets/admin/ckeditor.js?ver=2")}}></script>       
+
+  <script> load_ckeditor("description") </script>  
   @endsection

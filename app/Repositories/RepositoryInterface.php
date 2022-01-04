@@ -15,7 +15,7 @@ interface RepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function find($id);
+    public function findById($id);
 
     /**
      * Create
@@ -30,12 +30,12 @@ interface RepositoryInterface
      * @param array $attributes
      * @return mixed
      */
-    public function update($id, $attributes = []);
+    public function updateById($id, $attributes = []);
 
     /**
      * Delete
      * @param $id
      * @return mixed
      */
-    public function delete($id);
+    public function deleteById($id);
 }
