@@ -22,9 +22,7 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.admin.popup_error')
 
-                    <a class="btn btn-primary" href="{{ route('manage.category.create') }}">Thêm mới {{$title}}</a>
 
-                    <br /> <br />
 
 
                     <div class="box">
@@ -37,12 +35,15 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên gói</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Tên</th>
                                         <th>Giá</th>
-                                        <th>Kích cỡ</th>
-
+                                        <th>Giảm giá</th>
                                         <th>Danh mục</th>
-                                        <th>Nội dung
+                                        <th>Màu sắc</th>
+                                        <th>Lưu trữ</th>
+                                        <th>Chuẩn kết nối</th>
+                                        <th>Bảo hành
                                         </th>
 
                                         <th>Hành động</th>
@@ -52,23 +53,28 @@
 
 
 
-                                    @foreach ($list_categories as $key => $value)
+                                    @foreach ($list_camera as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{{ $value->name }}</td>
+                                        <td><img src={{asset("$value->image_url")}} style="    width: 150px;
+                                            height: 100px;" loading="lazy"></td>                                        <td>{{ $value->name }}</td>
                                         <td>{{ $value->price }}</td>
-                                        <td>{{ $value->size }}</td>
-                                        <td>{{ $value->category->name }}</td>
+                                        <td>{{ $value->discount }}</td>
+                                        <td>{{ $value->category == null ? null : $value->category->name }}</td>
+                                        <td>{{ $value->color }}</td>
+                                        <td>{{ $value->storage }}</td>
+                                        <td>{{ $value->conenction }}</td>
+                                        <td>{{ $value->insurance }}</td>
 
-                                          <td><span>
-                                            {!!Str::limit($value->description , 20)!!}
-                                            </span></td>
+
+
+
+
+
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('manage.category.edit', $value->id) }}"><i
+                                                href="{{ route('manage.service_camera.edit', $value->id) }}"><i
                                                     class="fa fa-pencil"></i></a> 
-                                              <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
-                                              onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
-                                                    class="fa fa-trash"></i></a>
+                                          
                                                  
                                                   </td>
                                                 </tr>
@@ -90,7 +96,7 @@
 
 
             <!-- remove brand modal -->
-            @include('pages.admin.internet.child.remove_popup');
+            @include('pages.admin.camera.child.remove_popup');
           </section>
         <!-- /.content -->
     </div>

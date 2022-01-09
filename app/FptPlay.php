@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Internet extends Model
+class FptPlay extends Model
 {
+    protected $table = "fpt_plays";
     protected $guarded = [];
     public $timestamps = true;
     public function category()

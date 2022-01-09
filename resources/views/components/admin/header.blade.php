@@ -31,7 +31,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 15px !important">
            
-            <span class="hidden-xs"><b>XIN CHÀO </b> Alexander nps Pierce</span>
+            <span class="hidden-xs"><b>XIN CHÀO </b> {{\Auth::user()->name}}</span>
           </a>
       
         </li>

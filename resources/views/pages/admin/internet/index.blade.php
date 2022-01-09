@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.admin.popup_error')
 
-                    <a class="btn btn-primary" href="{{ route('manage.category.create') }}">Thêm mới {{$title}}</a>
+                    <a class="btn btn-primary" href="{{ route('manage.service_internet.create') }}">Thêm mới {{$title}}</a>
 
                     <br /> <br />
 
@@ -52,7 +52,7 @@
 
 
 
-                                    @foreach ($list_categories as $key => $value)
+                                    @foreach ($list_internet as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>
@@ -64,7 +64,7 @@
                                             {!!Str::limit($value->description , 20)!!}
                                             </span></td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('manage.category.edit', $value->id) }}"><i
+                                                href="{{ route('manage.service_internet.edit', $value->id) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                               <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
                                               onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i

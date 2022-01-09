@@ -37,6 +37,18 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Order\OrderRepositoryInterface::class,
             \App\Repositories\Order\OrderRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Internet\InternetRepositoryInterface::class,
+            \App\Repositories\Internet\InternetRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\Camera\CameraRepositoryInterface::class,
+            \App\Repositories\Camera\CameraRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\Play\PlayRepositoryInterface::class,
+            \App\Repositories\Play\PlayRepository::class
+        );
     }
 
     /**

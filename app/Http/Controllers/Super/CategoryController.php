@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Super;
 
 use Illuminate\Http\Request;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+
+    protected $categoryRepo;
+    protected $title = "Danh mục";
+
+    public function __construct(categoryRepositoryInterface $categoryRepo)
+    {
+        $this->categoryRepo = $categoryRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return "super";
-
+        $list_category = $this->categoryRepo->getAll();
+        return \auto_redirect(\view("pages.super.category.index" , ['list_category' => $list_category , 'title' => $this->title]) ,  $list_category);
     }
 
     /**
