@@ -12,7 +12,7 @@
             <div class="col-inner text-center"  >
                 
                 
-    <div class="container section-title-container" ><h1 class="section-title section-title-center"><b></b><span class="section-title-main" >INTERNET CÁ NHÂN</span><b></b></h1></div>
+    <div class="container section-title-container" ><h1 class="section-title section-title-center"><b></b><span class="section-title-main" > {{$title}}</span><b></b></h1></div>
             </div>
                 </div>
     
@@ -32,41 +32,28 @@
     }
     </style>
         </div>
-        
-    <ul class="goi_cuoc_home"><li class="col_li-3 internet-ca-nhan"><h3>Super 80</h3> <div class="thongtin-goicuoc">
-                            <p class="gia-goicuoc">200.000<span class="dongia">đ/Tháng</span></p>
-                            <div class="linebt"></div>
-                            <p class="tocdo-goicuoc"><span class="sotcodo">Download / Upload</span><br />80<span class="tocdogoi">Mbps</span></p>
-                            <div class="mota_goicuoc"> <p>Miễn phí lắp đặt*</p>
-    <p>Trang bị Modem WiFi 2 băng tần</p>
-    <p>Lắp đặt nhanh trong 24h</p>
-    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng cước</strong></span></p>
-     </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 80" data-gia="200.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li><li class="col_li-3 internet-ca-nhan"><h3>Super 100</h3> <div class="thongtin-goicuoc">
-                            <p class="gia-goicuoc">255.000<span class="dongia">đ/Tháng</span></p>
-                            <div class="linebt"></div>
-                            <p class="tocdo-goicuoc"><span class="sotcodo">Download / Upload</span><br />100<span class="tocdogoi">Mbps</span></p>
-                            <div class="mota_goicuoc"> <p>Miễn phí lắp đặt*</p>
-    <p>Trang bị Modem WiFi 2 băng tần</p>
-    <p>Lắp đặt nhanh trong 24h</p>
-    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng cước</strong></span></p>
-     </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 100" data-gia="255.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li><li class="col_li-3 internet-ca-nhan"><h3>Super 150</h3> <div class="thongtin-goicuoc">
-                            <p class="gia-goicuoc">320.000<span class="dongia">đ/Tháng</span></p>
-                            <div class="linebt"></div>
-                            <p class="tocdo-goicuoc"><span class="sotcodo">Download / Upload</span><br />150<span class="tocdogoi">Mbps</span></p>
-                            <div class="mota_goicuoc"> <p>Miễn phí lắp đặt*</p>
-    <p>Trang bị Modem WiFi 2 băng tần</p>
-    <p>Lắp đặt nhanh trong 24h</p>
-    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng cước</strong></span></p>
-     </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 150" data-gia="320.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li></ul><script type="text/javascript">
+    {{-- hiển thị thông tin internet    --}}
+    <ul class="goi_cuoc_home">
+        @foreach($list_internet as $internet)
+            <li class="col_li-3 internet-ca-nhan">
+                <h3>Super 80</h3> 
+                <div class="thongtin-goicuoc">
+                        <p class="gia-goicuoc">{{$internet->price}}<span class="dongia">đ/Tháng</span></p>
+                        <div class="linebt"></div>
+                        <p class="tocdo-goicuoc"><span class="sotcodo">Download / Upload</span><br />{{$internet->size}}<span class="tocdogoi">Mbps</span></p>
+                        <div class="mota_goicuoc"> 
+                                <p>{{$internet->description}}</p>
+                                
+                                
+                        </div>
+                        </div>
+                        <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 80" data-gia="200.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
+            </li>
+        @endforeach
+    </ul>
+                        
+                        
+                <script type="text/javascript">
                 jQuery(document).ready(function(e) {
                     jQuery(".dangkyngay-bt").click(function(){
                         var tengoi = jQuery(this).attr("data-goi-cuoc");

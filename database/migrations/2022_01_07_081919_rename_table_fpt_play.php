@@ -13,7 +13,7 @@ class RenameTableFptPlay extends Migration
      */
     public function up()
     {
-        Schema::rename("play_fpts", "fpt_plays");
+        Schema::rename("play_fpt", "fpt_plays");
 
     }
 

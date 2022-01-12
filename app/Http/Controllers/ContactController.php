@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Repositories\Contact\ContactRepositoryInterface;
 class ContactController extends Controller
 {
     /**
@@ -11,9 +11,19 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    protected $getConTact;
+    protected $title = "ConTact";
+
+
+    public function __construct(ContactRepositoryInterface $getConTact)
     {
-        return \auto_redirect(\view("pages.contact.index") , "ajax");
+        $this->getConTact = $getConTact;
+    }
+    public function index()
+    {   
+        $list_contact=$this->getConTact->getAll();
+        return view("pages.contact.index" , ['list_contact' => $list_contact , 'title' => $this->title,'status'=>201]);
+     
 
     }
 

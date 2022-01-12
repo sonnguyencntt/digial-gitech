@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Repositories\internet\InternetRepositoryInterface;
 class ServiceInternetController extends Controller
 {
     /**
@@ -11,9 +11,14 @@ class ServiceInternetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $title;
+    public function __construct(InternetRepositoryInterface $getInternet)
+    {
+        $this->getInternet = $getInternet;
+    }
     public function index()
     {
-        return \auto_redirect(\view("pages.service_internet.index") , "ajax");
+        return view("pages.service_internet.index");
     }
 
     /**
@@ -44,8 +49,12 @@ class ServiceInternetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $list_internet=$this->getInternet->getAllInternet($id);
+        $getCategoryName=$this->getInternet->getCategoryName($id);
+        $title=($getCategoryName[0]->name);
+        
+        return view("pages.service_internet.index",['list_internet' => $list_internet ,'title'=>$title,'status'=>201]);
     }
 
     /**

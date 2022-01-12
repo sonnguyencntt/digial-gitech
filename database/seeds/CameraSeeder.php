@@ -14,13 +14,15 @@ class CameraSeeder extends Seeder
         DB::table('cameras')->insert(
             ['name' => 'Camera ngoài trời',
             'image_url' => 'sonnguyen@gmail.com',
-            'price' => 50000
+            'price' => 50000,
+            'category_id'=>1
             ]
         );
         DB::table('cameras')->insert(
             ['name' => 'Camera trong nhà',
             'image_url' => 'sonnguyen@gmail.com',
-            'price' => 50000
+            'price' => 50000,
+            'category_id'=>2
             ]
         );
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Repositories\Camera\CameraRepositoryInterface;
 class ServiceCameraController extends Controller
 {
     /**
@@ -11,9 +11,15 @@ class ServiceCameraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+ 
+    public function __construct(cameraRepositoryInterface $cameraRepo )
     {
-        return \auto_redirect(\view("pages.service_camera.index") , "ajax");
+        $this->cameraRepo = $cameraRepo;
+        
+    }
+    public function index()
+    {   
+       
 
     }
 
@@ -46,7 +52,11 @@ class ServiceCameraController extends Controller
      */
     public function show($id)
     {
-        //
+        $getFirstID=$this->cameraRepo->getFirstID();
+        $getSecondID=$this->cameraRepo->getSecondID();
+        $getCategoryName=$this->cameraRepo->getCategoryName();
+        $title=$getCategoryName->category->name;
+        return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'title'=>$title,'status'=>200]) ;
     }
 
     /**

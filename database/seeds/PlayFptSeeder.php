@@ -11,7 +11,7 @@ class PlayFptSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('play_fpts')->insert(
+        DB::table('fpt_plays')->insert(
             ['name' => 'Gói 1',
             'description' => 'sonnguyen@gmail.com',
             'price' => 10000,

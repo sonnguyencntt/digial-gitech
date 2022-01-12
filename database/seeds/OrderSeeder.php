@@ -13,6 +13,7 @@ class OrderSeeder extends Seeder
     {
         DB::table('orders')->insert(
             ['name' => 'Nguyễn Hồng Sơn',
+            'phone_number'=>"32146465465",
             'email' => 'sonnguyen@gmail.com',
             "address" => "Long Khánh - Đồng Nai",
             "product_id" => 1,

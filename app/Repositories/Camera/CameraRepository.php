@@ -18,4 +18,17 @@ class CameraRepository extends BaseRepository implements CameraRepositoryInterfa
     public function getID($id){
         return $this->model->find($id);
     }
+    public function getFirstID(){
+        return $this->model->get()->first();
+    }
+    public function getSecondID(){
+        $getFistID=$this->getFirstID();
+
+        return $this->model->skip($getFistID->id)->first();
+    }
+    public function getCategoryName(){
+        $getFistID=$this->getFirstID();
+        $results = $this->model->with('category')->find( $getFistID->id);
+        return $results;
+    }
 }
