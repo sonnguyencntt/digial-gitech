@@ -53,7 +53,7 @@
 
 
 
-                                    @foreach ($list_camera as $key => $value)
+                                    @foreach ($listCameras as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td><img src={{asset("$value->image_url")}} style="    width: 150px;

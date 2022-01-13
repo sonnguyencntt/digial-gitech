@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Customer extends Model
 {
-    protected $table = 'contacts';
     protected $primaryKey = 'id';
     protected $guarded = [];
     public $timestamps = true;

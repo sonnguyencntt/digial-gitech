@@ -55,7 +55,7 @@
 
 
 
-                                    @foreach ($list_order as $key => $value)
+                                    @foreach ($listOrders as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>

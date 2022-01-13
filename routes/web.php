@@ -53,8 +53,8 @@ Route::group([
             Route::get('/{banner}', 'Manage\BannerController@show')->name('manage.banner.show');
         });
 
-        Route::group(['prefix' => 'contact'], function () {
-            Route::get('/', 'Manage\ContactController@index')->name('manage.contact.index');
+        Route::group(['prefix' => 'customer'], function () {
+            Route::get('/', 'Manage\CustomerController@index')->name('manage.customer.index');
         });
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', 'Manage\ProfileController@index')->name('manage.profile.index');

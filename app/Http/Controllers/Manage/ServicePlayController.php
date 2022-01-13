@@ -13,7 +13,7 @@ class ServicePlayController extends Controller
     protected $playRepo;
     protected $categoryRepo;
     protected $title = "Dịch vụ play";
-    protected $link_folder = "/images/play";
+    protected $linkFolder = "/images/play";
 
 
     public function __construct(playRepositoryInterface $playRepo , CategoryRepositoryInterface $categoryRepo )
@@ -28,8 +28,8 @@ class ServicePlayController extends Controller
      */
     public function index()
     {
-        $list_fpt_plays = $this->playRepo->all();
-        return \auto_redirect(\view("pages.admin.fpt_play.index" , ['list_fpt_plays' => $list_fpt_plays , 'title' => $this->title]) ,  $list_fpt_plays);
+        $listFptPlays = $this->playRepo->all();
+        return \auto_redirect(\view("pages.admin.fpt_play.index" , ['listFptPlays' => $listFptPlays , 'title' => $this->title]) ,  $listFptPlays);
     
     }
 
@@ -40,9 +40,9 @@ class ServicePlayController extends Controller
      */
     public function create()
     {
-        $list_categories = $this->categoryRepo->getAll();
+        $listCategories = $this->categoryRepo->getAll();
 
-        return \auto_redirect(\view("pages.admin.fpt_play.create" , ['title' => $this->title , 'list_categories' => $list_categories]) , "ajax");
+        return \auto_redirect(\view("pages.admin.fpt_play.create" , ['title' => $this->title , 'listCategories' => $listCategories]) , "ajax");
 
     }
 
@@ -83,9 +83,9 @@ class ServicePlayController extends Controller
     public function edit($id)
     {
         $fpt_play = $this->playRepo->findById($id);
-        $list_categories = $this->categoryRepo->getAll();
+        $listCategories = $this->categoryRepo->getAll();
 
-        return \auto_redirect(\view("pages.admin.fpt_play.edit" , ['fpt_play'=>$fpt_play , 'title' => $this->title ,  'list_categories' => $list_categories]) , "ajax");
+        return \auto_redirect(\view("pages.admin.fpt_play.edit" , ['fpt_play'=>$fpt_play , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
  
     }
 

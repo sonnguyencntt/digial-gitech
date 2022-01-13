@@ -30,7 +30,7 @@ function menu($current_route = "/", $guard = null)
                 ["name" => "Thêm mới", "url" => route("manage.banner.create")]
             ]],
 
-            ["name" => "KH Liên hệ", "url" => route("manage.contact.index"), "icon" => "fa fa-users", "sub_menu" => false],
+            ["name" => "KH Liên hệ", "url" => route("manage.customer.index"), "icon" => "fa fa-users", "sub_menu" => false],
 
             ["name" => "Cài đặt giao diện", "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
                 ["name" => "Giao diện Internet", "url" => route("manage.posts.index")],

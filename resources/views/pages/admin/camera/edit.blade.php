@@ -134,7 +134,7 @@
                 <label for="status">Danh mục</label>
                 <select name="category_id" id="" class="form-control">
 
-                  @foreach($list_categories as $key => $value)
+                  @foreach($listCategories as $key => $value)
                   <option value="{{$value->id}}" {{$value->id == $camera->category_id ? "selected" : ""}}
                     >{{$value->name}}</option>
                   @endforeach

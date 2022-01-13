@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("manage.service_play.update" , $fpt_play->id)}}" method="POST"   enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("manage.service_play.update" , $fptPlay->id)}}" method="POST"   enctype="multipart/form-data">
               @csrf
               @method('put')
               <div class="box-body">
@@ -37,12 +37,12 @@
               
                 <div class="form-group">
                   <label for="product_name" >Tên gói</label>
-                  <input type="text" class="form-control" id="name" name="name" value = "{{$fpt_play->name}}" placeholder="Nhập tên" autocomplete="off" />
+                  <input type="text" class="form-control" id="name" name="name" value = "{{$fptPlay->name}}" placeholder="Nhập tên" autocomplete="off" />
     
                 </div>
                 <div class="form-group">
                   <label for="product_name" >Giá</label>
-                  <input type="text" class="form-control" id="name" name="price" value = "{{$fpt_play->price}}" placeholder="Nhập giá" autocomplete="off" />
+                  <input type="text" class="form-control" id="name" name="price" value = "{{$fptPlay->price}}" placeholder="Nhập giá" autocomplete="off" />
     
                 </div>
              
@@ -51,7 +51,7 @@
                   <select name="category_id" id=""   class="form-control">
                  
                     @foreach($list_categories as $key => $value)
-                      <option value="{{$value->id}}" {{$value->id == $fpt_play->category_id ? "selected" : ""}} >{{$value->name}}</option>
+                      <option value="{{$value->id}}" {{$value->id == $fptPlay->category_id ? "selected" : ""}} >{{$value->name}}</option>
                     @endforeach
 
                   </select>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                   <label for="description">Nội dung </label>
                  
-                  <textarea id="description"  name = "description">{{$fpt_play->description}}</textarea>
+                  <textarea id="description"  name = "description">{{$fptPlay->description}}</textarea>
 
                 </div>
              

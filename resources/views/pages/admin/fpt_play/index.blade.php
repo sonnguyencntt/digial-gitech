@@ -51,7 +51,7 @@
 
 
 
-                                    @foreach ($list_fpt_plays as $key => $value)
+                                    @foreach ($listFptPlays as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>

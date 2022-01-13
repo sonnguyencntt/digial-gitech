@@ -15,7 +15,7 @@ class ServiceCameraController extends Controller
     protected $cameraRepo;
     protected $categoryRepo;
     protected $title = "Dịch vụ Camera";
-    protected $link_folder = "/images/camera";
+    protected $linkFolder = "/images/camera";
 
 
     public function __construct(cameraRepositoryInterface $cameraRepo , CategoryRepositoryInterface $categoryRepo )
@@ -30,8 +30,8 @@ class ServiceCameraController extends Controller
      */
     public function index()
     {
-        $list_camera = $this->cameraRepo->all();
-        return \auto_redirect(\view("pages.admin.camera.index" , ['list_camera' => $list_camera , 'title' => $this->title]) ,  $list_camera);
+        $listCameras = $this->cameraRepo->all();
+        return \auto_redirect(\view("pages.admin.camera.index" , ['listCameras' => $listCameras , 'title' => $this->title]) ,  $listCameras);
     
     }
 
@@ -76,9 +76,9 @@ class ServiceCameraController extends Controller
     public function edit($id)
     {
         $camera = $this->cameraRepo->findById($id);
-        $list_categories = $this->categoryRepo->getAll();
+        $listCategories = $this->categoryRepo->getAll();
 
-        return \auto_redirect(\view("pages.admin.camera.edit" , ['camera'=>$camera , 'title' => $this->title ,  'list_categories' => $list_categories]) , "ajax");
+        return \auto_redirect(\view("pages.admin.camera.edit" , ['camera'=>$camera , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
     }
 
     /**
@@ -90,21 +90,21 @@ class ServiceCameraController extends Controller
      */
     public function update(UpdateCameraRequest $request, $id)
     {
-        $file_name = null;
+        $fileName = null;
  
         try{
             if($request->has('image_url')){
                 $file=$request->image_url;
                 $etx=$request->image_url->extension();
-                $file_name=time().'-'.'camera.'.$etx;
-                $file->move(public_path($this->link_folder),$file_name);
+                $fileName=time().'-'.'camera.'.$etx;
+                $file->move(public_path($this->linkFolder),$fileName);
             }
 
-            if($file_name == null)
+            if($fileName == null)
             {
                 $this->cameraRepo->updateById($id,$request->except("image_url_string"));
                 try {
-                    $file_path = $this->link_folder . $request->image_url_string;
+                    $file_path = $this->linkFolder . $request->image_url_string;
                     if(File::exists($file_path)) 
                     File::delete($file_path);
                 } catch (\Throwable $th) {
@@ -114,7 +114,7 @@ class ServiceCameraController extends Controller
             else
             {
               
-                $this->cameraRepo->updateById($id,array_merge($request->except("image_url_string"), ['image_url' => $file_name]));
+                $this->cameraRepo->updateById($id,array_merge($request->except("image_url_string"), ['image_url' => $fileName]));
             }
 
 

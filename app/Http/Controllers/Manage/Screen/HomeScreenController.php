@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Manage;
+namespace App\Http\Controllers\Manage\Screen;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contact\ContactRepositoryInterface;
 
-class ContactController extends Controller
+class HomeScreenController extends Controller
 {
+    protected $screenHomeRepo;
+    protected $title = "Màn hình Trang chủ";
+    protected $linkFolder = "/images/screen_home";
 
-
-    protected $contactRepo;
-    protected $title = "KH liên hệ";
-
-    public function __construct(contactRepositoryInterface $contactRepo)
+    public function __construct(ScreenHomeRepositoryInterface $screenHomeRepo)
     {
-        $this->contactRepo = $contactRepo;
+        $this->screenHomeRepo = $screenHomeRepo;
     }
     /**
      * Display a listing of the resource.
@@ -24,10 +22,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $list_contact = $this->contactRepo->getAll();
-        return \auto_redirect(\view("pages.admin.contact.index" , ['list_contact' => $list_contact , 'title' => $this->title]) ,  $list_contact);
+        $listScreenHome = $this->screenHomeRepo->getAll();
+        return \auto_redirect(\view("pages.admin.screen_home.index" , ['listScreenHome' => $listScreenHome , 'title' => $this->title]) ,  $listScreenHome);
     }
-
     /**
      * Show the form for creating a new resource.
      *

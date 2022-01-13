@@ -15,7 +15,7 @@ class PostsController extends Controller
 
     protected $postsRepo;
     protected $title = "Bài viết";
-    protected $link_folder = "/images/posts";
+    protected $linkFolder = "/images/posts";
 
     public function __construct(PostsRepositoryInterface $postsRepo)
     {
@@ -29,8 +29,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $list_posts = $this->postsRepo->getAll();
-        return \auto_redirect(\view("pages.admin.posts.index" , ['list_posts' => $list_posts , 'title' => $this->title]) ,  PostsResource::collection($list_posts));
+        $listPosts = $this->postsRepo->getAll();
+        return \auto_redirect(\view("pages.admin.posts.index" , ['listPosts' => $listPosts , 'title' => $this->title]) ,  PostsResource::collection($listPosts));
     }
 
     /**
@@ -55,15 +55,15 @@ class PostsController extends Controller
             if($request->has('image')){
                 $file=$request->image;
                 $etx=$request->image->extension();
-                $file_name=time().'-'.'posts.'.$etx;
-                $file->move(public_path($this->link_folder),$file_name);
+                $fileName=time().'-'.'posts.'.$etx;
+                $file->move(public_path($this->linkFolder),$fileName);
             }
             $this->postsRepo->create([
                 'title'=>$request->title,
                 'status'=>$request->status,
                 'description'=>$request->description,
 
-                'image_url'=>$file_name,
+                'image_url'=>$fileName,
             ]);
             return redirect("/posts")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
         }
@@ -105,16 +105,16 @@ class PostsController extends Controller
      */
     public function update(UpdatePostsRequest $request, $id)
     {
-        $file_name = null;
+        $fileName = null;
         try{
             if($request->has('image')){
                 $file=$request->image;
                 $etx=$request->image->extension();
-                $file_name=time().'-'.'posts.'.$etx;
-                $file->move(public_path($this->link_folder),$file_name);
+                $fileName=time().'-'.'posts.'.$etx;
+                $file->move(public_path($this->linkFolder),$fileName);
             }
 
-            if($file_name == null)
+            if($fileName == null)
             {
                 $this->postsRepo->updateById($id,[
                     'title'=>$request->title,
@@ -122,7 +122,7 @@ class PostsController extends Controller
                     'description'=>$request->description,
                 ]);
                 try {
-                    $file_path = $this->link_folder . $request->image_url_string;
+                    $file_path = $this->linkFolder . $request->image_url_string;
                     if(File::exists($file_path)) 
                     File::delete($file_path);
                 } catch (\Throwable $th) {
@@ -135,7 +135,7 @@ class PostsController extends Controller
                     'title'=>$request->title,
                     'status'=>$request->status,
                     'description'=>$request->description,
-                    'image_url'=>$file_name,
+                    'image_url'=>$fileName,
 
                 ]);
             }

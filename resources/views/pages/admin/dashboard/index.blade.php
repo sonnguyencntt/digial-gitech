@@ -25,14 +25,14 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
               <div class="inner">
-                <h3>{{$count_contact}}</h3>
+                <h3>{{$countCustomer}}</h3>
 
                 <p>Khách hàng liên hệ</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('manage.contact.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.customer.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -40,7 +40,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
               <div class="inner">
-                <h3>{{$count_order}}</h3>
+                <h3>{{$countOrder}}</h3>
 
                 <p>Đơn hàng</p>
               </div>
@@ -55,7 +55,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
               <div class="inner">
-                <h3>{{$count_posts}}</h3>
+                <h3>{{$countPosts}}</h3>
 
                 <p>Bài viết</p>
               </div>
@@ -103,14 +103,14 @@
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
-                <h3>{{"count_contact"}}</h3>
+                <h3>{{"countCustomer"}}</h3>
 
                 <p>FPT Play</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('manage.contact.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.customer.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

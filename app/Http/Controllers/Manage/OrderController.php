@@ -24,9 +24,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $list_order = $this->orderRepo->all();
+        $listOrders = $this->orderRepo->all();
         
-        return \auto_redirect(\view("pages.admin.order.index" , ['list_order' => $list_order , 'title' => $this->title]) ,  $list_order);
+        return \auto_redirect(\view("pages.admin.order.index" , ['listOrders' => $listOrders , 'title' => $this->title]) ,  $listOrders);
     }
 
     /**

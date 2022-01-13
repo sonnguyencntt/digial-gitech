@@ -14,7 +14,7 @@ class ServiceInternetController extends Controller
     protected $internetRepo;
     protected $categoryRepo;
     protected $title = "Dịch vụ Internet";
-    protected $link_folder = "/images/Internet";
+    protected $linkFolder = "/images/Internet";
 
 
     public function __construct(InternetRepositoryInterface $internetRepo , CategoryRepositoryInterface $categoryRepo )
@@ -29,8 +29,8 @@ class ServiceInternetController extends Controller
      */
     public function index()
     {
-        $list_internet = $this->internetRepo->all();
-        return \auto_redirect(\view("pages.admin.internet.index" , ['list_internet' => $list_internet , 'title' => $this->title]) ,  $list_internet);
+        $listInternets = $this->internetRepo->all();
+        return \auto_redirect(\view("pages.admin.internet.index" , ['listInternets' => $listInternets , 'title' => $this->title]) ,  $listInternets);
     
     }
 
@@ -41,9 +41,9 @@ class ServiceInternetController extends Controller
      */
     public function create()
     {
-        $list_categories = $this->categoryRepo->getAll();
+        $listCategories = $this->categoryRepo->getAll();
 
-        return \auto_redirect(\view("pages.admin.internet.create" , ['title' => $this->title , 'list_categories' => $list_categories]) , "ajax");
+        return \auto_redirect(\view("pages.admin.internet.create" , ['title' => $this->title , 'listCategories' => $listCategories]) , "ajax");
 
     }
 
@@ -84,9 +84,9 @@ class ServiceInternetController extends Controller
     public function edit($id)
     {
         $internet = $this->internetRepo->findById($id);
-        $list_categories = $this->categoryRepo->getAll();
+        $listCategories = $this->categoryRepo->getAll();
 
-        return \auto_redirect(\view("pages.admin.internet.edit" , ['internet'=>$internet , 'title' => $this->title ,  'list_categories' => $list_categories]) , "ajax");
+        return \auto_redirect(\view("pages.admin.internet.edit" , ['internet'=>$internet , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
     }
 
     /**

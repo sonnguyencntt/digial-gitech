@@ -86,7 +86,7 @@
                                                 cước</strong></span></p>
                                 </div>
                             </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 80" data-gia="200.000"
+                            <div class="bt_dangky"><a data-toggle="modal" data-target="#bookingModal"
                                     class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
                         </li>
                         <li class="col_li-3 internet-ca-nhan">
@@ -122,7 +122,7 @@
                                                 cước</strong></span></p>
                                 </div>
                             </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 150" data-gia="320.000"
+                            <div class="bt_dangky"><a href="#" data-toggle="modal" data-target="#bookingModal"
                                     class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
                         </li>
                     </ul>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\internet\InternetRepositoryInterface;
 class ServiceInternetController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +53,7 @@ class ServiceInternetController extends Controller
     {   
         $list_internet=$this->getInternet->getAllInternet($id);
         $getCategoryName=$this->getInternet->getCategoryName($id);
-        $title=($getCategoryName[0]->name);
+        $title=$getCategoryName[0]->name;
         
         return view("pages.service_internet.index",['list_internet' => $list_internet ,'title'=>$title,'status'=>201]);
     }

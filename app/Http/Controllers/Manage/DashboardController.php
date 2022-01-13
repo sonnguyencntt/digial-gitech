@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Manage;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contact\ContactRepositoryInterface;
+use App\Repositories\Customer\CustomerRepositoryInterface;
 use App\Repositories\Posts\PostsRepositoryInterface;
 use App\Repositories\Order\OrderRepositoryInterface;
 
@@ -17,16 +17,16 @@ class DashboardController extends Controller
      */
 
     protected $postsRepo;
-    protected $contactRepo;
+    protected $customerRepo;
     protected $orderRepo;
 
 
     protected $title = "Bảng điều khiển";
 
 
-    public function __construct(contactRepositoryInterface $contactRepo , PostsRepositoryInterface $postsRepo , OrderRepositoryInterface $orderRepo)
+    public function __construct(customerRepositoryInterface $customerRepo , PostsRepositoryInterface $postsRepo , OrderRepositoryInterface $orderRepo)
     {
-        $this->contactRepo = $contactRepo;
+        $this->customerRepo = $customerRepo;
         $this->postsRepo = $postsRepo;
         $this->orderRepo = $orderRepo;
 
@@ -35,11 +35,11 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $count_contact = $this->contactRepo->count();
-        $count_posts = $this->postsRepo->count();
-        $count_order = $this->orderRepo->count();
+        $countCustomer = $this->customerRepo->count();
+        $countPosts = $this->postsRepo->count();
+        $countOrder = $this->orderRepo->count();
 
-        return \auto_redirect(\view("pages.admin.dashboard.index" , ["count_contact"=> $count_contact , "count_posts" => $count_posts , "count_order" => $count_order ,  "title" => $this->title]) , "ajax");
+        return \auto_redirect(\view("pages.admin.dashboard.index" , ["countCustomer"=> $countCustomer , "countPosts" => $countPosts , "countOrder" => $countOrder ,  "title" => $this->title]) , "ajax");
 
     }
 

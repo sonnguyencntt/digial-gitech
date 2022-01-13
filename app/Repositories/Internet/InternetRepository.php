@@ -11,6 +11,10 @@ class InternetRepository extends BaseRepository implements InternetRepositoryInt
         return \App\Internet::class;
     }
 
+    public function all()
+    {
+        return $this->model->with('category')->get();
+    }
     
     public function getAllInternet($id){
         $results = $this->model->where('category_id', '=',$id)->get();

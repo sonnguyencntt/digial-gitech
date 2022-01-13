@@ -50,7 +50,7 @@
 
 
 
-                                    @foreach ($list_banner as $key => $value)
+                                    @foreach ($listBanners as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->title }}</td>

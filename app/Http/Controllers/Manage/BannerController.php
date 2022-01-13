@@ -13,7 +13,7 @@ class BannerController extends Controller
 
     protected $bannerRepo;
     protected $title = "Banner";
-    protected $link_folder = "/images/banner";
+    protected $linkFolder = "/images/banner";
 
     public function __construct(BannerRepositoryInterface $bannerRepo)
     {
@@ -26,8 +26,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $list_banner = $this->bannerRepo->getAll();
-        return \auto_redirect(\view("pages.admin.banner.index" , ['list_banner' => $list_banner , 'title' => $this->title]) ,  $list_banner);
+        $listBanners = $this->bannerRepo->getAll();
+        return \auto_redirect(\view("pages.admin.banner.index" , ['listBanners' => $listBanners , 'title' => $this->title]) ,  $listBanners);
     }
 
     /**
@@ -53,12 +53,12 @@ class BannerController extends Controller
             if($request->has('image')){
                 $file=$request->image;
                 $etx=$request->image->extension();
-                $file_name=time().'-'.'banner.'.$etx;
-                $file->move(public_path($this->link_folder),$file_name);
+                $fileName=time().'-'.'banner.'.$etx;
+                $file->move(public_path($this->linkFolder),$fileName);
             }
             $this->bannerRepo->create([
                 'title'=>$request->title,
-                'image_url'=>$file_name,
+                'image_url'=>$fileName,
             ]);
             return redirect("/banner")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
         }
@@ -100,23 +100,23 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $file_name = null;
+        $fileName = null;
         try{
             if($request->has('image')){
                 $file=$request->image;
                 $etx=$request->image->extension();
-                $file_name=time().'-'.'banner.'.$etx;
-                $file->move(public_path($this->link_folder),$file_name);
+                $fileName=time().'-'.'banner.'.$etx;
+                $file->move(public_path($this->linkFolder),$fileName);
             }
 
-            if($file_name == null)
+            if($fileName == null)
             {
                 $this->bannerRepo->updateById($id,[
                     'title'=>$request->title,
       
                 ]);
                 try {
-                    $file_path = $this->link_folder . $request->image_url_string;
+                    $file_path = $this->linkFolder . $request->image_url_string;
                     if(File::exists($file_path)) 
                     File::delete($file_path);
                 } catch (\Throwable $th) {
@@ -128,7 +128,7 @@ class BannerController extends Controller
                 $this->bannerRepo->updateById($id,[
                     'title'=>$request->title,
              
-                    'image_url'=>$file_name,
+                    'image_url'=>$fileName,
 
                 ]);
             }

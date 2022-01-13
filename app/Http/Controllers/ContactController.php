@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Contact\ContactRepositoryInterface;
+use App\Repositories\Customer\CustomerRepositoryInterface;
 class ContactController extends Controller
 {
     /**
@@ -11,18 +11,18 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $getConTact;
-    protected $title = "ConTact";
+    protected $getContact;
+    protected $title = "Contact";
 
 
-    public function __construct(ContactRepositoryInterface $getConTact)
+    public function __construct(ContactRepositoryInterface $getContact)
     {
-        $this->getConTact = $getConTact;
+        $this->getContact = $getContact;
     }
     public function index()
     {   
-        $list_contact=$this->getConTact->getAll();
-        return view("pages.contact.index" , ['list_contact' => $list_contact , 'title' => $this->title,'status'=>201]);
+        $listContacts=$this->getContact->getAll();
+        return view("pages.contact.index" , ['list' => $listContacts , 'title' => $this->title,'status'=>201]);
      
 
     }

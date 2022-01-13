@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Banner\BannerRepository::class
         );
         $this->app->singleton(
-            \App\Repositories\Contact\ContactRepositoryInterface::class,
-            \App\Repositories\Contact\ContactRepository::class
+            \App\Repositories\Customer\CustomerRepositoryInterface::class,
+            \App\Repositories\Customer\CustomerRepository::class
         );
         $this->app->singleton(
             \App\Repositories\User\UserRepositoryInterface::class,

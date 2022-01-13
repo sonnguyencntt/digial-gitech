@@ -22,7 +22,9 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.admin.popup_error')
 
-            
+                    <a class="btn btn-primary" href="{{ route('manage.service_internet.create') }}">Thêm mới {{$title}}</a>
+
+                    <br /> <br />
 
 
                     <div class="box">
@@ -35,16 +37,14 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên KH</th>
+                                        <th>Tên gói</th>
+                                        <th>Giá</th>
+                                        <th>Kích cỡ</th>
 
-                                        <th>Số điện thoại</th>
-                                        <th>Email
+                                        <th>Danh mục</th>
+                                        <th>Nội dung
                                         </th>
-                                        <th>Địa chỉ
-                                        </th>
-                                        <th>Chú thích
-                                        </th>
-                                        <th>Ngày Đăng</th>
+
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -52,22 +52,24 @@
 
 
 
-                                    @foreach ($list_contact as $key => $value)
+                                    @foreach ($listScreenInternet as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{{ $value->full_name }}</td>
-                                        <td>{{ $value->phone_number }}</td>
+                                        <td>{{ $value->name }}</td>
+                                        <td>{{ $value->price }}</td>
+                                        <td>{{ $value->size }}</td>
+                                        <td>{{ $value->category->name }}</td>
 
-                                        <td>{{ $value->email }}</td>
-                                        <td>{{ $value->address }}</td>
-
-                                        <td>{{ $value->note }}</td>
-
-                                        <td>{{ $value->created_at }}</td>
+                                          <td><span>
+                                            {!!Str::limit($value->description , 20)!!}
+                                            </span></td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="tel:{{$value->phone_number}}"><i
-                                                    class="fa fa-phone"></i></a> 
-                                           
+                                                href="{{ route('manage.service_internet.edit', $value->id) }}"><i
+                                                    class="fa fa-pencil"></i></a> 
+                                              <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
+                                              onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
+                                                    class="fa fa-trash"></i></a>
+                                                 
                                                   </td>
                                                 </tr>
 
@@ -88,7 +90,7 @@
 
 
             <!-- remove brand modal -->
-            @include('pages.admin.banner.child.remove_popup');
+            @include('pages.admin.internet.child.remove_popup');
           </section>
         <!-- /.content -->
     </div>
