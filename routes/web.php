@@ -21,7 +21,7 @@ Route::group([
     Auth::routes();
 
     Route::group([
-        'middleware' => ['auth']
+         'middleware' => ['auth']
     ], function () {
         Route::get('/', 'Manage\DashboardController@index')->name('manage.dashboard.index');
         Route::group(['prefix' => 'category'], function () {

@@ -24,15 +24,21 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_category' => 'required|max:255',
-            'image' => 'required',
+            'name' => 'required|max:255',
+            'image_url' => 'required',
+            'details' => 'required|max:255',
+            'advantage' => 'required|max:255',
+            'link_url' => 'required|max:255',
         ];
     }
     public function messages()
     {
         return [
-            'name_category.required' => 'thông tin danh mục còn trống ',
-            'image.required' => 'thông tin hình ảnh còn trống',
+            'name.required' => 'Thông tin danh mục còn trống ',
+            'image_url.required' => 'Thông tin hình ảnh còn trống',
+            'details.required' => 'Thông tin chi tiết còn trống',
+            'advantage.required' => 'Thông tin ưu điểm còn trống',
+            'link_url.required' => 'Thông tin đường đẫn còn trống',
         ];
     }
    

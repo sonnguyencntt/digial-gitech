@@ -27,11 +27,11 @@
                 
     <div class="container section-title-container" ><h2 class="section-title section-title-normal"><b></b><span class="section-title-main" >Thông tin liên hệ</span><b></b></h2></div>
     {{-- hiển thị thông tin contact --}}
-    @foreach($listContacts as $contact)
-        <p> <strong><span class="text-f37021">Địa chỉ:</span></strong> <a href="https://www.google.com/maps/place/FPT+Telecom/@10.7602159,106.7379094,16z/data=!4m8!1m2!2m1!1zTMO0IDM3LTM5QSwgxJHGsOG7nW5nIDE5LCBLQ1ggVMOibiBUaHXhuq1uLCBQaMaw4budbmcgVMOibiBUaHXhuq1uIMSQw7RuZywgUXXhuq1uIDc!3m4!1s0x317525ea5fc1b879:0x2f8d8851ef4a585a!8m2!3d10.766092!4d106.743751" target="_blank" rel="noreferrer noopener">{{$contact->address}}</a><br />
-            <strong>Hotline:</strong> <strong><a href={{$contact->phone_number}}>{{$contact->phone_number}}</a></strong></p>
-        <p><strong>Email:</strong> <a href={{$contact->email}}>{{$contact->email}}</a></p>
-    @endforeach
+   
+        <p> <strong><span class="text-f37021">Địa chỉ:</span></strong> <a href="https://www.google.com/maps/place/FPT+Telecom/@10.7602159,106.7379094,16z/data=!4m8!1m2!2m1!1zTMO0IDM3LTM5QSwgxJHGsOG7nW5nIDE5LCBLQ1ggVMOibiBUaHXhuq1uLCBQaMaw4budbmcgVMOibiBUaHXhuq1uIMSQw7RuZywgUXXhuq1uIDc!3m4!1s0x317525ea5fc1b879:0x2f8d8851ef4a585a!8m2!3d10.766092!4d106.743751" target="_blank" rel="noreferrer noopener">sdfsdfsd</a><br />
+            <strong>Hotline:</strong> <strong><a href="sdf">ghjghj</a></strong></p>
+        <p><strong>Email:</strong> <a href="werwer">sdfsdf</a></p>
+ 
 
     </div>
     </div>

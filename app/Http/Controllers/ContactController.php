@@ -15,14 +15,14 @@ class ContactController extends Controller
     protected $title = "Contact";
 
 
-    public function __construct(ContactRepositoryInterface $getContact)
+    public function __construct(CustomerRepositoryInterface $getContact)
     {
         $this->getContact = $getContact;
     }
     public function index()
     {   
-        $listContacts=$this->getContact->getAll();
-        return view("pages.contact.index" , ['list' => $listContacts , 'title' => $this->title,'status'=>201]);
+        
+        return view("pages.contact.index" );
      
 
     }
@@ -46,6 +46,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //
+        return 1;
     }
 
     /**
