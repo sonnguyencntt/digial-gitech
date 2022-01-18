@@ -11,17 +11,17 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $getContact;
+    protected $getCustomer;
     protected $title = "Contact";
 
 
-    public function __construct(ContactRepositoryInterface $getContact)
+    public function __construct(CustomerRepositoryInterface $getCustomer)
     {
-        $this->getContact = $getContact;
+        $this->getCustomer = $getCustomer;
     }
     public function index()
     {   
-        $listContacts=$this->getContact->getAll();
+        $listContacts=$this->getCustomer->getAll();
         return view("pages.contact.index" , ['list' => $listContacts , 'title' => $this->title,'status'=>201]);
      
 

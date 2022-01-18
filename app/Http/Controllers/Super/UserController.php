@@ -1,32 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Manage\Auth;
+namespace App\Http\Controllers\Super;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\User\UserRepositoryInterface;
 
-class LoginController extends Controller
+class UserController extends Controller
 {
 
 
-    public function __construct()
+    protected $userRepo;
+    protected $title = "Người dùng";
+
+    public function __construct(UserRepositoryInterface $userRepo)
     {
-        $this->middleware("guest:admin");
+        $this->userRepo = $userRepo;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-
     public function index()
     {
-        return \view("pages.admin.auth.index");
+        $listUsers = $this->userRepo->getAll();
+        return \auto_redirect(\view("pages.super.user.index" , ['listUsers' => $listUsers , 'title' => $this->title]) ,  $listUsers);
     }
-
 
     /**
      * Show the form for creating a new resource.

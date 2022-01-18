@@ -14,7 +14,7 @@ data-backdrop="static">
                 </div>
             </div>
         </div>
-        <form role="form"   method="post" id="remove" action="/service/internet">
+        <form role="form"   method="post" id="remove" action="/category">
           @csrf
           @method('delete')
             <div class="modal-body">

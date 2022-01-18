@@ -18,10 +18,30 @@ Route::group([
     'domain'    => 'administrator.' . config('app.short_url'),
 ], function () {
 
-    Auth::routes();
+    Route::get('/login', 'Auth\LoginController@index')->name('manage.login.index');
+    Route::post('/login', 'Auth\LoginController@login')->name('manage.login.store');
+    Route::get('/register', 'Auth\RegisterController@index')->name('manage.register.index');
+    Route::post('/register', 'Auth\RegisterController@store')->name('manage.register.store');
+    Route::get('/register/verify', 'Auth\RegisterController@verifyEmail')->name('manage.register.verify_email');
+    Route::post('/register/verify', 'Auth\RegisterController@sendMailVerifyRegister')->name('manage.register.send_verify_email');
+    Route::get('/register/active/{user}/{token}', 'Auth\RegisterController@checkTokenVerifyRegister')->name('manage.register.accept');
+    Route::post('/forget-password', 'Auth\ForgetPasswordController@postForgetPass')->name('manage.forget_password.store');
+    Route::get('/forget-password', 'Auth\ForgetPasswordController@index')->name('manage.forget_password.index');
 
+    Route::get('/reset-password/{user}/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('manage.reset_password.index');
+    Route::post('/reset-password/{user}/{token}', 'Auth\ForgetPasswordController@postResetPassword')->name('manage.reset_password.store');
+
+
+
+
+    
+
+
+
+
+    Route::post('/logout', 'Auth\LoginController@logout')->name('manage.logout');
     Route::group([
-        'middleware' => ['auth']
+        'middleware' => ['auth' , "registerVerifyEmail" ]
     ], function () {
         Route::get('/', 'Manage\DashboardController@index')->name('manage.dashboard.index');
         Route::group(['prefix' => 'category'], function () {
@@ -59,6 +79,10 @@ Route::group([
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', 'Manage\ProfileController@index')->name('manage.profile.index');
             Route::put('/{user}', 'Manage\ProfileController@update')->name('manage.profile.update');
+        });
+        Route::group(['prefix' => 'theme'], function () {
+            Route::get('/', 'Manage\ThemeController@index')->name('manage.theme.index');
+            Route::put('/{theme}', 'Manage\ThemeController@update')->name('manage.theme.update');
         });
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', 'Manage\OrderController@index')->name('manage.order.index');
@@ -104,7 +128,15 @@ Route::group([
 
     Route::get('/login', 'Super\Auth\LoginController@index')->name('super.login.index');
     Route::post('/login', 'Super\Auth\LoginController@login')->name('super.login.store');
+    Route::post('/logout', 'Super\Auth\LoginController@logout')->name('super.logout');
+    Route::post('/forget-password', 'Super\Auth\ForgetPasswordController@postForgetPass')->name('super.forget_password.store');
+    Route::get('/forget-password', 'Super\Auth\ForgetPasswordController@index')->name('super.forget_password.index');
 
+    Route::get('/reset-password/{admin}/{token}', 'Super\Auth\ForgetPasswordController@resetPassword')->name('super.reset_password.index');
+    Route::post('/reset-password/{admin}/{token}', 'Super\Auth\ForgetPasswordController@postResetPassword')->name('super.reset_password.store');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'Super\UserController@index')->name('super.user.index');
+    });
     Route::group([
         'middleware' => ['auth:admin']
     ], function () {

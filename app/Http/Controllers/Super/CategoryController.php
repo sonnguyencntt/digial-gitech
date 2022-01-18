@@ -23,8 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $list_category = $this->categoryRepo->getAll();
-        return \auto_redirect(\view("pages.super.category.index" , ['list_category' => $list_category , 'title' => $this->title]) ,  $list_category);
+        $listCategories = $this->categoryRepo->getAll();
+        return \auto_redirect(\view("pages.super.category.index", ['listCategories' => $listCategories, 'title' => $this->title]),  $listCategories);
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return "Đang cập nhật...";
     }
 
     /**
@@ -67,7 +67,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->categoryRepo->findById($id);
+        return \auto_redirect(\view("pages.super.category.edit", ['category' => $category, 'title' => $this->title]), "ajax");
     }
 
     /**
@@ -79,7 +80,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(['link_name' => "required"],[]);
+        try {
+            $this->categoryRepo->updateById($id, ["link_name" => $request->link_name]);
+            return redirect("/category")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+            \dd($err);
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**
@@ -90,6 +98,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->categoryRepo->deleteById($id);
+           return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
+
+       } catch (\Throwable $th) {
+           throw $th;
+           return redirect()->back()->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Xóa dữ liệu không thành công"]);
+       }
     }
 }

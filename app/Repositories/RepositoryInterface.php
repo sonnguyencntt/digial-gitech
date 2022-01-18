@@ -38,4 +38,6 @@ interface RepositoryInterface
      * @return mixed
      */
     public function deleteById($id);
+
+    public function first();
 }

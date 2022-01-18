@@ -32,12 +32,8 @@ function menu($current_route = "/", $guard = null)
 
             ["name" => "KH Liên hệ", "url" => route("manage.customer.index"), "icon" => "fa fa-users", "sub_menu" => false],
 
-            ["name" => "Cài đặt giao diện", "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
-                ["name" => "Giao diện Internet", "url" => route("manage.posts.index")],
-                ["name" => "Giao diện Camera", "url" => route("manage.posts.create")],
-                ["name" => "Giao diện FPT Play", "url" => route("manage.posts.create")]
+            ["name" => "Cài đặt giao diện", "url" => route("manage.theme.index"), "icon" => "fa fa-cogs", "sub_menu" => false],
 
-            ]],
             ["name" => "Thông tin", "url" => route("manage.profile.index"), "icon" => "fa fa-user", "sub_menu" => false],
 
 
@@ -53,6 +49,8 @@ function menu($current_route = "/", $guard = null)
                 ["name" => "Danh sách", "url" => route("super.category.index")],
                 ["name" => "Thêm mới", "url" => route("super.category.create")]
             ]],
+            ["name" => "Người dùng", "url" => route("super.user.index"), "icon" => "fa fa-users", "sub_menu" => false],
+
         ];
     }
     else

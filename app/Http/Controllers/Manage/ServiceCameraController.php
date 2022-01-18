@@ -104,9 +104,7 @@ class ServiceCameraController extends Controller
             {
                 $this->cameraRepo->updateById($id,$request->except("image_url_string"));
                 try {
-                    $file_path = $this->linkFolder . $request->image_url_string;
-                    if(File::exists($file_path)) 
-                    File::delete($file_path);
+                  
                 } catch (\Throwable $th) {
                     return redirect("/service/camera")->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
                 }
@@ -115,6 +113,9 @@ class ServiceCameraController extends Controller
             {
               
                 $this->cameraRepo->updateById($id,array_merge($request->except("image_url_string"), ['image_url' => $fileName]));
+                $file_path = public_path($request->image_url_string);
+                if (File::exists($file_path))
+                    File::delete($file_path);
             }
 
 

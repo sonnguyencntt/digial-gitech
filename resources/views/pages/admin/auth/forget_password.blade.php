@@ -8,8 +8,8 @@
     <div class="login-box-body">
       
       <p class="login-box-msg">Vui lòng điền Email mà bạn đã đăng kí trước đó</p>
-      @if(\Session::has('flag'))
-      <div class="alert alert-{{\Session::get('flag')}}">
+      @if(\Session::has('message'))
+      <div class="alert alert-{{\Session::get('status_code')}}">
         <ul>
                 <li>{{ \Session::get('message') }}</li>
             
@@ -32,16 +32,17 @@
         
   
       
-      <form action="{{route('manage.auth.forgot')}}" method="post">
+      <form action="{{route('manage.forget_password.store')}}" method="post">
+        @csrf
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" required>
+          <input type="email" class="form-control" name="email" value="{{old("email" , "")}}" id="email" placeholder="Email" autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
        
         <div class="row">
           <div class="col-xs-8">
             <div class="checkbox icheck">
-              <a href="{{route('manage.auth.index')}}">Quay về</a>
+              <a href="{{route('manage.login.index')}}">Quay về</a>
 
             </div>
           </div>

@@ -9,7 +9,7 @@ abstract class BaseRepository implements RepositoryInterface
     //model muốn tương tác
     protected $model;
 
-   //khởi tạo
+    //khởi tạo
     public function __construct()
     {
         $this->setModel();
@@ -68,9 +68,12 @@ abstract class BaseRepository implements RepositoryInterface
         return false;
     }
 
-        public function count()
+    public function count()
     {
         return $this->model->count();
-
+    }
+    public function first()
+    {
+        return $this->model->first();
     }
 }

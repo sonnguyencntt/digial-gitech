@@ -16,15 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
 
-            // if($guard == "admin")
-            // {
-            //     return route('super.login.index');
-            // }
-            // else
-            // {
-            //     return route('login');
 
-            // }
 
         }
     }

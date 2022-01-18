@@ -49,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Play\PlayRepositoryInterface::class,
             \App\Repositories\Play\PlayRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Theme\ThemeRepositoryInterface::class,
+            \App\Repositories\Theme\ThemeRepository::class
+        );
     }
 
     /**

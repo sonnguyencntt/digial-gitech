@@ -103,7 +103,6 @@ class ServicePlayController extends Controller
             return redirect("/service/play")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Cập nhật dữ liệu thành công"]);
         }
         catch(\throwable $err){
-            \dd($err);
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
         }
     }

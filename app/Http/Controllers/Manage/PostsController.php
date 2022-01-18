@@ -122,22 +122,28 @@ class PostsController extends Controller
                     'description'=>$request->description,
                 ]);
                 try {
-                    $file_path = $this->linkFolder . $request->image_url_string;
-                    if(File::exists($file_path)) 
-                    File::delete($file_path);
+
                 } catch (\Throwable $th) {
                     return redirect("/posts")->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
                 }
             }
             else
             {
-                $this->postsRepo->updateById($id,[
-                    'title'=>$request->title,
-                    'status'=>$request->status,
-                    'description'=>$request->description,
-                    'image_url'=>$fileName,
-
-                ]);
+                try {
+                    $this->postsRepo->updateById($id,[
+                        'title'=>$request->title,
+                        'status'=>$request->status,
+                        'description'=>$request->description,
+                        'image_url'=>$fileName,
+    
+                    ]);
+                    $file_path = public_path($request->image_url_string);
+                    if (File::exists($file_path))
+                        File::delete($file_path);             
+                 } catch (\Throwable $th) {
+                    //throw $th;
+                }
+           
             }
 
 

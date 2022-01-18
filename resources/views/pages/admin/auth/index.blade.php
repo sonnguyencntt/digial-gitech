@@ -8,8 +8,8 @@
     <div class="login-box-body">
       
       <p class="login-box-msg">Administrator</p>
-      @if(\Session::has('flag'))
-      <div class="alert alert-danger">
+      @if(\Session::has('message'))
+      <div class="alert alert-{{ \Session::get('status_code') }}">
         <ul>
                 <li>{{ \Session::get('message') }}</li>
             
@@ -32,7 +32,7 @@
         
   
       
-      <form action="{{route('login')}}" method="post">
+      <form action="{{route('manage.login.store')}}" method="post">
         <div class="form-group has-feedback">
           <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -43,9 +43,9 @@
         </div>
         <div class="row">
           <div class="col-xs-8">
-            <div class="checkbox icheck">
+            <div class="">
               <label>
-              <a href="{{('forgot')}}">Forgot password ?</a>
+              <a href="{{route('manage.forget_password.index')}}">Forgot password ?</a>
               </label>
             </div>
           </div>

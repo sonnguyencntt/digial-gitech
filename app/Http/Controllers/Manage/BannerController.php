@@ -116,9 +116,7 @@ class BannerController extends Controller
       
                 ]);
                 try {
-                    $file_path = $this->linkFolder . $request->image_url_string;
-                    if(File::exists($file_path)) 
-                    File::delete($file_path);
+                
                 } catch (\Throwable $th) {
                     return redirect("/banner")->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
                 }
@@ -127,10 +125,11 @@ class BannerController extends Controller
             {
                 $this->bannerRepo->updateById($id,[
                     'title'=>$request->title,
-             
                     'image_url'=>$fileName,
-
                 ]);
+                $file_path = public_path($request->image_url_string);
+                if (File::exists($file_path))
+                    File::delete($file_path);
             }
 
 

@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.admin.popup_error')
 
-                    <a class="btn btn-primary" href="{{ route('manage.category.create') }}">Thêm mới {{$title}}</a>
+                    {{-- <a class="btn btn-primary" href="{{ route('super.category.create') }}">Thêm mới {{$title}}</a> --}}
 
                     <br /> <br />
 
@@ -33,18 +33,12 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="manageTable" class="table table-bordered table-striped">
+                            <table id="superTable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên gói</th>
-                                        <th>Giá</th>
-                                        <th>Kích cỡ</th>
-
-                                        <th>Danh mục</th>
-                                        <th>Nội dung
-                                        </th>
-
+                                        <th>Tên danh mục</th>
+                                        <th>Tên url</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -52,19 +46,14 @@
 
 
 
-                                    @foreach ($list_categories as $key => $value)
+                                    @foreach ($listCategories as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->price }}</td>
-                                        <td>{{ $value->size }}</td>
-                                        <td>{{ $value->category->name }}</td>
+                                        <td>{{ $value->link_name }}</td>
 
-                                          <td><span>
-                                            {!!Str::limit($value->description , 20)!!}
-                                            </span></td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('manage.category.edit', $value->id) }}"><i
+                                                href="{{ route('super.category.edit', $value->id) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                               <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
                                               onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
@@ -90,7 +79,7 @@
 
 
             <!-- remove brand modal -->
-            @include('pages.admin.internet.child.remove_popup');
+            @include('pages.super.category.child.remove_popup');
           </section>
         <!-- /.content -->
     </div>

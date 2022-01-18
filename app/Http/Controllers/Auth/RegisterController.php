@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Mail;
+use App\Jobs\Manage\SendMailVerifyRegisterJob;
 
 class RegisterController extends Controller
 {
@@ -21,7 +24,6 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -37,9 +39,14 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest',  ['except' => ['verifyEmail' , "checkTokenVerifyRegister" , "sendMailVerifyRegister"]]);
     }
 
+
+    public function index()
+    {
+        return view('pages.admin.auth.register');
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -51,7 +58,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required', 'string', 'regex:/(01)[0-9]{9}/', 'max:255', 'unique:users'],
+            'address' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'confirm_password' => 'required|same:password'
+
         ]);
     }
 
@@ -61,12 +72,73 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $this->validator($request->all());
+        try {
+            $token = \strtoupper(\Str::random(10));
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'address' => $request->address,
+                'phone_number' => $request->phone_number,
+
+                'status' => 0,
+                'token'=>$token
+            ]);
+            try {
+                $this->sendMail($user);
+                return \redirect()->route("manage.register.verify_email")->with(["message"=>"Gửi mail thành công" , "status_code"=>"success"]);
+
+            } catch (\Throwable $th) {
+                return \redirect()->route("manage.register.verify_email")->with(["message"=>"Gửi mail không thành công" , "status_code"=>"danger"]);
+            }
+        } catch (\Throwable $th) {
+            return \redirect()->back()->with("message", "Đăng ký tài khoản không thành công");
+        }
+    }
+
+    public function verifyEmail()
+    {
+        $user = \Auth::user();
+        $status  = $user->status;
+        if ($status == 1 or $status == 2) {
+            return \redirect()->route("manage.dashboard.index");
+        }
+            return view('pages.admin.auth.register_verify_email');
+  
+    }
+    public function sendMail($user)
+    {
+        SendMailVerifyRegisterJob::dispatch($user);
+    }
+    public function sendMailVerifyRegister(Request $request)
+    {
+
+        $user = \Auth::user();
+        $status  = $user->status;
+        if ($status == 1 or $status == 2) {
+            return \redirect()->route("manage.dashboard.index");
+        }
+        $token = \strtoupper(\Str::random(10));
+        $user->token = $token;
+        try {
+            $user->save();
+            $this->sendMail($user);
+            return \redirect()->back()->with(["message" => "Đã gửi" , "status_code" => "success"]);
+
+        } catch (\Throwable $th) {
+            return \redirect()->back()->with(["message" => "Đã xãy ra lỗi" , "status_code" => "danger"]);
+        }
+    }
+    public function checkTokenVerifyRegister(User $user, $token)
+    {
+        if ($user->token === $token) {
+            $user->update(['status' => 1 , "token" =>null]);
+            return \redirect()->route("manage.dashboard.index");
+        } else {
+            return \redirect()->route("manage.register.verify_email")->with(["message" => "Mã xác thực không đúng" , "status_code" => "danger"]);
+        }
     }
 }

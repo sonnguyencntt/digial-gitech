@@ -61,6 +61,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkExsitSubdomain' => \App\Http\Middleware\SubdomainRouteIsValid::class,
+        'registerVerifyEmail' => \App\Http\Middleware\RegisterVerifyEmail::class,
+
     ];
 
     /**
@@ -76,6 +78,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \App\Http\Middleware\RegisterVerifyEmail::class,
         \Illuminate\Auth\Middleware\Authorize::class,
+
     ];
 }

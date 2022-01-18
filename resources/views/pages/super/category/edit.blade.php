@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("manage.service_internet.update" , $internet->id)}}" method="POST"   enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("super.category.update" , $category->id)}}" method="POST"   enctype="multipart/form-data">
               @csrf
               @method('put')
               <div class="box-body">
@@ -36,37 +36,17 @@
   
               
                 <div class="form-group">
-                  <label for="product_name" >Tên gói</label>
-                  <input type="text" class="form-control" id="name" name="name" value = "{{$internet->name}}" placeholder="Nhập tên" autocomplete="off" />
+                  <label for="product_name" >Tên danh mục</label>
+                  <input type="text" class="form-control" id="name" name="name" value = "{{$category->name}}" placeholder="Nhập tên" autocomplete="off" />
     
                 </div>
                 <div class="form-group">
-                  <label for="product_name" >Giá</label>
-                  <input type="text" class="form-control" id="name" name="price" value = "{{$internet->price}}" placeholder="Nhập giá" autocomplete="off" />
+                  <label for="product_name" >Tên link</label>
+                  <input type="text" class="form-control" id="name" name="link_name" value = "{{$category->link_name}}" placeholder="Nhập giá" autocomplete="off" />
     
                 </div>
-                <div class="form-group">
-                  <label for="product_name" >Kích cỡ</label>
-                  <input type="text" class="form-control" id="name" name="size" value = "{{$internet->size}}" placeholder="Nhập kích cỡ" autocomplete="off" />
-    
-                </div>
-                <div class="form-group">
-                  <label for="status" >Danh mục</label>
-                  <select name="category_id" id=""   class="form-control">
-                 
-                    @foreach($list_categories as $key => $value)
-                      <option value="{{$value->id}}" {{$value->id == $internet->category_id ? "selected" : ""}} >{{$value->name}}</option>
-                    @endforeach
-
-                  </select>
-    
-                </div>
-                <div class="form-group">
-                  <label for="description">Nội dung </label>
-                 
-                  <textarea id="description"  name = "description">{{$internet->description}}</textarea>
-
-                </div>
+         
+               
              
               <!-- /.box-body -->
     

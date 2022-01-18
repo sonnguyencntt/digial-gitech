@@ -88,12 +88,16 @@ class ProfileController extends Controller
             {
                 $this->userRepo->updateById($id, [
                     'name' => $request->name,
+                    'phone_number' => $request->phone_number,
+                    'address' => $request->address,
                 ]);
             }
             else
             {
                 $this->userRepo->updateById($id, [
                     'name' => $request->name,
+                    'phone_number' => $request->phone_number,
+                    'address' => $request->address,
                     'password' => Hash::make($request->password),
                 ]);
             }

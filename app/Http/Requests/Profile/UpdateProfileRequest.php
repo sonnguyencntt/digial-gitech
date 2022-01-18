@@ -21,12 +21,14 @@ class UpdateProfileRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
         return [
             'name' => 'required',
             'password' => 'confirmed|min:6|nullable',
-
+            'email' => 'required|string|email|255|unique:users',
+            'phone_number' => 'required|string|regex:/(01)[0-9]{9}/|255|unique:users'
 
         ];
     }

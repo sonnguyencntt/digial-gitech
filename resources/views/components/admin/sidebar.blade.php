@@ -42,7 +42,7 @@
                     </a>
 
                 </li>
-                <form id="form_logout" method="post" action="{{route("logout")}}">
+                <form id="form_logout" method="post" action="{{route("manage.logout")}}">
                     @csrf
                     
                 </form>

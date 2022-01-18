@@ -50,6 +50,20 @@
                   <input type="text" class="form-control" id="username" name="name" placeholder="Tên người dùng" value="{{$user->name}}" autocomplete="off" >
 
                 </div>
+                <div class="form-group">
+                  <label for="username">Số điện thoại</label>
+                  <input type="text" class="form-control" id="username" name="phone_number" placeholder="Số điện thoại" value="{{$user->name}}" autocomplete="off" >
+                  <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Vui lòng điền chính xác số điện thoại của bạn, để chúng tôi có thể liên lạc khi có vấn đề xảy ra.
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <label for="username">Địa chỉ</label>
+                  <input type="text" class="form-control" id="username" name="address" placeholder="Tên người dùng" value="{{$user->name}}" autocomplete="off" >
+
+                </div>
 
           
        

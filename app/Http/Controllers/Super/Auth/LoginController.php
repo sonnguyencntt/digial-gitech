@@ -15,7 +15,7 @@ class LoginController extends Controller
          */
         public function __construct()
         {
-            $this->middleware('guest:admin');
+            $this->middleware('guest:admin' ,  ['except' => ['logout']]);
         }
     
         public function login(Request $request)
@@ -31,8 +31,6 @@ class LoginController extends Controller
             }
             return \redirect()->back()->withErrors("Tài khoản hoặc mật khẩu không tồn tại");
         }
-    
-
         /**
          * Show the application dashboard.
          *
@@ -42,4 +40,9 @@ class LoginController extends Controller
         {
             return view('pages.super.auth.index');
         }
+
+        public function logout(Request $request) {
+            Auth::guard("admin")->logout();
+            return redirect()->route("super.login.index");
+          }
 }

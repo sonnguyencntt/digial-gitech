@@ -1,4 +1,4 @@
-@extends('layouts.admin.auth')
+@extends('layouts.super.auth')
 @section('content')
 <div class="login-box">
     <div class="login-logo">
@@ -8,8 +8,8 @@
     <div class="login-box-body">
       
       <p class="login-box-msg">Super Administrator</p>
-      @if(\Session::has('flag'))
-      <div class="alert alert-danger">
+      @if(\Session::has('message'))
+      <div class="alert alert-{{ \Session::get('status_code') }}">
         <ul>
                 <li>{{ \Session::get('message') }}</li>
             
@@ -43,9 +43,9 @@
         </div>
         <div class="row">
           <div class="col-xs-8">
-            <div class="checkbox icheck">
+            <div class="">
               <label>
-              <a href="{{('manage.auth.forgot')}}">Forgot password ?</a>
+                <a href="{{route('super.forget_password.index')}}">Forgot password ?</a>
               </label>
             </div>
           </div>
