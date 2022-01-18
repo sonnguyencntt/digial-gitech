@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Manage;
 use App\Category;
 use Illuminate\Http\Requests;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CreateCategoryRequest;
 use App\Repositories\Category\CategoryRepositoryInterface;
@@ -12,6 +12,7 @@ use App\Exceptions\Category\CategoryException;
 class CategoryController extends Controller
 {
     protected $productRepo;
+    
     public function __construct(CategoryRepositoryInterface $productRepo)
     {
         $this->productRepo = $productRepo;
@@ -45,27 +46,35 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateCategoryRequest $request)
-    {
-        
+    {   
+        $linkUrl="/service";
+        $link_url=$linkUrl."/".$request->link_url;
+
         try{
-            if($request->has('image')){
-                $file=$request->image;
-                $etx=$request->image->extension();
+            if($request->has('image_url')){
+                $file=$request->image_url;
+                $etx=$request->image_url->extension();
                 $file_name=time().'-'.'category.'.$etx;
                 $file->move(public_path('images\category'),$file_name);
             }
+
             $category=Category::create([
-                'name_category'=>$request->name_category,
-                'image'=>$file_name,
+                'name'=>$request->name,
+                'image_url'=>$file_name,
+                'details'=>$request->details,
+                'advantage'=>$request->advantage,
+                'link_url'=>$link_url,
             ]);
             Session()->flash('success','thêm danh mục thành công ');
             return redirect()->back();
+         
         }
 
         catch(\throwable $err){
             
             Session()->flash('error','thêm danh mục thất bại ');
             return redirect()->back();
+         
 
         }
         
@@ -111,9 +120,15 @@ class CategoryController extends Controller
      */
     public function update(CreateCategoryRequest $request, $id)
     {   
-        $image=$request->input('image');
-        $nameCategory=$request->input('name_category');
-        if($request->hasFile('image')){
+        
+        $image=$request->input('image_url');
+        $name=$request->input('name');
+        $details=$request->input('details');
+        $advantage=$request->input('advantage');
+        $linkurl=$request->input('link_url');
+        $linkUrl="/service";
+        $link_url=$linkUrl."/".$linkurl;
+        if($request->hasFile('image_url')){
             
             try{
             $delete='public/images/category/'.$updateCategory->image;
@@ -124,12 +139,21 @@ class CategoryController extends Controller
             $etx=$request->image->extension();
             $file_name=time().'-'.'category.'.$etx;
             $file->move(public_path('images\category'),$file_name);
-            $nameCategory=$request->input('name_category');
+            $name=$request->input('name');
+            $details=$request->input('details');
+            $advantage=$request->input('advantage');
+            $linkurl=$request->input('link_url');
+            $linkUrl="/service";
+            $link_url=$linkUrl."/".$linkurl;
+
             $updateCategory = $this->productRepo->getID($id);
             $update = Category::where('id', $id)
                     ->update([
-                        'name_category' => $nameCategory,
-                        'image' => $file_name,
+                        'name' => $name,
+                        'image_url' => $file_name,
+                        'details'=>$details,
+                        'advantage'=>$advantage,
+                        'link_url'=>$link_url
                     ]);
             return "thanh cong";
             }
@@ -139,8 +163,12 @@ class CategoryController extends Controller
         }
         else{
             try{
+              
                 $updateCategory = $this->productRepo->getID($id);
-                $updateCategory->name_category=$nameCategory;
+                $updateCategory->name=$name;
+                $updateCategory->details=$details;
+                $updateCategory->advantage=$advantage;
+                $updateCategory->link_url=$link_url;
                 $updateCategory->save();
                 return "thanhf coong";
             }

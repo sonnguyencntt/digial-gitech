@@ -41,7 +41,11 @@ Route::group([
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('manage.logout');
     Route::group([
+<<<<<<< HEAD
         'middleware' => ['auth' , "registerVerifyEmail" ]
+=======
+         'middleware' => ['auth']
+>>>>>>> 7c454f6efc43ffa840ccd819a38394007761be80
     ], function () {
         Route::get('/', 'Manage\DashboardController@index')->name('manage.dashboard.index');
         Route::group(['prefix' => 'category'], function () {

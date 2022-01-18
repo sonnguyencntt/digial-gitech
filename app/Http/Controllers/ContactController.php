@@ -11,19 +11,18 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $getCustomer;
+    protected $customerRepo;
     protected $title = "Contact";
 
-
-    public function __construct(CustomerRepositoryInterface $getCustomer)
+    public function __construct(CustomerRepositoryInterface $customerRepo)
     {
-        $this->getCustomer = $getCustomer;
+        $this->customerRepo = $customerRepo;
     }
     public function index()
     {   
-        $listContacts=$this->getCustomer->getAll();
+        $listContacts=$this->customerRepo->getAll();
         return view("pages.contact.index" , ['list' => $listContacts , 'title' => $this->title,'status'=>201]);
-     
+
 
     }
 
@@ -46,6 +45,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //
+        return 1;
     }
 
     /**
