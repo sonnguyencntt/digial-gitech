@@ -31,14 +31,6 @@ Route::group([
     Route::get('/reset-password/{user}/{token}', 'Auth\ForgetPasswordController@resetPassword')->name('manage.reset_password.index');
     Route::post('/reset-password/{user}/{token}', 'Auth\ForgetPasswordController@postResetPassword')->name('manage.reset_password.store');
 
-
-
-
-    
-
-
-
-
     Route::post('/logout', 'Auth\LoginController@logout')->name('manage.logout');
     Route::group([
         'middleware' => ['auth' , "registerVerifyEmail" ]
