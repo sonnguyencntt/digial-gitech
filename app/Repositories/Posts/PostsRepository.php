@@ -11,11 +11,16 @@ class PostsRepository extends BaseRepository implements PostsRepositoryInterface
         return \App\Posts::class;
     }
 
-    public function getProduct()
+    public function getAll($store_code =null)
     {
-        return $this->model->select('name_category')->take(5)->get();
+        return $this->model->with("store")->where("store_code" , $store_code)->get();
     }
     public function getID($id){
-        return $this->model->find($id);
+        return $this->model->with("store")->find($id);
     }
+    public function count($store_code=null)
+    {
+        return $this->model->with("store")->where("store_code" , $store_code )->count();
+    }
+   
 }

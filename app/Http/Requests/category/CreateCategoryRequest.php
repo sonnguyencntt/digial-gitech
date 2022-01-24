@@ -25,20 +25,20 @@ class CreateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'image_url' => 'required',
-            'details' => 'required|max:255',
-            'advantage' => 'required|max:255',
-            'link_url' => 'required|max:255',
+            // 'image_url' => 'required',
+            // 'details' => 'required|max:255',
+            // 'advantage' => 'required|max:255',
+            // 'link_url' => 'required|max:255',
         ];
     }
     public function messages()
     {
         return [
             'name.required' => 'Thông tin danh mục còn trống ',
-            'image_url.required' => 'Thông tin hình ảnh còn trống',
-            'details.required' => 'Thông tin chi tiết còn trống',
-            'advantage.required' => 'Thông tin ưu điểm còn trống',
-            'link_url.required' => 'Thông tin đường đẫn còn trống',
+            // 'image_url.required' => 'Thông tin hình ảnh còn trống',
+            // 'details.required' => 'Thông tin chi tiết còn trống',
+            // 'advantage.required' => 'Thông tin ưu điểm còn trống',
+            // 'link_url.required' => 'Thông tin đường đẫn còn trống',
         ];
     }
    

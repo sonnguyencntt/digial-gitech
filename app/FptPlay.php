@@ -13,4 +13,8 @@ class FptPlay extends Model
     {
         return $this->hasOne(Category::class , "id" , "category_id");
     }
+    public function store()
+    {
+        return $this->hasOne(Store::class , "store_code" , "store_code");
+    }
 }

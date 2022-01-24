@@ -88,7 +88,6 @@
 
 
             <!-- remove brand modal -->
-            @include('pages.admin.banner.child.remove_popup');
           </section>
         <!-- /.content -->
     </div>

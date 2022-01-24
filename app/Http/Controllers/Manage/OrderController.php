@@ -22,11 +22,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listOrders = $this->orderRepo->all();
+        $listOrders = $this->orderRepo->getAll($store_code);
         
-        return \auto_redirect(\view("pages.admin.order.index" , ['listOrders' => $listOrders , 'title' => $this->title]) ,  $listOrders);
+        return \auto_redirect(\view("pages.admin.order.index" , ["store_code" => $store_code , 'listOrders' => $listOrders , 'title' => $this->title]) ,  $listOrders);
     }
 
     /**

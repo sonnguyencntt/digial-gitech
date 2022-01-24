@@ -15,14 +15,14 @@
 //  administrator
 
 Route::group([
-    'domain'    => 'administrator.' . config('app.short_url'),
+    'domain'    =>config('app.short_url'),
 ], function () {
 
     Route::get('/login', 'Auth\LoginController@index')->name('manage.login.index');
     Route::post('/login', 'Auth\LoginController@login')->name('manage.login.store');
     Route::get('/register', 'Auth\RegisterController@index')->name('manage.register.index');
     Route::post('/register', 'Auth\RegisterController@store')->name('manage.register.store');
-    Route::get('/register/verify', 'Auth\RegisterController@verifyEmail')->name('manage.register.verify_email');
+    Route::get('/register/verify/{user}', 'Auth\RegisterController@verifyEmail')->name('manage.register.verify_email');
     Route::post('/register/verify', 'Auth\RegisterController@sendMailVerifyRegister')->name('manage.register.send_verify_email');
     Route::get('/register/active/{user}/{token}', 'Auth\RegisterController@checkTokenVerifyRegister')->name('manage.register.accept');
     Route::post('/forget-password', 'Auth\ForgetPasswordController@postForgetPass')->name('manage.forget_password.store');
@@ -32,11 +32,32 @@ Route::group([
     Route::post('/reset-password/{user}/{token}', 'Auth\ForgetPasswordController@postResetPassword')->name('manage.reset_password.store');
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('manage.logout');
-    Route::group([
-        'middleware' => ['auth' , "registerVerifyEmail" ]
+  
 
+    Route::group([
+        'middleware' => ['auth' , "registerVerifyEmail" ],
     ], function () {
-        Route::get('/', 'Manage\DashboardController@index')->name('manage.dashboard.index');
+ 
+        Route::get('/', 'Manage\HomeController@index')->name('manage.home.index');
+        Route::get('/home', 'Manage\HomeController@showStores')->name('manage.home.show_stores');
+        Route::group(['prefix' => 'store'], function () {
+            Route::post('/', 'Manage\StoreController@store')->name('manage.store.store');
+            Route::get('/create', 'Manage\StoreController@create')->name('manage.store.create');
+            Route::get('/{store}/edit', 'Manage\StoreController@edit')->name('manage.store.edit');
+            Route::put('/{store}', 'Manage\StoreController@update')->name('manage.store.update');
+         
+        });
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('/', 'Manage\ProfileController@index')->name('manage.profile.index');
+            Route::put('/{user}', 'Manage\ProfileController@update')->name('manage.profile.update');
+        });
+        Route::group([
+            'prefix' => '/store/{store_code}',
+            'middleware' => ["CheckForExsitStore" , "CheckForStatusStore"]
+        
+        ], function () {
+        Route::get('/dashboard', 'Manage\DashboardController@index')->name('manage.dashboard.index');
+
         Route::group(['prefix' => 'category'], function () {
             Route::get('/', 'Manage\CategoryController@index')->name('category.index');
             Route::post('/', 'Manage\CategoryController@store')->name('category.store');
@@ -69,10 +90,7 @@ Route::group([
         Route::group(['prefix' => 'customer'], function () {
             Route::get('/', 'Manage\CustomerController@index')->name('manage.customer.index');
         });
-        Route::group(['prefix' => 'profile'], function () {
-            Route::get('/', 'Manage\ProfileController@index')->name('manage.profile.index');
-            Route::put('/{user}', 'Manage\ProfileController@update')->name('manage.profile.update');
-        });
+     
         Route::group(['prefix' => 'theme'], function () {
             Route::get('/', 'Manage\ThemeController@index')->name('manage.theme.index');
             Route::put('/{theme}', 'Manage\ThemeController@update')->name('manage.theme.update');
@@ -82,6 +100,11 @@ Route::group([
            
         });
         Route::group(['prefix' => 'service'], function () {
+            Route::group(['prefix' => 'category'], function () {
+                Route::get('/', 'Manage\CategoryController@index')->name('manage.category.index');
+                Route::get('/{Category}/edit', 'Manage\CategoryController@edit')->name('manage.category.edit');
+                Route::put('/{Category}', 'Manage\CategoryController@update')->name('manage.category.update');
+            });
             Route::group(['prefix' => 'internet'], function () {
                 Route::get('/', 'Manage\ServiceInternetController@index')->name('manage.service_internet.index');
                 Route::post('/', 'Manage\ServiceInternetController@store')->name('manage.service_internet.store');
@@ -111,6 +134,8 @@ Route::group([
             });
         });
     });
+});
+
 });
 
 
@@ -150,9 +175,11 @@ Route::group([
 //User
 
 
-Route::domain(config('app.short_url'))->group(function () {
+Route::domain("{store_code}." . config('app.short_url'))->group(function () {
 
     Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/', 'HomeController@index')->name('home.index');
+
 
     Route::group(['prefix' => 'service'], function () {
         Route::group(['prefix' => 'internet'], function () {

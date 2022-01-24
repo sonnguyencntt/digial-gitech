@@ -31,7 +31,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" action="{{route("manage.posts.update" , $posts->id)}}" method="POST"   enctype="multipart/form-data">
+            <form role="form" action="{{route("manage.posts.update" ,  ["store_code" => $store_code , "posts"=>$posts->id])}}" method="POST"   enctype="multipart/form-data">
               @method('PUT')  
               <div class="box-body">
                 <div class="form-group">

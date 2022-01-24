@@ -11,11 +11,12 @@ use App\Service\CategoryService;
 use App\Exceptions\Category\CategoryException;
 class CategoryController extends Controller
 {
-    protected $productRepo;
+    protected $categoryRepo;
+    protected $title = "Danh mục";
     
-    public function __construct(CategoryRepositoryInterface $productRepo)
+    public function __construct(CategoryRepositoryInterface $categoryRepo)
     {
-        $this->productRepo = $productRepo;
+        $this->categoryRepo = $categoryRepo;
     }
    
     /**
@@ -23,10 +24,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $products = $this->productRepo->getID(2);
-        return $products;
+        $listCategories = $this->categoryRepo->getAll($store_code);
+        return \view("pages.admin.category.index" , ["store_code"=>$store_code , 'listCategories' => $listCategories , 'title' => $this->title]);
     }
 
     /**
@@ -47,36 +48,36 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {   
-        $linkUrl="/service";
-        $link_url=$linkUrl."/".$request->link_url;
+        // $linkUrl="/service";
+        // $link_url=$linkUrl."/".$request->link_url;
 
-        try{
-            if($request->has('image_url')){
-                $file=$request->image_url;
-                $etx=$request->image_url->extension();
-                $file_name=time().'-'.'category.'.$etx;
-                $file->move(public_path('images\category'),$file_name);
-            }
+        // try{
+        //     if($request->has('image_url')){
+        //         $file=$request->image_url;
+        //         $etx=$request->image_url->extension();
+        //         $file_name=time().'-'.'category.'.$etx;
+        //         $file->move(public_path('images\category'),$file_name);
+        //     }
 
-            $category=Category::create([
-                'name'=>$request->name,
-                'image_url'=>$file_name,
-                'details'=>$request->details,
-                'advantage'=>$request->advantage,
-                'link_url'=>$link_url,
-            ]);
-            Session()->flash('success','thêm danh mục thành công ');
-            return redirect()->back();
+        //     $category=Category::create([
+        //         'name'=>$request->name,
+        //         'image_url'=>$file_name,
+        //         'details'=>$request->details,
+        //         'advantage'=>$request->advantage,
+        //         'link_url'=>$link_url,
+        //     ]);
+        //     Session()->flash('success','thêm danh mục thành công ');
+        //     return redirect()->back();
          
-        }
+        // }
 
-        catch(\throwable $err){
+        // catch(\throwable $err){
             
-            Session()->flash('error','thêm danh mục thất bại ');
-            return redirect()->back();
+        //     Session()->flash('error','thêm danh mục thất bại ');
+        //     return redirect()->back();
          
 
-        }
+        // }
         
     }
 
@@ -90,7 +91,7 @@ class CategoryController extends Controller
     {
         // try {
         //     $user = CategoryService::search($id);
-        //     $showCategory = $this->productRepo->getID($id);
+        //     $showCategory = $this->categoryRepo->getID($id);
         //     return response()->json($showCategory);
         // } catch (CategoryException $exception) {
         //     throw $exception;
@@ -106,9 +107,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($store_code , $id)
     {
-        //
+        $category = $this->categoryRepo->findByStore($id , $store_code);
+        return \view("pages.admin.category.edit" , ["store_code"=>$store_code , 'category'=>$category , 'title' => $this->title]);
     }
 
     /**
@@ -118,65 +120,73 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateCategoryRequest $request, $id)
+    public function update(CreateCategoryRequest $request, $store_code , $id)
     {   
-        
-        $image=$request->input('image_url');
-        $name=$request->input('name');
-        $details=$request->input('details');
-        $advantage=$request->input('advantage');
-        $linkurl=$request->input('link_url');
-        $linkUrl="/service";
-        $link_url=$linkUrl."/".$linkurl;
-        if($request->hasFile('image_url')){
+        try{
+            $this->categoryRepo->updateByStore($id , $store_code , [
+                "name" => $request->name,
+            ]);
+            return redirect()->route("manage.category.index" , $store_code)->with(["status"=> 201 , "status_code" => "success",  "msg"=>"Cập nhật dữ liệu thành công"]);
+        }
+        catch(\throwable $err){
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
+        // $image=$request->input('image_url');
+        // $name=$request->input('name');
+        // $details=$request->input('details');
+        // $advantage=$request->input('advantage');
+        // $linkurl=$request->input('link_url');
+        // $linkUrl="/service";
+        // $link_url=$linkUrl."/".$linkurl;
+        // if($request->hasFile('image_url')){
             
-            try{
-            $delete='public/images/category/'.$updateCategory->image;
-            if(file_exists($delete)){
-                unlink($delete);
-            };
-            $file=$request->input('image');
-            $etx=$request->image->extension();
-            $file_name=time().'-'.'category.'.$etx;
-            $file->move(public_path('images\category'),$file_name);
-            $name=$request->input('name');
-            $details=$request->input('details');
-            $advantage=$request->input('advantage');
-            $linkurl=$request->input('link_url');
-            $linkUrl="/service";
-            $link_url=$linkUrl."/".$linkurl;
+        //     try{
+        //     $delete='public/images/category/'.$updateCategory->image;
+        //     if(file_exists($delete)){
+        //         unlink($delete);
+        //     };
+        //     $file=$request->input('image');
+        //     $etx=$request->image->extension();
+        //     $file_name=time().'-'.'category.'.$etx;
+        //     $file->move(public_path('images\category'),$file_name);
+        //     $name=$request->input('name');
+        //     $details=$request->input('details');
+        //     $advantage=$request->input('advantage');
+        //     $linkurl=$request->input('link_url');
+        //     $linkUrl="/service";
+        //     $link_url=$linkUrl."/".$linkurl;
 
-            $updateCategory = $this->productRepo->getID($id);
-            $update = Category::where('id', $id)
-                    ->update([
-                        'name' => $name,
-                        'image_url' => $file_name,
-                        'details'=>$details,
-                        'advantage'=>$advantage,
-                        'link_url'=>$link_url
-                    ]);
-            return "thanh cong";
-            }
-            catch(\throwable $err){
-                return "that bai";
-            }
-        }
-        else{
-            try{
+        //     $updateCategory = $this->categoryRepo->getID($id);
+        //     $update = Category::where('id', $id)
+        //             ->update([
+        //                 'name' => $name,
+        //                 'image_url' => $file_name,
+        //                 'details'=>$details,
+        //                 'advantage'=>$advantage,
+        //                 'link_url'=>$link_url
+        //             ]);
+        //     return "thanh cong";
+        //     }
+        //     catch(\throwable $err){
+        //         return "that bai";
+        //     }
+        // }
+        // else{
+        //     try{
               
-                $updateCategory = $this->productRepo->getID($id);
-                $updateCategory->name=$name;
-                $updateCategory->details=$details;
-                $updateCategory->advantage=$advantage;
-                $updateCategory->link_url=$link_url;
-                $updateCategory->save();
-                return "thanhf coong";
-            }
-            catch(\throwable $err){
-                return "that bai";
-            }
+        //         $updateCategory = $this->categoryRepo->getID($id);
+        //         $updateCategory->name=$name;
+        //         $updateCategory->details=$details;
+        //         $updateCategory->advantage=$advantage;
+        //         $updateCategory->link_url=$link_url;
+        //         $updateCategory->save();
+        //         return "thanhf coong";
+        //     }
+        //     catch(\throwable $err){
+        //         return "that bai";
+        //     }
             
-        }
+        // }
         
         
 
@@ -190,22 +200,22 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $updateCategory = $this->productRepo->getID($id);
+        // try{
+        //     $updateCategory = $this->categoryRepo->getID($id);
             
-            $delete='public/images/category/'.$updateCategory->image;
+        //     $delete='public/images/category/'.$updateCategory->image;
             
-            if(file_exists($delete)){
-                unlink($delete);
-            };
-            $updateCategory->delete();
-            return "thanh cong";
+        //     if(file_exists($delete)){
+        //         unlink($delete);
+        //     };
+        //     $updateCategory->delete();
+        //     return "thanh cong";
         
             
-        }
-        catch(\throwable $th){
-            Session()->flash('error','xóa danh mục thất bại');
-            return "that bai";
-        }
+        // }
+        // catch(\throwable $th){
+        //     Session()->flash('error','xóa danh mục thất bại');
+        //     return "that bai";
+        // }
     }
 }

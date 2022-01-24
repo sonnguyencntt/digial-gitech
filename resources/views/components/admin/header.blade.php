@@ -18,15 +18,31 @@
     </a>
 
     <div class="navbar-custom-menu">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" style="display: flex">
         <!-- Messages: style can be found in dropdown.less-->
       
         <!-- Notifications: style can be found in dropdown.less -->
      
         <!-- Tasks: style can be found in dropdown.less -->
-       <li class="dropdown tasks-menu">
+        <li class="">
+          {{-- {{\app("App\Helpers\QueryHelper")->getAllStore()}} --}}
+            <div class="select-store" style="display: flex; height: 100%;">
+              <select style="margin: auto" name="" class="form-control" onchange="location=this.value" id="">
+                @php
+                    $listStores = \app("App\Helpers\QueryHelper")->getAllStore();
+                @endphp
+            
+                <option value="{{route("manage.home.show_stores")}}">-- Chọn cửa hàng --</option>
+                @if($listStores)
+                  @foreach ($listStores as $store)
+                  <option value={{route("manage.dashboard.index" , $store->store_code)}} {{$store->store_code == \request()->store_code ? "selected" : ""}}>{{$store->name}}</option>
 
-        </li> 
+                  @endforeach
+                @endif
+  
+              </select>
+            </div>
+          </li>
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 15px !important">

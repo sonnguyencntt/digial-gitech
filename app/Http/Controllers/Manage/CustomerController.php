@@ -22,10 +22,10 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listCustomers = $this->customerRepo->getAll();
-        return \auto_redirect(\view("pages.admin.customer.index" , ['listCustomers' => $listCustomers , 'title' => $this->title]) ,  $listCustomers);
+        $listCustomers = $this->customerRepo->getAll($store_code);
+        return \view("pages.admin.customer.index" , ["store_code"=>$store_code , 'listCustomers' => $listCustomers , 'title' => $this->title]);
     }
 
     /**

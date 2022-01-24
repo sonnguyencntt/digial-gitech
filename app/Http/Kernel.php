@@ -62,6 +62,10 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkExsitSubdomain' => \App\Http\Middleware\SubdomainRouteIsValid::class,
         'registerVerifyEmail' => \App\Http\Middleware\RegisterVerifyEmail::class,
+        'CheckForExsitStore' => \App\Http\Middleware\CheckForExsitStore::class,
+        'CheckForStatusStore' => \App\Http\Middleware\CheckForStatusStore::class,
+
+
 
     ];
 

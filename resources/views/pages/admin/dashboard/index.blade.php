@@ -32,7 +32,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('manage.customer.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.customer.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -47,7 +47,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('manage.order.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.order.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -62,7 +62,7 @@
               <div class="icon">
                 <i class="ion ion-android-people"></i>
               </div>
-              <a href="{{ route('manage.posts.index') }}" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.posts.index' , $store_code) }}" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -70,7 +70,7 @@
             <!-- small box -->
             <div class="small-box bg-red">
               <div class="inner">
-                <h3>{{"count_blog"}}</h3>
+                <h3>{{$countInternet}}</h3>
 
                 <p>Gói Internet
 
@@ -82,35 +82,35 @@
               <div class="icon">
                 <i class="ion ion-android-home"></i>
               </div>
-              <a href="{{ route('manage.dashboard.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.dashboard.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-olive">
               <div class="inner">
-                <h3>{{"count_category"}}</h3>
+                <h3>{{$countCamera}}</h3>
 
                 <p>Camera</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('manage.dashboard.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.dashboard.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
-                <h3>{{"countCustomer"}}</h3>
+                <h3>{{$countFptPlay}}</h3>
 
                 <p>FPT Play</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('manage.customer.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('manage.customer.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

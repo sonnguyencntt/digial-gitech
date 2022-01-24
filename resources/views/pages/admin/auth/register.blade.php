@@ -8,7 +8,7 @@
     <div class="login-box-body">
       
       <p class="login-box-msg">Administrator</p>
-      @if(\Session::has('flag'))
+      @if(\Session::has('message'))
       <div class="alert alert-danger">
         <ul>
                 <li>{{ \Session::get('message') }}</li>
@@ -16,6 +16,7 @@
         </ul>
     </div>
     <br>
+
       @endif
       @if ($errors->any())
       <div class="alert alert-danger">
@@ -35,19 +36,19 @@
       <form action="{{route('manage.register.store')}}" method="post">
 
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" name="name" id="email" placeholder="Tên" autocomplete="off" required>
+          <input type="text" class="form-control" name="name" id="email" value="{{old("name")}}" placeholder="Tên" autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" name="phone_number" id="email" placeholder="Số điện thoại" autocomplete="off" required>
+          <input type="text" class="form-control" name="phone_number" id="email" value="{{old("phone_number")}}" placeholder="Số điện thoại" autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" required>
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{old("email")}}" autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" name="address" id="Địa chỉ" placeholder="Địa chỉ" autocomplete="off" required>
+          <input type="text" class="form-control" name="address" id="Địa chỉ" placeholder="Địa chỉ"  value="{{old("address")}}"autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">

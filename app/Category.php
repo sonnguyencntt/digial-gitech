@@ -20,4 +20,8 @@ class Category extends Model
     {
         return $this->hasOne(Camera::class , 'category_id' , 'id');
     }
+    public function store()
+    {
+        return $this->hasOne(Store::class , "store_code" , "store_code");
+    }
 }

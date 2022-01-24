@@ -21,23 +21,15 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
       <div class="col-md-12 col-xs-12">
-
-
         @include('components.admin.popup_error')
-
-
-
-
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">{{$title}}</h3>
           </div>
-          <!-- /.box-header -->
-          <form role="form" action="{{route("manage.theme.update" , $theme->id)}}" method="post" enctype="multipart/form-data" >
+          <form role="form" action="{{route("manage.theme.update" , ["store_code"=>$store_code , "theme" => $theme->id])}}" method="post" enctype="multipart/form-data" >
             @csrf
             @method('put')
             <div class="box-body">
-
               <div class="row">
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
@@ -146,10 +138,7 @@
                       <option value="{{$value->id}}" {{$value->id == $theme->post_id_website_terms_of_use ? "selected" : ""}}
                         >{{$value->title}}</option>
                       @endforeach
-
                     </select>
-               
-
                   </div>
                 </div>
               </div>

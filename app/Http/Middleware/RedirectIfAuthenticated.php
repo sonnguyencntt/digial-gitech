@@ -25,7 +25,8 @@ class RedirectIfAuthenticated
                 break;
             default:
                 if (Auth::guard($guard)->check()) {
-                    return \redirect()->route("manage.dashboard.index");
+                    if(Auth::guard($guard)->user()->status == 1)
+                    return \redirect()->route("manage.home.index");
                 }
                 break;
         }

@@ -27,10 +27,10 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listPosts = $this->postsRepo->getAll();
-        return \auto_redirect(\view("pages.admin.posts.index" , ['listPosts' => $listPosts , 'title' => $this->title]) ,  PostsResource::collection($listPosts));
+        $listPosts = $this->postsRepo->getAll($store_code);
+        return \view("pages.admin.posts.index" , ["store_code"=>$store_code , 'listPosts' => $listPosts , 'title' => $this->title]);
     }
 
     /**
@@ -38,9 +38,9 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($store_code)
     {
-        return \auto_redirect(\view("pages.admin.posts.create" , ['title' => $this->title]) , "ajax");
+        return \view("pages.admin.posts.create" , ["store_code"=>$store_code , 'title' => $this->title]);
     }
 
     /**
@@ -49,7 +49,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePostsRequest $request)
+    public function store(CreatePostsRequest $request ,$store_code)
     {
         try{
             if($request->has('image')){
@@ -62,10 +62,10 @@ class PostsController extends Controller
                 'title'=>$request->title,
                 'status'=>$request->status,
                 'description'=>$request->description,
-
+                'store_code' => $request->store_code,
                 'image_url'=>$fileName,
             ]);
-            return redirect("/posts")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
+            return redirect()->route("manage.posts.index" , $store_code)->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
         }
 
         catch(\throwable $err){
@@ -90,10 +90,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($store_code , $id)
     {
-        $posts = $this->postsRepo->findById($id);
-        return \auto_redirect(\view("pages.admin.posts.edit" , ['posts'=>$posts , 'title' => $this->title]) , "ajax");
+        $posts = $this->postsRepo->findByStore($id , $store_code);
+        return \view("pages.admin.posts.edit" , ["store_code"=> $store_code ,'posts'=>$posts , 'title' => $this->title]);
     }
 
     /**
@@ -103,7 +103,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostsRequest $request, $id)
+    public function update(UpdatePostsRequest $request, $store_code , $id)
     {
         $fileName = null;
         try{
@@ -116,7 +116,7 @@ class PostsController extends Controller
 
             if($fileName == null)
             {
-                $this->postsRepo->updateById($id,[
+                $this->postsRepo->updateByStore($id,$store_code,[
                     'title'=>$request->title,
                     'status'=>$request->status,
                     'description'=>$request->description,
@@ -124,13 +124,13 @@ class PostsController extends Controller
                 try {
 
                 } catch (\Throwable $th) {
-                    return redirect("/posts")->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
+                    return redirect()->route("manage.posts.index" , $store_code)->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
                 }
             }
             else
             {
                 try {
-                    $this->postsRepo->updateById($id,[
+                    $this->postsRepo->updateByStore($id,$store_code,[
                         'title'=>$request->title,
                         'status'=>$request->status,
                         'description'=>$request->description,
@@ -147,7 +147,7 @@ class PostsController extends Controller
             }
 
 
-            return redirect("/posts")->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
+            return redirect()->route("manage.posts.index" , $store_code)->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
         }
 
         catch(\throwable $err){
@@ -162,10 +162,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($store_code , $id)
     {
         try {
-             $this->postsRepo->deleteById($id);
+             $this->postsRepo->deleteByStore($id,$store_code);
             return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
 
         } catch (\Throwable $th) {

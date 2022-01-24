@@ -27,7 +27,7 @@ class LoginController extends Controller
             $credentials = $request->only('email', 'password');
             if(Auth::guard()->attempt($credentials))
             {
-                return \redirect()->intended(route('manage.dashboard.index'));
+                return \redirect()->intended(route('manage.home.index'));
             }
             return \redirect()->back()->withErrors("Tài khoản hoặc mật khẩu không tồn tại");
         }

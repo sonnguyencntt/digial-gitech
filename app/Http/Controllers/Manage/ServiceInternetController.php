@@ -27,10 +27,10 @@ class ServiceInternetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listInternets = $this->internetRepo->all();
-        return \auto_redirect(\view("pages.admin.internet.index" , ['listInternets' => $listInternets , 'title' => $this->title]) ,  $listInternets);
+        $listInternets = $this->internetRepo->getAll($store_code);
+        return \view("pages.admin.internet.index" , ["store_code"=> $store_code , 'listInternets' => $listInternets , 'title' => $this->title]);
     
     }
 
@@ -39,11 +39,11 @@ class ServiceInternetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($store_code)
     {
-        $listCategories = $this->categoryRepo->getAll();
+        $listCategories = $this->categoryRepo->getAll($store_code);
 
-        return \auto_redirect(\view("pages.admin.internet.create" , ['title' => $this->title , 'listCategories' => $listCategories]) , "ajax");
+        return \view("pages.admin.internet.create" , ["store_code"=> $store_code ,'title' => $this->title , 'listCategories' => $listCategories]);
 
     }
 
@@ -53,13 +53,16 @@ class ServiceInternetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateInternetRequest $request)
+    public function store(CreateInternetRequest $request , $store_code)
     {
         try{
-            $this->internetRepo->create($request->all());
-            return redirect("/service/internet")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
+            $this->internetRepo->create(
+                array_merge($request->all(), ['store_code' => $store_code])
+                );
+            return redirect()->route("manage.service_internet.index" , $store_code)->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
         }
         catch(\throwable $err){
+            \dd($err);
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
         }
     }
@@ -70,7 +73,7 @@ class ServiceInternetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id ,  $store_code)
     {
         //
     }
@@ -81,12 +84,12 @@ class ServiceInternetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $store_code,$id)
     {
-        $internet = $this->internetRepo->findById($id);
-        $listCategories = $this->categoryRepo->getAll();
+        $internet = $this->internetRepo->findByStore($id , $store_code);
+        $listCategories = $this->categoryRepo->getAll($store_code);
 
-        return \auto_redirect(\view("pages.admin.internet.edit" , ['internet'=>$internet , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
+        return \view("pages.admin.internet.edit" , ["store_code"=>$store_code , 'internet'=>$internet , 'title' => $this->title ,  'listCategories' => $listCategories]);
     }
 
     /**
@@ -96,13 +99,14 @@ class ServiceInternetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $store_code,$id)
     {
         try{
-            $this->internetRepo->updateById($id , $request->all());
-            return redirect("/service/internet")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Cập nhật dữ liệu thành công"]);
+            $this->internetRepo->updateByStore($id ,  $store_code ,$request->all());
+            return redirect()->route("manage.service_internet.index" , $store_code)->with(["status"=> 201 , "alert" => "success",  "msg"=>"Cập nhật dữ liệu thành công"]);
         }
         catch(\throwable $err){
+            \dd($err);
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
         }
     }
@@ -113,10 +117,10 @@ class ServiceInternetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($store_code,$id)
     {
         try {
-            $this->internetRepo->deleteById($id);
+            $this->internetRepo->deleteByStore($id , $store_code);
            return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
 
        } catch (\Throwable $th) {

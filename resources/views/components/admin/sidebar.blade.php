@@ -6,8 +6,11 @@
 
 
             <ul class="sidebar-menu tree" data-widget="tree">
-
-                @foreach(\menu() as $key => $value)
+                <?php
+    $store_code = isset(\request()->store_code) ? \request()->store_code : null;
+?>
+                @if($store_code !== null)
+                @foreach(\menu(null , null , $store_code) as $key => $value)
                 @if($value['sub_menu'] == false)
                 <li id="1" class="">
                     <a href="{{ $value['url'] }}">
@@ -35,16 +38,34 @@
                 </li>
                 @endif
                 @endforeach
-                <li id="1" class="" >
+                @else
+                <li id="1" class="">
 
-                    <a onclick="$('#form_logout').submit();" >
+                    <a href="{{route("manage.home.show_stores")}}">
+                        <i class="fa fa-home"></i> <span>Cửa hàng</span>
+                    </a>
+
+                </li>
+                <li id="1" class="">
+
+                    <a href="{{route("manage.profile.index")}}">
+                        <i class="fa fa-user"></i> <span>Thông tin</span>
+                    </a>
+
+                </li>
+                @endif
+                <li id="1" class="">
+
+                    <a onclick="$('#form_logout').submit();">
                         <i class="fa fa-sign-out"></i> <span>Đăng xuất</span>
                     </a>
 
                 </li>
+             
+
                 <form id="form_logout" method="post" action="{{route("manage.logout")}}">
                     @csrf
-                    
+
                 </form>
 
 

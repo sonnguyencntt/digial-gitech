@@ -24,10 +24,10 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listBanners = $this->bannerRepo->getAll();
-        return \auto_redirect(\view("pages.admin.banner.index" , ['listBanners' => $listBanners , 'title' => $this->title]) ,  $listBanners);
+        $listBanners = $this->bannerRepo->getAll($store_code);
+        return \view("pages.admin.banner.index" , ["store_code"=>$store_code , 'listBanners' => $listBanners , 'title' => $this->title]);
     }
 
     /**
@@ -35,9 +35,9 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($store_code)
     {
-        return \auto_redirect(\view("pages.admin.banner.create" , ['title' => $this->title]) , "ajax");
+        return \view("pages.admin.banner.create" , ["store_code"=>$store_code , 'title' => $this->title]);
 
     }
 
@@ -47,7 +47,7 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateBannerRequest $request)
+    public function store(CreateBannerRequest $request , $store_code)
     {
         try{
             if($request->has('image')){
@@ -59,8 +59,9 @@ class BannerController extends Controller
             $this->bannerRepo->create([
                 'title'=>$request->title,
                 'image_url'=>$fileName,
+                'store_code' => $store_code
             ]);
-            return redirect("/banner")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
+            return redirect()->route("manage.banner.index" , $store_code)->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
         }
 
         catch(\throwable $err){
@@ -85,10 +86,10 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($store_code,$id)
     {
-        $banner = $this->bannerRepo->findById($id);
-        return \auto_redirect(\view("pages.admin.banner.edit" , ['banner'=>$banner , 'title' => $this->title]) , "ajax");
+        $banner = $this->bannerRepo->findByStore($id , $store_code);
+        return \view("pages.admin.banner.edit" , ["store_code"=>$store_code , 'banner'=>$banner , 'title' => $this->title]);
     }
 
     /**
@@ -98,7 +99,7 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $store_code , $id)
     {
         $fileName = null;
         try{
@@ -111,19 +112,19 @@ class BannerController extends Controller
 
             if($fileName == null)
             {
-                $this->bannerRepo->updateById($id,[
+                $this->bannerRepo->updateByStore($id,$store_code,[
                     'title'=>$request->title,
       
                 ]);
                 try {
                 
                 } catch (\Throwable $th) {
-                    return redirect("/banner")->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
+                    return redirect()->route("manage.banner.index" , $store_code)->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
                 }
             }
             else
             {
-                $this->bannerRepo->updateById($id,[
+                $this->bannerRepo->updateByStore($id,$store_code,[
                     'title'=>$request->title,
                     'image_url'=>$fileName,
                 ]);
@@ -133,7 +134,7 @@ class BannerController extends Controller
             }
 
 
-            return redirect("/banner")->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
+            return redirect()->route("manage.banner.index" , $store_code)->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
         }
 
         catch(\throwable $err){
@@ -147,10 +148,10 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($store_code , $id)
     {
         try {
-            $this->bannerRepo->deleteById($id);
+            $this->bannerRepo->deleteByStore($id , $store_code);
            return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
 
        } catch (\Throwable $th) {

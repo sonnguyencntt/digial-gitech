@@ -11,11 +11,15 @@ class PlayRepository extends BaseRepository implements PlayRepositoryInterface
         return \App\FptPlay::class;
     }
 
-    public function all()
+    public function count($store_code = null)
     {
-        return $this->model->with('category')->get();
+        return $this->model->with("store")->where("store_code" , $store_code )->count();
     }
-    public function getID($id){
-        return $this->model->find($id);
+    public function getAll($store_code =null)
+    {
+        return $this->model->with("store", "category")->where("store_code", $store_code)->get();
+    }
+    public function getID($id , $store_code=null){
+        return $this->model->with("store")->where("store_code" , $store_code)->find($id);
     }
 }

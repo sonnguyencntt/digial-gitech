@@ -53,6 +53,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Theme\ThemeRepositoryInterface::class,
             \App\Repositories\Theme\ThemeRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Store\StoreRepositoryInterface::class,
+            \App\Repositories\Store\StoreRepository::class
+        );
     }
 
     /**

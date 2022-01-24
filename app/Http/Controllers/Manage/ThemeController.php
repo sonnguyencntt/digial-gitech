@@ -29,14 +29,14 @@ class ThemeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listPosts = $this->postsRepo->getAll();
-        $theme = $this->themeRepo->first();
-        return \auto_redirect(\view("pages.admin.theme.index", ['theme' => $theme, 'listPosts' => $listPosts,  'title' => $this->title]),  $theme);
+        $listPosts = $this->postsRepo->getAll($store_code);
+        $theme = $this->themeRepo->firstByStore($store_code);
+        return \auto_redirect(\view("pages.admin.theme.index", ["store_code" => $store_code , 'theme' => $theme, 'listPosts' => $listPosts,  'title' => $this->title]),  $theme);
     }
 
-    public function update(UpdateThemeRequest $request, $id)
+    public function update(UpdateThemeRequest $request,$store_code, $id)
     {
 
         $fileName = null;
@@ -49,14 +49,14 @@ class ThemeController extends Controller
             }
 
             if ($fileName == null) {
-                $this->themeRepo->updateById($id, $request->except(["image_url_string", "logo"]));
+                $this->themeRepo->updateByStore($id, $store_code ,$request->except(["image_url_string", "logo"]));
                 try {
                 } catch (\Throwable $th) {
-                    return redirect("/posts")->with(["status" => 400, "alert" => "danger",  "msg" => "Cập dữ không liệu thành công"]);
+                    return redirect()->back()->with(["status" => 400, "alert" => "danger",  "msg" => "Cập dữ không liệu thành công"]);
                 }
             } else {
                 try {
-                    $this->themeRepo->updateById($id, array_merge($request->except(["image_url_string"]), ['logo' => $fileName]));
+                    $this->themeRepo->updateByStore($id, $store_code, array_merge($request->except(["image_url_string"]), ['logo' => $fileName]));
 
                     $file_path = public_path($request->image_url_string);
                     if (File::exists($file_path))
@@ -67,7 +67,7 @@ class ThemeController extends Controller
             }
 
 
-            return redirect("/theme")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {
             \dd($err);
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");

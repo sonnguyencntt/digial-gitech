@@ -18,4 +18,8 @@ class Camera extends Model
     {
         return $this->link_folder . $value;
     }
+    public function store()
+    {
+        return $this->hasOne(Store::class , "store_code" , "store_code");
+    }
 }

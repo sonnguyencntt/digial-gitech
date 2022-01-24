@@ -28,10 +28,10 @@ class ServiceCameraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($store_code)
     {
-        $listCameras = $this->cameraRepo->all();
-        return \auto_redirect(\view("pages.admin.camera.index" , ['listCameras' => $listCameras , 'title' => $this->title]) ,  $listCameras);
+        $listCameras = $this->cameraRepo->getAll($store_code);
+        return \auto_redirect(\view("pages.admin.camera.index" , ["store_code"=> $store_code , 'listCameras' => $listCameras , 'title' => $this->title]) ,  $listCameras);
     
     }
 
@@ -73,12 +73,12 @@ class ServiceCameraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $store_code,$id )
     {
-        $camera = $this->cameraRepo->findById($id);
-        $listCategories = $this->categoryRepo->getAll();
+        $camera = $this->cameraRepo->findByStore($id,$store_code);
+        $listCategories = $this->categoryRepo->getAll($store_code);
 
-        return \auto_redirect(\view("pages.admin.camera.edit" , ['camera'=>$camera , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
+        return \auto_redirect(\view("pages.admin.camera.edit" , ["store_code"=>$store_code,'camera'=>$camera , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
     }
 
     /**
@@ -88,7 +88,7 @@ class ServiceCameraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCameraRequest $request, $id)
+    public function update(UpdateCameraRequest $request,  $store_code, $id)
     {
         $fileName = null;
  
@@ -102,7 +102,7 @@ class ServiceCameraController extends Controller
 
             if($fileName == null)
             {
-                $this->cameraRepo->updateById($id,$request->except("image_url_string"));
+                $this->cameraRepo->updateByStore($id,$store_code , $request->except("image_url_string"));
                 try {
                   
                 } catch (\Throwable $th) {
@@ -112,7 +112,7 @@ class ServiceCameraController extends Controller
             else
             {
               
-                $this->cameraRepo->updateById($id,array_merge($request->except("image_url_string"), ['image_url' => $fileName]));
+                $this->cameraRepo->updateByStore($id,$store_code ,array_merge($request->except("image_url_string"), ['image_url' => $fileName]));
                 $file_path = public_path($request->image_url_string);
                 if (File::exists($file_path))
                     File::delete($file_path);

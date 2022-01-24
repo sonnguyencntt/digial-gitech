@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Add4ColumCategory extends Migration
+class AddStoreCodeColumnTableBanner extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class Add4ColumCategory extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function ($table) {
-  
-                $table->string("image_url")->after('name');
-
-            
-
-    });
-
-
+        Schema::table('banners', function($table) {
+            $table->string('store_code')->index();
+     
+        });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -30,6 +26,6 @@ class Add4ColumCategory extends Migration
      */
     public function down()
     {
-       
+        //
     }
 }

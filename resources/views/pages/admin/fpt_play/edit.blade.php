@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("manage.service_play.update" , $fptPlay->id)}}" method="POST"   enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("manage.service_play.update" , ["store_code"=>$store_code , "fptplay"=> $fptPlay->id])}}" method="POST"   enctype="multipart/form-data">
               @csrf
               @method('put')
               <div class="box-body">
@@ -50,7 +50,7 @@
                   <label for="status" >Danh mục</label>
                   <select name="category_id" id=""   class="form-control">
                  
-                    @foreach($list_categories as $key => $value)
+                    @foreach($listCategories as $key => $value)
                       <option value="{{$value->id}}" {{$value->id == $fptPlay->category_id ? "selected" : ""}} >{{$value->name}}</option>
                     @endforeach
 

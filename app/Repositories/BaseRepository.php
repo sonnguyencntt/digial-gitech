@@ -28,6 +28,53 @@ abstract class BaseRepository implements RepositoryInterface
         );
     }
 
+
+
+    // Set data contain store_code
+
+    public function findByStore($id , $store_code)
+    {
+        $result = $this->model->where("store_code",  $store_code)->find($id);
+
+        return $result;
+    }
+    public function updateByStore($id, $store_code , $attributes = [])
+    {
+        $result = $this->findByStore($id , $store_code);
+        if ($result) {
+            $result->update($attributes);
+            return $result;
+        }
+
+        return false;
+    }
+    public function deleteByStore($id  ,$store_code)
+    {
+        $result = $this->findByStore($id , $store_code);
+        if ($result) {
+            $result->delete();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function firstByStore($store_code)
+    {
+        return $this->model->where("store_code",  $store_code)->first();
+    }
+
+  
+    // close
+
+
+
+
+
+
+
+
     public function getAll()
     {
         return $this->model->all();
@@ -55,6 +102,7 @@ abstract class BaseRepository implements RepositoryInterface
 
         return false;
     }
+   
 
     public function deleteById($id)
     {
