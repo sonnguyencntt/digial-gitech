@@ -7,6 +7,8 @@ use App\Http\Composers\ViewComposer;
 use App\Http\Composers\ThemeComposer;
 use App\Http\Composers\User\BadgesComposer as UserBadgesComposer;
 use App\Http\Composers\User\StoreComposer ;
+use App\Http\Composers\BadgesComposer as CusTomerBadgesComposer;
+
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,8 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('pages.*', ThemeComposer::class);
         View::composer('pages.user.*', UserBadgesComposer::class);
         View::composer('pages.user.*', StoreComposer::class);
+        View::composer('pages.*', CusTomerBadgesComposer::class);
+
 
 
     }

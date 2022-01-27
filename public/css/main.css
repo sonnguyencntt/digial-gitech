@@ -10,6 +10,11 @@
     font-weight: 700;
     color: rgb(221, 115, 115);
 }
+.img-banner{
+    height: 471px;
+    width: 100%;
+    object-fit: cover;
+}
 .popmake-close{
     position: absolute;
     height: 26px;

@@ -8,12 +8,15 @@ use Illuminate\View\View;
 
 class ViewComposer
 {
-    
+    protected $categoryRepo;
+    protected $themeRepo;
+    protected $request;
     public function __construct(CategoryRepositoryInterface $categoryRepo,ThemeRepositoryInterface $themeRepo)
     {
-        // Dependencies are automatically resolved by the service container...
-        $this->categoryRepo = $categoryRepo->getAll();
-        $this->themeRepo=$themeRepo->getAll();
+        $this->categoryRepo = $categoryRepo;
+        $this->themeRepo=$themeRepo;
+        $this->request= \request();
+
     }
 
     /**
@@ -24,7 +27,10 @@ class ViewComposer
      */
     public function compose(View $view)
     {
-        $view->with('count', $this->categoryRepo);
+        $store_code = $this->request->store_code;
+        $listCategories = $this->categoryRepo->getAll( $store_code);
+        $theme=$this->themeRepo->getAll($store_code);
+        $view->with('listCategories', $listCategories);
         
     }
 }

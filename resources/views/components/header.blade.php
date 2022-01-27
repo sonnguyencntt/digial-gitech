@@ -4,9 +4,9 @@
             <div class="flex-row container">
                 <div class="flex-col hide-for-medium flex-left">
                     <ul class="nav nav-left medium-nav-center nav-small  nav-divided">
-                        <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">@foreach ($themeView as $themeView )
-                            {{$themeView->hotline}}
-                        @endforeach</a></li>
+                        <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">
+                                {{$themeView->hotline}}
+                            </a></li>
                     </ul>
                 </div>
 
@@ -24,7 +24,8 @@
                             <ul class="sub-menu nav-dropdown nav-dropdown-default">
                                 <li id="menu-item-352"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-352">
-                                    <a href="trang-chu-2/index.html">Trang chủ 2</a></li>
+                                    <a href="trang-chu-2/index.html">Trang chủ 2</a>
+                                </li>
                             </ul>
                         </li> --}}
                         {{-- <li id="menu-item-102"
@@ -33,18 +34,20 @@
                         </li> --}}
                         <li id="menu-item-103"
                             class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-103 menu-item-design-default">
-                            <a href="{{route('posts.index')}}" class="nav-top-link">Tin tức</a></li>
+                            <a href="{{route('posts.index' , $badges->store_code)}}" class="nav-top-link">Tin tức</a>
+                        </li>
                         <li id="menu-item-104"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-104 menu-item-design-default">
-                            <a href="{{route('contact.index')}}" class="nav-top-link">Liên hệ</a></li>
+                            <a href="{{route('contact.index' , $badges->store_code)}}" class="nav-top-link">Liên hệ</a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="flex-col show-for-medium flex-grow">
                     <ul class="nav nav-center nav-small mobile-nav  nav-divided">
                         <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">
-                            {{$themeView->hotline}}
-                        </a></li>
+                                {{$themeView->hotline}}
+                            </a></li>
                     </ul>
                 </div>
 
@@ -56,22 +59,18 @@
                 <!-- Logo -->
                 <div id="logo" class="flex-col logo">
                     <!-- Header logo -->
-                    <a href="{{route('home.index')}}" title="fptvienthong.net - Công ty Cổ phần Viễn thông FPT" rel="home">
-                        <img width="200" height="90"
-                            src="{{$themeView->logo}}"
-                            class="header_logo header-logo" alt="fptvienthong.net" /><img width="200"
-                            height="90"
-                            src="{{$themeView->logo}}"
-                            class="header-logo-dark" alt="fptvienthong.net" /></a>
+                    <a href="{{route('home.index', $badges->store_code)}}"
+                        title="fptvienthong.net - Công ty Cổ phần Viễn thông FPT" rel="home">
+                        <img style="max-height: 90px" width="200" height="90" src="{{$themeView->logo}}" class="header_logo header-logo"
+                            alt="fptvienthong.net" />
                 </div>
 
                 <!-- Mobile Left Elements -->
                 <div class="flex-col show-for-medium flex-left">
                     <ul class="mobile-nav nav nav-left ">
                         <li class="nav-icon has-icon">
-                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay"
-                                data-color="" class="is-small" aria-label="Menu" aria-controls="main-menu"
-                                aria-expanded="false">
+                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay" data-color=""
+                                class="is-small" aria-label="Menu" aria-controls="main-menu" aria-expanded="false">
 
                                 <i class="icon-menu"></i>
                             </a>
@@ -89,41 +88,16 @@
                 <!-- Right Elements -->
                 <div class="flex-col hide-for-medium flex-right">
                     <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">
-                        @foreach ($count as $category)
-                            
-                        
+                        @foreach ($listCategories as $category)
+
+
                         <li id="menu-item-100"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-100 menu-item-design-default">
-                            <a href={{$category->link_url."".$category->id}} class="nav-top-link">{{$category->name}}</a></li>
-                        @endforeach
-                        <li
-                            class="header-search header-search-dropdown has-icon has-dropdown menu-item-has-children">
-                            <a href="#" aria-label="Search" class="is-small"><i class="icon-search"></i></a>
-                            <ul class="nav-dropdown nav-dropdown-default">
-                                <li class="header-search-form search-form html relative has-icon">
-                                    <div class="header-search-form-wrapper">
-                                        <div class="searchform-wrapper ux-search-box relative is-normal">
-                                            <form method="get" class="searchform"
-                                                action="https://fptvienthong.net/" role="search">
-                                                <div class="flex-row relative">
-                                                    <div class="flex-col flex-grow">
-                                                        <input type="search" class="search-field mb-0" name="s"
-                                                            value="" id="s" placeholder="Search&hellip;" />
-                                                    </div>
-                                                    <div class="flex-col">
-                                                        <button type="submit"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0"
-                                                            aria-label="Submit">
-                                                            <i class="icon-search"></i> </button>
-                                                    </div>
-                                                </div>
-                                                <div class="live-search-results text-left z-top"></div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <a href={{$category->link_url."".$category->id}}
+                                class="nav-top-link">{{$category->name}}</a>
                         </li>
+                        @endforeach
+
                     </ul>
                 </div>
 

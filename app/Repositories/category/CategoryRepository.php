@@ -21,8 +21,8 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     }
   
 
-    public function distinct()
+    public function distinct($store_code = null)
     {
-        return $this->model->where('name','<>','CAMERA FPT')->with('internet')->take(4)->get();
+        return $this->model->where('name','<>','CAMERA FPT')->where("store_code" , $store_code)->with('internet' , 'store')->get();
     }
 }

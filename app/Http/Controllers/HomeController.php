@@ -26,15 +26,14 @@ class HomeController extends Controller
     }
     public function index($store_code)
     {   
-        $listInternet=$this->internetRepo->all();
-        $listBanner=$this->bannerRepo->getAll();
-        $listProduct=$this->categoryRepo->distinct();
-        $listAllCategory=$this->categoryRepo->getAll();
-        $listCamera=$this->cameraRepo->getAll();
-        $listposts=$this->postsRepo->getThreePosts();
+        // $listInternet=$this->internetRepo->all();
+        $listBanner=$this->bannerRepo->getAll($store_code);
+        $listInternet=$this->categoryRepo->distinct($store_code);
+        $listCamera=$this->cameraRepo->getAll($store_code);
+        $listposts=$this->postsRepo->getAll($store_code);
     
         
-        return view("pages.home.index",['listProduct'=>$listProduct,'listBanner'=>$listBanner,'listCamera'=>$listCamera,'listPosts'=>$listposts,'listAllCategory'=>$listAllCategory,'status'=>201]);
+        return view("pages.home.index",['listInternet'=>$listInternet,'listBanner'=>$listBanner,'listCamera'=>$listCamera,'listPosts'=>$listposts,'status'=>201]);
     }
 
     /**

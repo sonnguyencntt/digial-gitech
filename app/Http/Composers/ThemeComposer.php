@@ -12,7 +12,7 @@ class ThemeComposer
     public function __construct(ThemeRepositoryInterface $themeRepo)
     {
  
-        $this->themeRepo=$themeRepo->getAll();
+        $this->themeRepo=$themeRepo->first();
     }
 
     /**
@@ -23,6 +23,7 @@ class ThemeComposer
      */
     public function compose(View $view)
     {
+
         $view->with('themeView', $this->themeRepo);
         
     }
