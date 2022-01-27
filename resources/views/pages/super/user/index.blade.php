@@ -20,7 +20,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                  @include('components.admin.popup_error')
+                  @include('components.user.popup_error')
 
             
 
@@ -43,6 +43,8 @@
                                         </th>
                                         <th>Email
                                         </th>
+                                        <th>Trạng thái
+                                        </th>
                                         <th>Ngày tạo tài khoản</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -52,6 +54,11 @@
 
 
                                     @foreach ($listUsers as $key => $value)
+                                    @php
+                                        $textStatus = $value->status == 1? "Đang hoat động" : "Chưa kích hoạt";
+                                        $styleStatus = $value->status == 1? "active-column-success" : "active-column-failure";
+
+                                    @endphp
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>
@@ -59,8 +66,9 @@
                                         <td>{{ $value->address }}</td>
 
                                         <td>{{ $value->email }}</td>
+                                        <td class="{{$styleStatus}}">{{ $textStatus }}</td>
 
-                                        <td>{{ $value->created_at }}</td>
+                                        <td >{{ $value->created_at }}</td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
                                                 href="tel:{{$value->phone_number}}"><i
                                                     class="fa fa-phone"></i></a> 
@@ -85,7 +93,6 @@
 
 
             <!-- remove brand modal -->
-            @include('pages.admin.banner.child.remove_popup');
           </section>
         <!-- /.content -->
     </div>

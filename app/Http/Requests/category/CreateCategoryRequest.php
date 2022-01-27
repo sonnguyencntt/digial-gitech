@@ -23,13 +23,26 @@ class CreateCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:255',
-            // 'image_url' => 'required',
-            // 'details' => 'required|max:255',
-            // 'advantage' => 'required|max:255',
-            // 'link_url' => 'required|max:255',
-        ];
+        $type_menu = \getNameSubdomain();
+        if($type_menu == "admin.")
+        {
+            return [
+                'link_url' => 'required|max:255',
+                'store_code' => 'required|exists:stores,store_code',
+                'name' => 'required|max:255',
+            ];
+        }
+        else
+        {
+            return [
+                'name' => 'required|max:255',
+                // 'image_url' => 'required',
+                // 'details' => 'required|max:255',
+                // 'advantage' => 'required|max:255',
+                // 'link_url' => 'required|max:255',
+            ];
+        }
+       
     }
     public function messages()
     {

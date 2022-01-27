@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.super.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-md-12 col-xs-12">
    
-          @include('components.admin.popup_error')
+          @include('components.user.popup_error')
     
           <div class="box">
             <div class="box-header">
@@ -42,11 +42,21 @@
                 </div>
                 <div class="form-group">
                   <label for="product_name" >Tên link</label>
-                  <input type="text" class="form-control" id="name" name="link_name" value = "{{$category->link_name}}" placeholder="Nhập giá" autocomplete="off" />
+                  <input type="text" class="form-control" id="name" name="link_url" value = "{{$category->link_url}}" placeholder="Nhập giá" autocomplete="off" />
     
                 </div>
          
-               
+                <div class="form-group">
+                  <label for="status" >Cửa hàng</label>
+                  <select name="store_code" id=""   class="form-control">
+                 
+                    @foreach($listStores as $key => $value)
+                      <option value="{{$value->store_code}}" {{$value->store_code == $category->store_code? "selected" : ""}} >{{$value->name}}</option>
+                    @endforeach
+
+                  </select>
+    
+                </div>
              
               <!-- /.box-body -->
     

@@ -8,7 +8,14 @@ div.pop-up {
     border-radius: 5px;
     cursor: pointer;
   }
-  
+  .active-column-success{
+    font-weight: 700;
+    color: green;
+}
+.active-column-failure{
+    font-weight: 700;
+    color: rgb(221, 115, 115);
+}
   div.pop-up p {
     position: relative;
     bottom: 10px;

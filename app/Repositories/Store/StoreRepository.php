@@ -24,5 +24,15 @@ class StoreRepository extends BaseRepository implements StoreRepositoryInterface
     {
         return $this->model->with("user")->where("user_id", $user)->get();
     }
+    public function countByStatus($status)
+    {
+        return $this->model->where("status" , $status)->count();
+    }
+    public function getWithUser(){
+        return $this->model->with("user")->get();
 
+    }
+    public function updateStatus($id ,$status){
+        
+    }
 }

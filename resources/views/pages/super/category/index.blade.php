@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.super.app')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -20,11 +20,11 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                  @include('components.admin.popup_error')
+                  @include('components.user.popup_error')
 
-                    {{-- <a class="btn btn-primary" href="{{ route('super.category.create') }}">Thêm mới {{$title}}</a> --}}
+                  <a class="btn btn-primary" href="{{ route('super.category.create') }}">Thêm mới {{$title}}</a>
 
-                    <br /> <br />
+                  <br /> <br />
 
 
                     <div class="box">
@@ -33,12 +33,17 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="superTable" class="table table-bordered table-striped">
+                            <table id="manageTable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên danh mục</th>
-                                        <th>Tên url</th>
+                                        <th>Tiêu Đề</th>
+                                        <th>Link Route</th>
+                                        <th>Mã cửa hàng</th>
+
+                                   
+
+                                        <th>Ngày Đăng</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -50,14 +55,18 @@
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->link_name }}</td>
+                                       
+                                        <td>{{ $value->link_url }}</td>
+                                        <td>{{ $value->store_code }}</td>
 
+
+                                        <td>{{ $value->created_at }}</td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('super.category.edit', $value->id) }}"><i
+                                                href="{{ route('super.category.edit',$value->id) }}"><i
                                                     class="fa fa-pencil"></i></a> 
-                                              <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
-                                              onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
-                                                    class="fa fa-trash"></i></a>
+                                                    <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
+                                                    onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
+                                                          class="fa fa-trash"></i></a>
                                                  
                                                   </td>
                                                 </tr>
@@ -76,10 +85,10 @@
                 <!-- col-md-12 -->
             </div>
 
+            @include('pages.super.category.child.remove_popup');
 
 
             <!-- remove brand modal -->
-            @include('pages.super.category.child.remove_popup');
           </section>
         <!-- /.content -->
     </div>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Mail;
-use App\Jobs\Manage\SendMailVerifyRegisterJob;
+use App\Jobs\User\SendMailVerifyRegisterJob;
 
 class RegisterController extends Controller
 {
@@ -45,7 +45,7 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return view('pages.admin.auth.register');
+        return view('pages.user.auth.register');
     }
     /**
      * Get a validator for an incoming registration request.
@@ -91,10 +91,10 @@ class RegisterController extends Controller
                 'token'=>$token
             ]);
             try {
-                return \redirect()->route("manage.register.verify_email" , ["user" => $user->id])->with(["message"=>"Gửi mail thành công" , "status_code"=>"success"]);
+                return \redirect()->route("user.register.verify_email" , ["user" => $user->id])->with(["message"=>"Gửi mail thành công" , "status_code"=>"success"]);
 
             } catch (\Throwable $th) {
-                return \redirect()->route("manage.register.verify_email" , ["user" => $user->id])->with(["message"=>"Gửi mail không thành công" , "status_code"=>"danger"]);
+                return \redirect()->route("user.register.verify_email" , ["user" => $user->id])->with(["message"=>"Gửi mail không thành công" , "status_code"=>"danger"]);
             }
         } catch (\Throwable $th) {
             return \redirect()->back()->with("message", "Đăng ký tài khoản không thành công");
@@ -105,7 +105,7 @@ class RegisterController extends Controller
     {
      try {
         $this->sendMail($user);
-        return view('pages.admin.auth.register_verify_email' , \compact("user"));
+        return view('pages.user.auth.register_verify_email' , \compact("user"));
      } catch (\Throwable $th) {
      }
   
@@ -134,9 +134,9 @@ class RegisterController extends Controller
     {
         if ($user->token === $token) {
             $user->update(['status' => 1 , "token" =>null]);
-            return \redirect()->route("manage.home.index")->with(["message" => "Xác thực tài khoản thành công" , "status_code" => "success"]);
+            return \redirect()->route("user.home.index")->with(["message" => "Xác thực tài khoản thành công" , "status_code" => "success"]);
         } else {
-            return \redirect()->route("manage.register.verify_email")->with(["message" => "Mã xác thực không đúng" , "status_code" => "danger"]);
+            return \redirect()->route("user.register.verify_email")->with(["message" => "Mã xác thực không đúng" , "status_code" => "danger"]);
         }
     }
 }

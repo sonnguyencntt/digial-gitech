@@ -18,4 +18,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function getID($id){
         return $this->model->find($id);
     }
+    public function countByStatus($status)
+    {
+        return $this->model->where("status" , $status ?? 0)->count();
+    }
 }

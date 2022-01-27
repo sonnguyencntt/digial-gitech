@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.super.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,49 +22,42 @@
       <div class="row">
         <div class="col-md-12 col-xs-12">
    
-          @include('components.admin.popup_error')
+          @include('components.user.popup_error')
     
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("super.service_internet.store")}}"  method="post" enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("super.category.store")}}"  method="post" enctype="multipart/form-data">
               @csrf
               <div class="box-body">
               
     
-  
+       
+       
               
                 <div class="form-group">
-                  <label for="product_name" >Tên gói</label>
-                  <input type="text" class="form-control" id="name" name="name" value = "{{old("name")}}" placeholder="Nhập tên" autocomplete="off" />
+                  <label for="product_name" >Tiêu đề</label>
+                  <input type="text" class="form-control" id="title" name="name" value = "{{old("name")}}" placeholder="Nhập tiêu đề" autocomplete="off" />
+                  <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
     
                 </div>
                 <div class="form-group">
-                  <label for="product_name" >Giá</label>
-                  <input type="text" class="form-control" id="name" name="price" value = "{{old("price")}}" placeholder="Nhập giá" autocomplete="off" />
+                  <label for="product_name" >Link Route</label>
+                  <input type="text" class="form-control" id="title" name="link_url" value = "{{old("link_url")}}" placeholder="Nhập tiêu đề" autocomplete="off" />
+                  <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
     
                 </div>
+            
                 <div class="form-group">
-                  <label for="product_name" >Kích cỡ</label>
-                  <input type="text" class="form-control" id="name" name="size" value = "{{old("size")}}" placeholder="Nhập kích cỡ" autocomplete="off" />
-    
-                </div>
-                <div class="form-group">
-                  <label for="status" >Danh mục</label>
-                  <select name="category_id" id=""   class="form-control">
+                  <label for="status" >Cửa hàng</label>
+                  <select name="store_code" id=""   class="form-control">
                  
-                    @foreach($list_categories as $key => $value)
-                      <option value="{{$value->id}}" {{$value->id == old("category_id") ? "selected" : ""}} >{{$value->name}}</option>
+                    @foreach($listStores as $key => $value)
+                      <option value="{{$value->store_code}}" {{$value->store_code == old("store_code") ? "selected" : ""}} >{{$value->name}}</option>
                     @endforeach
 
                   </select>
     
-                </div>
-                <div class="form-group">
-                  <label for="description">Nội dung </label>
-                 
-                  <textarea id="description"  name = "description">{{old("description")}}</textarea>
-
                 </div>
              
               <!-- /.box-body -->

@@ -4,17 +4,24 @@ namespace App\Http\Controllers\Super;
 
 use Illuminate\Http\Request;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Store\StoreRepositoryInterface;
+use App\Http\Requests\category\CreateCategoryRequest;
+use App\Http\Requests\category\UpdateCategoryRequest;
+
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
 
     protected $categoryRepo;
+    protected $storeRepo;
+
     protected $title = "Danh mục";
 
-    public function __construct(categoryRepositoryInterface $categoryRepo)
+    public function __construct(categoryRepositoryInterface $categoryRepo , StoreRepositoryInterface $storeRepo)
     {
         $this->categoryRepo = $categoryRepo;
+        $this->storeRepo = $storeRepo;
     }
     /**
      * Display a listing of the resource.
@@ -23,8 +30,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $listCategories = $this->categoryRepo->getAll();
-        return \auto_redirect(\view("pages.super.category.index", ['listCategories' => $listCategories, 'title' => $this->title]),  $listCategories);
+        $listCategories = $this->categoryRepo->all();
+        return \view("pages.super.category.index" , [ 'listCategories' => $listCategories , 'title' => $this->title]);
     }
 
     /**
@@ -34,7 +41,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return "Đang cập nhật...";
+        $listStores = $this->storeRepo->all();
+
+        return \view("pages.super.category.create" , ['listStores' =>$listStores  , 'title' => $this->title]);
     }
 
     /**
@@ -43,9 +52,16 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        try{
+        
+            $this->categoryRepo->create($request->all());
+            return redirect()->route("super.category.index")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
+        }
+        catch(\throwable $err){
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**
@@ -66,9 +82,11 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {       
+         $listStores = $this->storeRepo->all();
+
         $category = $this->categoryRepo->findById($id);
-        return \auto_redirect(\view("pages.super.category.edit", ['category' => $category, 'title' => $this->title]), "ajax");
+        return \view("pages.super.category.edit", ['listStores' =>$listStores , 'category' => $category, 'title' => $this->title]);
     }
 
     /**
@@ -78,14 +96,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        $request->validate(['link_name' => "required"],[]);
         try {
-            $this->categoryRepo->updateById($id, ["link_name" => $request->link_name]);
-            return redirect("/category")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+            $this->categoryRepo->updateById($id, $request->all());
+            return redirect()->route("super.category.index")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {
-            \dd($err);
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
         }
     }

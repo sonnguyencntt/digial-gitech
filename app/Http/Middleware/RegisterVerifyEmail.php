@@ -19,6 +19,6 @@ class RegisterVerifyEmail
         if(Auth::guard($guard)->user()->status == 1)
         return $next($request);
         else
-        return \redirect()->route("manage.register.verify_email" , ["user" =>Auth::guard($guard)->user()->id]);
+        return \redirect()->route("user.register.verify_email" , ["user" =>Auth::guard($guard)->user()->id]);
     }
 }

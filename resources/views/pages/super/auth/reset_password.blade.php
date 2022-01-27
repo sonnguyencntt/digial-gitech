@@ -1,4 +1,4 @@
-@extends('layouts.admin.auth')
+@extends('layouts.user.auth')
 @section('content')
 <div class="login-box">
     <div class="login-logo">

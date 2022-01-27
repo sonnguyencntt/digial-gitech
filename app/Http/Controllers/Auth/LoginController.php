@@ -27,7 +27,7 @@ class LoginController extends Controller
             $credentials = $request->only('email', 'password');
             if(Auth::guard()->attempt($credentials))
             {
-                return \redirect()->intended(route('manage.home.index'));
+                return \redirect()->intended(route('user.home.index'));
             }
             return \redirect()->back()->withErrors("Tài khoản hoặc mật khẩu không tồn tại");
         }
@@ -39,11 +39,11 @@ class LoginController extends Controller
          */
         public function index()
         {
-            return view('pages.admin.auth.index');
+            return view('pages.user.auth.index');
         }
 
         public function logout(Request $request) {
             Auth::logout();
-            return redirect()->route("manage.login.index");
+            return redirect()->route("user.login.index");
           }
 }

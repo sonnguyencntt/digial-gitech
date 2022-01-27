@@ -19,5 +19,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         return $this->model->with("store")->where("store_code" , $store_code)->get();
     }
+  
 
 }

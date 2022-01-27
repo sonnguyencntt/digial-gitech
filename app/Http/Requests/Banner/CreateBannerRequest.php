@@ -23,6 +23,7 @@ class CreateBannerRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'title' => 'required|max:255',
             'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',

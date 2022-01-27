@@ -124,4 +124,8 @@ abstract class BaseRepository implements RepositoryInterface
     {
         return $this->model->first();
     }
+    public function all()
+    {
+        return $this->model->all();
+    }
 }

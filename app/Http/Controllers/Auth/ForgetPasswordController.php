@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Customer;
 use App\Http\Controllers\Controller;
-use App\Jobs\Manage\SendEmailVerifyResetPassword;
+use App\Jobs\user\SendEmailVerifyResetPassword;
 use App\User;
 use Illuminate\Http\Request;
 use Hash;
@@ -29,7 +29,7 @@ class ForgetPasswordController extends Controller
 
     public function index()
     {
-        return \view("pages.admin.auth.forget_password");
+        return \view("pages.user.auth.forget_password");
     }
     public function postForgetPass(Request $request)
     {
@@ -55,9 +55,9 @@ class ForgetPasswordController extends Controller
     public function resetPassword(User $user, $token)
     {
         if ($user->token === $token) {
-            return \view("pages.admin.auth.reset_password");
+            return \view("pages.user.auth.reset_password");
         } else {
-            return \redirect()->route("manage.forget_password.index")->with(["message" => "Mã xác thực không đúng", "status_code" => "danger"]);
+            return \redirect()->route("user.forget_password.index")->with(["message" => "Mã xác thực không đúng", "status_code" => "danger"]);
         }
     }
     public function postResetPassword(User $user, $token, Request $request)
@@ -75,9 +75,9 @@ class ForgetPasswordController extends Controller
             try {
                 $newPassword =  Hash::make($request->password);
                 $user->update(['password'=>$newPassword, 'token' => null]);
-                return \redirect()->route("manage.login.index")->with(["message" => "Đặt lại mật khẩu thành công", "status_code" => "success"]);
+                return \redirect()->route("user.login.index")->with(["message" => "Đặt lại mật khẩu thành công", "status_code" => "success"]);
             } catch (\Throwable $th) {
-                return \redirect()->route("manage.login.index")->with(["message" => "Đặt lại mật khẩu không thành công" , "status_code" => "danger"]);
+                return \redirect()->route("user.login.index")->with(["message" => "Đặt lại mật khẩu không thành công" , "status_code" => "danger"]);
             }
         }
         

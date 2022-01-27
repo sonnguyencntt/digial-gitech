@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $listUsers = $this->userRepo->getAll();
+        $listUsers = $this->userRepo->all();
         return \auto_redirect(\view("pages.super.user.index" , ['listUsers' => $listUsers , 'title' => $this->title]) ,  $listUsers);
     }
 

@@ -21,14 +21,14 @@ class CheckForStatusStore
         {
             $result = Store::where("store_code",$store_code)->first();
             if($result->status == "WAITING")
-            return \redirect()->route("manage.home.show_stores")->with(["status" => 403 , "msg"=> "Đang chờ xét duyệt từ hệ thống, vui lòng chờ!" , "alert"=>"danger"]);
+            return \redirect()->route("user.home.show_stores")->with(["status" => 403 , "msg"=> "Đang chờ xét duyệt từ hệ thống, vui lòng chờ!" , "alert"=>"danger"]);
             else if($result->status == "STOP_WORKING")
-            return \redirect()->route("manage.home.show_stores")->with(["status" => 403 , "msg"=> "Shop của bạn đã ngừng hoạt động do không toán đúng hạn hoạc lỗi gì đó xãy ra, vui lòng liên hệ admin!" , "alert"=>"danger"]);
+            return \redirect()->route("user.home.show_stores")->with(["status" => 403 , "msg"=> "Shop của bạn đã ngừng hoạt động do không toán đúng hạn hoạc lỗi gì đó xãy ra, vui lòng liên hệ admin!" , "alert"=>"danger"]);
             else
             return $next($request);
 
 
         }
-        return \redirect()->route("manage.home.show_stores")->with(["status" => 403 , "msg"=> "Bạn không có quyền truy cập" , "alert"=>"danger"]);
+        return \redirect()->route("user.home.show_stores")->with(["status" => 403 , "msg"=> "Bạn không có quyền truy cập" , "alert"=>"danger"]);
     }
 }

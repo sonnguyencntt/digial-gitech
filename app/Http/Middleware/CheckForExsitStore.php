@@ -23,8 +23,8 @@ class CheckForExsitStore
             $result = Store::where("user_id",  $user_id)->where("store_code",$store_code)->first();
             if($result)
             return $next($request);
-            return \redirect()->route("manage.home.show_stores")->with(["status" => 403 , "msg"=> "Bạn không có quyền truy cập" , "alert"=>"danger"]);
+            return \redirect()->route("user.home.show_stores")->with(["status" => 403 , "msg"=> "Bạn không có quyền truy cập" , "alert"=>"danger"]);
         }
-        return \redirect()->route("manage.home.show_stores")->with(["status" => 403 , "msg"=> "Bạn không có quyền truy cập" , "alert"=>"danger"]);
+        return \redirect()->route("user.home.show_stores")->with(["status" => 403 , "msg"=> "Bạn không có quyền truy cập" , "alert"=>"danger"]);
     }
 }

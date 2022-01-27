@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
             default:
                 if (Auth::guard($guard)->check()) {
                     if(Auth::guard($guard)->user()->status == 1)
-                    return \redirect()->route("manage.home.index");
+                    return \redirect()->route("user.home.index");
                 }
                 break;
         }
