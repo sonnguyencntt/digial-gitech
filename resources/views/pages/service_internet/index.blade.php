@@ -36,13 +36,13 @@
     <ul class="goi_cuoc_home">
         @foreach($list_internet as $internet)
             <li class="col_li-3 internet-ca-nhan">
-                <h3>Super 80</h3> 
+                <h3>{{$internet->name}}</h3> 
                 <div class="thongtin-goicuoc">
                         <p class="gia-goicuoc">{{$internet->price}}<span class="dongia">đ/Tháng</span></p>
                         <div class="linebt"></div>
                         <p class="tocdo-goicuoc"><span class="sotcodo">Download / Upload</span><br />{{$internet->size}}<span class="tocdogoi">Mbps</span></p>
                         <div class="mota_goicuoc"> 
-                                <p>{{$internet->description}}</p>
+                                {!!$internet->description!!}
                                 
                                 
                         </div>
@@ -86,25 +86,11 @@
                 
                 
     <div class="container section-title-container" ><h2 class="section-title section-title-normal"><b></b><span class="section-title-main" >Thông tin chi tiết</span><b></b></h2></div>
-    <ul>
-    <li>Phù hợp với cá nhân, hộ gia đình</li>
-    <li>Miễn phí lắp đặt kèm trang thiết bị modem wifi</li>
-    <li><span style="color: #ed1c24;"><strong>ƯU ĐÃI ĐẶC BIỆT</strong></span></li>
-    </ul>
-    <p style="padding-left: 40px;"><span style="color: #333333;">&#8211;  Tặng<strong> 2</strong> tháng sử dụng miễn phí khi khách hàng chọn gói trả trước <strong>6</strong> tháng</span></p>
-    <p style="padding-left: 40px;"><span style="color: #333333;">&#8211;  Tặng <strong>3</strong> tháng sử dụng miễn phí khi khách hàng chọn gói trả trước <strong>12</strong> tháng</span></p>
-    <ul>
-    <li>
-    <div><span style="color: #ed1c24;">* <strong>Phí Lắp đặt</strong></span> (Đã bao gồm thuế VAT):</div>
-    <div>&#8211; Khách hàng đóng trước cước 3- 6 &#8211; 12 tháng: Miễn phí lắp đặt.</div>
-    <div>&#8211; Khách hàng Đóng cước hàng tháng: Phí hòa mạng 500.000đ.</div>
-    </li>
-    <li>Lắp đặt nhanh chóng trong vòng 24h,</li>
-    <li>Hỗ trợ  kỹ thuật 24/7</li>
-    <li>Đăng ký dễ dàng tiện lợi qua số tổng đài hoặc trực tiếp tại cửa hàng FPT trên toàn quốc.</li>
-    </ul>
-            </div>
-                </div>
+    <p>
+        {{$getCategory->details}}
+    </p>
+    </div>
+    </div>
     
         
     
@@ -113,37 +99,9 @@
                 
                 
     <div class="container section-title-container" ><h2 class="section-title section-title-normal"><b></b><span class="section-title-main" >Ưu điểm</span><b></b></h2></div>
-    <ul class="function">
-    <li>
-    <div class="col-xs-10 col-sm-11">Tốc độ truy cập Internet cao, lên đến 1Gigabit/giây (1Gbps)</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Chất lượng tín hiệu ổn định, không bị ảnh hưởng bởi thời tiết, chiều dài cáp…</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Thiết bị an toàn (không sợ sét đánh lan truyền trên đường dây)</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Đăng ký dễ dàng, tiện lợi qua tổng đài, trên website trực tuyến hoặc tại hệ thống các văn phòng giao dịch của FPT Telecom trải dài trên toàn quốc</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Thời gian lắp đặt dịch vụ nhanh chóng, tối đa là 3-5 ngày</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Quản lý cước rõ ràng</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Chăm sóc và hỗ trợ giải đáp khách hàng 24/7</div>
-    </li>
-    <li>
-    <div class="col-xs-10 col-sm-11">Dễ dàng nâng cấp băng thông mà không cần kéo cáp mới</div>
-    </li>
-    <li>
-    <div>
-    <div> Đáp ứng hiệu quả cho các ứng dụng Công nghệ thông tin hiện đại như: Hosting Server riêng, VPN (mạng riêng ảo), Truyền dữ liệu, Game Online, IPTV (truyền hình tương tác), VoD (xem phim theo yêu cầu), Video Conferrence (hội nghị truyền hình), IP Camera,…</div>
-    </div>
-    </li>
-    </ul>
+    <p>
+        {{$getCategory->advantage}}
+    </p>
             </div>
                 </div>
     

@@ -14,7 +14,7 @@ class Category extends Model
 
     public function internet()
     {
-        return $this->hasOne(Internet::class , 'category_id' , 'id');
+        return $this->hasMany(Internet::class , 'category_id' , 'id');
     }
     public function camera()
     {

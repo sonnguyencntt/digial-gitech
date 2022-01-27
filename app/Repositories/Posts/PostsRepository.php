@@ -23,4 +23,7 @@ class PostsRepository extends BaseRepository implements PostsRepositoryInterface
         return $this->model->with("store")->where("store_code" , $store_code )->count();
     }
    
+    public function getThreePosts(){
+        return $this->model->take(3)->get();
+    }
 }

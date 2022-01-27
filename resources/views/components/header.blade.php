@@ -4,8 +4,9 @@
             <div class="flex-row container">
                 <div class="flex-col hide-for-medium flex-left">
                     <ul class="nav nav-left medium-nav-center nav-small  nav-divided">
-                        <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">0901 793
-                                997</a></li>
+                        <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">@foreach ($themeView as $themeView )
+                            {{$themeView->hotline}}
+                        @endforeach</a></li>
                     </ul>
                 </div>
 
@@ -32,17 +33,18 @@
                         </li> --}}
                         <li id="menu-item-103"
                             class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-103 menu-item-design-default">
-                            <a href="blog/danh-muc/tin-tuc/index.html" class="nav-top-link">Tin tức</a></li>
+                            <a href="{{route('posts.index')}}" class="nav-top-link">Tin tức</a></li>
                         <li id="menu-item-104"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-104 menu-item-design-default">
-                            <a href="lien-he/index.html" class="nav-top-link">Liên hệ</a></li>
+                            <a href="{{route('contact.index')}}" class="nav-top-link">Liên hệ</a></li>
                     </ul>
                 </div>
 
                 <div class="flex-col show-for-medium flex-grow">
                     <ul class="nav nav-center nav-small mobile-nav  nav-divided">
-                        <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">0901 793
-                                997</a></li>
+                        <li class="html custom html_topbar_left">Hotline: <a href="tel:0901793997">
+                            {{$themeView->hotline}}
+                        </a></li>
                     </ul>
                 </div>
 
@@ -54,12 +56,12 @@
                 <!-- Logo -->
                 <div id="logo" class="flex-col logo">
                     <!-- Header logo -->
-                    <a href="index.html" title="fptvienthong.net - Công ty Cổ phần Viễn thông FPT" rel="home">
+                    <a href="{{route('home.index')}}" title="fptvienthong.net - Công ty Cổ phần Viễn thông FPT" rel="home">
                         <img width="200" height="90"
-                            src="../fptcore.com/fptvienthong-net/wp-content/uploads/sites/37/2021/07/CGSQtFPgvd7HKMXvon4l.png"
+                            src="{{$themeView->logo}}"
                             class="header_logo header-logo" alt="fptvienthong.net" /><img width="200"
                             height="90"
-                            src="../demo5.fptcore.com/fptvienthong-net/wp-content/uploads/sites/37/2021/06/ZTgADZaOELMnEhTweaIN.html"
+                            src="{{$themeView->logo}}"
                             class="header-logo-dark" alt="fptvienthong.net" /></a>
                 </div>
 
@@ -87,23 +89,13 @@
                 <!-- Right Elements -->
                 <div class="flex-col hide-for-medium flex-right">
                     <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">
+                        @foreach ($count as $category)
+                            
+                        
                         <li id="menu-item-100"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-100 menu-item-design-default">
-                            <a href="internet-ca-nhan/index.html" class="nav-top-link">Internet cá nhân</a></li>
-                        <li id="menu-item-98"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98 menu-item-design-default">
-                            <a href="combo-internet-truyen-hinh/index.html" class="nav-top-link">Combo internet
-                                – Truyền hình</a></li>
-                        <li id="menu-item-99"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-99 menu-item-design-default">
-                            <a href="internet-doanh-nghiep/index.html" class="nav-top-link">Internet doanh
-                                nghiệp</a></li>
-                        <li id="menu-item-97"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-97 menu-item-design-default">
-                            <a href="camera-fpt/index.html" class="nav-top-link">Camera FPT</a></li>
-                        <li id="menu-item-459"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-459 menu-item-design-default">
-                            <a href="fpt-play/index.html" class="nav-top-link">FPT PLAY</a></li>
+                            <a href={{$category->link_url."".$category->id}} class="nav-top-link">{{$category->name}}</a></li>
+                        @endforeach
                         <li
                             class="header-search header-search-dropdown has-icon has-dropdown menu-item-has-children">
                             <a href="#" aria-label="Search" class="is-small"><i class="icon-search"></i></a>

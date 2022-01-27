@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Repositories\play\PlayRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Repositories\Camera\CameraRepositoryInterface;
 class ServiceCameraController extends Controller
@@ -12,14 +12,19 @@ class ServiceCameraController extends Controller
      * @return \Illuminate\Http\Response
      */
  
-    public function __construct(cameraRepositoryInterface $cameraRepo )
+    public function __construct(cameraRepositoryInterface $cameraRepo,PlayRepositoryInterface $playRepo )
     {
         $this->cameraRepo = $cameraRepo;
+        $this->playRepo = $playRepo;
         
     }
     public function index()
     {   
-       
+        $getFirstID=$this->cameraRepo->getFirstID();
+        $getSecondID=$this->cameraRepo->getSecondID();
+        $getCategoryName=$this->cameraRepo->getCategoryName();
+        $title=$getCategoryName->category->name;
+        return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'title'=>$title,'status'=>200]) ;
 
     }
 
@@ -52,11 +57,12 @@ class ServiceCameraController extends Controller
      */
     public function show($id)
     {
+        $storage=$this->playRepo->getAllPlay($id);
         $getFirstID=$this->cameraRepo->getFirstID();
         $getSecondID=$this->cameraRepo->getSecondID();
         $getCategoryName=$this->cameraRepo->getCategoryName();
         $title=$getCategoryName->category->name;
-        return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'title'=>$title,'status'=>200]) ;
+        return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'title'=>$title,'storage'=>$storage,'status'=>200]) ;
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\internet\InternetRepositoryInterface;
+use App\Repositories\category\CategoryRepositoryInterface;
 class ServiceInternetController extends Controller
 {
 
@@ -13,9 +14,10 @@ class ServiceInternetController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $title;
-    public function __construct(InternetRepositoryInterface $getInternet)
+    public function __construct(InternetRepositoryInterface $internetRepo,CategoryRepositoryInterface $cateogryRepo)
     {
-        $this->getInternet = $getInternet;
+        $this->internetRepo = $internetRepo;
+        $this->categoryRepo=$cateogryRepo;
     }
     public function index()
     {
@@ -50,12 +52,14 @@ class ServiceInternetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    
     {   
-        $list_internet=$this->getInternet->getAllInternet($id);
-        $getCategoryName=$this->getInternet->getCategoryName($id);
-        $title=$getCategoryName[0]->name;
+        $internetRepo=$this->internetRepo->getAllInternet($id);
+        $findidcategory=$this->categoryRepo->findById($id);
+        // dd($getCategoryName->category->name);
         
-        return view("pages.service_internet.index",['list_internet' => $list_internet ,'title'=>$title,'status'=>201]);
+        
+        return view("pages.service_internet.index",['list_internet' => $internetRepo ,'getCategory'=>$findidcategory,'title'=>$findidcategory->name,'status'=>201]);
     }
 
     /**

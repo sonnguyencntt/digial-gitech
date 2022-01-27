@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\Customer\Contact\CreateCustomerRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Customer\CustomerRepositoryInterface;
 class ContactController extends Controller
@@ -42,10 +42,24 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCustomerRequest $request)
     {
-        //
-        return 1;
+
+        try{
+
+            $category=$this->customerRepo->create($request->all());
+            
+            return redirect()->back()->with(["status"=> 201 ,  "msg"=>"Thêm dữ liệu thành công"]);
+         
+        }
+
+        catch(\throwable $err){
+            
+           
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+         
+
+        }
     }
 
     /**
@@ -56,8 +70,23 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+
+            $category=$this->customerRepo->findById($id);
+            
+            return $category;
+         
+        }
+
+        catch(\throwable $err){
+            
+           
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+         
+
+        }
     }
+    
 
     /**
      * Show the form for editing the specified resource.

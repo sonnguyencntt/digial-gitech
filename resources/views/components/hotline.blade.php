@@ -12,12 +12,14 @@
     </div>
     <div class="hotline-bar">
         <a href="tel:0901793997">
-            <span class="text-hotline">0901 793 997</span>
+            <span class="text-hotline">@foreach ($themeView as $themeView )
+                {{$themeView->hotline}}
+            @endforeach</span>
         </a>
     </div>
 </div>
 <div class="zalo-container" style="bottom:185px;">
-    <a id="zalo-btn oczalo" href="https://zalo.me/0901793997" target="_blank" rel="noopener noreferrer nofollow">
+    <a id="zalo-btn oczalo" href="{{'https://zalo.me/'."".$themeView->id_zalo}}" target="_blank" rel="noopener noreferrer nofollow">
         <div class="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
         <div class="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
         <span><img src="../fptcore.com/fptvienthong-net/wp-content/uploads/sites/37/2021/10/zalo.png"

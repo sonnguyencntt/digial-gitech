@@ -50,7 +50,9 @@
                 }
             </style>
         </div>
-
+        @foreach ($listProduct as $list )
+            
+       
         <div class="row" id="row-1687466452">
 
             <div id="col-1260718203" class="col small-12 large-12" >
@@ -59,7 +61,7 @@
 
                     <div class="container section-title-container">
                         <h3 class="section-title section-title-normal"><b></b><span
-                                class="section-title-main">Internet cá nhân</span><b></b></h3>
+                                class="section-title-main">{{$list->name}}</span><b></b></h3>
                     </div>
                     <div id="gap-459636481" class="gap-element clearfix" style="display:block; height:auto;">
 
@@ -71,60 +73,23 @@
                     </div>
 
                     <ul class="goi_cuoc_home">
+                        @foreach($list->internet as $combo)
                         <li class="col_li-3 internet-ca-nhan">
-                            <h3>Super 80</h3>
+                            <h3>{{$combo->name}}</h3>
                             <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">200.000<span class="dongia">đ/Tháng</span></p>
+                                <p class="gia-goicuoc">{{$combo->price}}<span class="dongia">đ/Tháng</span></p>
                                 <div class="linebt"></div>
                                 <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />80<span class="tocdogoi">Mbps</span></p>
+                                        Upload</span><br />{{$combo->size}}<span class="tocdogoi">Mbps</span></p>
                                 <div class="mota_goicuoc">
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi 2 băng tần</p>
-                                    <p>Lắp đặt nhanh trong 24h</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
+                                {!!$combo->description!!}
                                 </div>
                             </div>
                             <div class="bt_dangky"><a data-toggle="modal" data-target="#bookingModal"
                                     class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
                         </li>
-                        <li class="col_li-3 internet-ca-nhan">
-                            <h3>Super 100</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">255.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />100<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi 2 băng tần</p>
-                                    <p>Lắp đặt nhanh trong 24h</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 100" data-gia="255.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-3 internet-ca-nhan">
-                            <h3>Super 150</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">320.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />150<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi 2 băng tần</p>
-                                    <p>Lắp đặt nhanh trong 24h</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-toggle="modal" data-target="#bookingModal"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
+                    @endforeach
+                        
                     </ul>
                     <script type="text/javascript">
                         jQuery(document).ready(function(e) {
@@ -141,218 +106,10 @@
 
 
         </div>
-        <div class="row" id="row-88224806">
 
-            <div id="col-1982767686" class="col small-12 large-12" >
-                <div class="col-inner">
+        @endforeach
 
 
-                    <div class="container section-title-container">
-                        <h3 class="section-title section-title-normal"><b></b><span
-                                class="section-title-main">COMBO INTERNET &amp; TRUYỀN HÌNH FPT</span><b></b>
-                        </h3>
-                    </div>
-                    <div id="gap-1940050714" class="gap-element clearfix" style="display:block; height:auto;">
-
-                        <style>
-                            #gap-1940050714 {
-                                padding-top: 20px;
-                            }
-                        </style>
-                    </div>
-
-                    <ul class="goi_cuoc_home">
-                        <li class="col_li-4 combo-internet-truyen-hinh">
-                            <h3><span class="title-phu">Combo</span><br />Super 30</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">215.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />30<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Gần 200 kênh truyền hình</p>
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi &amp; Bộ giải mã FPT TV</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc="Combo Super 30" data-gia="215.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-4 combo-internet-truyen-hinh">
-                            <h3><span class="title-phu">Combo</span><br />Super 80</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">235.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />80<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Gần 200 kênh truyền hình</p>
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi &amp; Bộ giải mã FPT TV</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc="Combo Super 80" data-gia="235.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-4 combo-internet-truyen-hinh">
-                            <h3><span class="title-phu">Combo</span><br />Super 100</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">305.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />100<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Gần 200 kênh truyền hình</p>
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi &amp; Bộ giải mã FPT TV</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc="Combo Super 100"
-                                    data-gia="305.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-4 combo-internet-truyen-hinh">
-                            <h3><span class="title-phu">Combo</span><br />Super 150</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">370.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />150<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Gần 200 kênh truyền hình</p>
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p>Trang bị Modem WiFi &amp; Bộ giải mã FPT TV</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 03 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc="Combo Super 150"
-                                    data-gia="370.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                    </ul>
-                    <script type="text/javascript">
-                        jQuery(document).ready(function(e) {
-        jQuery(".dangkyngay-bt").click(function(){
-            var tengoi = jQuery(this).attr("data-goi-cuoc");
-            var giagoi = jQuery(this).attr("data-gia");
-            jQuery(".class_ten_goi").val(tengoi);
-            jQuery(".class_gia_goi").val(giagoi);
-        });
-    });
-                    </script>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="row" id="row-445701116">
-
-            <div id="col-263523791" class="col small-12 large-12" >
-                <div class="col-inner">
-
-
-                    <div class="container section-title-container">
-                        <h3 class="section-title section-title-normal"><b></b><span
-                                class="section-title-main">INTERNET DOANH NGHIỆP</span><b></b></h3>
-                    </div>
-                    <div id="gap-1038962656" class="gap-element clearfix" style="display:block; height:auto;">
-
-                        <style>
-                            #gap-1038962656 {
-                                padding-top: 20px;
-                            }
-                        </style>
-                    </div>
-
-                    <ul class="goi_cuoc_home">
-                        <li class="col_li-4 internet-doanh-nghiep">
-                            <h3>Super 200</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">490.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />200<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Thiết bị modem mặc định: AC1000C version 2/AC1000F</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 02 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 200" data-gia="490.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-4 internet-doanh-nghiep">
-                            <h3>Super 250</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">545.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />250<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Thiết bị modem mặc định: AC1000C version 2/AC1000F</p>
-                                    <p>Miễn phí lắp đặt*</p>
-                                    <p><span style="color: #ff0000"><strong>Ưu đãi tới 02 tháng
-                                                cước</strong></span></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 250" data-gia="545.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-4 internet-doanh-nghiep">
-                            <h3>Super 400</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">1.410.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />400<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Thiết bị modem mặc định: Vigor hoặc tương đương</p>
-                                    <p>Miễn phí lắp đặt<span style="color: #ed1c24">*</span></p>
-                                    <p><strong><span style="color: #ed1c24">Ưu đãi tới 2 tháng
-                                                cước</span></strong></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 400" data-gia="1.410.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                        <li class="col_li-4 internet-doanh-nghiep">
-                            <h3>Super 500</h3>
-                            <div class="thongtin-goicuoc">
-                                <p class="gia-goicuoc">8.125.000<span class="dongia">đ/Tháng</span></p>
-                                <div class="linebt"></div>
-                                <p class="tocdo-goicuoc"><span class="sotcodo">Download /
-                                        Upload</span><br />500<span class="tocdogoi">Mbps</span></p>
-                                <div class="mota_goicuoc">
-                                    <p>Thiết bị modem mặc định: Vigor hoặc tương đương</p>
-                                    <p>Miễn phí lắp đặt<span style="color: #ff0000">*</span></p>
-                                    <p><strong><span style="color: #ff0000">Ưu đãi tới 2 tháng
-                                                cước</span></strong></p>
-                                </div>
-                            </div>
-                            <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 500" data-gia="8.125.000"
-                                    class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
-                        </li>
-                    </ul>
-                    <script type="text/javascript">
-                        jQuery(document).ready(function(e) {
-        jQuery(".dangkyngay-bt").click(function(){
-            var tengoi = jQuery(this).attr("data-goi-cuoc");
-            var giagoi = jQuery(this).attr("data-gia");
-            jQuery(".class_ten_goi").val(tengoi);
-            jQuery(".class_gia_goi").val(giagoi);
-        });
-    });
-                    </script>
-                </div>
-            </div>
-
-
-        </div>
         <div class="row" id="row-890100484">
 
             <div id="col-1918005253" class="col small-12 large-12" >
@@ -373,14 +130,13 @@
                     </div>
 
                     <div class="row" id="row-832880509">
-
+                        @foreach ($listCamera as $camera )
                         <div id="col-129715435" class="col medium-6 small-12 large-6">
                             <div class="col-inner">
 
-
                                 <div id="text-3712646344" class="text camera-home">
 
-                                    <h3><a href="#">Camera ngoài trời</a></h3>
+                                    <h3><a href="#">{{$camera->name}}</a></h3>
                                     <div class="noidung-camera">
                                         <div class="img-thumb"><img loading="lazy"
                                                 class="alignnone size-medium wp-image-110"
@@ -389,15 +145,13 @@
                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/fpt-camera-ngoai-troi-300x290.png 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/fpt-camera-ngoai-troi.png 558w"
                                                 sizes="(max-width: 300px) 100vw, 300px" /></div>
                                         <div class="text-content">
-                                            <p>Chất lượng hình ảnh sắc nét Full HD 1080pKháng nước, kháng bụi
-                                                IP66Hiện thị màu trong điều kiện ánh sáng yếuGóc quan sát rộng
-                                                106°</p>
+                                            {!!$camera->description!!}
                                             <div class="giasp">
                                                 <div class="gia-left"><span
-                                                        style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>1.400.000
+                                                        style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>{{$camera->price}}
                                                             vnđ</strong></span></div>
                                                 <div class="gia-right"><span
-                                                        style="color: #f26522;"><strong>1.000.000
+                                                        style="color: #f26522;"><strong>{{$camera->discount}}
                                                             vnđ</strong></span></div>
                                                 <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
                                             </div>
@@ -412,71 +166,36 @@
                                         <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
                                     </div>
                                     <div class="buttom-ft">
-                                        <div class="chitietbt"><a href="camera-fpt/index.html">Xem chi tiết</a>
+                                        <div class="chitietbt"><a href="{{route('service_camera.index')}}">Xem chi tiết</a>
                                         </div>
                                         <div class="dangkybt"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a>
                                         </div>
                                     </div>
                                 </div>
+                                
 
                             </div>
                         </div>
 
 
 
-                        <div id="col-2020051069" class="col medium-6 small-12 large-6">
-                            <div class="col-inner">
-
-
-                                <div id="text-3265919905" class="text camera-home">
-
-                                    <h3><a href="#">Camera trong nhà</a></h3>
-                                    <div class="noidung-camera">
-                                        <div class="img-thumb"><img loading="lazy"
-                                                class="alignnone size-medium wp-image-111"
-                                                src="../kia-daklak.com.vn/wp-content/uploads/sites/37/2021/06/camera-fpt-indor-300x292.html"
-                                                alt="" width="300" height="292"
-                                                srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/camera-fpt-indor-300x292.png 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/camera-fpt-indor.png 702w"
-                                                sizes="(max-width: 300px) 100vw, 300px" /></div>
-                                        <div class="text-content">
-                                            <p>Chất lượng hình ảnh sắc nét Full HD 1080pKháng nước, kháng bụi
-                                                IP66Hiện thị màu trong điều kiện ánh sáng yếuGóc quan sát rộng
-                                                102°</p>
-                                            <div class="giasp">
-                                                <div class="gia-left"><span
-                                                        style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>1.300.000
-                                                            vnđ</strong></span></div>
-                                                <div class="gia-right"><span
-                                                        style="color: #f26522;"><strong>900.000
-                                                            vnđ</strong></span></div>
-                                                <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="giasp-mb">
-                                        <div class="gia-left"><span
-                                                style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>1.300.000
-                                                    vnđ</strong></span></div>
-                                        <div class="gia-right"><span style="color: #f26522;"><strong>900.000
-                                                    vnđ</strong></span></div>
-                                        <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
-                                    </div>
-                                    <div class="buttom-ft">
-                                        <div class="chitietbt"><a
-                                                href="https://kia-daklak.com.vn/camera-fpt/">Xem chi tiết</a>
-                                        </div>
-                                        <div class="dangkybt"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
+                        
+                        @endforeach
 
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
         </div>
@@ -490,9 +209,8 @@
                     <div class="tabbed-content tabtintuc-home tintuckhuyenmai">
                         <h4 class="uppercase text-left">Tab Title</h4>
                         <ul class="nav nav-line nav-uppercase nav-size-normal nav-left">
-                            <li class="tab active has-icon"><a href="#tab_khuyẾn-mÃi"><span>KHUYẾN
-                                        MÃI</span></a></li>
-                            <li class="tab has-icon"><a href="#tab_tin-tỨc"><span>TIN TỨC</span></a></li>
+                            
+                            <li class="tab has-icon"><a href="{{route('posts.index')}}"><span>TIN TỨC</span></a></li>
                         </ul>
                         <div class="tab-panels">
                             <div class="panel active entry-content" id="tab_khuyẾn-mÃi">
@@ -510,10 +228,12 @@
 
                                 <div class="row large-columns-3 medium-columns-1 small-columns-1 slider row-slider slider-nav-circle slider-nav-push"
                                     data-flickity-options='{"imagesLoaded": true, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": true,"prevNextButtons": true,"percentPosition": true,"pageDots": false, "rightToLeft": false, "autoPlay" : 5000}'>
-
+                                @foreach ($listPosts as $posts)
+                                    
+                                
                                     <div class="col post-item">
                                         <div class="col-inner">
-                                            <a href="blog/nhan-ngay-uu-dai-thang-6-tu-fpt-play-box-bung-no-cam-xuc-cung-dam-me-bong-da/index.html"
+                                            <a href="{{ route('posts.show',$posts->id)}}"
                                                 class="plain">
                                                 <div
                                                     class="box box-default box-text-bottom box-blog-post has-hover">
@@ -523,7 +243,7 @@
                                                                 src="wp-content/uploads/sites/37/2021/06/box-1024x569.jpg"
                                                                 class="attachment-large size-large wp-post-image"
                                                                 alt="" loading="lazy"
-                                                                srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/box-1024x569.jpg 1024w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/box-300x167.jpg 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/box-768x427.jpg 768w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/box.jpg 1200w"
+                                                                srcset="{{$posts->image_url}} 1024w, {{$posts->image_url}} 300w, {{$posts->image_url}} 768w, {{$posts->image_url}} 1200w"
                                                                 sizes="(max-width: 1020px) 100vw, 1020px" />
                                                         </div>
                                                     </div>
@@ -531,15 +251,10 @@
                                                         <div class="box-text-inner blog-post-inner">
 
 
-                                                            <h5 class="post-title is-large ">Nhận ngay ưu đãi
-                                                                tháng 6 từ FPT Play Box, bùng nổ cảm xúc cùng
-                                                                đam mê bóng đá</h5>
-                                                            <div class="post-meta is-small op-8">15 Tháng Sáu,
-                                                                2021</div>
+                                                            <h5 class="post-title is-large ">{{str_limit($posts->title, $limit = 100, $end = '[...]')}}</h5>
+                                                            <div class="post-meta is-small op-8">{{$posts->created_at->format('d/m/Y')}}</div>
                                                             <div class="is-divider"></div>
-                                                            <p class="from_the_blog_excerpt ">Tháng 6 này, rinh
-                                                                ngay FPT Play Box liền tay để nhận ngay loạt
-                                                                deal khuyến mãi hấp dẫn và tận [...] </p>
+                                                            <p class="from_the_blog_excerpt ">	{!! str_limit($posts->description, $limit = 100, $end = '[...]') !!} </p>
 
 
 
@@ -549,121 +264,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col post-item">
-                                        <div class="col-inner">
-                                            <a href="blog/hot-ngay-loat-deal-khuyen-mai-hap-dan-trong-thang-6-tu-fpt-play/index.html"
-                                                class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
-                                                    <div class="box-image">
-                                                        <div class="image-cover" style="padding-top:56.25%;">
-                                                            <img width="1000" height="530"
-                                                                src="wp-content/uploads/sites/37/2021/06/vip2.jpg"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
-                                                                srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/vip2.jpg 1000w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/vip2-300x159.jpg 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/vip2-768x407.jpg 768w"
-                                                                sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-text text-left">
-                                                        <div class="box-text-inner blog-post-inner">
-
-
-                                                            <h5 class="post-title is-large ">Hốt ngay loạt deal
-                                                                khuyến mãi hấp dẫn trong tháng 6 từ FPT Play
-                                                            </h5>
-                                                            <div class="post-meta is-small op-8">15 Tháng Sáu,
-                                                                2021</div>
-                                                            <div class="is-divider"></div>
-                                                            <p class="from_the_blog_excerpt ">Tháng 6 này, cùng
-                                                                điểm qua hàng loạt chương trình khuyến mãi hấp
-                                                                dẫn từ FPT Play, người dùng vừa tiết [...] </p>
-
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col post-item">
-                                        <div class="col-inner">
-                                            <a href="blog/san-ngay-uu-dai-cuc-hap-dan-khi-update-vi-foxpay-phien-ban-2-2/index.html"
-                                                class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
-                                                    <div class="box-image">
-                                                        <div class="image-cover" style="padding-top:56.25%;">
-                                                            <img width="1020" height="805"
-                                                                src="wp-content/uploads/sites/37/2021/06/pay1-1024x808.jpg"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
-                                                                srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/pay1-1024x808.jpg 1024w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/pay1-300x237.jpg 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/pay1-768x606.jpg 768w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/pay1-1536x1212.jpg 1536w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/pay1.jpg 2048w"
-                                                                sizes="(max-width: 1020px) 100vw, 1020px" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-text text-left">
-                                                        <div class="box-text-inner blog-post-inner">
-
-
-                                                            <h5 class="post-title is-large ">Săn ngay ưu đãi cực
-                                                                hấp dẫn khi update Ví Foxpay phiên bản 2.2</h5>
-                                                            <div class="post-meta is-small op-8">15 Tháng Sáu,
-                                                                2021</div>
-                                                            <div class="is-divider"></div>
-                                                            <p class="from_the_blog_excerpt ">Trở thành sản phẩm
-                                                                đứng đầu ngành phần mềm, công nghệ thông tin
-                                                                Việt Nam trong lĩnh vực “Kế toán &#8211; [...]
-                                                            </p>
-
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col post-item">
-                                        <div class="col-inner">
-                                            <a href="blog/tan-huong-ngay-combo-internet-va-camera-cu%cc%89a-fpt-telecom-gia-hap-dan/index.html"
-                                                class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
-                                                    <div class="box-image">
-                                                        <div class="image-cover" style="padding-top:56.25%;">
-                                                            <img width="700" height="410"
-                                                                src="wp-content/uploads/sites/37/2021/06/internet_camera.png"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
-                                                                srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/internet_camera.png 700w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/internet_camera-300x176.png 300w"
-                                                                sizes="(max-width: 700px) 100vw, 700px" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-text text-left">
-                                                        <div class="box-text-inner blog-post-inner">
-
-
-                                                            <h5 class="post-title is-large ">Tận hưởng ngay
-                                                                combo Internet và Camera của FPT Telecom giá
-                                                                hấp dẫn</h5>
-                                                            <div class="post-meta is-small op-8">15 Tháng Sáu,
-                                                                2021</div>
-                                                            <div class="is-divider"></div>
-                                                            <p class="from_the_blog_excerpt ">Ngày 25/5 vừa qua,
-                                                                FPT Telecom chính thức ra mắt Combo Internet
-                                                                và Camera hoàn toàn mới. Khách hàng từ nay được
-                                                                [...] </p>
-
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                   
+                                    @endforeach
+                                   
                                 </div>
                             </div>
                             <div class="panel entry-content" id="tab_tin-tỨc">
