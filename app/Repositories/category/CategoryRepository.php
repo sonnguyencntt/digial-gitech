@@ -18,4 +18,8 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     public function getID($id){
         return $this->model->find($id);
     }
+    public function distinct()
+    {
+        return $this->model->where('name','<>','CAMERA FPT')->with('internet')->take(4)->get();
+    }
 }

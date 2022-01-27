@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\internet\InternetRepositoryInterface;
+use App\Repositories\Banner\BannerRepositoryInterface;
+use App\Repositories\category\CategoryRepositoryInterface;
+use App\Repositories\Camera\CameraRepositoryInterface;
+use App\Repositories\Posts\PostsRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -11,9 +16,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function __construct(InternetRepositoryInterface $internetRepo,BannerRepositoryInterface $bannerRepo,CategoryRepositoryInterface $categoryRepo,CameraRepositoryInterface $cameraRepo,PostsRepositoryInterface $postsRepo)
     {
-        return \auto_redirect(\view("pages.home.index") , "ajax");
+        $this->internetRepo = $internetRepo;
+        $this->bannerRepo = $bannerRepo;
+        $this->categoryRepo = $categoryRepo;
+        $this->cameraRepo = $cameraRepo;
+        $this->postsRepo = $postsRepo;
+    }
+    public function index(Request $request)
+    {   
+        $listInternet=$this->internetRepo->all();
+        $listBanner=$this->bannerRepo->getAll();
+        $listProduct=$this->categoryRepo->distinct();
+        $listAllCategory=$this->categoryRepo->getAll();
+        $listCamera=$this->cameraRepo->getAll();
+        $listposts=$this->postsRepo->getThreePosts();
+    
+        
+        return view("pages.home.index",['listProduct'=>$listProduct,'listBanner'=>$listBanner,'listCamera'=>$listCamera,'listPosts'=>$listposts,'listAllCategory'=>$listAllCategory,'status'=>201]);
     }
 
     /**

@@ -18,4 +18,7 @@ class PostsRepository extends BaseRepository implements PostsRepositoryInterface
     public function getID($id){
         return $this->model->find($id);
     }
+    public function getThreePosts(){
+        return $this->model->take(3)->get();
+    }
 }

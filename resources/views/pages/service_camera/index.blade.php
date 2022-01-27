@@ -186,6 +186,8 @@
         </div>
         
     <div class="row"  id="row-173350997">
+    @foreach ($storage as $storage)
+        
     
         <div id="col-8861296" class="col medium-4 small-12 large-4"  >
             <div class="col-inner"  >
@@ -193,69 +195,23 @@
                 
         <div id="text-4082509737" class="text goicamera">
             
-    <h3>Gói lưu trữ 1 ngày</h3>
-    <p class="giacamera">22.000<br />
+    <h3>{{$storage->name}}</h3>
+    <p class="giacamera">{{$storage->price}}<br />
     <span class="donvitinh">VNĐ/Tháng/1 Camera</span></p>
-    <ul class="thongtinkem">
-    <li>Lưu trữ &amp; xem lại: 01 ngày trước</li>
-    <li>Video chất lượng: Full HD &#8211; 1080p</li>
-    <li>1+2 Tài khoản sử dụng</li>
-    <li>Cảnh báo thông minh</li>
-    <li>Ưu đãi tới 02 tháng khi trả trước từ 5 tháng</li>
-    </ul>
+        {!!$storage->description!!}
     <div class="bt_dangky"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a></div>
                 </div>
         
             </div>
                 </div>
+                @endforeach
+        
+    
+    
     
         
     
-        <div id="col-1164531670" class="col medium-4 small-12 large-4"  >
-            <div class="col-inner"  >
-                
-                
-        <div id="text-1665593737" class="text goicamera">
-            
-    <h3>Gói lưu trữ 3 ngày</h3>
-    <p class="giacamera">33.000<br />
-    <span class="donvitinh">VNĐ/Tháng/1 Camera</span></p>
-    <ul class="thongtinkem">
-    <li>Lưu trữ &amp; xem lại: 03 ngày trước</li>
-    <li>Video chất lượng: Full HD &#8211; 1080p</li>
-    <li>1+6 Tài khoản sử dụng</li>
-    <li>Cảnh báo thông minh</li>
-    <li>Ưu đãi tới 02 tháng khi trả trước từ 5 tháng</li>
-    </ul>
-    <div class="bt_dangky"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a></div>
-                </div>
-        
-            </div>
-                </div>
-    
-        
-    
-        <div id="col-228778106" class="col medium-4 small-12 large-4"  >
-            <div class="col-inner"  >
-                
-                
-        <div id="text-1727064474" class="text goicamera">
-            
-    <h3>Gói lưu trữ 7 ngày</h3>
-    <p class="giacamera">49.500<br />
-    <span class="donvitinh">VNĐ/Tháng/1 Camera</span></p>
-    <ul class="thongtinkem">
-    <li>Lưu trữ &amp; xem lại: 07 ngày trước</li>
-    <li>Video chất lượng: Full HD &#8211; 1080p</li>
-    <li>1+14 Tài khoản sử dụng</li>
-    <li>Cảnh báo thông minh</li>
-    <li>Ưu đãi tới 02 tháng khi trả trước từ 5 tháng</li>
-    </ul>
-    <div class="bt_dangky"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a></div>
-                </div>
-        
-            </div>
-                </div>
+   
     
         
     </div>
@@ -291,34 +247,7 @@
         
     <div class="row align-center"  id="row-750209401">
     
-        <div id="col-327183778" class="col medium-6 small-12 large-6"  >
-            <div class="col-inner"  >
-                
-                
-    <ul>
-    <li><i class="fas fa-angle-double-right"></i> Bảo mật cao với hệ thống lưu trữ dữ liệu điện toán đám mây</li>
-    <li><i class="fas fa-angle-double-right"></i> Thiết kế hiện đại, phù hợp với bất kì không gian sống nào</li>
-    <li><i class="fas fa-angle-double-right"></i> Không cần sử dụng đầu ghi hình.</li>
-    <li><i class="fas fa-angle-double-right"></i> Không cần sử dụng ổ cứng lưu trữ dữ liệu do ứng dụng công nghệ lưu trữ điện toán đám mây.</li>
-    <li><i class="fas fa-angle-double-right"></i> Tư vấn tận tình và miễn phí lắp đặt</li>
-    </ul>
-            </div>
-                </div>
-    
-        
-    
-        <div id="col-272752579" class="col medium-6 small-12 large-6"  >
-            <div class="col-inner"  >
-                
-                
-    <ul>
-    <li><i class="fas fa-angle-double-right"></i> Lắp đặt nhanh chóng trong vòng 24h, hỗ trợ kỹ thuật 24/7</li>
-    <li><i class="fas fa-angle-double-right"></i> Hỗ trợ bảo trì tại nhà khi xảy ra sự cố hoàn toàn miễn phí</li>
-    <li><i class="fas fa-angle-double-right"></i>Có thể kiểm tra hình ảnh mà camera thu được trực tiếp thông qua điện thoại di động.</li>
-    <li><i class="fas fa-angle-double-right"></i> Đăng ký dễ dàng tiện lợi qua số tổng đài hoặc trực tiếp tại cửa hàng FPT trên toàn quốc.</li>
-    </ul>
-            </div>
-                </div>
+     {!!$storage->category->advantage!!}
     
         
     </div>

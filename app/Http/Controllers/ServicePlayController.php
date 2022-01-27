@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Repositories\play\PlayRepositoryInterface;
 class ServicePlayController extends Controller
 {
     /**
@@ -11,6 +12,10 @@ class ServicePlayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(PlayRepositoryInterface $playRepo)
+    {
+        $this->playRepo = $playRepo;
+    }
     public function index()
     {
         return \auto_redirect(\view("pages.service_play.index") , "ajax");
@@ -46,7 +51,9 @@ class ServicePlayController extends Controller
      */
     public function show($id)
     {
-        //
+       
+        $listPlay=$this->playRepo->getAllPlay($id);
+        return view("pages.service_play.index",['listPlay'=>$listPlay,'status'=>201] );
     }
 
     /**

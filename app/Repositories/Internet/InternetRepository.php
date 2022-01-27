@@ -17,11 +17,12 @@ class InternetRepository extends BaseRepository implements InternetRepositoryInt
     }
     
     public function getAllInternet($id){
-        $results = $this->model->where('category_id', '=',$id)->get();
+        $results = $this->model->with('category')->where('category_id' ,'=' ,$id)->get();
         return $results;
     }
     public function getCategoryName($id){
-        $results = $this->model->with('category.internet')->where('id', '=',$id)->get();
+        
+        $results = $this->model->with('category')->find( $id);
         return $results;
     }
 }

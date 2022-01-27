@@ -15,7 +15,8 @@ class PlayRepository extends BaseRepository implements PlayRepositoryInterface
     {
         return $this->model->with('category')->get();
     }
-    public function getID($id){
-        return $this->model->find($id);
+    public function getAllPlay($id){
+        $results = $this->model->with('category')->where('category_id' ,'=' ,$id)->get();
+        return $results;
     }
 }

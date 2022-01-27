@@ -33,7 +33,7 @@ Route::group([
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('manage.logout');
     Route::group([
-        'middleware' => ['auth' , "registerVerifyEmail" ]
+        //  'middleware' => ['auth' , "registerVerifyEmail" ]
 
     ], function () {
         Route::get('/', 'Manage\DashboardController@index')->name('manage.dashboard.index');

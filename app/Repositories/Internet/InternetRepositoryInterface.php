@@ -9,5 +9,6 @@ interface InternetRepositoryInterface extends RepositoryInterface
     public function getAllInternet($id);
     public function getCategoryName($id);
     public function all();
+    
 
 }
