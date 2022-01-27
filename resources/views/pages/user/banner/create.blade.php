@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("user.banner.store" , $store_code)}}"  method="post" enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("user.banner.store" , $badges->store_code)}}"  method="post" enctype="multipart/form-data">
               @csrf
               <div class="box-body">
               

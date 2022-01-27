@@ -29,7 +29,7 @@ class ServicePlayController extends Controller
     public function index($store_code)
     {
         $listFptPlays = $this->playRepo->getAll($store_code);
-        return \view("pages.user.fpt_play.index" , ["store_code"=>$store_code ,'listFptPlays' => $listFptPlays , 'title' => $this->title]);
+        return \view("pages.user.fpt_play.index" , ['listFptPlays' => $listFptPlays , 'title' => $this->title]);
     
     }
 
@@ -42,7 +42,7 @@ class ServicePlayController extends Controller
     {
         $listCategories = $this->categoryRepo->getAll($store_code);
 
-        return \view("pages.user.fpt_play.create" , ["store_code"=>$store_code,'title' => $this->title , 'listCategories' => $listCategories]);
+        return \view("pages.user.fpt_play.create" , ['title' => $this->title , 'listCategories' => $listCategories]);
 
     }
 

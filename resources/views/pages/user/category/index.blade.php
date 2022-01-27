@@ -59,7 +59,7 @@
                                    
                                         <td>{{ $value->created_at }}</td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('user.category.edit', ["store_code"=>$store_code , "category"=>$value->id]) }}"><i
+                                                href="{{ route('user.category.edit', ["store_code"=>$badges->store_code , "category"=>$value->id]) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                           
                                                  

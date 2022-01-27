@@ -1,4 +1,4 @@
-@extends('layouts.super.app')
+@extends('layouts.admin.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,7 +32,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('super.user.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.user.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -47,7 +47,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('super.user.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.user.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -62,7 +62,7 @@
               <div class="icon">
                 <i class="ion ion-android-people"></i>
               </div>
-              <a href="{{ route('super.user.index') }}" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.user.index') }}" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -82,7 +82,7 @@
               <div class="icon">
                 <i class="ion ion-android-home"></i>
               </div>
-              <a href="{{ route('super.store.index' ) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.store.index' ) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
@@ -96,7 +96,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('super.store.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.store.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
@@ -110,7 +110,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('super.store.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.store.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
@@ -124,7 +124,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('super.store.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.store.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

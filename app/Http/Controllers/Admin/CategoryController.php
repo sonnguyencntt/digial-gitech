@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Super;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Repositories\Category\CategoryRepositoryInterface;
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function index()
     {
         $listCategories = $this->categoryRepo->all();
-        return \view("pages.super.category.index" , [ 'listCategories' => $listCategories , 'title' => $this->title]);
+        return \view("pages.admin.category.index" , [ 'listCategories' => $listCategories , 'title' => $this->title]);
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     {
         $listStores = $this->storeRepo->all();
 
-        return \view("pages.super.category.create" , ['listStores' =>$listStores  , 'title' => $this->title]);
+        return \view("pages.admin.category.create" , ['listStores' =>$listStores  , 'title' => $this->title]);
     }
 
     /**
@@ -57,7 +57,7 @@ class CategoryController extends Controller
         try{
         
             $this->categoryRepo->create($request->all());
-            return redirect()->route("super.category.index")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
+            return redirect()->route("admin.category.index")->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
         }
         catch(\throwable $err){
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
@@ -86,7 +86,7 @@ class CategoryController extends Controller
          $listStores = $this->storeRepo->all();
 
         $category = $this->categoryRepo->findById($id);
-        return \view("pages.super.category.edit", ['listStores' =>$listStores , 'category' => $category, 'title' => $this->title]);
+        return \view("pages.admin.category.edit", ['listStores' =>$listStores , 'category' => $category, 'title' => $this->title]);
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoryController extends Controller
     {
         try {
             $this->categoryRepo->updateById($id, $request->all());
-            return redirect()->route("super.category.index")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+            return redirect()->route("admin.category.index")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
         }

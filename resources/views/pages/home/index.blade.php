@@ -2,9 +2,7 @@
 @section('content')
 <main id="main" class="">
 
-
     <div id="content" role="main" class="content-area">
-
 
         <div class="row row-large row-full-width sildehome" id="row-299080424">
 
@@ -17,18 +15,16 @@
                         <div id="metaslider_container_14">
                             <div id="metaslider_14">
                                 <ul aria-live="polite" class="slides">
-                                    <li style="display: block; width: 100%;" class="slide-18 ms-image"><a
-                                            href="#" target="_self"><img
-                                                src="wp-content/uploads/sites/37/2021/06/banner-3.jpg"
+                                    <li style="display: block; width: 100%;" class="slide-18 ms-image"><a href="#"
+                                            target="_self"><img src="wp-content/uploads/sites/37/2021/06/banner-3.jpg"
                                                 height="635" width="2048" alt="" class="slider-14 slide-18"
                                                 title="banner-3" /></a></li>
-                                    <li style="display: none; width: 100%;" class="slide-19 ms-image"><a
-                                            href="#" target="_self"><img
-                                                src="wp-content/uploads/sites/37/2021/06/banner-2.png"
+                                    <li style="display: none; width: 100%;" class="slide-19 ms-image"><a href="#"
+                                            target="_self"><img src="wp-content/uploads/sites/37/2021/06/banner-2.png"
                                                 height="635" width="2048" alt="" class="slider-14 slide-19"
                                                 title="banner-2" /></a></li>
-                                    <li style="display: none; width: 100%;" class="slide-20 ms-image"><a
-                                            href="#" target="_self"><img
+                                    <li style="display: none; width: 100%;" class="slide-20 ms-image"><a href="#"
+                                            target="_self"><img
                                                 src="wp-content/uploads/sites/37/2021/06/banner1-2048x635.png"
                                                 height="635" width="2048" alt="" class="slider-14 slide-20"
                                                 title="banner1" /></a></li>
@@ -51,11 +47,11 @@
             </style>
         </div>
         @foreach ($listProduct as $list )
-            
-       
+
+
         <div class="row" id="row-1687466452">
 
-            <div id="col-1260718203" class="col small-12 large-12" >
+            <div id="col-1260718203" class="col small-12 large-12">
                 <div class="col-inner">
 
 
@@ -82,14 +78,14 @@
                                 <p class="tocdo-goicuoc"><span class="sotcodo">Download /
                                         Upload</span><br />{{$combo->size}}<span class="tocdogoi">Mbps</span></p>
                                 <div class="mota_goicuoc">
-                                {!!$combo->description!!}
+                                    {!!$combo->description!!}
                                 </div>
                             </div>
                             <div class="bt_dangky"><a data-toggle="modal" data-target="#bookingModal"
                                     class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
                         </li>
-                    @endforeach
-                        
+                        @endforeach
+
                     </ul>
                     <script type="text/javascript">
                         jQuery(document).ready(function(e) {
@@ -112,13 +108,13 @@
 
         <div class="row" id="row-890100484">
 
-            <div id="col-1918005253" class="col small-12 large-12" >
+            <div id="col-1918005253" class="col small-12 large-12">
                 <div class="col-inner">
 
 
                     <div class="container section-title-container">
-                        <h3 class="section-title section-title-normal"><b></b><span
-                                class="section-title-main">CAMERA FPT</span><b></b></h3>
+                        <h3 class="section-title section-title-normal"><b></b><span class="section-title-main">CAMERA
+                                FPT</span><b></b></h3>
                     </div>
                     <div id="gap-2144562054" class="gap-element clearfix" style="display:block; height:auto;">
 
@@ -166,42 +162,27 @@
                                         <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
                                     </div>
                                     <div class="buttom-ft">
-                                        <div class="chitietbt"><a href="{{route('service_camera.index')}}">Xem chi tiết</a>
+                                        <div class="chitietbt"><a href="{{route('service_camera.index' , "asd")}}">Xem chi
+                                                tiết</a>
                                         </div>
                                         <div class="dangkybt"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a>
                                         </div>
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                         </div>
-
-
-
-                        
                         @endforeach
 
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
         <div class="row khuyenmai-home" id="row-2021042945">
 
-            <div id="col-1236074974" class="col small-12 large-12" >
+            <div id="col-1236074974" class="col small-12 large-12">
                 <div class="col-inner">
 
 
@@ -209,8 +190,8 @@
                     <div class="tabbed-content tabtintuc-home tintuckhuyenmai">
                         <h4 class="uppercase text-left">Tab Title</h4>
                         <ul class="nav nav-line nav-uppercase nav-size-normal nav-left">
-                            
-                            <li class="tab has-icon"><a href="{{route('posts.index')}}"><span>TIN TỨC</span></a></li>
+
+                            <li class="tab has-icon"><a href="{{route('posts.index' , "ads")}}"><span>TIN TỨC</span></a></li>
                         </ul>
                         <div class="tab-panels">
                             <div class="panel active entry-content" id="tab_khuyẾn-mÃi">
@@ -228,21 +209,19 @@
 
                                 <div class="row large-columns-3 medium-columns-1 small-columns-1 slider row-slider slider-nav-circle slider-nav-push"
                                     data-flickity-options='{"imagesLoaded": true, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": true,"prevNextButtons": true,"percentPosition": true,"pageDots": false, "rightToLeft": false, "autoPlay" : 5000}'>
-                                @foreach ($listPosts as $posts)
-                                    
-                                
-                                    <div class="col post-item">
+                                    {{-- @foreach ($listPosts as $posts) --}}
+
+
+                                    {{-- <div class="col post-item">
                                         <div class="col-inner">
-                                            <a href="{{ route('posts.show',$posts->id)}}"
-                                                class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                            <a href="{{ route('posts.show',$posts->id)}}" class="plain">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="1020" height="567"
                                                                 src="wp-content/uploads/sites/37/2021/06/box-1024x569.jpg"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="{{$posts->image_url}} 1024w, {{$posts->image_url}} 300w, {{$posts->image_url}} 768w, {{$posts->image_url}} 1200w"
                                                                 sizes="(max-width: 1020px) 100vw, 1020px" />
                                                         </div>
@@ -251,10 +230,14 @@
                                                         <div class="box-text-inner blog-post-inner">
 
 
-                                                            <h5 class="post-title is-large ">{{str_limit($posts->title, $limit = 100, $end = '[...]')}}</h5>
-                                                            <div class="post-meta is-small op-8">{{$posts->created_at->format('d/m/Y')}}</div>
+                                                            <h5 class="post-title is-large ">{{str_limit($posts->title,
+                                                                $limit = 100, $end = '[...]')}}</h5>
+                                                            <div class="post-meta is-small op-8">
+                                                                {{$posts->created_at->format('d/m/Y')}}</div>
                                                             <div class="is-divider"></div>
-                                                            <p class="from_the_blog_excerpt ">	{!! str_limit($posts->description, $limit = 100, $end = '[...]') !!} </p>
+                                                            <p class="from_the_blog_excerpt "> {!!
+                                                                str_limit($posts->description, $limit = 100, $end =
+                                                                '[...]') !!} </p>
 
 
 
@@ -263,10 +246,10 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </div>
-                                   
-                                    @endforeach
-                                   
+                                    </div> --}}
+
+                                    {{-- @endforeach --}}
+
                                 </div>
                             </div>
                             <div class="panel entry-content" id="tab_tin-tỨc">
@@ -279,14 +262,13 @@
                                         <div class="col-inner">
                                             <a href="blog/khung-hoang-dang-trao-o-manchester-united/index.html"
                                                 class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="512" height="317"
                                                                 src="wp-content/uploads/sites/37/2021/10/1.png"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/10/1.png 512w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/10/1-300x186.png 300w"
                                                                 sizes="(max-width: 512px) 100vw, 512px" />
                                                         </div>
@@ -316,14 +298,13 @@
                                         <div class="col-inner">
                                             <a href="blog/fpt-nam-thu-9-doc-chiem-linh-vuc-cong-nghe-trong-danh-sach-top-50-cua-forbes/index.html"
                                                 class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="640" height="284"
                                                                 src="wp-content/uploads/sites/37/2021/06/Screen-Shot-2021-06-07-at-14-2-7567-3096-1623052049.png"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/Screen-Shot-2021-06-07-at-14-2-7567-3096-1623052049.png 640w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/Screen-Shot-2021-06-07-at-14-2-7567-3096-1623052049-300x133.png 300w"
                                                                 sizes="(max-width: 640px) 100vw, 640px" />
                                                         </div>
@@ -355,14 +336,13 @@
                                         <div class="col-inner">
                                             <a href="blog/fpt-telecom-tang-gap-doi-bang-thong-mien-phi-cho-toan-bo-khach-hang/index.html"
                                                 class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="700" height="410"
                                                                 src="wp-content/uploads/sites/37/2021/06/thumb-3755-1620867166.jpg"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/thumb-3755-1620867166.jpg 700w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/thumb-3755-1620867166-300x176.jpg 300w"
                                                                 sizes="(max-width: 700px) 100vw, 700px" />
                                                         </div>
@@ -393,14 +373,13 @@
                                         <div class="col-inner">
                                             <a href="blog/lan-cuoi-cung-chay-cung-running-man-hoang-tu-chau-a-lee-kwang-soo-khep-lai-hanh-trinh-11-nam-cong-hien/index.html"
                                                 class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="660" height="495"
                                                                 src="wp-content/uploads/sites/37/2021/06/tintuc-2.png"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc-2.png 660w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc-2-300x225.png 300w"
                                                                 sizes="(max-width: 660px) 100vw, 660px" />
                                                         </div>
@@ -433,14 +412,13 @@
                                         <div class="col-inner">
                                             <a href="blog/don-tuan-moi-cung-loat-phim-dac-sac-cho-tre-tren-ung-dung-foxy-cua-truyen-hinh-fpt/index.html"
                                                 class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="1000" height="666"
                                                                 src="wp-content/uploads/sites/37/2021/06/1-255.jpg"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/1-255.jpg 1000w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/1-255-300x200.jpg 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/1-255-768x511.jpg 768w"
                                                                 sizes="(max-width: 1000px) 100vw, 1000px" />
                                                         </div>
@@ -472,14 +450,13 @@
                                         <div class="col-inner">
                                             <a href="blog/loi-ich-cua-viec-tap-luyen-giup-tang-suc-de-khang-bao-ve-ban-than-khoi-dich-covid/index.html"
                                                 class="plain">
-                                                <div
-                                                    class="box box-default box-text-bottom box-blog-post has-hover">
+                                                <div class="box box-default box-text-bottom box-blog-post has-hover">
                                                     <div class="box-image">
                                                         <div class="image-cover" style="padding-top:56.25%;">
                                                             <img width="1020" height="582"
                                                                 src="wp-content/uploads/sites/37/2021/06/tintuc1-1024x584.png"
-                                                                class="attachment-large size-large wp-post-image"
-                                                                alt="" loading="lazy"
+                                                                class="attachment-large size-large wp-post-image" alt=""
+                                                                loading="lazy"
                                                                 srcset="https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc1-1024x584.png 1024w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc1-300x171.png 300w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc1-768x438.png 768w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc1-1536x876.png 1536w, https://fptvienthong.net/wp-content/uploads/sites/37/2021/06/tintuc1.png 1600w"
                                                                 sizes="(max-width: 1020px) 100vw, 1020px" />
                                                         </div>

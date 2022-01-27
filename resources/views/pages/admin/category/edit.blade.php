@@ -1,4 +1,4 @@
-@extends('layouts.super.app')
+@extends('layouts.admin.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("super.category.update" , $category->id)}}" method="POST"   enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("admin.category.update" , $category->id)}}" method="POST"   enctype="multipart/form-data">
               @csrf
               @method('put')
               <div class="box-body">

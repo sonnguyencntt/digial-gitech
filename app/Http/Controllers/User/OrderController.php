@@ -26,7 +26,7 @@ class OrderController extends Controller
     {
         $listOrders = $this->orderRepo->getAll($store_code);
         
-        return \auto_redirect(\view("pages.user.order.index" , ["store_code" => $store_code , 'listOrders' => $listOrders , 'title' => $this->title]) ,  $listOrders);
+        return \auto_redirect(\view("pages.user.order.index" , [ 'listOrders' => $listOrders , 'title' => $this->title]) ,  $listOrders);
     }
 
     /**

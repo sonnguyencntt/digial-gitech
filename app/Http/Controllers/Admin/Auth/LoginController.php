@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Super\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +27,7 @@ class LoginController extends Controller
             $credentials = $request->only('email', 'password');
             if(Auth::guard('admin')->attempt($credentials))
             {
-                return \redirect()->intended(route('super.dashboard.index'));
+                return \redirect()->intended(route('admin.dashboard.index'));
             }
             return \redirect()->back()->withErrors("Tài khoản hoặc mật khẩu không tồn tại");
         }
@@ -38,11 +38,11 @@ class LoginController extends Controller
          */
         public function index()
         {
-            return view('pages.super.auth.index');
+            return view('pages.admin.auth.index');
         }
 
         public function logout(Request $request) {
             Auth::guard("admin")->logout();
-            return redirect()->route("super.login.index");
+            return redirect()->route("admin.login.index");
           }
 }

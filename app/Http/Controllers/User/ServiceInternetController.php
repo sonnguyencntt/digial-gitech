@@ -30,7 +30,7 @@ class ServiceInternetController extends Controller
     public function index($store_code)
     {
         $listInternets = $this->internetRepo->getAll($store_code);
-        return \view("pages.user.internet.index" , ["store_code"=> $store_code , 'listInternets' => $listInternets , 'title' => $this->title]);
+        return \view("pages.user.internet.index" , [ 'listInternets' => $listInternets , 'title' => $this->title]);
     
     }
 
@@ -43,7 +43,7 @@ class ServiceInternetController extends Controller
     {
         $listCategories = $this->categoryRepo->getAll($store_code);
 
-        return \view("pages.user.internet.create" , ["store_code"=> $store_code ,'title' => $this->title , 'listCategories' => $listCategories]);
+        return \view("pages.user.internet.create" , ['title' => $this->title , 'listCategories' => $listCategories]);
 
     }
 

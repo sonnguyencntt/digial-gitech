@@ -26,7 +26,7 @@
           <div class="box-header">
             <h3 class="box-title">{{$title}}</h3>
           </div>
-          <form role="form" action="{{route("user.theme.update" , ["store_code"=>$store_code , "theme" => $theme->id])}}" method="post" enctype="multipart/form-data" >
+          <form role="form" action="{{route("user.theme.update" , ["store_code"=>$badges->store_code , "theme" => $theme->id])}}" method="post" enctype="multipart/form-data" >
             @csrf
             @method('put')
             <div class="box-body">

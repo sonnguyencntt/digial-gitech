@@ -1,4 +1,4 @@
-@extends('layouts.super.app')
+@extends('layouts.admin.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("super.category.store")}}"  method="post" enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("admin.category.store")}}"  method="post" enctype="multipart/form-data">
               @csrf
               <div class="box-body">
               

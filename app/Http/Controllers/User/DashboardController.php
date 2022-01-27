@@ -59,7 +59,7 @@ class DashboardController extends Controller
         $countInternet = $this->internetRepo->count($store_code);
 
 
-        return \auto_redirect(\view("pages.user.dashboard.index", ["countInternet"=> $countInternet , "countCamera"=> $countCamera,"countFptPlay" => $countFptPlay , "store_code" => $store_code, "countCustomer" => $countCustomer, "countPosts" => $countPosts, "countOrder" => $countOrder,  "title" => $this->title]), "ajax");
+        return \auto_redirect(\view("pages.user.dashboard.index", ["countInternet"=> $countInternet , "countCamera"=> $countCamera,"countFptPlay" => $countFptPlay ,  "countCustomer" => $countCustomer, "countPosts" => $countPosts, "countOrder" => $countOrder,  "title" => $this->title]), "ajax");
     }
 
     /**

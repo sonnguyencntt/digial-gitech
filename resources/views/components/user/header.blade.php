@@ -29,7 +29,7 @@
             <div class="select-store" style="display: flex; height: 100%;">
               <select style="margin: auto" name="" class="form-control" onchange="location=this.value" id="">
                 @php
-                    $listStores = \app("App\Helpers\QueryHelper")->getAllStore();
+                    $listStores = $stores;
                 @endphp
             
                 <option value="{{route("user.home.show_stores")}}">-- Chọn cửa hàng --</option>

@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
         $guard = array_get($exception->guards(), 0);
         switch ($guard) {
           case 'admin':
-            $login = 'super.login.index';
+            $login = 'admin.login.index';
             break;
 
           default:

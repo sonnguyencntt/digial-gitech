@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.user.popup_error')
 
-                    <a class="btn btn-primary" href="{{ route('user.service_internet.create' , $store_code) }}">Thêm mới {{$title}}</a>
+                    <a class="btn btn-primary" href="{{ route('user.service_internet.create' , $badges->store_code) }}">Thêm mới {{$title}}</a>
 
                     <br /> <br />
 
@@ -58,13 +58,13 @@
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->price }}</td>
                                         <td>{{ $value->size }}</td>
-                                        <td>{{ $value->category->name }}</td>
+                                        <td>{{ $value->category !== null ? $value->category->name : null}}</td>
 
                                           <td><span>
                                             {!!Str::limit($value->description , 20)!!}
                                             </span></td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('user.service_internet.edit', ["store_code"=>$store_code , "internet" => $value->id]) }}"><i
+                                                href="{{ route('user.service_internet.edit', ["store_code"=>$badges->store_code , "internet" => $value->id]) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                               <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
                                               onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i

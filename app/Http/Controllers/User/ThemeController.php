@@ -33,7 +33,7 @@ class ThemeController extends Controller
     {
         $listPosts = $this->postsRepo->getAll($store_code);
         $theme = $this->themeRepo->firstByStore($store_code);
-        return \auto_redirect(\view("pages.user.theme.index", ["store_code" => $store_code , 'theme' => $theme, 'listPosts' => $listPosts,  'title' => $this->title]),  $theme);
+        return \auto_redirect(\view("pages.user.theme.index", [ 'theme' => $theme, 'listPosts' => $listPosts,  'title' => $this->title]),  $theme);
     }
 
     public function update(UpdateThemeRequest $request,$store_code, $id)

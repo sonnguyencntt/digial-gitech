@@ -64,6 +64,8 @@ class Kernel extends HttpKernel
         'registerVerifyEmail' => \App\Http\Middleware\RegisterVerifyEmail::class,
         'CheckForExsitStore' => \App\Http\Middleware\CheckForExsitStore::class,
         'CheckForStatusStore' => \App\Http\Middleware\CheckForStatusStore::class,
+        'CheckForCustomerStoreCode' => \App\Http\Middleware\CheckForCustomerStoreCode::class,
+
 
 
 

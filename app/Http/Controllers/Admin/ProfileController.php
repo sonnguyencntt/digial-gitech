@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Super;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         $id = Auth::id();
         $admin = $this->adminRepo->findById($id);
-        return \auto_redirect(\view("pages.super.profile.index", ['admin' => $admin, 'title' => $this->title]),  $admin);
+        return \auto_redirect(\view("pages.admin.profile.index", ['admin' => $admin, 'title' => $this->title]),  $admin);
     }
 
     /**

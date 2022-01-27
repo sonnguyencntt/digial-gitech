@@ -27,7 +27,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" id = "postForm" action="{{route("user.service_play.update" , ["store_code"=>$store_code , "fptplay"=> $fptPlay->id])}}" method="POST"   enctype="multipart/form-data">
+            <form role="form" id = "postForm" action="{{route("user.service_play.update" , ["store_code"=>$badges->store_code , "fptplay"=> $fptPlay->id])}}" method="POST"   enctype="multipart/form-data">
               @csrf
               @method('put')
               <div class="box-body">

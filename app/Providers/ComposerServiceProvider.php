@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Composers\ViewComposer;
 use App\Http\Composers\ThemeComposer;
+use App\Http\Composers\User\BadgesComposer as UserBadgesComposer;
+use App\Http\Composers\User\StoreComposer ;
+
 class ComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -27,5 +30,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('components.*', ViewComposer::class);
         View::composer('components.*', ThemeComposer::class);
         View::composer('pages.*', ThemeComposer::class);
+        View::composer('pages.user.*', UserBadgesComposer::class);
+        View::composer('pages.user.*', StoreComposer::class);
+
+
     }
 }

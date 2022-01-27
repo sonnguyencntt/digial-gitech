@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs\Manage;
+namespace App\Jobs\User;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

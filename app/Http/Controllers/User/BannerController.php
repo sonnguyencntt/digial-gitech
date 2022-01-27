@@ -27,7 +27,7 @@ class BannerController extends Controller
     public function index($store_code)
     {
         $listBanners = $this->bannerRepo->getAll($store_code);
-        return \view("pages.user.banner.index" , ["store_code"=>$store_code , 'listBanners' => $listBanners , 'title' => $this->title]);
+        return \view("pages.user.banner.index" , [ 'listBanners' => $listBanners , 'title' => $this->title]);
     }
 
     /**
@@ -37,7 +37,7 @@ class BannerController extends Controller
      */
     public function create($store_code)
     {
-        return \view("pages.user.banner.create" , ["store_code"=>$store_code , 'title' => $this->title]);
+        return \view("pages.user.banner.create" , [ 'title' => $this->title]);
 
     }
 
@@ -89,7 +89,7 @@ class BannerController extends Controller
     public function edit($store_code,$id)
     {
         $banner = $this->bannerRepo->findByStore($id , $store_code);
-        return \view("pages.user.banner.edit" , ["store_code"=>$store_code , 'banner'=>$banner , 'title' => $this->title]);
+        return \view("pages.user.banner.edit" , [ 'banner'=>$banner , 'title' => $this->title]);
     }
 
     /**

@@ -30,7 +30,7 @@ class PostsController extends Controller
     public function index($store_code)
     {
         $listPosts = $this->postsRepo->getAll($store_code);
-        return \view("pages.user.posts.index" , ["store_code"=>$store_code , 'listPosts' => $listPosts , 'title' => $this->title]);
+        return \view("pages.user.posts.index" , ['listPosts' => $listPosts , 'title' => $this->title]);
     }
 
     /**
@@ -40,7 +40,7 @@ class PostsController extends Controller
      */
     public function create($store_code)
     {
-        return \view("pages.user.posts.create" , ["store_code"=>$store_code , 'title' => $this->title]);
+        return \view("pages.user.posts.create" , [ 'title' => $this->title]);
     }
 
     /**

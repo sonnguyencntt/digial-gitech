@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function index($store_code)
     {
         $listCategories = $this->categoryRepo->getAll($store_code);
-        return \view("pages.user.category.index" , ["store_code"=>$store_code , 'listCategories' => $listCategories , 'title' => $this->title]);
+        return \view("pages.user.category.index" , [ 'listCategories' => $listCategories , 'title' => $this->title]);
     }
 
     /**
@@ -111,7 +111,7 @@ class CategoryController extends Controller
     public function edit($store_code , $id)
     {
         $category = $this->categoryRepo->findByStore($id , $store_code);
-        return \view("pages.user.category.edit" , ["store_code"=>$store_code , 'category'=>$category , 'title' => $this->title]);
+        return \view("pages.user.category.edit" , [ 'category'=>$category , 'title' => $this->title]);
     }
 
     /**

@@ -1,20 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Super;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\Store\StoreRepositoryInterface;
-use Carbon\Carbon;
 
-class StoreController extends Controller
+class DashboardController extends Controller
 {
+
+    protected $userRepo;
     protected $storeRepo;
-    protected $title = "Cửa hàng";
-    public function __construct(StoreRepositoryInterface $storeRepo)
-    {
-        $this->storeRepo = $storeRepo;
-    }
+
+
+
+    protected $title = "Bảng điều khiển";
+
+    public function __construct(UserRepositoryInterface $userRepo, StoreRepositoryInterface $storeRepo)
+   {
+       $this->userRepo = $userRepo;
+       $this->storeRepo = $storeRepo;
+
+   }
     /**
      * Display a listing of the resource.
      *
@@ -22,30 +30,16 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $listStores = $this->storeRepo->getWithUser();
-        return \view("pages.super.store.index", ['title' => $this->title, 'listStores' => $listStores, 'title' => $this->title]);
-    }
+        $title = $this->title;
+        $countAllUser = $this->userRepo->count();
+        $countUserIsNotActive = $this->userRepo->countByStatus(0);
+        $countUserIsActive = $this->userRepo->countByStatus(1);
+        $countAllStore = $this->storeRepo->count();
+        $countStoreIsWaitng = $this->storeRepo->countByStatus("WAITING");
+        $countStoreIsWorking = $this->storeRepo->countByStatus("WORKING");
+        $countStoreIsStopWorking = $this->storeRepo->countByStatus("STOP_WORKING");
+        return \view("pages.admin.dashboard.index" , \compact("title" ,  "countAllUser" ,"countUserIsNotActive" , "countUserIsActive" , "countAllStore" , "countStoreIsWaitng" , "countStoreIsWorking" , "countStoreIsStopWorking" ));
 
-    public function active($id)
-    {
-        $date_activated = Carbon::now()->toDateTimeString();
-        try {
-            $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
-            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
-        } catch (\throwable $err) {
-
-            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
-        }
-    }
-
-    public function stop($id)
-    {
-        try {
-            $this->storeRepo->updateById($id, ["status" => "STOP_WORKING"]);
-            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
-        } catch (\throwable $err) {
-            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
-        }
     }
 
     /**

@@ -24,7 +24,7 @@ class HomeController extends Controller
         $this->cameraRepo = $cameraRepo;
         $this->postsRepo = $postsRepo;
     }
-    public function index(Request $request)
+    public function index($store_code)
     {   
         $listInternet=$this->internetRepo->all();
         $listBanner=$this->bannerRepo->getAll();

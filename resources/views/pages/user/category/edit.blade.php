@@ -31,7 +31,7 @@
         <div class="box">
           <div class="box-header">
           </div>
-          <form role="form" action="{{route("user.category.update" , ["store_code"=>$store_code , "category" =>
+          <form role="form" action="{{route("user.category.update" , ["store_code"=>$badges->store_code , "category" =>
             $category->id])}}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             <div class="box-body">

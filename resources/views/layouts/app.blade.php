@@ -74,21 +74,21 @@
     <div id="wrapper">
 
 
-        @include('components.header')
+        {{-- @include('components.header') --}}
 
 
 
         @yield('content')
-        @include('components.footer')
+        {{-- @include('components.footer') --}}
 
 
     </div>
 
-    @include('components.menu')
+    {{-- @include('components.menu')
 
     @include('components.booking')
 
-    @include('components.hotline')
+    @include('components.hotline') --}}
 
 
     <link rel='stylesheet' id='metaslider-flex-slider-css'

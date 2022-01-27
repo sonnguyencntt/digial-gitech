@@ -25,7 +25,7 @@ class CustomerController extends Controller
     public function index($store_code)
     {
         $listCustomers = $this->customerRepo->getAll($store_code);
-        return \view("pages.user.customer.index" , ["store_code"=>$store_code , 'listCustomers' => $listCustomers , 'title' => $this->title]);
+        return \view("pages.user.customer.index" , [ 'listCustomers' => $listCustomers , 'title' => $this->title]);
     }
 
     /**

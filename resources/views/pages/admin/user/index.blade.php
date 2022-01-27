@@ -1,4 +1,4 @@
-@extends('layouts.super.app')
+@extends('layouts.admin.app')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -22,9 +22,7 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.user.popup_error')
 
-                  <a class="btn btn-primary" href="{{ route('super.category.create') }}">Thêm mới {{$title}}</a>
-
-                  <br /> <br />
+            
 
 
                     <div class="box">
@@ -37,13 +35,17 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tiêu Đề</th>
-                                        <th>Link Route</th>
-                                        <th>Mã cửa hàng</th>
+                                        <th>Tên KH</th>
 
-                                   
-
-                                        <th>Ngày Đăng</th>
+                                        <th>Số điện thoại</th>
+                                       
+                                        <th>Địa chỉ
+                                        </th>
+                                        <th>Email
+                                        </th>
+                                        <th>Trạng thái
+                                        </th>
+                                        <th>Ngày tạo tài khoản</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -51,23 +53,26 @@
 
 
 
-                                    @foreach ($listCategories as $key => $value)
+                                    @foreach ($listUsers as $key => $value)
+                                    @php
+                                        $textStatus = $value->status == 1? "Đang hoat động" : "Chưa kích hoạt";
+                                        $styleStatus = $value->status == 1? "active-column-success" : "active-column-failure";
+
+                                    @endphp
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>
-                                       
-                                        <td>{{ $value->link_url }}</td>
-                                        <td>{{ $value->store_code }}</td>
+                                        <td>{{ $value->phone_number }}</td>
+                                        <td>{{ $value->address }}</td>
 
+                                        <td>{{ $value->email }}</td>
+                                        <td class="{{$styleStatus}}">{{ $textStatus }}</td>
 
-                                        <td>{{ $value->created_at }}</td>
+                                        <td >{{ $value->created_at }}</td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('super.category.edit',$value->id) }}"><i
-                                                    class="fa fa-pencil"></i></a> 
-                                                    <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
-                                                    onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
-                                                          class="fa fa-trash"></i></a>
-                                                 
+                                                href="tel:{{$value->phone_number}}"><i
+                                                    class="fa fa-phone"></i></a> 
+                                           
                                                   </td>
                                                 </tr>
 
@@ -85,7 +90,6 @@
                 <!-- col-md-12 -->
             </div>
 
-            @include('pages.super.category.child.remove_popup');
 
 
             <!-- remove brand modal -->

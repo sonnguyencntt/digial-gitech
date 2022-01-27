@@ -7,10 +7,9 @@
 
             <ul class="sidebar-menu tree" data-widget="tree">
                 <?php
-    $store_code = isset(\request()->store_code) ? \request()->store_code : null;
 ?>
-                @if($store_code !== null)
-                @foreach(\menu(null , null , $store_code) as $key => $value)
+                @if($badges->store_code !== null)
+                @foreach(\menu(null , null , $badges->store_code) as $key => $value)
                 @if($value['sub_menu'] == false)
                 <li id="1" class="">
                     <a href="{{ $value['url'] }}">

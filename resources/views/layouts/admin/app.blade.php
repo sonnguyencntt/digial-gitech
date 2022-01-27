@@ -93,15 +93,15 @@
 
 <body class="skin-blue sidebar-mini wysihtml5-supported fixed" style="height: auto; min-height: 100%;">
   <div class="wrapper" style="height: auto; min-height: 100%;">
-    @include('components.super.header')
+    @include('components.admin.header')
 
-    @include('components.super.sidebar')
+    @include('components.admin.sidebar')
    
   
    @yield('content')
 
 
-    @include('components.super.footer')
+    @include('components.admin.footer')
 
 
   </div>

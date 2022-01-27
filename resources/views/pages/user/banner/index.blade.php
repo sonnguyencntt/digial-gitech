@@ -22,7 +22,7 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.user.popup_error')
 
-                    <a class="btn btn-primary" href="{{ route('user.banner.create' , $store_code) }}">Thêm mới {{$title}}</a>
+                    <a class="btn btn-primary" href="{{ route('user.banner.create' , $badges->store_code) }}">Thêm mới {{$title}}</a>
 
                     <br /> <br />
 
@@ -59,7 +59,7 @@
                                    
                                         <td>{{ $value->created_at }}</td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('user.banner.edit', ["store_code"=>$store_code , "banner"=>$value->id]) }}"><i
+                                                href="{{ route('user.banner.edit', ["store_code"=>$badges->store_code , "banner"=>$value->id]) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                               <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
                                               onclick="removeFunc('{{$value->id}}' , '{{$value->title}}')"><i

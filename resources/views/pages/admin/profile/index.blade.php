@@ -1,4 +1,4 @@
-@extends('layouts.super.app')
+@extends('layouts.admin.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -33,7 +33,7 @@
               <h3 class="box-title">{{$title}}</h3>
             </div>
             <!-- /.box-header -->
-            <form role="form" action="{{route("super.profile.update" , $admin->id)}}" method="POST" onsubmit = "return validate();">
+            <form role="form" action="{{route("admin.profile.update" , $admin->id)}}" method="POST" onsubmit = "return validate();">
               @csrf
               @method('put')
               <div class="box-body">

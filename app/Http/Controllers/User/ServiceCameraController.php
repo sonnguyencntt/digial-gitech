@@ -31,7 +31,7 @@ class ServiceCameraController extends Controller
     public function index($store_code)
     {
         $listCameras = $this->cameraRepo->getAll($store_code);
-        return \auto_redirect(\view("pages.user.camera.index" , ["store_code"=> $store_code , 'listCameras' => $listCameras , 'title' => $this->title]) ,  $listCameras);
+        return \auto_redirect(\view("pages.user.camera.index" , [ 'listCameras' => $listCameras , 'title' => $this->title]) ,  $listCameras);
     
     }
 
@@ -78,7 +78,7 @@ class ServiceCameraController extends Controller
         $camera = $this->cameraRepo->findByStore($id,$store_code);
         $listCategories = $this->categoryRepo->getAll($store_code);
 
-        return \auto_redirect(\view("pages.user.camera.edit" , ["store_code"=>$store_code,'camera'=>$camera , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
+        return \auto_redirect(\view("pages.user.camera.edit" , ['camera'=>$camera , 'title' => $this->title ,  'listCategories' => $listCategories]) , "ajax");
     }
 
     /**

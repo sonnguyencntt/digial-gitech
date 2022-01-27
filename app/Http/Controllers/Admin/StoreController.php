@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Super;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\Store\StoreRepositoryInterface;
+use Carbon\Carbon;
 
-class UserController extends Controller
+class StoreController extends Controller
 {
-
-
-    protected $userRepo;
-    protected $title = "Người dùng";
-
-    public function __construct(UserRepositoryInterface $userRepo)
+    protected $storeRepo;
+    protected $title = "Cửa hàng";
+    public function __construct(StoreRepositoryInterface $storeRepo)
     {
-        $this->userRepo = $userRepo;
+        $this->storeRepo = $storeRepo;
     }
     /**
      * Display a listing of the resource.
@@ -24,8 +22,30 @@ class UserController extends Controller
      */
     public function index()
     {
-        $listUsers = $this->userRepo->all();
-        return \auto_redirect(\view("pages.super.user.index" , ['listUsers' => $listUsers , 'title' => $this->title]) ,  $listUsers);
+        $listStores = $this->storeRepo->getWithUser();
+        return \view("pages.admin.store.index", ['title' => $this->title, 'listStores' => $listStores, 'title' => $this->title]);
+    }
+
+    public function active($id)
+    {
+        $date_activated = Carbon::now()->toDateTimeString();
+        try {
+            $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
+    }
+
+    public function stop($id)
+    {
+        try {
+            $this->storeRepo->updateById($id, ["status" => "STOP_WORKING"]);
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**

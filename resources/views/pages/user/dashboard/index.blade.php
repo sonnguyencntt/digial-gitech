@@ -16,7 +16,6 @@
     <!-- Main content -->
 
 
-
     <section class="content">
       <!-- Small boxes (Stat box) -->
       
@@ -32,7 +31,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('user.customer.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.customer.index' , $badges->store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -47,7 +46,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('user.order.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.order.index' , $badges->store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -62,7 +61,7 @@
               <div class="icon">
                 <i class="ion ion-android-people"></i>
               </div>
-              <a href="{{ route('user.posts.index' , $store_code) }}" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.posts.index' , $badges->store_code) }}" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -82,7 +81,7 @@
               <div class="icon">
                 <i class="ion ion-android-home"></i>
               </div>
-              <a href="{{ route('user.dashboard.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.dashboard.index' , $badges->store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
@@ -96,7 +95,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('user.dashboard.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.dashboard.index' , $badges->store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6">
@@ -110,7 +109,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('user.customer.index' , $store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{ route('user.customer.index' , $badges->store_code) }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

@@ -21,7 +21,7 @@ function menu($current_route = "/", $guard = null, $store_code = null)
 
             ["name" => "Camera", "url" => route("user.service_camera.index", ["store_code" => $store_code]), "icon" => "fa fa-files-o", "sub_menu" => false],
 
-            ["name" => "FPT Play", "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
+            ["name" => "Gói FPT Play & Camera", "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
                 ["name" => "Danh sách", "url" => route("user.service_play.index", ["store_code" => $store_code])],
                 ["name" => "Thêm mới", "url" => route("user.posts.create", ["store_code" => $store_code])]
             ]],
@@ -44,14 +44,14 @@ function menu($current_route = "/", $guard = null, $store_code = null)
     } else if ($type_menu == "admin.") {
         return
             [
-                ["name" => "Bảng điều khiển", "url" => route("super.dashboard.index"), "icon" => "fa fa-dashboard", "sub_menu" => false],
+                ["name" => "Bảng điều khiển", "url" => route("admin.dashboard.index"), "icon" => "fa fa-dashboard", "sub_menu" => false],
                 ["name" => "Danh mục", "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
-                    ["name" => "Danh sách", "url" => route("super.category.index")],
-                    ["name" => "Thêm mới", "url" => route("super.category.create")]
+                    ["name" => "Danh sách", "url" => route("admin.category.index")],
+                    ["name" => "Thêm mới", "url" => route("admin.category.create")]
                 ]],
-                ["name" => "Người dùng", "url" => route("super.user.index"), "icon" => "fa fa-users", "sub_menu" => false],
-                ["name" => "Cửa hàng", "url" => route("super.store.index"), "icon" => "fa fa-list", "sub_menu" => false],
-                ["name" => "Tài khoản", "url" => route("super.profile.index"), "icon" => "fa fa-user", "sub_menu" => false],
+                ["name" => "Người dùng", "url" => route("admin.user.index"), "icon" => "fa fa-users", "sub_menu" => false],
+                ["name" => "Cửa hàng", "url" => route("admin.store.index"), "icon" => "fa fa-list", "sub_menu" => false],
+                ["name" => "Tài khoản", "url" => route("admin.profile.index"), "icon" => "fa fa-user", "sub_menu" => false],
 
 
 
