@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumCategory extends Migration
+class CreateAdminConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class AddColumCategory extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            // $table->string("image_url");
-            // $table->text('details');
-            // $table->text('advantage');
-            // $table->string('link_url');
+        Schema::create('admin_configs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('store_sample_code');
+            $table->timestamps();
         });
     }
 
@@ -28,8 +27,6 @@ class AddColumCategory extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('admin_configs');
     }
 }

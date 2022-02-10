@@ -12,9 +12,9 @@
     </div>
     <div class="hotline-bar">
         <a href="tel:0901793997">
-            <span class="text-hotline">@foreach ($themeView as $themeView )
+            <span class="text-hotline">
                 {{$themeView->hotline}}
-            @endforeach</span>
+           </span>
         </a>
     </div>
 </div>

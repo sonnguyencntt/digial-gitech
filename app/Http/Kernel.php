@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'CheckForExsitStore' => \App\Http\Middleware\CheckForExsitStore::class,
         'CheckForStatusStore' => \App\Http\Middleware\CheckForStatusStore::class,
         'CheckForCustomerStoreCode' => \App\Http\Middleware\CheckForCustomerStoreCode::class,
+        'checkForActiveStore' => \App\Http\Middleware\checkForActiveStore::class,
 
 
 

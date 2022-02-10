@@ -6,11 +6,11 @@ use Illuminate\View\View;
 
 class BadgesComposer
 {
-    protected $excepts = [];
-    
+    protected $fillable = [];
+    protected $fillable_contains = ["user"];
+
     public function __construct()
     {
-
     }
 
     public function get()
@@ -28,7 +28,13 @@ class BadgesComposer
      */
     public function compose(View $view)
     {
-        $view->with('badges', (object) $this->get());
-        
+        $agree = false;
+        foreach ($this->fillable_contains as  $value) {
+            if (str_contains($view->getName(), $value)) {
+                $agree = true;
+            }
+        }
+        if ($agree)
+            $view->with('badges', (object) $this->get());
     }
 }

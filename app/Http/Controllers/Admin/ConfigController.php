@@ -1,39 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Repositories\internet\InternetRepositoryInterface;
-use App\Repositories\Banner\BannerRepositoryInterface;
-use App\Repositories\category\CategoryRepositoryInterface;
-use App\Repositories\Camera\CameraRepositoryInterface;
-use App\Repositories\Posts\PostsRepositoryInterface;
+use App\Http\Controllers\Controller;
+use App\Repositories\Store\StoreRepositoryInterface;
+use App\AdminConfig;
 
-class HomeController extends Controller
+class ConfigController extends Controller
 {
+
+    protected $storeRepo;
+    protected $title = "Cửa hàng";
+    public function __construct(StoreRepositoryInterface $storeRepo)
+    {
+        $this->storeRepo = $storeRepo;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(InternetRepositoryInterface $internetRepo,BannerRepositoryInterface $bannerRepo,CategoryRepositoryInterface $categoryRepo,CameraRepositoryInterface $cameraRepo,PostsRepositoryInterface $postsRepo)
+    public function index()
     {
-        $this->internetRepo = $internetRepo;
-        $this->bannerRepo = $bannerRepo;
-        $this->categoryRepo = $categoryRepo;
-        $this->cameraRepo = $cameraRepo;
-        $this->postsRepo = $postsRepo;
-    }
-    public function index($store_code)
-    {   
-        // $listInternet=$this->internetRepo->all();
-        $listBanner=$this->bannerRepo->getAll($store_code);
-        $listInternet=$this->categoryRepo->distinct($store_code);
-        $listCamera=$this->cameraRepo->getAll($store_code);
-        $listposts=$this->postsRepo->getAll($store_code);
-    
-        
-        return view("pages.home.index",['listInternet'=>$listInternet,'listBanner'=>$listBanner,'listCamera'=>$listCamera,'listPosts'=>$listposts,'status'=>201]);
+        $config = AdminConfig::first();
+        $listStores = $this->storeRepo->getWithUser();
+        return \view("pages.admin.config.index", ["listStores" => $listStores, 'config' => $config, 'title' => $this->title]);
     }
 
     /**
@@ -88,7 +80,16 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $result = AdminConfig::find($id);
+            if ($result) {
+                $result->update(["store_sample_code" => $request->store_sample_code]);
+            }
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**

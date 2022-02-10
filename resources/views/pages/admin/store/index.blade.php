@@ -78,12 +78,12 @@
                                     <td>{{ $value->date_activated }}</td>
                                     <td>
                                         <button
-                                        type="button" class="btn btn-primary btn-sm {{$value->status == "WORKING" ? "hide" : ""}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận kích hoạt tài khoản' ,  '{{route('super.store.active_store', $value->id)}}')"
+                                        type="button" class="btn btn-primary btn-sm {{$value->status == "WORKING" ? "hide" : ""}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận kích hoạt tài khoản' ,  '{{route('admin.store.active_store', $value->id)}}')"
                                         data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i>Kích hoạt</button>
 
 
                                         <button
-                                        type="button" class="btn btn-danger btn-sm {{$value->status == "STOP_WORKING" || $value->status == "WAITING"  ? "hide" : "AA"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận ngừng haot5 động tài khoản' ,  '{{route('super.store.stop_store', $value->id)}}')"
+                                        type="button" class="btn btn-danger btn-sm {{$value->status == "STOP_WORKING" || $value->status == "WAITING"  ? "hide" : "AA"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận ngừng haot5 động tài khoản' ,  '{{route('admin.store.stop_store', $value->id)}}')"
                                         data-toggle="modal" data-target="#updateModal"><i class="fa fa-trash"></i>Ngừng hoạt động</button>
                                           </td>
                                 </tr>

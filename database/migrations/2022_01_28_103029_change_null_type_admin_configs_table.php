@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumCategory extends Migration
+class ChangeNullTypeAdminConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class AddColumCategory extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            // $table->string("image_url");
-            // $table->text('details');
-            // $table->text('advantage');
-            // $table->string('link_url');
+        Schema::table('admin_configs', function (Blueprint $table) {
+            $table->string('store_sample_code')->nullable()->change();
+       
+
         });
     }
 
@@ -28,8 +27,6 @@ class AddColumCategory extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

@@ -7,7 +7,6 @@
             <div id="text-2" class="col pb-0 widget widget_text"><span class="widget-title">Thông tin liên
                     hệ</span>
                 <div class="is-divider small"></div>
-                @foreach ($themeView as $themeView )
                     
                 
                 <div class="textwidget">
@@ -17,19 +16,18 @@
                     <p><strong>Hotline: <a href="tel:0901793997">{{$themeView->hotline}}</a></strong></p>
                     <p><strong>Email:</strong>{{$themeView->email}}</p>
                 </div>
-                @endforeach
             </div>
             <div id="nav_menu-2" class="col pb-0 widget widget_nav_menu"><span class="widget-title">Sản phẩm
                     &#8211; Dịch vụ</span>
                 <div class="is-divider small"></div>
                 <div class="menu-san-pham-dich-vu-container">
                     <ul id="menu-san-pham-dich-vu" class="menu">
-                        @foreach ($count as $count )
+                        @foreach ($listCategories as $category )
                             
                        
                         <li id="menu-item-90"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-90"><a
-                                href="{{$count->link_url."".$count->id}}">{{$count->name}}</a></li>
+                                href="{{$category->link_url."".$category->id}}">{{$category->name}}</a></li>
                         @endforeach 
                     </ul>
                 </div>
@@ -41,16 +39,16 @@
                     <ul id="menu-ve-chung-toi" class="menu">
                         <li id="menu-item-91"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-91">
-                            <a href="{{ route('posts.show',$themeView->post_id_privacy_policy)}}">Chính sách bảo mật</a></li>
+                            <a href="{{ route('posts.show',["store_code"=>$badges->store_code , "post" => $themeView->post_id_privacy_policy])}}">Chính sách bảo mật</a></li>
                         <li id="menu-item-92"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92"><a
-                                href="{{ route('posts.show',$themeView->post_id_payment_policy)}}">Chính sách thanh toán</a></li>
+                                href="{{ route('posts.show',["store_code"=>$badges->store_code ,'post' => $themeView->post_id_payment_policy])}}">Chính sách thanh toán</a></li>
                         <li id="menu-item-93"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-93"><a
-                                href="{{ route('posts.show',$themeView->post_id_website_terms_of_use)}}">Điều khoản sử dụng website</a></li>
+                                href="{{ route('posts.show',["store_code"=>$badges->store_code ,'post' =>$themeView->post_id_website_terms_of_use])}}">Điều khoản sử dụng website</a></li>
                         <li id="menu-item-94"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-94"><a
-                                href="{{ route('contact.index')}}">Liên hệ</a></li>
+                                href="{{ route('contact.index' , $badges->store_code)}}">Liên hệ</a></li>
                     </ul>
                 </div>
             </div>

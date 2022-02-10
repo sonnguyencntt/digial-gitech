@@ -26,4 +26,9 @@ class PostsRepository extends BaseRepository implements PostsRepositoryInterface
     public function getThreePosts(){
         return $this->model->take(3)->get();
     }
+    public function getOriginalImageUrl($store_code =null)
+    {
+        return $this->model->with("store")->where("store_code" , $store_code)->getOriginal('image_url');
+
+    }
 }

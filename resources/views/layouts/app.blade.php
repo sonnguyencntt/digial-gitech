@@ -39,6 +39,8 @@
     <link rel='stylesheet' id='contact-form-7-css' href={{
         URL::asset('wp-content/plugins/contact-form-7/includes/css/styles4245.css?ver=5.5.2') }} type='text/css'
         media='all' />
+        <link rel="stylesheet" href={{asset("assets/customer/css/style.css?v=01")}}>
+
     <link rel='stylesheet' id='extendify-sdk-utility-classes-css' href={{
         URL::asset('wp-content/plugins/ml-slider/extendify-sdk/public/build/extendify-utilities70dc.css?ver=11.7') }}
         type='text/css' media='all' />
@@ -74,21 +76,21 @@
     <div id="wrapper">
 
 
-        {{-- @include('components.header') --}}
+        @include('components.header')
 
 
 
         @yield('content')
-        {{-- @include('components.footer') --}}
+        @include('components.footer')
 
 
     </div>
 
-    {{-- @include('components.menu')
+    @include('components.menu')
 
     @include('components.booking')
 
-    @include('components.hotline') --}}
+    @include('components.hotline')
 
 
     <link rel='stylesheet' id='metaslider-flex-slider-css'

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Store\StoreRepositoryInterface;
 use Carbon\Carbon;
-
+use App\Jobs\User\CreateSampleStore;
 class StoreController extends Controller
 {
     protected $storeRepo;
@@ -30,10 +30,17 @@ class StoreController extends Controller
     {
         $date_activated = Carbon::now()->toDateTimeString();
         try {
-            $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
-            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
-        } catch (\throwable $err) {
+            $result = $this->storeRepo->findById($id);
+            if($result)
+            {
+                // $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
+                CreateSampleStore::dispatch($result->store_code);
+                return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+            }
+            return redirect()->back()->with(["status" => 204, "alert" => "danger",  "msg" => "ID không tồn tại"]);
 
+        } catch (\throwable $err) {
+            \dd($err);
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
         }
     }

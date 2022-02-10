@@ -16,7 +16,7 @@ class CameraRepository extends BaseRepository implements CameraRepositoryInterfa
     }
     public function getAll($store_code = null)
     {
-        return $this->model->with('store.category')->where("store_code" , $store_code)->get();
+        return $this->model->with('store','category')->where("store_code" , $store_code)->get();
     }
     public function getID($id){
         return $this->model->with("store")->find($id);
