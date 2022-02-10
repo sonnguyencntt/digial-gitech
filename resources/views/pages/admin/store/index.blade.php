@@ -1,4 +1,4 @@
-@extends('layouts.super.app')
+@extends('layouts.admin.app')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -102,7 +102,7 @@
             <!-- col-md-12 -->
         </div>
 
-        @include('pages.super.store.child.update_status');
+        @include('pages.admin.store.child.update_status');
 
 
         <!-- remove brand modal -->
