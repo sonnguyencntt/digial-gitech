@@ -50,6 +50,8 @@ function menu($current_route = "/", $guard = null, $store_code = null)
                     ["name" => "Thêm mới", "url" => route("admin.category.create")]
                 ]],
                 ["name" => "Người dùng", "url" => route("admin.user.index"), "icon" => "fa fa-users", "sub_menu" => false],
+                ["name" => "Cấu hình", "url" => route("admin.config.index"), "icon" => "fa fa-cogs", "sub_menu" => false],
+
                 ["name" => "Cửa hàng", "url" => route("admin.store.index"), "icon" => "fa fa-list", "sub_menu" => false],
                 ["name" => "Tài khoản", "url" => route("admin.profile.index"), "icon" => "fa fa-user", "sub_menu" => false],
 

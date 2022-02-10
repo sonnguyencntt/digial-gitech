@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
     protected $link_folder = "/images/posts/";
-    protected $guarded = [];
+    protected $fillable = [
+        "description", "title", "status", "image_url", "store_code"
+    ];
     public $timestamps = true;
 
     public function getImageUrlAttribute($value)
@@ -16,6 +18,6 @@ class Posts extends Model
     }
     public function store()
     {
-        return $this->hasOne(Store::class , "store_code" , "store_code");
+        return $this->hasOne(Store::class, "store_code", "store_code");
     }
 }

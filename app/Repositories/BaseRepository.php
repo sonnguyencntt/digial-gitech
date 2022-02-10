@@ -32,15 +32,15 @@ abstract class BaseRepository implements RepositoryInterface
 
     // Set data contain store_code
 
-    public function findByStore($id , $store_code)
+    public function findByStore($id, $store_code)
     {
         $result = $this->model->where("store_code",  $store_code)->find($id);
 
         return $result;
     }
-    public function updateByStore($id, $store_code , $attributes = [])
+    public function updateByStore($id, $store_code, $attributes = [])
     {
-        $result = $this->findByStore($id , $store_code);
+        $result = $this->findByStore($id, $store_code);
         if ($result) {
             $result->update($attributes);
             return $result;
@@ -48,9 +48,9 @@ abstract class BaseRepository implements RepositoryInterface
 
         return false;
     }
-    public function deleteByStore($id  ,$store_code)
+    public function deleteByStore($id, $store_code)
     {
-        $result = $this->findByStore($id , $store_code);
+        $result = $this->findByStore($id, $store_code);
         if ($result) {
             $result->delete();
 
@@ -65,7 +65,7 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->where("store_code",  $store_code)->first();
     }
 
-  
+
     // close
 
 
@@ -102,7 +102,7 @@ abstract class BaseRepository implements RepositoryInterface
 
         return false;
     }
-   
+
 
     public function deleteById($id)
     {
@@ -127,5 +127,26 @@ abstract class BaseRepository implements RepositoryInterface
     public function all()
     {
         return $this->model->all();
+    }
+    public function insert($data = [])
+    {
+        return $this->model->insert($data);
+    }
+    public function createMultiRecord($data = [])
+    {
+        if ($data and count($data) > 0) {
+            foreach ($data as $key => $row) {
+                return $this->model->create($row);
+            }
+        }
+    }
+    public function upsert($data = [])
+    {
+        return $this->model->upsert($data);
+    }
+
+    public function getOriginalImageUrl()
+    {
+        
     }
 }

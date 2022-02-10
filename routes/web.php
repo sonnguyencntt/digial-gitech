@@ -157,6 +157,10 @@ Route::group([
             Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
         });
         Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
+        Route::get('/config', 'Admin\ConfigController@index')->name('admin.config.index');
+        Route::put('/config/{config}', 'Admin\ConfigController@update')->name('admin.config.update');
+
+
         Route::group(['prefix' => 'store'], function () {
             Route::get('/', 'Admin\StoreController@index')->name('admin.store.index');
             Route::put('/{store}', 'Admin\StoreController@update')->name('admin.store.update');

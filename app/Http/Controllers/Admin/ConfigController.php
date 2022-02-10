@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Store\StoreRepositoryInterface;
-use Carbon\Carbon;
-use App\Jobs\User\CreateSampleStore;
-class StoreController extends Controller
+use App\AdminConfig;
+
+class ConfigController extends Controller
 {
+
     protected $storeRepo;
     protected $title = "Cửa hàng";
     public function __construct(StoreRepositoryInterface $storeRepo)
@@ -22,37 +23,9 @@ class StoreController extends Controller
      */
     public function index()
     {
+        $config = AdminConfig::first();
         $listStores = $this->storeRepo->getWithUser();
-        return \view("pages.admin.store.index", ['title' => $this->title, 'listStores' => $listStores, 'title' => $this->title]);
-    }
-
-    public function active($id)
-    {
-        $date_activated = Carbon::now()->toDateTimeString();
-        try {
-            $result = $this->storeRepo->findById($id);
-            if($result)
-            {
-                // $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
-                CreateSampleStore::dispatch($result->store_code);
-                return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
-            }
-            return redirect()->back()->with(["status" => 204, "alert" => "danger",  "msg" => "ID không tồn tại"]);
-
-        } catch (\throwable $err) {
-            \dd($err);
-            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
-        }
-    }
-
-    public function stop($id)
-    {
-        try {
-            $this->storeRepo->updateById($id, ["status" => "STOP_WORKING"]);
-            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
-        } catch (\throwable $err) {
-            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
-        }
+        return \view("pages.admin.config.index", ["listStores" => $listStores, 'config' => $config, 'title' => $this->title]);
     }
 
     /**
@@ -107,7 +80,16 @@ class StoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $result = AdminConfig::find($id);
+            if ($result) {
+                $result->update(["store_sample_code" => $request->store_sample_code]);
+            }
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**

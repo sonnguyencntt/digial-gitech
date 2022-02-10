@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Banner extends Model
 {
     protected $link_folder = "/images/banner/";
-    protected $guarded = [];
+    protected $fillable = ["title" , "image_url" , "store_code"];
     public $timestamps = true;
 
     public function getImageUrlAttribute($value)

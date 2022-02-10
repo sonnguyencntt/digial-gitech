@@ -35,11 +35,15 @@ return [
 
     'channels' => [
         'stack' => [
+
             'driver' => 'stack',
             'channels' => ['daily'],
             'ignore_exceptions' => false,
         ],
-
+        'jobs' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/jobs.log'),
+        ],
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
