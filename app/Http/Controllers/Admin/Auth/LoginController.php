@@ -29,7 +29,7 @@ class LoginController extends Controller
             {
                 return \redirect()->intended(route('admin.dashboard.index'));
             }
-            return \redirect()->back()->withErrors("Tài khoản hoặc mật khẩu không tồn tại");
+            return \redirect()->back()->withInput()->withErrors("Tài khoản hoặc mật khẩu không tồn tại");
         }
         /**
          * Show the application dashboard.

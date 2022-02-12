@@ -34,7 +34,7 @@
       
       <form action="{{route('admin.login.store')}}" method="post">
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" required>
+          <input type="email" class="form-control" name="email" id="email" value="{{old("email")}}" placeholder="Email" autocomplete="off" required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">

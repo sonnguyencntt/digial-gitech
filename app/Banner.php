@@ -10,9 +10,18 @@ class Banner extends Model
     protected $fillable = ["title" , "image_url" , "store_code"];
     public $timestamps = true;
 
+    public $overrideImageAttr = null;
+
     public function getImageUrlAttribute($value)
     {
-        return $this->link_folder . $value;
+      if(!$this->overrideImageAttr)
+      return $this->link_folder . $value;
+      else if($this->overrideImageAttr == "ogrinal")
+      return $value;
+      else
+      return;
+
+    
     }
     public function store()
     {

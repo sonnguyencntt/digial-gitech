@@ -25,10 +25,19 @@ class Theme extends Model
     ];
     public $timestamps = true;
 
+
+    public $overrideLogoAttr = null;
+
     public function getLogoAttribute($value)
     {
+        if(!$this->overrideLogoAttr)
         return $this->link_folder . $value;
+        else if($this->overrideLogoAttr == "ogrinal")
+        return $value;
+        else
+        return;
     }
+
     public function store()
     {
         return $this->hasOne(Store::class, "store_code", "store_code");

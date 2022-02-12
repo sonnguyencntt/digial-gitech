@@ -16,9 +16,17 @@ class Camera extends Model
     {
         return $this->hasOne(Category::class, "id", "category_id");
     }
+        public $overrideImageAttr = null;
+
     public function getImageUrlAttribute($value)
     {
+        if(!$this->overrideImageAttr)
         return $this->link_folder . $value;
+        else if($this->overrideImageAttr == "ogrinal")
+        return $value;
+        else
+        return;
+    
     }
     public function store()
     {

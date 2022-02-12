@@ -12,9 +12,16 @@ class Posts extends Model
     ];
     public $timestamps = true;
 
+    public $overrideImageAttr = null;
+
     public function getImageUrlAttribute($value)
     {
-        return $this->link_folder . $value;
+        if (!$this->overrideImageAttr)
+            return $this->link_folder . $value;
+        else if ($this->overrideImageAttr == "ogrinal")
+            return $value;
+        else
+            return;
     }
     public function store()
     {

@@ -18,4 +18,8 @@ class ThemeRepository extends BaseRepository implements ThemeRepositoryInterface
     public function getID($id){
         return $this->model->with("store")->find($id);
     }
+    public function setLogoAttrOgrinal()
+    {
+        return $this->model->overrideLogoAttr = "ogrinal";
+    }
 }

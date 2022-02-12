@@ -33,7 +33,7 @@ class StoreController extends Controller
             $result = $this->storeRepo->findById($id);
             if($result)
             {
-                // $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
+                $this->storeRepo->updateById($id, ["status" => "WORKING" , "date_activated" => $date_activated]);
                 CreateSampleStore::dispatch($result->store_code);
                 return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
             }

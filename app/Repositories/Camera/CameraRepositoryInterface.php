@@ -11,4 +11,5 @@ interface CameraRepositoryInterface extends RepositoryInterface
     public function getFirstID();
     public function getSecondID();
     public function getCategoryName();
+    public function createMultiRecord($arr);
 }

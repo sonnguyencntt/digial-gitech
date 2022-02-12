@@ -5,7 +5,7 @@ namespace App\Repositories\Internet;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
 use App\Category;
-
+use Log;
 class InternetRepository extends BaseRepository implements InternetRepositoryInterface
 {
     //lấy model tương ứng
@@ -33,5 +33,23 @@ class InternetRepository extends BaseRepository implements InternetRepositoryInt
         $results = $this->model->with('category')->find( $id);
         return $results;
     }
- 
+    public function createMultiRecord($data = [], $store_code = null)
+    {
+        if ($data and count($data) > 0) {
+            foreach ($data as $key => $row) {
+                $category_name = Category::where("id", $row['category_id'])->first();
+                if($category_name)
+                $category_name = $category_name->name;
+                $category_id = Category::where("name", $category_name)->where("store_code", $store_code)->first();
+                if($category_id)
+                $category_id = $category_id->id;
+
+                Log::channel('jobs')->info($category_id);
+                $row['category_id'] = $category_id;
+                if($category_id == null or !$category_id)
+                break;
+                $this->model->create($row);
+            }
+        }
+    }
 }

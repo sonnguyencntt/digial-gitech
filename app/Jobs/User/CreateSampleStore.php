@@ -17,8 +17,8 @@ use App\Repositories\Theme\ThemeRepositoryInterface;
 use App\AdminConfig;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
-class CreateSampleStore 
+use App\Category;
+class CreateSampleStore implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -56,13 +56,17 @@ class CreateSampleStore
                 $module->store_code = $this->store_code;
                 return $module;
             })->toArray();
+
             $listBanner = $bannerRepo->getAll($store_sample_code)->map(function ($module) {
                 $module->store_code = $this->store_code;
+                $module->overrideImageAttr = "ogrinal";
 
                 return $module;
             })->toArray();
+
             $listCamera = $cameraRepo->getAll($store_sample_code)->map(function ($module) {
                 $module->store_code = $this->store_code;
+                $module->overrideImageAttr = "ogrinal";
 
                 return $module;
             })->toArray();
@@ -78,34 +82,35 @@ class CreateSampleStore
             })->toArray();
             $listPosts = $postsRepo->getAll($store_sample_code)->map(function ($module) {
                 $module->store_code = $this->store_code;
-                $module->image_url = "ads";
+                $module->overrideImageAttr = "ogrinal";
                 return $module;
             })->toArray();
-            $theme = $themeRepo->firstByStore($store_sample_code)->toArray();
-            if($theme)
-            $theme["store_code"] = $this->store_code;
-
-            \dd($listPosts);
+            $theme = $themeRepo->firstByStore($store_sample_code);
+            $theme->overrideLogoAttr = "ogrinal";
+            $theme = $theme->toArray();
+            if ($theme)
+                $theme["store_code"] = $this->store_code;
 
             try {
                 DB::beginTransaction();
                 if ($listCategory)
                     $cateRepo->createMultiRecord($listCategory);
-                if ($listBanner)
-                    $bannerRepo->createMultiRecord($listBanner);
-                if ($listCamera)
-                    $cameraRepo->createMultiRecord($listCamera);
-                if ($listInternet)
-                    $internetRepo->createMultiRecord($listInternet);
-                if ($listPlay)
-                    $playRepo->createMultiRecord($listPlay);
-                if ($listPosts)
-                    $postsRepo->createMultiRecord($listPosts);
                 if ($theme)
                     $themeRepo->create($theme);
+                if ($listBanner)
+                    $bannerRepo->createMultiRecord($listBanner);
+                if ($listPosts)
+                    $postsRepo->createMultiRecord($listPosts);
+                if ($listCamera)
+                    $cameraRepo->createMultiRecord($listCamera , $this->store_code );
+                if ($listInternet)
+                    $internetRepo->createMultiRecord($listInternet , $this->store_code);
+                if ($listPlay)
+                    $playRepo->createMultiRecord($listPlay , $this->store_code);
+
+
 
                 DB::commit();
-
             } catch (\Throwable $th) {
                 DB::rollBack();
                 Log::channel('jobs')->info("Đã lỗi" . $th);

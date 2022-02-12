@@ -136,7 +136,7 @@ abstract class BaseRepository implements RepositoryInterface
     {
         if ($data and count($data) > 0) {
             foreach ($data as $key => $row) {
-                return $this->model->create($row);
+                 $this->model->create($row);
             }
         }
     }
@@ -148,5 +148,9 @@ abstract class BaseRepository implements RepositoryInterface
     public function getOriginalImageUrl()
     {
         
+    }
+    public function setImageAttrOgrinal()
+    {
+         $this->model->overrideImageAttr = "ogrinal";
     }
 }
