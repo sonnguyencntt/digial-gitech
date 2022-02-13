@@ -35,10 +35,9 @@
                                     {!!$camera->description!!}
                                     <div class="giasp">
                                         <div class="gia-left"><span
-                                                style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>{{$camera->price}}
-                                                    vnđ</strong></span></div>
+                                                style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>{{number_format($camera->price,0, ',', '.')}}vnđ</strong></span></div>
                                         <div class="gia-right"><span
-                                                style="color: #f26522;"><strong>{{$camera->discount}}
+                                                style="color: #f26522;"><strong>{{number_format($camera->discount,0, ',', '.')}}
                                                     vnđ</strong></span></div>
                                         <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
                                     </div>

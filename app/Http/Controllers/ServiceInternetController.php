@@ -51,14 +51,15 @@ class ServiceInternetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($store_code)
+    public function show($store_code,$id)
     
     {   
-        $internetRepo=$this->internetRepo->getAll($store_code);
-        $findidcategory=$this->categoryRepo->getAll($store_code);
+        
+        $internetRepo=$this->internetRepo->getDetail($store_code,$id);
+        $findidcategory=$this->categoryRepo->findById($id);
         
         
-        return view("pages.service_internet.index",['list_internet' => $internetRepo ,'getCategory'=>$findidcategory,'title'=>$findidcategory[0]->name,'status'=>201]);
+        return view("pages.service_internet.index",['list_internet' => $internetRepo ,'getCategory'=>$findidcategory,'title'=>$findidcategory->name,'status'=>201]);
     }
 
     /**

@@ -27,7 +27,7 @@
                        
                         <li id="menu-item-90"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-90"><a
-                                href="{{$category->link_url."".$category->id}}">{{$category->name}}</a></li>
+                                href="{{asset($category->link_url."".$category->id)}}">{{$category->name}}</a></li>
                         @endforeach 
                     </ul>
                 </div>

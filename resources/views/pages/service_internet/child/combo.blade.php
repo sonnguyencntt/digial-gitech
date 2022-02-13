@@ -4,7 +4,7 @@
             <li class="col_li-3 internet-ca-nhan">
                 <h3>{{$internet->name}}</h3> 
                 <div class="thongtin-goicuoc">
-                        <p class="gia-goicuoc">{{$internet->price}}<span class="dongia">đ/Tháng</span></p>
+                        <p class="gia-goicuoc">{{number_format($internet->price,0, ',', '.')}}<span class="dongia">đ/Tháng</span></p>
                         <div class="linebt"></div>
                         <p class="tocdo-goicuoc"><span class="sotcodo">Download / Upload</span><br />{{$internet->size}}<span class="tocdogoi">Mbps</span></p>
                         <div class="mota_goicuoc"> 

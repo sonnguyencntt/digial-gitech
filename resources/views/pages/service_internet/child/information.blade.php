@@ -6,7 +6,7 @@
             
 <div class="container section-title-container" ><h2 class="section-title section-title-normal"><b></b><span class="section-title-main" >Thông tin chi tiết</span><b></b></h2></div>
 <p>
-    {{$getCategory[0]->details}}
+    {{$getCategory->details}}
 </p>
 </div>
 </div>
@@ -19,7 +19,7 @@
             
 <div class="container section-title-container" ><h2 class="section-title section-title-normal"><b></b><span class="section-title-main" >Ưu điểm</span><b></b></h2></div>
 <p>
-    {{$getCategory[0]->advantage}}
+    {{$getCategory->advantage}}
 </p>
         </div>
             </div>

@@ -1,6 +1,6 @@
 <h3>{{$combo->name}}</h3>
 <div class="thongtin-goicuoc">
-    <p class="gia-goicuoc">{{$combo->price}}<span class="dongia">đ/Tháng</span></p>
+    <p class="gia-goicuoc">{{number_format($combo->price,0, ',', '.')}}<span class="dongia">đ/Tháng</span></p>
     <div class="linebt"></div>
     <p class="tocdo-goicuoc"><span class="sotcodo">Download /
             Upload</span><br />{{$combo->size}}<span class="tocdogoi">Mbps</span></p>

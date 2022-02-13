@@ -53,7 +53,7 @@
                 
                 
     {{-- hiển thị thông tin chi tiết và ưu điểm --}}
-    @includeWhen(count($getCategory) > 0, 'pages.service_internet.child.information' )
+    @includeWhen(count(array($getCategory)) > 0, 'pages.service_internet.child.information' )
                     
     </div>
     

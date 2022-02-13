@@ -16,7 +16,10 @@ class InternetRepository extends BaseRepository implements InternetRepositoryInt
     {
         return \App\Internet::class;
     }
-
+    public function getDetail($store_code,$id){
+        return $this->model->with("store")->where("store_code" , $store_code )->where("category_id",'=',$id)->get();
+    }
+    
     public function getAll($store_code = null)
     {
         return $this->model->with("store", "category")->where("store_code", $store_code)->get();

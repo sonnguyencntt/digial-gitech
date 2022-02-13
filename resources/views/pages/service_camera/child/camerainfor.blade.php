@@ -71,7 +71,7 @@
     <div class="bt_dangky"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a></div>
     </td>
     <td>
-    <p style="text-align: center;"><span style="color: #f26522;"><strong>{{$getSecondID->discount}}</strong></span></p>
+    <p style="text-align: center;"><span style="color: #f26522;"><strong>{{$getSecondID->discount}} vnđ</strong></span></p>
     <p style="text-align: center;"><span style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>{{$getSecondID->price}} vnđ</strong></span></p>
     <p style="text-align: center;">* Giá trên đã bao gồm VAT</p>
     <div class="bt_dangky"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a></div>
