@@ -16,7 +16,7 @@
             <ul>
                 @foreach ($listPosts as $list )
                     <li>
-                        <a href="{{ route('posts.show',$list->id)}}">{{$list->title}}</a>
+                        <a href="{{ route('posts.show',["store_code" =>  $list->store_code,"post"=>$list->id])}}">{{$list->title}}</a>
                     </li>
                 @endforeach
                  

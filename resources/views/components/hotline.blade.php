@@ -4,7 +4,7 @@
         <div class="hotline-phone-ring-circle-fill"></div>
         <div class="hotline-phone-ring-img-circle">
             <a href="tel:0901793997" class="pps-btn-img occall">
-                <img src="../fptcore.com/fptvienthong-net/wp-content/uploads/sites/37/2021/10/icon-call-nh.png"
+                <img src="{{asset('images/iconcall.png')}}"
                     alt="Gọi điện thoại" width="50">
             </a>
         </div>
@@ -22,7 +22,7 @@
     <a id="zalo-btn oczalo" href="{{'https://zalo.me/'."".$themeView->id_zalo}}" target="_blank" rel="noopener noreferrer nofollow">
         <div class="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
         <div class="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
-        <span><img src="../fptcore.com/fptvienthong-net/wp-content/uploads/sites/37/2021/10/zalo.png"
+        <span><img src="{{asset('images/zalo.png')}}"
                 alt="Contact Me on Zalo"></span>
     </a>
 </div>

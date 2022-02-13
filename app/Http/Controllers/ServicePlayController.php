@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Repositories\category\CategoryRepositoryInterface;
 use App\Repositories\play\PlayRepositoryInterface;
 class ServicePlayController extends Controller
 {
@@ -12,9 +12,10 @@ class ServicePlayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(PlayRepositoryInterface $playRepo)
+    public function __construct(PlayRepositoryInterface $playRepo,CategoryRepositoryInterface $cateogryRepo)
     {
         $this->playRepo = $playRepo;
+        $this->categoryRepo=$cateogryRepo;
     }
     public function index()
     {
@@ -49,10 +50,12 @@ class ServicePlayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($store_code,$id)
     {
        
-        $listPlay=$this->playRepo->getAllPlay($id);
+        $listPlay=$this->playRepo->getAllPlay($store_code,$id);
+       
+        
         return view("pages.service_play.index",['listPlay'=>$listPlay,'status'=>201] );
     }
 

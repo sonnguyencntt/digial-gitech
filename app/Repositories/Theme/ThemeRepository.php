@@ -15,6 +15,9 @@ class ThemeRepository extends BaseRepository implements ThemeRepositoryInterface
     {
         return $this->model->with("store")->where("store_code" , $store_code)->get();
     }
+    public function getByStore($store_code){
+        return $this->model->where("store_code",$store_code)->first();
+    }
     public function getID($id){
         return $this->model->with("store")->find($id);
     }

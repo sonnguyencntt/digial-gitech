@@ -31,7 +31,7 @@ class HomeController extends Controller
         $listInternet=$this->categoryRepo->distinct($store_code);
         $listCamera=$this->cameraRepo->getAll($store_code);
         $listposts=$this->postsRepo->getAll($store_code);
-    
+        
         
         return view("pages.home.index",['listInternet'=>$listInternet,'listBanner'=>$listBanner,'listCamera'=>$listCamera,'listPosts'=>$listposts,'status'=>201]);
     }
