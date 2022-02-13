@@ -38,7 +38,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+
+        return \view("pages.user.category.create" , [ 'title' => $this->title]);
     }
 
     /**
@@ -47,39 +48,26 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCategoryRequest $request)
-    {   
-        // $linkUrl="/service";
-        // $link_url=$linkUrl."/".$request->link_url;
+    public function store(CreateCategoryRequest $request , $store_code)
+    {
+        $fileName = null;
 
-        // try{
-        //     if($request->has('image_url')){
-        //         $file=$request->image_url;
-        //         $etx=$request->image_url->extension();
-        //         $file_name=time().'-'.'category.'.$etx;
-        //         $file->move(public_path('images\category'),$file_name);
-        //     }
-
-        //     $category=Category::create([
-        //         'name'=>$request->name,
-        //         'image_url'=>$file_name,
-        //         'details'=>$request->details,
-        //         'advantage'=>$request->advantage,
-        //         'link_url'=>$link_url,
-        //     ]);
-        //     Session()->flash('success','thêm danh mục thành công ');
-        //     return redirect()->back();
-         
-        // }
-
-        // catch(\throwable $err){
-            
-        //     Session()->flash('error','thêm danh mục thất bại ');
-        //     return redirect()->back();
-         
-
-        // }
+        try{
+                if($request->has('image')){
+                    $file=$request->image;
+                    $etx=$request->image->extension();
+                    $fileName=time().'-'.'category.'.$etx;
+                    $file->move(public_path($this->linkFolder),$fileName);
+                }
+      
         
+            $this->categoryRepo->create(\array_merge($request->all() ,["store_code" => $store_code , 'image_url'=>$fileName] ));
+            return redirect()->route("user.category.index" , $store_code)->with(["status"=> 201 , "alert" => "success",  "msg"=>"Thêm dữ liệu thành công"]);
+        }
+        catch(\throwable $err){
+            \dd($err);
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**
@@ -164,7 +152,7 @@ class CategoryController extends Controller
             }
 
 
-            return redirect()->route("user.posts.index" , $store_code)->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
+            return redirect()->route("user.category.index" , $store_code)->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
         }
 
         catch(\throwable $err){
@@ -248,24 +236,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($store_code , $id)
     {
-        // try{
-        //     $updateCategory = $this->categoryRepo->getID($id);
-            
-        //     $delete='public/images/category/'.$updateCategory->image;
-            
-        //     if(file_exists($delete)){
-        //         unlink($delete);
-        //     };
-        //     $updateCategory->delete();
-        //     return "thanh cong";
-        
-            
-        // }
-        // catch(\throwable $th){
-        //     Session()->flash('error','xóa danh mục thất bại');
-        //     return "that bai";
-        // }
+        try {
+             $this->categoryRepo->deleteByStore($id,$store_code);
+            return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->back()->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Xóa dữ liệu không thành công"]);
+        }
+
     }
 }

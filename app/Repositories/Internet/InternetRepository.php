@@ -9,6 +9,9 @@ use Log;
 class InternetRepository extends BaseRepository implements InternetRepositoryInterface
 {
     //lấy model tương ứng
+
+    
+
     public function getModel()
     {
         return \App\Internet::class;

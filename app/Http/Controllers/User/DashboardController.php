@@ -33,6 +33,7 @@ class DashboardController extends Controller
     protected $title = "Bảng điều khiển";
 
 
+
     public function __construct(customerRepositoryInterface $customerRepo, PostsRepositoryInterface $postsRepo,
      OrderRepositoryInterface $orderRepo,
      PlayRepositoryInterface $fptPlayRepo,

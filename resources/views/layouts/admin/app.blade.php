@@ -18,7 +18,7 @@
   <link rel="stylesheet" href={{asset("assets/admin/bower_components/Ionicons/css/ionicons.min.css")}}>
   <!-- Theme style -->
   <link rel="stylesheet" href={{asset("assets/admin/dist/css/AdminLTE.min.css?ver=02")}}>
-  <link rel="stylesheet" href={{asset("assets/admin/dist/css/mystyle.css?v=01")}}>
+  <link rel="stylesheet" href={{asset("assets/admin/dist/css/mystyle.css?v=03")}}>
 
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
@@ -111,6 +111,8 @@
 <script src={{asset("assets/admin/dist/js/callajax.js?ver=01")}}></script>
 
 <script src={{asset("assets/admin/dist/js/chart.js")}}></script>
+<script src={{asset("js/datatable.js")}}></script>
+
 @yield('javascript')
 
 

@@ -6,27 +6,33 @@
 
 
             <ul class="sidebar-menu tree" data-widget="tree">
-
+                @if(isset($titleSideBar))
+                    
+                @else
+                    @php
+                        $titleSideBar = null;
+                    @endphp
+                @endif
                 @foreach(\menu() as $key => $value)
                 @if($value['sub_menu'] == false)
-                <li id="1" class="">
+                <li id="1" class="{{$value['title'] == $titleSideBar ? "active" : ""}}">
                     <a href="{{ $value['url'] }}">
                         <i class="{{ $value['icon'] }}"></i> <span>{{ $value['name'] }}</span>
                     </a>
                 </li>
 
                 @else
-                <li class="treeview " id="userMainNav">
-                    <a href="#">
+                <li class="treeview {{$value['title'] == $titleSideBar ? "menu-open " : ""}}  " id="userMainNav">
+                    <a href="#" id="{{$value['title'] == $titleSideBar ? "active-group-sidebar" : ""}}">
                         <i class="{{ $value['icon'] }}"></i>
                         <span>{{ $value['name'] }}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
+                    <ul class="treeview-menu" style="{{$value['title'] == $titleSideBar ? "display : block" : ""}}">
                         @foreach($value['list_sub_menu'] as $key => $_value)
-                        <li id="createUserSubNav"><a href="{{ $_value['url'] }}"><i class="fa fa-circle-o"></i>{{
+                        <li  class="{{$value['title'] == $titleSideBar ? "active" : ""}}" id="createUserSubNav"><a href="{{ $_value['url'] }}"><i class="fa fa-circle-o"></i>{{
                                 $_value['name'] }}</a></li>
                         @endforeach
 

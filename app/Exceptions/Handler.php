@@ -44,6 +44,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+        //     $type_menu = getNameSubdomain();
+        //     if ($type_menu == "") {
+        //         return response()->view('errors.user.404', ["userFromPageNotFound" => \Auth::user()->name], 404);
+        //     } else if ($type_menu == "admin.") {
+        //         return \view("errors.admin.404");
+        //     } else {
+        //         return \view("errors.404");
+        //     }
+        // }
         return parent::render($request, $exception);
     }
 
@@ -62,13 +73,13 @@ class Handler extends ExceptionHandler
 
         $guard = array_get($exception->guards(), 0);
         switch ($guard) {
-          case 'admin':
-            $login = 'admin.login.index';
-            break;
+            case 'admin':
+                $login = 'admin.login.index';
+                break;
 
-          default:
-            $login = 'user.login.index';
-            break;
+            default:
+                $login = 'user.login.index';
+                break;
         }
         return redirect()->guest(route($login));
     }

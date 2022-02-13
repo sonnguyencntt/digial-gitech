@@ -41,6 +41,7 @@
 
                                     <th>Số điện thoại
                                     </th>
+                                    <th>Gói cho thuê</th>
 
                                     <th>Trạng thái
                                     </th>
@@ -72,19 +73,34 @@
                                     <td>{{ $value->name }}</td>
 
                                     <td>{{ $value->user->phone_number }}</td>
+                                    <td>
+                                        <select name="rent_shop" id=""  onchange="changeRentShop(this , '{{$value->id}}');" class="form-control">
+                                            <option value="">-- Cập nhật giá --</option>
+                                            @foreach($listRentShops as $key => $_value)
+                                              <option value="{{$_value->id}}" {{$_value->id == $value->rent_shop_id ? "selected" : ""}} >{{$_value->name}}</option>
+                                            @endforeach
+                        
+                                          </select>
+                                    </td>
+
                                     <td class="{{$styleStatus}}">{{ $textStatus }}</td>
 
                                     <td>{{ $value->created_at }}</td>
                                     <td>{{ $value->date_activated }}</td>
                                     <td>
                                         <button
-                                        type="button" class="btn btn-primary btn-sm {{$value->status == "WORKING" ? "hide" : ""}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận kích hoạt tài khoản' ,  '{{route('admin.store.active_store', $value->id)}}')"
-                                        data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i>Kích hoạt</button>
+                                        type="button" class="btn btn-primary btn-sm {{$value->status == "WAITING" ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận kích hoạt tài khoản' ,  '{{route('admin.store.active_store', $value->id)}}')"
+                                        data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i>Kích hoạt Shop</button>
 
 
                                         <button
-                                        type="button" class="btn btn-danger btn-sm {{$value->status == "STOP_WORKING" || $value->status == "WAITING"  ? "hide" : "AA"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận ngừng haot5 động tài khoản' ,  '{{route('admin.store.stop_store', $value->id)}}')"
+                                        type="button" class="btn btn-danger btn-sm {{$value->status == "WORKING"  ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận ngừng hoạt động tài khoản' ,  '{{route('admin.store.stop_store', $value->id)}}')"
                                         data-toggle="modal" data-target="#updateModal"><i class="fa fa-trash"></i>Ngừng hoạt động</button>
+
+                                        
+                                        <button
+                                        type="button" class="btn btn-success btn-sm {{$value->status == "STOP_WORKING"   ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận  hoạt động tài khoản' ,  '{{route('admin.store.active_for_paid', $value->id)}}')"
+                                        data-toggle="modal" data-target="#updateModal"><i class="fa fa-trash"></i>Hoạt động</button>
                                           </td>
                                 </tr>
 
@@ -95,6 +111,12 @@
                             </tbody>
                         </table>
                     </div>
+                    <form action="" id="formChangeRentShop" method="post">
+                        @csrf
+                        @method('put')
+                        <input name="rent_shop_id" type="hidden">
+
+                    </form>
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
@@ -114,6 +136,13 @@
 {{-- <script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script> --}}
 
 <script>
+
+function changeRentShop($this , $store_id) {
+    $("[name=rent_shop_id]").val($this.value);
+    $('#formChangeRentShop').attr('action', `/store/change-rent-shop/${$store_id}`);
+    $("#formChangeRentShop").submit();
+  }
+  
 
 function updateFunc($id , $name , $action) {
     $('.alert-update').html(`<p>${$name}</p>`);

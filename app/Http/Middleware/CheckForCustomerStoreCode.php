@@ -23,9 +23,9 @@ class CheckForCustomerStoreCode
                 if ($result->status == "WORKING") {
                     return $next($request);
                 }
+                
             }
-            \abort(404);
-            // return "Đang cập nhật, trang web hiện tại không hoạt động!!";
+            return \response()->view("errors.404" , ["msg" => "Trang web tạm thời không hoạt động, vui lòng quay lại sau"] , 403);
         }
         return $next($request);
     }

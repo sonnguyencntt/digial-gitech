@@ -39,7 +39,7 @@
     <link rel='stylesheet' id='contact-form-7-css' href={{
         URL::asset('wp-content/plugins/contact-form-7/includes/css/styles4245.css?ver=5.5.2') }} type='text/css'
         media='all' />
-        <link rel="stylesheet" href={{asset("assets/customer/css/style.css?v=01")}}>
+        <link rel="stylesheet" href={{asset("assets/customer/css/style.css?v=02")}}>
 
     <link rel='stylesheet' id='extendify-sdk-utility-classes-css' href={{
         URL::asset('wp-content/plugins/ml-slider/extendify-sdk/public/build/extendify-utilities70dc.css?ver=11.7') }}

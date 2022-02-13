@@ -83,7 +83,7 @@ class ConfigController extends Controller
         try {
             $result = AdminConfig::find($id);
             if ($result) {
-                $result->update(["store_sample_code" => $request->store_sample_code]);
+                $result->update(["store_sample_code" => $request->store_sample_code , "document_point_domain" => $request->document_point_domain]);
             }
             return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {

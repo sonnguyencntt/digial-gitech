@@ -43,6 +43,11 @@
                       @endforeach
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="email">Tài liệu hướng dẫn trỏ domain</label>
+                    <input type="text" class="form-control" id="title" name="document_point_domain" value = "{{$config->document_point_domain}}" placeholder="Nhập link hướng dẫn" autocomplete="off" />
+               
+                  </div>
                 </div>
 
 

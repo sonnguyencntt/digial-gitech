@@ -47,7 +47,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 15px !important">
            
-            <span class="hidden-xs"><b>XIN CHÀO </b> {{\Auth::user()->name}}</span>
+            <span class="hidden-xs"><b>XIN CHÀO </b> {{$userFromPageNotFound ?? null}}  {{\Auth::user() ? \Auth::user()->name :null}}</span>
           </a>
       
         </li>

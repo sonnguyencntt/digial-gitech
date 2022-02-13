@@ -26,10 +26,13 @@
           <div class="box-header">
             <h3 class="box-title">{{$title}}</h3>
           </div>
-          <form role="form" action="{{route("user.theme.update" , ["store_code"=>$badges->store_code , "theme" => $theme->id])}}" method="post" enctype="multipart/form-data" >
-            @csrf
-            @method('put')
-            <div class="box-body">
+         
+              @if($theme)
+              <form role="form" action="{{route("user.theme.update" , ["store_code"=>$badges->store_code , "theme" =>
+                $theme->id])}}" method="post" enctype="multipart/form-data" >
+                @csrf
+                @method('put')
+                <div class="box-body">
               <div class="row">
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
@@ -92,9 +95,9 @@
                   </div>
                   <div class="form-group">
                     <label for="email">Tên miền trỏ đến</label>
-                    <input type="text" class="form-control" id="email" name="domain"
-                      placeholder="VD:tenmiencuatoi.com" value="{{$theme->domain}}" autocomplete="off">
-
+                    <input type="text" class="form-control" id="email" name="domain" placeholder="VD:tenmiencuatoi.com"
+                      value="{{$theme->domain}}" autocomplete="off">
+                    <i><a href="{{$badges->document_point_domain}}">Hướng dẫn trỏ tên miền</a></i>
                   </div>
                   <div class="form-group">
                     <label for="email">Nhúng bản đồ vị trí</label>
@@ -114,7 +117,7 @@
                       @endforeach
 
                     </select>
-                    
+
                   </div>
                   <div class="form-group">
                     <label for="email">Chính sách thanh toán</label>
@@ -126,7 +129,7 @@
                       @endforeach
 
                     </select>
-                
+
 
                   </div>
                   <div class="form-group">
@@ -135,27 +138,14 @@
                       <option value=""></option>
 
                       @foreach($listPosts as $key => $value)
-                      <option value="{{$value->id}}" {{$value->id == $theme->post_id_website_terms_of_use ? "selected" : ""}}
+                      <option value="{{$value->id}}" {{$value->id == $theme->post_id_website_terms_of_use ? "selected" :
+                        ""}}
                         >{{$value->title}}</option>
                       @endforeach
                     </select>
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
             <!-- /.box-body -->
 
@@ -163,6 +153,33 @@
               <button type="submit" class="btn btn-primary ">Lưu</button>
             </div>
           </form>
+              @else
+              <div class="box-body">
+                <form role="form" action="{{route("user.theme.store" ,$badges->store_code )}}" method="post" >
+              <div style="display: flex ; height : 250px" >
+                <button type="submit" style="; margin : auto ;"  type="button" class="btn btn-success btn-sm"
+                ><i class="fa fa-plus"></i>Generate Theme</button>
+              </form>
+
+              </div>
+            </div>
+
+              @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         </div>
         <!-- /.box -->
       </div>
@@ -176,6 +193,6 @@
 </div>
 @stop
 @section('javascript')
-<script src={{asset("/assets/admin/dist/js/blog.js?ver=05")}}></script>       
+<script src={{asset("/assets/admin/dist/js/blog.js?ver=05")}}></script>
 
 @endsection

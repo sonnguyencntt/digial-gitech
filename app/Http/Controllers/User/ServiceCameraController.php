@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Camera\CameraRepositoryInterface;
 use App\Http\Requests\Camera\UpdateCameraRequest;
+use App\Http\Requests\Camera\CreateCameraRequest;
+
 use App\Repositories\Category\CategoryRepositoryInterface;
 use File;
 class ServiceCameraController extends Controller
@@ -30,6 +32,7 @@ class ServiceCameraController extends Controller
      */
     public function index($store_code)
     {
+
         $listCameras = $this->cameraRepo->getAll($store_code);
         return \auto_redirect(\view("pages.user.camera.index" , [ 'listCameras' => $listCameras , 'title' => $this->title]) ,  $listCameras);
     
@@ -40,9 +43,11 @@ class ServiceCameraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($store_code)
     {
-        //
+        $listCategories = $this->categoryRepo->getAll($store_code);
+
+        return \view("pages.user.camera.create" , ["listCategories"=>$listCategories ,  'title' => $this->title]);
     }
 
     /**
@@ -51,9 +56,47 @@ class ServiceCameraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCameraRequest $request , $store_code)
     {
-        //
+        $fileName = null;
+ 
+        try{
+            if($request->has('image_url')){
+                $file=$request->image_url;
+                $etx=$request->image_url->extension();
+                $fileName=time().'-'.'camera.'.$etx;
+                $file->move(public_path($this->linkFolder),$fileName);
+            }
+
+            if($fileName == null)
+            {
+                $this->cameraRepo->create(
+                    array_merge($request->all(), ['store_code' => $store_code])
+                   );
+                try {
+                  
+                } catch (\Throwable $th) {
+                    return redirect()->route("user.service_camera.index" , $store_code)->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Thêm dữ không liệu thành công"]);
+                }
+            }
+            else
+            {
+              
+                $this->cameraRepo->create(
+                    array_merge($request->all(), ['store_code' => $store_code , 'image_url' => $fileName])
+
+                );
+
+            }
+
+
+            return redirect()->route("user.service_camera.index" , $store_code)->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
+        }
+
+        catch(\throwable $err){
+            \dd($err);
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**
@@ -134,8 +177,16 @@ class ServiceCameraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($store_code , $id)
     {
-        //
+        try {
+             $this->cameraRepo->deleteByStore($id,$store_code);
+            return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->back()->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Xóa dữ liệu không thành công"]);
+        }
+
     }
 }

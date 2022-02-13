@@ -36,6 +36,20 @@ class ThemeController extends Controller
         return \auto_redirect(\view("pages.user.theme.index", [ 'theme' => $theme, 'listPosts' => $listPosts,  'title' => $this->title]),  $theme);
     }
 
+    public function store(Request $request , $store_code)
+    {
+        try{
+            $this->themeRepo->create([
+                "store_code" => $store_code,
+            ]);
+            return redirect()->back()->with(["status"=> 201 , "status_code" => "success",  "msg"=>"Generate Theme thành công"]);
+        }
+        catch(\throwable $err){
+            \dd($err);
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
+    }
+
     public function update(UpdateThemeRequest $request,$store_code, $id)
     {
 

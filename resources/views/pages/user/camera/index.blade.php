@@ -23,6 +23,11 @@
                   @include('components.user.popup_error')
 
 
+                  <div class="{{$badges->is_sample == true ? "" : "hide"}}" > 
+                    <a class="btn btn-primary {{$badges->is_sample == true ? "" : "hide"}}" href="{{ route('user.service_camera.create' , $badges->store_code) }}">Thêm mới {{$title}}</a>
+
+                    <br /> <br />
+                </div>
 
 
                     <div class="box">
@@ -72,10 +77,13 @@
 
 
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('user.service_camera.edit', $value->id) }}"><i
+                                                href="{{ route('user.service_camera.edit', ['store_code' => $badges->store_code , 'camera' => $value->id]) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                           
-                                                 
+                                                    <a type="button" class="btn btn-default {{$badges->is_sample == true ? "" : "hide"}}"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
+                                                        onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
+                                                              class="fa fa-trash"></i></a>
+                                                      </td>
                                                   </td>
                                                 </tr>
 
@@ -92,6 +100,7 @@
                 </div>
                 <!-- col-md-12 -->
             </div>
+            @include('pages.user.camera.child.remove_popup');
 
 
 

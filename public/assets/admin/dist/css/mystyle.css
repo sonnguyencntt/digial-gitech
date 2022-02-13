@@ -1,3 +1,38 @@
+
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{  background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(../../../../images/404.png);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{ margin-top:-50px;}
+
 div.pop-up {
     position: relative;
     left: 128px;
@@ -7,6 +42,13 @@ div.pop-up {
     background-color: #3795f6;
     border-radius: 5px;
     cursor: pointer;
+  }
+  #active-group-sidebar{
+    border-left: 3px solid red;
+  }
+  .skin-blue .sidebar-menu>li.active>a{
+    border-left-color: #ad166f !important;
+    background: #7c7ca7 !important;
   }
   .active-column-success{
     font-weight: 700;

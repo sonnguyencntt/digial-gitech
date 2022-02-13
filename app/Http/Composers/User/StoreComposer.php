@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
 class StoreComposer
 {
     protected $fillable = [];
-    protected $fillable_contains = ["user"];
+    protected $fillable_contains = ["user" ];
     protected $guarded = ["auth"];
     protected $storeRepo;
 
@@ -49,7 +49,8 @@ class StoreComposer
         }
         if ($agree)
         {
-            $user_id = Auth::user()->id;
+            $user = Auth::user();
+            $user_id = $user ? $user->id : null;
             $view->with('stores', $this->storeRepo->getAll($user_id));
         }
       

@@ -98,7 +98,7 @@
     </div>
 @stop
 @section('javascript')
-<script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script>       
+<script src={{asset("/assets/admin/dist/js/blog.js?ver=07")}}></script>       
 
 
 @endsection

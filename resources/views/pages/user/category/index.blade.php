@@ -15,14 +15,18 @@
 
         <!-- Main content -->
   
-
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-12 col-xs-12">
+
                   @include('components.user.popup_error')
 
+                    <div class="{{$badges->is_sample == true ? "" : "hide"}}" > 
+                        <a class="btn btn-primary {{$badges->is_sample == true ? "" : "hide"}}" href="{{ route('user.category.create' , $badges->store_code) }}">Thêm mới {{$title}}</a>
 
+                        <br /> <br />
+                    </div>
 
 
                     <div class="box">
@@ -62,7 +66,9 @@
                                                 href="{{ route('user.category.edit', ["store_code"=>$badges->store_code , "category"=>$value->id]) }}"><i
                                                     class="fa fa-pencil"></i></a> 
                                           
-                                                 
+                                                    <a type="button" class="btn btn-default {{$badges->is_sample == true ? "" : "hide"}}"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
+                                                    onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
+                                                          class="fa fa-trash"></i></a>
                                                   </td>
                                                 </tr>
 
@@ -79,6 +85,7 @@
                 </div>
                 <!-- col-md-12 -->
             </div>
+            @include('pages.user.category.child.remove_popup');
 
 
 
