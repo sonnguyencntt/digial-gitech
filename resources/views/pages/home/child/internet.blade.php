@@ -29,16 +29,7 @@
                     @endforeach
 
                 </ul>
-                <script type="text/javascript">
-                    jQuery(document).ready(function(e) {
-                        jQuery(".dangkyngay-bt").click(function() {
-                            var tengoi = jQuery(this).attr("data-goi-cuoc");
-                            var giagoi = jQuery(this).attr("data-gia");
-                            jQuery(".class_ten_goi").val(tengoi);
-                            jQuery(".class_gia_goi").val(giagoi);
-                        });
-                    });
-                </script>
+ 
             </div>
         </div>
 

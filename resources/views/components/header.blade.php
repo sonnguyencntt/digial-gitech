@@ -93,7 +93,7 @@
 
                         <li id="menu-item-100"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-100 menu-item-design-default">
-                            <a href={{$category->link_url."".$category->id}}
+                            <a href="{{asset($category->link_url."".$category->id)}}"
                                 class="nav-top-link">{{$category->name}}</a>
                         </li>
                         @endforeach

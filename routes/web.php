@@ -163,8 +163,12 @@ Route::group([
             Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
         });
         Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
-        Route::get('/config', 'Admin\ConfigController@index')->name('admin.config.index');
-        Route::put('/config/{config}', 'Admin\ConfigController@update')->name('admin.config.update');
+        Route::get('/config-general', 'Admin\ConfigController@index')->name('admin.config.index');
+        Route::post('/config-general', 'Admin\ConfigController@store')->name('admin.config.store');
+
+        Route::put('/config-general/{config}', 'Admin\ConfigController@update')->name('admin.config.update');
+
+
 
 
         Route::group(['prefix' => 'store'], function () {

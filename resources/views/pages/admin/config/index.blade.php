@@ -26,62 +26,67 @@
           <div class="box-header">
             <h3 class="box-title">{{$title}}</h3>
           </div>
-          <form role="form" action="{{route("admin.config.update" ,  $config->id)}}" method="post"  >
+
+          @if($config)
+          <form role="form" action="{{route("admin.config.update" , $config->id)}}" method="post" >
             @csrf
             @method('put')
             <div class="box-body">
-           
-
-                  <div class="form-group">
-                    <label for="email">Chọn mẫu cửa hàng</label>
-                    <select name="store_sample_code" id="" class="form-control">
-                      <option value="">--Chọn cửa hàng--</option>
-
-                      @foreach($listStores as $key => $value)
-                      <option value="{{$value->store_code}}" {{$value->store_code == $config->store_sample_code ? "selected" : ""}}
-                        >{{$value->store_code}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Tài liệu hướng dẫn trỏ domain</label>
-                    <input type="text" class="form-control" id="title" name="document_point_domain" value = "{{$config->document_point_domain}}" placeholder="Nhập link hướng dẫn" autocomplete="off" />
-               
-                  </div>
-                </div>
 
 
+              <div class="form-group">
+                <label for="email">Chọn mẫu cửa hàng</label>
+                <select name="store_sample_code" id="" class="form-control">
+                  <option value="">--Chọn cửa hàng--</option>
+
+                  @foreach($listStores as $key => $value)
+                  <option value="{{$value->store_code}}" {{$value->store_code == $config->store_sample_code ? "selected"
+                    : ""}}
+                    >{{$value->store_code}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="email">Tài liệu hướng dẫn trỏ domain</label>
+                <input type="text" class="form-control" id="title" name="document_point_domain"
+                  value="{{$config->document_point_domain}}" placeholder="Nhập link hướng dẫn" autocomplete="off" />
+
+              </div>
+            </div>
 
 
-
-
-
-
-
-
-
-
-
-
-            <!-- /.box-body -->
 
             <div class="box-footer">
               <button type="submit" class="btn btn-primary ">Lưu</button>
             </div>
           </form>
+
+          @else
+          <div class="box-body">
+            <form role="form" action="{{route("admin.config.store")}}" method="POST" >
+              @csrf
+              <div style="display: flex ; height : 250px">
+                <button type="submit" style=" margin : auto ;" class="btn btn-success btn-sm"><i
+                    class="fa fa-plus"></i>Generate config</button>
+            </form>
+
+          </div>
         </div>
-        <!-- /.box -->
+
+        @endif
       </div>
-      <!-- col-md-12 -->
+      <!-- /.box -->
     </div>
-    <!-- /.row -->
+    <!-- col-md-12 -->
+</div>
+<!-- /.row -->
 
 
-  </section>
+</section>
 
 </div>
 @stop
 @section('javascript')
-<script src={{asset("/assets/admin/dist/js/blog.js?ver=05")}}></script>       
+<script src={{asset("/assets/admin/dist/js/blog.js?ver=05")}}></script>
 
 @endsection

@@ -11,7 +11,7 @@ class ServiceCameraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- 
+    
     public function __construct(cameraRepositoryInterface $cameraRepo,PlayRepositoryInterface $playRepo )
     {
         $this->cameraRepo = $cameraRepo;
@@ -36,6 +36,7 @@ class ServiceCameraController extends Controller
     public function create()
     {
         //
+       
     }
 
     /**
@@ -47,22 +48,33 @@ class ServiceCameraController extends Controller
     public function store(Request $request)
     {
         //
+        
+      
     }
-
+    public function ajaxRequestPost(Request $request)
+    {
+        $input = $request->all();
+        \Log::info($input);
+   
+        return response()->json(['success'=>'Got Simple Ajax Request.']);
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $storage=$this->playRepo->getAllPlay($id);
+    public function show($store_code,$cameraID)
+    {   
+        $getCategoryName=$this->cameraRepo->getCategoryName();
+        // dd($getCategoryName->id);
+        $storage=$this->playRepo->getAllPlay($store_code,$getCategoryName->category->id);
         $getFirstID=$this->cameraRepo->getFirstID();
         $getSecondID=$this->cameraRepo->getSecondID();
-        $getCategoryName=$this->cameraRepo->getCategoryName();
-        $title=$getCategoryName->category->name;
-        return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'title'=>$title,'storage'=>$storage,'status'=>200]) ;
+        
+        
+        
+        return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'cateogryName'=>$getCategoryName,'storage'=>$storage,'status'=>200]) ;
     }
 
     /**

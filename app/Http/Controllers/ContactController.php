@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Customer\Contact\CreateCustomerRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Customer\CustomerRepositoryInterface;
+use App\Repositories\Theme\ThemeRepositoryInterface;
 class ContactController extends Controller
 {
     /**
@@ -14,14 +15,16 @@ class ContactController extends Controller
     protected $customerRepo;
     protected $title = "Contact";
 
-    public function __construct(CustomerRepositoryInterface $customerRepo)
+    public function __construct(CustomerRepositoryInterface $customerRepo,ThemeRepositoryInterface $themeRepo)
     {
         $this->customerRepo = $customerRepo;
+        $this->themeRepo = $themeRepo;
     }
-    public function index()
+    public function index($store_code)
     {   
-        $listContacts=$this->customerRepo->getAll();
-        return view("pages.contact.index" , ['list' => $listContacts , 'title' => $this->title,'status'=>201]);
+        
+    
+        return view("pages.contact.index" , ['title' => $this->title,'status'=>201]);
 
 
     }
@@ -42,12 +45,13 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCustomerRequest $request)
+    public function store(CreateCustomerRequest $request,$store_code)
     {
+        
 
         try{
 
-            $category=$this->customerRepo->create($request->all());
+            $category=$this->customerRepo->create(array_merge($request->all(), ['store_code' => $store_code]));
             
             return redirect()->back()->with(["status"=> 201 ,  "msg"=>"Thêm dữ liệu thành công"]);
          

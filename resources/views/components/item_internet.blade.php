@@ -10,3 +10,4 @@
 </div>
 <div class="bt_dangky"><a data-toggle="modal" data-target="#bookingModal" class="dangkyngay-bt">ĐĂNG
         KÝ NGAY</a></div>
+

@@ -53,7 +53,7 @@
                                 <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
                             </div>
                             <div class="buttom-ft">
-                                <div class="chitietbt"><a href="{{route('service_camera.index' , $badges->store_code)}}">Xem chi tiết</a>
+                                <div class="chitietbt"><a href="{{ route('service_camera.show',["store_code" =>  $camera->store_code,"cameraID"=>$camera->id])}}">Xem chi tiết</a>
                                 </div>
                                 <div class="dangkybt"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a>
                                 </div>

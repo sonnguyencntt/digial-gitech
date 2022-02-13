@@ -25,9 +25,9 @@ class PlayRepository extends BaseRepository implements PlayRepositoryInterface
     {
         return $this->model->with("store")->where("store_code", $store_code)->find($id);
     }
-    public function getAllPlay($id)
-    {
-        $results = $this->model->with('category')->where('category_id', '=', $id)->get();
+
+    public function getAllPlay($store_code,$id){
+        $results = $this->model->with('store','category')->where('store_code',$store_code)->where('category_id' ,'=' ,$id)->get();
         return $results;
     }
     public function createMultiRecord($data = [], $store_code = null)

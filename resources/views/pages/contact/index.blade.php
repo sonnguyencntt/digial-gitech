@@ -5,6 +5,7 @@
 
 
     <div id="content" role="main" class="content-area">
+<<<<<<< HEAD
 
 
         <div class="row row-full-width bando-lienhepage" id="row-2035417477">
@@ -17,6 +18,17 @@
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5214280922282!2d106.68599901526036!3d10.771318262232242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3cd2e8d6a9%3A0x41b13af62e34e6e4!2zMTI0IMSQxrDhu51uZyBTxrDGoW5nIE5ndXnhu4d0IEFuaCwgUGjGsOG7nW5nIFBo4bqhbSBOZ8WpIEzDo28sIFF14bqtbiAxLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1623924550065!5m2!1sen!2s"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
                 </div>
+=======
+    
+            
+                <div class="row row-full-width bando-lienhepage"  id="row-2035417477">
+    
+        <div id="col-565922035" class="col small-12 large-12"  >
+            <div class="col-inner"  >
+                
+                
+    <p><iframe src="{{$themeView->iframe_position}}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
+>>>>>>> a9b18b018c4ab1ffb14a434924c6ee6ec171a18b
             </div>
 
 
@@ -45,6 +57,7 @@
 
                     @endforeach
                 </div>
+<<<<<<< HEAD
             </div>
 
 
@@ -109,6 +122,23 @@
         </div>
 
 
+=======
+    
+        
+    </div>
+    <div class="row"  id="row-252565475">
+    
+    {{-- thông tin liên hệ --}}
+    @include( 'pages.contact.child.contactinfor' )
+        
+    
+    {{-- ghi thông tin liên lạc --}}
+    @include( 'pages.contact.child.getcontactinfor' )
+        
+    </div>
+            
+                    
+>>>>>>> a9b18b018c4ab1ffb14a434924c6ee6ec171a18b
     </div>
 
 

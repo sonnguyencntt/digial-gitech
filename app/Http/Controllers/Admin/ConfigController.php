@@ -11,7 +11,7 @@ class ConfigController extends Controller
 {
 
     protected $storeRepo;
-    protected $title = "Cửa hàng";
+    protected $title = "Cấu hình";
     public function __construct(StoreRepositoryInterface $storeRepo)
     {
         $this->storeRepo = $storeRepo;
@@ -35,7 +35,6 @@ class ConfigController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -46,7 +45,14 @@ class ConfigController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            AdminConfig::create([
+            ]);
+            return redirect()->back()->with(["status"=> 201 , "status_code" => "success",  "msg"=>"Generate config thành công"]);
+        }
+        catch(\throwable $err){
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**
