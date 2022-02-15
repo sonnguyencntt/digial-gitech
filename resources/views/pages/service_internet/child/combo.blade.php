@@ -1,8 +1,10 @@
 
     <ul class="goi_cuoc_home">
-        @foreach($list_internet as $internet)
+        @foreach($list_internet as $combo)
             <li class="col_li-3 internet-ca-nhan">
-                <h3>{{$internet->name}}</h3> 
+                @include('components.item_internet');
+
+                {{-- <h3>{{$internet->name}}</h3> 
                 <div class="thongtin-goicuoc">
                         <p class="gia-goicuoc">{{number_format($internet->price,0, ',', '.')}}<span class="dongia">đ/Tháng</span></p>
                         <div class="linebt"></div>
@@ -13,7 +15,7 @@
                                 
                         </div>
                         </div>
-                        <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 80" data-gia="200.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div>
+                        <div class="bt_dangky"><a href="#" data-goi-cuoc=" Super 80" data-gia="200.000" class="dangkyngay-bt">ĐĂNG KÝ NGAY</a></div> --}}
             </li>
         @endforeach
     </ul>

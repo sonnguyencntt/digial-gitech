@@ -12,7 +12,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     }
     public function getAll($store_code =null)
     {
-        return $this->model->with("store.internet.category")->where("store_code" , $store_code)->get();
+        return $this->model->with("store")->with("internet.category")->where("store_code" , $store_code)->get();
     }
 
     public function getID($id){

@@ -67,7 +67,6 @@ class ServiceCameraController extends Controller
     public function show($store_code,$cameraID)
     {   
         $getCategoryName=$this->cameraRepo->getCategoryName();
-        // dd($getCategoryName->id);
         $storage=$this->playRepo->getAllPlay($store_code,$getCategoryName->category->id);
         $getFirstID=$this->cameraRepo->getFirstID();
         $getSecondID=$this->cameraRepo->getSecondID();

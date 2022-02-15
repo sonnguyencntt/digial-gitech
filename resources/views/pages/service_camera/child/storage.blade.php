@@ -47,7 +47,7 @@
 <p class="giacamera">{{$storage->price}}<br />
 <span class="donvitinh">VNĐ/Tháng/1 Camera</span></p>
     {!!$storage->description!!}
-<div class="bt_dangky"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a></div>
+<div class="bt_dangky"><a class="dangkyngay-bt" onclick="showModalOrder({{$storage->id}} , '{{$storage->name}}' , '{{$badges->store_code}}')" >ĐĂNG KÝ NGAY</a></div>
             </div>
     
         </div>

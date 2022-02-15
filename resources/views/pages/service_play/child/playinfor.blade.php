@@ -11,7 +11,7 @@
     {{$listPlay->description}}
     </div>
     </p></div>
-    <div class="bt_dangky"><a href="#" data-goi-cuoc=" GÓI MAXY" data-gia="88000" class="dangkyngay-bt pum-trigger" style="cursor: pointer;">ĐĂNG KÝ NGAY</a></div>
+    <div class="bt_dangky"><a href="#" d onclick="showModalOrder({{$listPlay->id}} , '{{$listPlay->name}}' , '{{$badges->store_code}}')" class="dangkyngay-bt pum-trigger" style="cursor: pointer;">ĐĂNG KÝ NGAY</a></div>
     </li>
     @endforeach
     </ul>

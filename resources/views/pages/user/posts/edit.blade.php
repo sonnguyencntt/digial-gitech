@@ -31,7 +31,7 @@
           <div class="box">
             <div class="box-header">
             </div>
-            <form role="form" action="{{route("user.posts.update" ,  ["store_code" => $badges->store_code , "posts"=>$posts->id])}}" method="POST"   enctype="multipart/form-data">
+            <form id="postForm" role="form" action="{{route("user.posts.update" ,  ["store_code" => $badges->store_code , "posts"=>$posts->id])}}" method="POST"   enctype="multipart/form-data">
               @method('PUT')  
               <div class="box-body">
                 <div class="form-group">
@@ -115,7 +115,7 @@
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
 
-<script src={{asset("/assets/admin/ckeditor.js?ver=2")}}></script>       
+<script src={{asset("/assets/admin/ckeditor.js?ver=3")}}></script>       
 
   <script> load_ckeditor("description") </script>  
   @endsection

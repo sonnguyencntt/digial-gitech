@@ -33,3 +33,9 @@
     margin: 20px 0;
     display: inline-block;}
 	.contant_box_404{ margin-top:-50px;}
+    .home{
+        padding-right: initial !important;
+    }
+    .bt_dangky{
+        cursor: pointer;
+    }

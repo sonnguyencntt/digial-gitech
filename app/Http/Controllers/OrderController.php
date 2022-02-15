@@ -3,24 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\category\CategoryRepositoryInterface;
-use App\Repositories\play\PlayRepositoryInterface;
-class ServicePlayController extends Controller
+use App\Http\Controllers\Controller;
+use App\Repositories\Order\OrderRepositoryInterface;
+
+class OrderController extends Controller
 {
+
+
+    protected $orderRepo;
+    protected $title = "Đơn hàng";
+
+    public function __construct(OrderRepositoryInterface $orderRepo)
+    {
+        $this->orderRepo = $orderRepo;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(PlayRepositoryInterface $playRepo,CategoryRepositoryInterface $cateogryRepo)
+    public function index($store_code)
     {
-        $this->playRepo = $playRepo;
-        $this->categoryRepo=$cateogryRepo;
-    }
-    public function index()
-    {
-        return \auto_redirect(\view("pages.service_play.index") , "ajax");
-
+        
     }
 
     /**
@@ -39,9 +43,20 @@ class ServicePlayController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $store_code)
     {
-        //
+        \Log::channel("jobs")->info($request->all());
+        try{
+        $this->orderRepo->create($request->all());
+        return \response()->json(["msg"=>"Xin cảm ơn, form đăng ký đã được gửi thành công."] , 200);
+
+    }
+    catch(\throwable $err){
+        \Log::channel("jobs")->info($err);
+
+        return \response()->json(["msg"=>"Đã xãy ra lỗi vui lòng kiểm tra lại thông tin."] , 403);
+    }
+
     }
 
     /**
@@ -50,10 +65,9 @@ class ServicePlayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($store_code,$id)
+    public function show($id)
     {
-        $listPlay=$this->playRepo->getAllPlay($store_code,$id);
-        return view("pages.service_play.index",['listPlay'=>$listPlay,'status'=>201] );
+        //
     }
 
     /**

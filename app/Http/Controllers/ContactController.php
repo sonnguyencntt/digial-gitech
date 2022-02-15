@@ -36,7 +36,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        \dd("sad");
     }
 
     /**
@@ -47,20 +47,18 @@ class ContactController extends Controller
      */
     public function store(CreateCustomerRequest $request,$store_code)
     {
-        
-
         try{
 
             $category=$this->customerRepo->create(array_merge($request->all(), ['store_code' => $store_code]));
             
-            return redirect()->back()->with(["status"=> 201 ,  "msg"=>"Thêm dữ liệu thành công"]);
+            return redirect()->back()->with(["status"=> 201 ,  "msg"=>"Gửi thông tin thành công" , "alert" => "success"]);
          
         }
 
         catch(\throwable $err){
             
-           
-            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+            return redirect()->back()->with(["status"=> 403 ,  "msg"=>"Đã xãy ra lỗi, vui lòng kiểm tra lại" , "alert" => "danger"]);
+
          
 
         }

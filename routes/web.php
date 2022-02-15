@@ -269,13 +269,18 @@ Route::group([
     });
 
     Route::group(['prefix' => 'contact'], function () {
+
         Route::get('/', 'ContactController@index')->name('contact.index');
         Route::post('/', 'ContactController@store')->name('contact.store');
+
         Route::get('/create', 'ContactController@create')->name('contact.create');
         Route::get('/{contact}/edit', 'ContactController@edit')->name('contact.edit');
         Route::put('/{contact}', 'ContactController@update')->name('contact.update');
         Route::delete('/{contact}', 'ContactController@destroy')->name('contact.destroy');
         Route::get('/{contact}', 'ContactController@show')->name('contact.show');
+    });
+    Route::group(['prefix' => 'order'], function () {
+        Route::post('/', 'OrderController@store')->name('order.store');
     });
     Route::fallback('FallBackController@notfound')->name('fallback.notfound');
 

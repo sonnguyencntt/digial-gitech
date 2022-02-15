@@ -35,9 +35,9 @@
                                     {!!$camera->description!!}
                                     <div class="giasp">
                                         <div class="gia-left"><span
-                                                style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>{{number_format($camera->price,0, ',', '.')}}vnđ</strong></span></div>
+                                                style="color: #898888; text-decoration: line-through; font-family: 'UTM Avo'; font-size: 15px;"><strong>{{$camera ? number_format($camera->price == "" ? 0 : $camera->price ,0, ',', '.') : 0}}vnđ</strong></span></div>
                                         <div class="gia-right"><span
-                                                style="color: #f26522;"><strong>{{number_format($camera->discount,0, ',', '.')}}
+                                                style="color: #f26522;"><strong>{{$camera ? number_format($camera->discount == "" ? 0 : $camera->discount ,0, ',', '.') : 0}}
                                                     vnđ</strong></span></div>
                                         <p style="text-align: left;">* Giá trên đã bao gồm VAT</p>
                                     </div>
@@ -54,7 +54,7 @@
                             <div class="buttom-ft">
                                 <div class="chitietbt"><a href="{{ route('service_camera.show',["store_code" =>  $camera->store_code,"cameraID"=>$camera->id])}}">Xem chi tiết</a>
                                 </div>
-                                <div class="dangkybt"><a class="dangkyngay-bt" href="#">ĐĂNG KÝ NGAY</a>
+                                <div class="dangkybt"><a class="dangkyngay-bt" onclick="showModalOrder({{$camera->id}} , '{{$camera->name}}' , '{{$badges->store_code}}')">ĐĂNG KÝ NGAY</a>
                                 </div>
                             </div>
                         </div>

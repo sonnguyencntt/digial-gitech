@@ -1,6 +1,6 @@
   function load_ckeditor($name)
   {
-    const description = SUNEDITOR.create((document.getElementById($name) || 'description'),{
+    const description = SUNEDITOR.create((document.getElementById($name ||  'description')),{
 
         width : 'auto',
         buttonList: [

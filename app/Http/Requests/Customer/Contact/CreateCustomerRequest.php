@@ -25,8 +25,9 @@ class CreateCustomerRequest extends FormRequest
     {
         return [
             'full_name' => 'required|max:255',
-            'phone_number' => 'required|max:10',
+            'phone_number' => 'required|digits_between:9,11',
             'address' => 'required|max:255',
+            'email' => 'email||nullable'
            
             
         ];

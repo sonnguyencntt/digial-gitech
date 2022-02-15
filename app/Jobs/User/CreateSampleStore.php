@@ -49,6 +49,7 @@ class CreateSampleStore implements ShouldQueue
         PostsRepository $postsRepo,
         ThemeRepositoryInterface $themeRepo
     ) {
+
         $store_sample_code = AdminConfig::first()->store_sample_code;
         $store_code = $this->store_code;
         if ($store_sample_code) {
@@ -90,7 +91,7 @@ class CreateSampleStore implements ShouldQueue
             $theme = $theme->toArray();
             if ($theme)
                 $theme["store_code"] = $this->store_code;
-
+            Log::channel("jobs")->info($listCategory);
             try {
                 DB::beginTransaction();
                 if ($listCategory)

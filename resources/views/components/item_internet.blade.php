@@ -8,6 +8,6 @@
         {!!$combo->description!!}
     </div>
 </div>
-<div class="bt_dangky"><a data-toggle="modal" data-target="#bookingModal" class="dangkyngay-bt">ĐĂNG
+<div class="bt_dangky"><a onclick="showModalOrder({{$combo->id}} , '{{$combo->name}}' , '{{$badges->store_code}}')" class="dangkyngay-bt">ĐĂNG
         KÝ NGAY</a></div>
 

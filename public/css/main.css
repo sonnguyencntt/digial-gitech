@@ -39,3 +39,16 @@
     text-align: center;
     min-height: 0px;
 }
+.error-input-order{
+    margin-bottom: 7px;
+}
+.hide{
+    display: none;
+}
+.msg-danger
+{
+    color: red;
+}
+.msg-success{
+    color: green;
+}

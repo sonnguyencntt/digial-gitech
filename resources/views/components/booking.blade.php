@@ -85,15 +85,15 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="pum-content popmake-content" tabindex="0">
+            <div class="popmake-content" tabindex="0">
                 <div class="form-popup" style="text-align: center">Quý khách vui lòng điền thông tin vào form bên dưới.
                     Xin cảm ơn!<br />
-                    <div role="form" class="wpcf7" id="wpcf7-f324-o1" lang="vi" dir="ltr">
+                    <div role="form" class="wpcf7 loading" id="wpcf7-f324-o1" lang="vi" dir="ltr">
                         <div class="screen-reader-response">
                             <p role="status" aria-live="polite" aria-atomic="true"></p>
                             <ul></ul>
                         </div>
-                        <form action="https://fptvienthong.net/#wpcf7-f324-o1" method="post" class="wpcf7-form init"
+                        <form onsubmit="return false;" method="post" class="wpcf7-form init" id="form-post-order"
                             novalidate="novalidate" data-status="init">
                             <div style="display: none;">
                                 <input type="hidden" name="_wpcf7" value="324" />
@@ -103,19 +103,27 @@
                                 <input type="hidden" name="_wpcf7_container_post" value="0" />
                                 <input type="hidden" name="_wpcf7_posted_data_hash" value="" />
                             </div>
-                            <p><span class="wpcf7-form-control-wrap text-918"><input type="text" name="text-918" value=""
+                            <p><span class="wpcf7-form-control-wrap text-918"><input type="text" name="order_name" value=""
                                         size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
-                                        aria-required="true" aria-invalid="false" placeholder="Họ và tên*" /></span><br />
-                                <span class="wpcf7-form-control-wrap tel-185"><input type="tel" name="tel-185" value=""
+                                        aria-required="true" aria-invalid="false" placeholder="Họ và tên*" /></span>
+                                        <span  class="wpcf7-not-valid-tip error-input-order error-name hide" aria-hidden="true">Mục này là bắt buộc.</span><br />
+                                <span class="wpcf7-form-control-wrap tel-185"><input type="tel" name="order_phone_number" value=""
                                         size="40"
-                                        class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel"
+                                        class=""
                                         aria-required="true" aria-invalid="false"
-                                        placeholder="Số điện thoại *" /></span><br />
-                                <span class="wpcf7-form-control-wrap text-919"><input type="text" name="text-919" value=""
+                                        placeholder="Số điện thoại *" /></span>
+                                        <span class="wpcf7-not-valid-tip error-input-orde error-phone hide" aria-hidden="true">Mục này là bắt buộc. (Kiểm tra định dạng SDT)</span>
+                                        <br />
+                                <span class="wpcf7-form-control-wrap text-919"><input type="text" name="order_address" value=""
                                         size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
-                                        aria-required="true" aria-invalid="false" placeholder="Địa chỉ*" /></span>
+                                        aria-required="true" aria-invalid="false" placeholder="Địa chỉ*" />
+                                        <span class="wpcf7-not-valid-tip error-input-order error-address hide" aria-hidden="true">Mục này là bắt buộc.</span>
+                                    </span>
+                                    <input type="hidden" name = "store_code">
+                                    <input type="hidden" name = "id">
+
                             </p>
-                            <div><span class="wpcf7-form-control-wrap ten_goi"><input type="text" name="ten_goi" value=""
+                            <div><span class="wpcf7-form-control-wrap ten_goi"><input type="text" name="ten_goi" value="" disabled
                                         size="40" class="wpcf7-form-control wpcf7-text class_ten_goi"
                                         aria-invalid="false" /></span></div>
                             <p>
@@ -123,18 +131,12 @@
                                 data-sitekey="6LcCFO4cAAAAAN3Epwow2Gj1EpcD-040eoJkPad2"></div><span
                                 class="wpcf7-form-control-wrap cf7sr-recaptcha"><input type="hidden" name="cf7sr-recaptcha"
                                     value="" class="wpcf7-form-control"></span><br />
-                            <input type="submit" value="ĐĂNG KÝ NGAY" class="wpcf7-form-control has-spinner wpcf7-submit" />
-                            </p>
-                            <p style="display: none !important;"><label>&#916;<textarea name="_wpcf7_ak_hp_textarea"
-                                        cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden"
-                                    id="ak_js" name="_wpcf7_ak_js" value="249" />
-                                <script>
-                                    document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() )
-                                </script>
-                            </p><input type='hidden' class='wpcf7-pum'
-                                value='{"closepopup":false,"closedelay":0,"openpopup":false,"openpopup_id":0}' />
-                            <div class="wpcf7-response-output" aria-hidden="true"></div>
-                        </form>
+                            <input type="submit" value="ĐĂNG KÝ NGAY" onclick="postOrder()" class="wpcf7-form-control has-spinner wpcf7-submit" />
+                           
+                            <div style="color: #46b450;" class="wpcf7-output msg-success" aria-hidden="true"></div>        
+                            <div style="color: red;" class="wpcf7-output msg-error" aria-hidden="true"></div>        
+
+                                        </form>
                     </div>
                 </div>
             </div>
