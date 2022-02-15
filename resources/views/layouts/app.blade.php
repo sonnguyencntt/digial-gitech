@@ -39,8 +39,8 @@
             margin: 10px 0px
         }
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href={{URL::asset("css/bootstrap.css")}}
+       >
     <link rel='stylesheet' id='wp-block-library-css' href={{
         URL::asset('wp-includes/css/dist/block-library/style.min41a3.css?ver=5.8') }} type='text/css' media='all' />
     <link rel='stylesheet' id='contact-form-7-css' href={{
@@ -66,7 +66,7 @@
     <link rel='stylesheet' id='flatsome-googlefonts-css'
         href='http://fonts.googleapis.com/css?family=%3Aregular%2C%2C%2C%7CDancing+Script%3Aregular%2C400&amp;display=swap&amp;ver=3.9'
         type='text/css' media='all' />
-    <link rel='stylesheet' href={{ URL::asset('css/main.css?v=02') }} type='text/css' media='all' />
+    <link rel='stylesheet' href={{ URL::asset('css/main.css?v=03') }} type='text/css' media='all' />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
     @yield('css')

@@ -123,10 +123,7 @@ class CategoryController extends Controller
 
             if($fileName == null)
             {
-                $this->categoryRepo->updateByStore($id,$store_code,[
-                    'name'=>$request->name,
-                   
-                ]);
+                $this->categoryRepo->updateByStore($id,$store_code,$request->all());
                 try {
 
                 } catch (\Throwable $th) {

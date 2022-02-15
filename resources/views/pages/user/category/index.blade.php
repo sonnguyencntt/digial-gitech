@@ -39,7 +39,6 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Hình ảnh</th>
 
                                         <th>Tiêu Đề</th>
 
@@ -56,8 +55,8 @@
                                     @foreach ($listCategories as $key => $value)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td><img src={{asset("$value->image_url")}} style="    width: 150px;
-                                            height: 100px;" loading="lazy"></td>
+                                        {{-- <td><img src={{asset("$value->image_url")}} style="    width: 150px;
+                                            height: 100px;" loading="lazy"></td> --}}
                                         <td>{{ $value->name }}</td>
                                        
                                    

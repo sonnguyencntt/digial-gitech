@@ -31,12 +31,12 @@
         <div class="box">
           <div class="box-header">
           </div>
-          <form role="form" action="{{route("user.category.update" , ["store_code"=>$badges->store_code , "category" =>
+          <form role="form" id="postForm" action="{{route("user.category.update" , ["store_code"=>$badges->store_code , "category" =>
             $category->id])}}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             <div class="box-body">
 
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label>Image Preview: </label>
                 <img src="{{asset($category->image_url)}}" width="150" height="150" class="img-circle">
                 <input type="hidden" value="{{$category->image_url}}" name="image_url_string" />
@@ -52,7 +52,7 @@
                   </div>
                 </div>
 
-              </div>
+              </div> --}}
 
 
               <div class="form-group">
@@ -62,7 +62,20 @@
                 <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
 
               </div>
+   
+              <div class="form-group">
+                <label for="description">Thông tin chi tiết</label>
+               
+                <textarea id="details"  name = "details">{{$category->details}}</textarea>
 
+              </div>
+              <div class="form-group">
+                <label for="description">Ưu điểm</label>
+               
+                <textarea id="advantage"  name = "advantage">{{$category->advantage}}</textarea>
+
+              </div>
+           
               <!-- /.box-body -->
 
               <div class="box-footer">
@@ -91,9 +104,9 @@
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
 
-<script src={{asset("/assets/admin/ckeditor.js?ver=2")}}></script>
+<script src={{asset("/assets/admin/ckeditor.js?ver=3")}}></script>
 
-<script>
-  load_ckeditor("description") 
-</script>
+<script> load_ckeditor("details") 
+  load_ckeditor("advantage") 
+  </script> 
 @endsection

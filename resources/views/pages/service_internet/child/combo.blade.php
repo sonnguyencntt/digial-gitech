@@ -1,7 +1,7 @@
 
     <ul class="goi_cuoc_home">
         @foreach($list_internet as $combo)
-            <li class="col_li-3 internet-ca-nhan">
+            <li class="col_li-{{count($list_internet ?? 0)}} internet-ca-nhan">
                 @include('components.item_internet');
 
                 {{-- <h3>{{$internet->name}}</h3> 

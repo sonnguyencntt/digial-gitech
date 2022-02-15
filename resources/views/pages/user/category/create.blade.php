@@ -31,7 +31,7 @@
               @csrf
               <div class="box-body">
               
-                <div class="form-group">
+                {{-- <div class="form-group">
     
                   <label for="product_image">Ảnh</label>
                   <div class="kv-avatar">
@@ -42,7 +42,7 @@
                   </div>
     
                 </div>
-    
+     --}}
        
        
               
@@ -59,7 +59,18 @@
     
                 </div>
             
-              
+                <div class="form-group">
+                  <label for="description">Thông tin chi tiết</label>
+                 
+                  <textarea id="detail"  name = "detail">{{old("detail")}}</textarea>
+
+                </div>
+                <div class="form-group">
+                  <label for="description">Ưu điểm</label>
+                 
+                  <textarea id="advantage"  name = "description">{{old("advantage")}}</textarea>
+
+                </div>
              
               <!-- /.box-body -->
     
@@ -89,7 +100,9 @@
   <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
   
-  <script src={{asset("/assets/admin/ckeditor.js?ver=2")}}></script>      
+  <script src={{asset("/assets/admin/ckeditor.js?ver=3")}}></script>      
 
-  <script> load_ckeditor("description") </script>  
+  <script> load_ckeditor("detail") 
+  load_ckeditor("advantage") 
+  </script>  
   @endsection

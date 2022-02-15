@@ -115,7 +115,7 @@
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
 
-<script src={{asset("/assets/admin/ckeditor.js?ver=3")}}></script>       
+<script src={{asset("/assets/admin/ckeditor.js?ver=4")}}></script>       
 
   <script> load_ckeditor("description") </script>  
   @endsection

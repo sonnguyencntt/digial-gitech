@@ -4,7 +4,7 @@
 <main id="main" class="">
 
 
-    <div id="content" role="main" class="content-area">
+    <div id="content iframe-position" role="main" class="content-area">
 
     
             
@@ -14,7 +14,7 @@
             <div class="col-inner"  >
                 
                 
-    <p><iframe src="{{$themeView->iframe_position}}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
+         {!!$themeView->iframe_position!!}
             </div>
 
 
@@ -41,4 +41,13 @@
 
 
 </main>
+
+@section("javascript")
+<script>
+   $(document).ready(function () {
+        $("iframe").width("100%");
+        $("iframe").height(300);
+    });
+</script>
+@endsection
 @stop
