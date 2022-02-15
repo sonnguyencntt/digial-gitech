@@ -14,9 +14,9 @@ data-backdrop="static">
                 </div>
             </div>
         </div>
-        <form role="form"   method="post" id="remove" action="store/{{$badges->store_code}}/banner">
-          @csrf
-          @method('delete')
+        <form role="form"   method="post" id="remove" action="/store/{{$badges->store_code}}/banner">
+            @csrf
+            @method('delete')
             <div class="modal-body">
                 <input type="hidden" id="id" name="id">
 

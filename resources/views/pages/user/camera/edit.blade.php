@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                         </div>
-                        <form role="form" id="postForm" action="{{ route(' user.service_camera.update', ["store_code" => $badges->store_code , "camera" => $camera->id]) }}"
+                        <form role="form" id="postForm" action="{{ route('user.service_camera.update', ["store_code" => $badges->store_code , "camera" => $camera->id]) }}"
                             method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')

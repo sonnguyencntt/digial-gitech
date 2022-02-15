@@ -150,6 +150,7 @@ class BannerController extends Controller
      */
     public function destroy($store_code , $id)
     {
+        
         try {
             $this->bannerRepo->deleteByStore($id , $store_code);
            return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);

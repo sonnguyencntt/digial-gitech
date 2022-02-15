@@ -54,7 +54,7 @@
     <p style="text-align: left;">FPT Camera là một sản phẩm công nghệ của Công ty cổ phần viễn thông FPT (FPT Telecom), được ra mắt thị trường Việt Nam vào năm 2019. Với mục tiêu phục vụ khách hàng có nhu cầu giám sát an ninh, FPT Camera đem tới một dịch vụ tiện lợi – thông minh, hỗ trợ giám sát an toàn và bảo mật thông tin tại tư gia.</p>
     <p style="text-align: left;">Ưu điểm chính của FPT Camera là ổn định về tín hiệu, chất lượng hình ảnh cao, kết nối với nhiều thiết bị di động, sử dụng lưu trữ Cloud. Bên cạnh đó, khách hàng luôn luôn được FPT đồng hành cùng quá trình sử dụng về bảo hành, bảo trì, hỗ trợ trực tuyến 24/7.</p>
     {{-- thông tin camera --}}
-    @includeWhen($getFirstID and $getSecondID , 'pages.service_camera.child.camerainfor' )
+    @includeWhen(count(array($getFirstID))>0 and count(array($getSecondID))>0 , 'pages.service_camera.child.camerainfor' )
         
         <div id="gap-912276532" class="gap-element clearfix" style="display:block; height:auto;">
             

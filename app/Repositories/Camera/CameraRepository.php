@@ -25,19 +25,19 @@ class CameraRepository extends BaseRepository implements CameraRepositoryInterfa
     {
         return $this->model->with("store")->find($id);
     }
-    public function getFirstID(){
-        return $this->model->with("store")->first();
+    public function getFirstID($store_code = null){
+        return $this->model->with("store")->where("store_code", $store_code)->first();
     }
-    public function getSecondID()
+    public function getSecondID($store_code = null)
     {
-        $getFistID = $this->getFirstID();
+        $getFistID = $this->getFirstID($store_code);
 
-        return $this->model->with("store")->find( $getFistID->id+1);
+        return $this->model->with("store")->where("store_code", $store_code)->find( $getFistID->id+1);
     }
 
-    public function getCategoryName(){
-        $getFistID=$this->getFirstID();
-        $results = $this->model->with('store','category')->find( $getFistID->id);
+    public function getCategoryName($store_code){
+        $getFistID=$this->getFirstID($store_code);
+        $results = $this->model->with('store','category')->where("store_code", $store_code)->find( $getFistID->id);
         return $results;
     }
     public function createMultiRecord($data = [], $store_code = null)
