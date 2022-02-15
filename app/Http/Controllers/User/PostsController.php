@@ -116,6 +116,7 @@ class PostsController extends Controller
 
             if($fileName == null)
             {
+                
                 $this->postsRepo->updateByStore($id,$store_code,[
                     'title'=>$request->title,
                     'status'=>$request->status,

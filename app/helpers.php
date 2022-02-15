@@ -23,7 +23,7 @@ function menu($current_route = "/", $guard = null, $store_code = null)
 
             ["name" => "Gói FPT Play & Camera" , "title" => "fpt_play" , "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
                 ["name" => "Danh sách" , "title" => "list_fpt_play" , "url" => route("user.service_play.index", ["store_code" => $store_code])],
-                ["name" => "Thêm mới" , "title" => "create_fpt_play" , "url" => route("user.posts.create", ["store_code" => $store_code])]
+                ["name" => "Thêm mới" , "title" => "create_fpt_play" , "url" => route("user.service_play.create", ["store_code" => $store_code])]
             ]],
             ["name" => "Bài viết", "title" => "posts", "icon" => "fa fa-files-o", "sub_menu" => true,  "list_sub_menu" => [
                 ["name" => "Danh sách" , "title" => "list_posts" , "url" => route("user.posts.index", ["store_code" => $store_code])],
