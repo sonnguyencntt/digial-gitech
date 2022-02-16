@@ -220,7 +220,7 @@ Route::group([
 
 Route::group([
     "domain" => "{store_code}." . config('app.short_url'),
-    'middleware' => ["CheckForCustomerStoreCode"]
+    'middleware' => ["CustomDomain", "CheckForCustomerStoreCode"]
 
 ],function () {
 

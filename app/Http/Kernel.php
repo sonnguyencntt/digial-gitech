@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             // \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
         ],
 
         'api' => [
@@ -67,7 +68,7 @@ class Kernel extends HttpKernel
         'CheckForCustomerStoreCode' => \App\Http\Middleware\CheckForCustomerStoreCode::class,
         'checkForActiveStore' => \App\Http\Middleware\checkForActiveStore::class,
 
-
+        'customDomain' => \App\Http\Middleware\CustomDomain::class,
 
 
     ];
