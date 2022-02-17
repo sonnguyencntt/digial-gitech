@@ -18,8 +18,9 @@ class PostsController extends Controller
     {
         $this->postsRepo = $postsRepo;
     }
-    public function index($store_code)
+    public function index(Request $request , $domain)
     {   
+        $store_code = $request->store_code;
         $list_posts=$this->postsRepo->getAll($store_code);
         
         return view("pages.posts.index" , ['list' => $list_posts,'status'=>201]);
@@ -53,9 +54,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($store_code,$post_id)
+    public function show(Request $request , $domain,$post_id)
     {   
-        
+        $store_code = $request->store_code;
+
         $detailPosts=$this->postsRepo->findById($post_id);
         $listPosts=$this->postsRepo->getPostNew($store_code);
         return view("pages.posts.detail",['detail'=>$detailPosts,'listPosts'=>$listPosts,'status'=>201] );

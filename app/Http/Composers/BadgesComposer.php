@@ -17,6 +17,7 @@ class BadgesComposer
     {
         return [
             "store_code" => \request()->store_code ?? null,
+            "domain" => \request()->getHost()
         ];
     }
 

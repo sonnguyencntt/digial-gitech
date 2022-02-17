@@ -64,15 +64,14 @@ class ServiceCameraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($store_code,$cameraID)
+    public function show(Request $request , $domain,$cameraID)
     {   
+        $store_code = $request->store_code;
+
         $getCategoryName=$this->cameraRepo->getCategoryName($store_code);
-        // dd($getCategoryName->id);
         $storage=$this->playRepo->getAllPlay($store_code,$getCategoryName->category->id);
         $getFirstID=$this->cameraRepo->getFirstID($store_code);
         $getSecondID=$this->cameraRepo->getSecondID($store_code);
-        
-        
         
         return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'cateogryName'=>$getCategoryName,'storage'=>$storage,'status'=>200]) ;
     }

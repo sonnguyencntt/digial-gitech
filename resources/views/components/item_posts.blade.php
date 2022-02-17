@@ -1,5 +1,5 @@
 <div class="col-inner">
-    <a href="{{ route('posts.show',["store_code" =>  $badges->store_code,"post"=>$posts->id])}}"
+    <a href="{{ route('posts.show',["domain" =>  $badges->domain,"post"=>$posts->id])}}"
         class="plain">
         <div
             class="box box-default box-text-bottom box-blog-post has-hover">

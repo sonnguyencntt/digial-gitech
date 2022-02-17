@@ -9,7 +9,7 @@
         @foreach($list as $itemList)
           <div class="col post-item" >
             <div class="col-inner">
-            <a href="{{ route('posts.show',["store_code" =>  $itemList->store_code,"post"=>$itemList->id])}}" class="plain">
+            <a href="{{ route('posts.show',["domain" =>  $itemList->domain,"post"=>$itemList->id])}}" class="plain">
                 <div class="box box-text-bottom box-blog-post has-hover">
                                 <div class="box-image" >
                           <div class="image-cover" style="padding-top:56%;">

@@ -51,10 +51,11 @@ class ServiceInternetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($store_code,$id)
+    public function show(Request $request , $domain,$id)
     
     {   
-        
+        $store_code = $request->store_code;
+
         $internetRepo=$this->internetRepo->getDetail($store_code,$id);
         $findidcategory=$this->categoryRepo->findById($id);
         

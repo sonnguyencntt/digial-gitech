@@ -34,11 +34,11 @@
                         </li> --}}
                         <li id="menu-item-103"
                             class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-103 menu-item-design-default">
-                            <a href="{{route('posts.index' , $badges->store_code)}}" class="nav-top-link">Tin tức</a>
+                            <a href="{{route('posts.index' , $badges->domain)}}" class="nav-top-link">Tin tức</a>
                         </li>
                         <li id="menu-item-104"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-104 menu-item-design-default">
-                            <a href="{{route('contact.index' , $badges->store_code)}}" class="nav-top-link">Liên hệ</a>
+                            <a href="{{route('contact.index' , $badges->domain)}}" class="nav-top-link">Liên hệ</a>
                         </li>
                     </ul>
                 </div>
@@ -59,7 +59,7 @@
                 <!-- Logo -->
                 <div id="logo" class="flex-col logo">
                     <!-- Header logo -->
-                    <a href="{{route('home.index', $badges->store_code)}}"
+                    <a href="{{route('home.index', $badges->domain)}}"
                         title="fptvienthong.net - Công ty Cổ phần Viễn thông FPT" rel="home">
                         <img style="max-height: 90px" width="200" height="90" src="{{$themeView->logo}}" class="header_logo header-logo"
                             alt="fptvienthong.net" />

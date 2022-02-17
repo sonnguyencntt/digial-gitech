@@ -40,7 +40,7 @@ class UpdateProfileRequest extends FormRequest
                 'name' => 'required',
                 'password' => 'confirmed|min:6|nullable',
                 'email' => 'required|string|email|max:255|unique:users,email,'.\request()->user,
-                'phone_number' => 'required|digits_between:9,10|unique:users,phone_number,' .\request()->user
+                'phone_number' => 'required|digits_between:9,11|unique:users,phone_number,' .\request()->user
     
             ];
         }

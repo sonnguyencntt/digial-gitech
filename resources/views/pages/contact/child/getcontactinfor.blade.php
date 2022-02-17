@@ -9,7 +9,7 @@
                 <p role="status" aria-live="polite" aria-atomic="true"></p>
                 <ul></ul>
             </div>
-            <form action="{{route('contact.store', $badges->store_code)}}" method="post" >
+            <form action="{{route('contact.store', $badges->domain)}}" method="post" >
           @csrf
                 <p><span class="wpcf7-form-control-wrap text-765"><input type="text" name="full_name"
                             value="{{ old('full_name') }}" size="40" class="wpcf7-form-control wpcf7-text"

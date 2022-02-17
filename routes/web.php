@@ -219,8 +219,8 @@ Route::group([
 
 
 Route::group([
-    "domain" => "{store_code}." . config('app.short_url'),
-    'middleware' => ["CustomDomain", "CheckForCustomerStoreCode"]
+    "domain" => "{domain}",
+    'middleware' => ["customDomain" , "checkForCustomerStoreCode"]
 
 ],function () {
 
@@ -282,6 +282,5 @@ Route::group([
     Route::group(['prefix' => 'order'], function () {
         Route::post('/', 'OrderController@store')->name('order.store');
     });
-    Route::fallback('FallBackController@notfound')->name('fallback.notfound');
 
 });

@@ -62,21 +62,22 @@ class RegisterController extends Controller
      */
     protected function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone_number' => ['required', 'string', 'regex:/(01)[0-9]{9}/', 'max:255', 'unique:users'],
-            'address' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
-            'confirm_password' => 'required|same:password'
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'phone_number' => ['required', 'digits_between:9,11', 'max:255', 'unique:users'],
+                'address' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'min:8'],
+                'confirm_password' => 'required|same:password'
 
-        ],
-        [
-            "email.unique" => "Đã tồn tại email này trong hệ thống",
-            "phone_number.unique" => "Đã tồn tại Phone này trong hệ thống",
+            ],
+            [
+                "email.unique" => "Đã tồn tại email này trong hệ thống",
+                "phone_number.unique" => "Đã tồn tại Phone này trong hệ thống",
 
-        ]
-    );
+            ]
+        );
 
         try {
             $token = \strtoupper(\Str::random(10));
@@ -88,13 +89,12 @@ class RegisterController extends Controller
                 'phone_number' => $request->phone_number,
 
                 'status' => 0,
-                'token'=>$token
+                'token' => $token
             ]);
             try {
-                return \redirect()->route("user.register.verify_email" , ["user" => $user->id])->with(["message"=>"Gửi mail thành công" , "status_code"=>"success"]);
-
+                return \redirect()->route("user.register.verify_email", ["user" => $user->id])->with(["message" => "Gửi mail thành công", "status_code" => "success"]);
             } catch (\Throwable $th) {
-                return \redirect()->route("user.register.verify_email" , ["user" => $user->id])->with(["message"=>"Gửi mail không thành công" , "status_code"=>"danger"]);
+                return \redirect()->route("user.register.verify_email", ["user" => $user->id])->with(["message" => "Gửi mail không thành công", "status_code" => "danger"]);
             }
         } catch (\Throwable $th) {
             return \redirect()->back()->with("message", "Đăng ký tài khoản không thành công");
@@ -103,12 +103,11 @@ class RegisterController extends Controller
 
     public function verifyEmail(User $user)
     {
-     try {
-        $this->sendMail($user);
-        return view('pages.user.auth.register_verify_email' , \compact("user"));
-     } catch (\Throwable $th) {
-     }
-  
+        try {
+            $this->sendMail($user);
+            return view('pages.user.auth.register_verify_email', \compact("user"));
+        } catch (\Throwable $th) {
+        }
     }
     public function sendMail($user)
     {
@@ -118,25 +117,32 @@ class RegisterController extends Controller
     {
 
         $user = \Auth::user();
-
-        $token = \strtoupper(\Str::random(10));
-        $user->token = $token;
-        try {
-            $user->save();
-            $this->sendMail($user);
-            return \redirect()->back()->with(["message" => "Đã gửi" , "status_code" => "success"]);
-
-        } catch (\Throwable $th) {
-            return \redirect()->back()->with(["message" => "Đã xãy ra lỗi" , "status_code" => "danger"]);
+        if ($user) {
+            $token = \strtoupper(\Str::random(10));
+            $user->token = $token;
+            try {
+                $user->save();
+                $this->sendMail($user);
+                return \redirect()->back()->with(["message" => "Đã gửi", "status_code" => "success"]);
+            } catch (\Throwable $th) {
+                return \redirect()->back()->with(["message" => "Đã xãy ra lỗi", "status_code" => "danger"]);
+            }
+        }
+        {
+            \abort(403);
         }
     }
     public function checkTokenVerifyRegister(User $user, $token)
     {
-        if ($user->token === $token) {
-            $user->update(['status' => 1 , "token" =>null]);
-            return \redirect()->route("user.home.index")->with(["message" => "Xác thực tài khoản thành công" , "status_code" => "success"]);
+        if ($user) {
+            if ($user->token === $token) {
+                $user->update(['status' => 1, "token" => null]);
+                return \redirect()->route("user.login.index")->with(["message" => "Xác thực tài khoản thành công, vui lòng thực hiện đăng nhập lại", "status_code" => "success"]);
+            } else {
+                return \redirect()->route("user.register.verify_email", $user->id)->with(["message" => "Mã xác thực không đúng", "status_code" => "danger"]);
+            }
         } else {
-            return \redirect()->route("user.register.verify_email")->with(["message" => "Mã xác thực không đúng" , "status_code" => "danger"]);
+            \abort(403);
         }
     }
 }

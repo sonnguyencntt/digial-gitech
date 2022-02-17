@@ -9,9 +9,10 @@ use Illuminate\View\View;
 class ThemeComposer
 {
     
+
     public function __construct(ThemeRepositoryInterface $themeRepo)
     {
-        
+   
         $this->themeRepo=$themeRepo->getByStore(request()->store_code);
     }
 

@@ -50,8 +50,10 @@ class ServicePlayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($store_code,$id)
+    public function show(Request $request , $domain,$id)
     {
+        $store_code = $request->store_code;
+
         $listPlay=$this->playRepo->getAllPlay($store_code,$id);
         return view("pages.service_play.index",['listPlay'=>$listPlay,'status'=>201] );
     }

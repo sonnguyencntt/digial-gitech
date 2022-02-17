@@ -8,7 +8,7 @@
             <div class="tabbed-content tabtintuc-home tintuckhuyenmai">
                 <ul class="nav nav-line nav-uppercase nav-size-normal nav-left">
                     
-                    <li class="tab has-icon"><a href="{{route('posts.index', $badges->store_code)}}"><span>TIN TỨC</span></a></li>
+                    <li class="tab has-icon"><a href="{{route('posts.index', $badges->domain)}}"><span>TIN TỨC</span></a></li>
                 </ul>
                 <div class="tab-panels">
                     <div class="panel active entry-content" id="tab_khuyẾn-mÃi">

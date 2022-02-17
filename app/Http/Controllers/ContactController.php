@@ -20,10 +20,9 @@ class ContactController extends Controller
         $this->customerRepo = $customerRepo;
         $this->themeRepo = $themeRepo;
     }
-    public function index($store_code)
+    public function index(Request $request , $domain)
     {   
-        
-    
+        $store_code = $request->store_code;
         return view("pages.contact.index" , ['title' => $this->title,'status'=>201]);
 
 
@@ -45,8 +44,10 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCustomerRequest $request,$store_code)
+    public function store(CreateCustomerRequest $request,$domain)
     {
+        $store_code = $request->store_code;
+
         try{
 
             $category=$this->customerRepo->create(array_merge($request->all(), ['store_code' => $store_code]));

@@ -43,16 +43,16 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $store_code)
+    public function store(Request $request, $domain)
     {
-        \Log::channel("jobs")->info($request->all());
+        $store_code = $request->store_code;
+
         try{
         $this->orderRepo->create($request->all());
         return \response()->json(["msg"=>"Xin cảm ơn, form đăng ký đã được gửi thành công."] , 200);
 
     }
     catch(\throwable $err){
-        \Log::channel("jobs")->info($err);
 
         return \response()->json(["msg"=>"Đã xãy ra lỗi vui lòng kiểm tra lại thông tin."] , 403);
     }

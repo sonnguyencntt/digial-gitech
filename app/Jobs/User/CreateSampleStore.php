@@ -50,9 +50,27 @@ class CreateSampleStore implements ShouldQueue
         ThemeRepositoryInterface $themeRepo
     ) {
 
-        $store_sample_code = AdminConfig::first()->store_sample_code;
-        $store_code = $this->store_code;
-        if ($store_sample_code) {
+            try {
+                $store_sample_code = AdminConfig::first() ?  AdminConfig::first()->store_sample_code : null;
+
+            } catch (\Throwable $th) {
+                Log::channel("jobs")->info($th);
+            }
+
+        if(!$store_sample_code)
+        {
+            $theme = [];
+            $theme["store_code"] = $this->store_code;
+            try {
+                if ($theme)
+                    $themeRepo->create($theme);
+            } catch (\Throwable $th) {
+                Log::channel("jobs")->info($th);
+
+                throw $th;
+            }
+        }
+        else {
             $listCategory = $cateRepo->getAll($store_sample_code)->map(function ($module) {
                 $module->store_code = $this->store_code;
                 return $module;
@@ -88,10 +106,10 @@ class CreateSampleStore implements ShouldQueue
             })->toArray();
             $theme = $themeRepo->firstByStore($store_sample_code);
             $theme->overrideLogoAttr = "ogrinal";
-            $theme = $theme->toArray();
+            $theme = $theme == null ? [] : $theme->toArray();
             if ($theme)
                 $theme["store_code"] = $this->store_code;
-            Log::channel("jobs")->info($listCategory);
+            Log::channel("jobs")->info($theme);
             try {
                 DB::beginTransaction();
                 if ($listCategory)
