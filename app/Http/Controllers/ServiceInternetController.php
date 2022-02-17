@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\internet\InternetRepositoryInterface;
+use App\Repositories\Internet\InternetRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 class ServiceInternetController extends Controller
 {
