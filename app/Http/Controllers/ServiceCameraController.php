@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Repositories\play\PlayRepositoryInterface;
+use App\Repositories\Play\PlayRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Repositories\Camera\CameraRepositoryInterface;
 class ServiceCameraController extends Controller
