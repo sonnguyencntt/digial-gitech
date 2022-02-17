@@ -2,7 +2,7 @@
 
 namespace App\Http\Composers;
 
-use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\category\CategoryRepositoryInterface;
 use App\Repositories\Theme\ThemeRepositoryInterface;
 use Illuminate\View\View;
 
