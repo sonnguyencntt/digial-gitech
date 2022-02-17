@@ -14,10 +14,10 @@ class AddColumCategory extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            // $table->string("image_url");
-            // $table->text('details');
-            // $table->text('advantage');
-            // $table->string('link_url');
+            $table->string('image_url')->index()->nullable();
+            $table->text('details');
+            $table->text('advantage');
+            $table->string('link_url');
         });
     }
 

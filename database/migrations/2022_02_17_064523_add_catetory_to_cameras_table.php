@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnStoreCodeTableBanners extends Migration
+class AddCatetoryToCamerasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddColumnStoreCodeTableBanners extends Migration
      */
     public function up()
     {
-        Schema::table('banners', function($table) {
-            $table->string('store_code')->index();
-     
+        Schema::table('cameras', function (Blueprint $table) {
+            $table->integer('category_id')->after("name")->index();
         });
     }
 
@@ -26,6 +25,8 @@ class AddColumnStoreCodeTableBanners extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('cameras', function (Blueprint $table) {
+            //
+        });
     }
 }

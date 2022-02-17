@@ -14,7 +14,7 @@ class AddColumnDescriptionV01CameraTable extends Migration
     public function up()
     {
         Schema::table('cameras', function($table) {
-            $table->text('description')->after("category_id");
+            $table->text('description')->after("image_url");
         });
     }
 

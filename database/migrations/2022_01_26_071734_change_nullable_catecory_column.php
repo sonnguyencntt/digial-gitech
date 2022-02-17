@@ -14,7 +14,6 @@ class ChangeNullableCatecoryColumn extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('image_url')->nullable()->change();
             $table->text('details')->nullable()->change();
             $table->text('advantage')->nullable()->change();
             $table->string('link_url')->nullable()->change();
