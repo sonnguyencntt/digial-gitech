@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\category\CategoryRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\play\PlayRepositoryInterface;
 class ServicePlayController extends Controller
 {
