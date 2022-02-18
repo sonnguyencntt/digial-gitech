@@ -62,20 +62,20 @@
                     <ul class="fptft">
                         <li><a href={{'https://zalo.me/'."".$themeView->id_zalo}} target="_blank" rel="noopener"><img
                                     loading="lazy" class="alignnone size-full wp-image-65"
-                                    src="{{asset('images/footer/zalo.png')}}" alt="" width="39"
+                                    src="{{asset('assets/image/footer/zalo.png')}}" alt="" width="39"
                                     height="39" /></a></li>
                         <li><a href={{'https://www.facebook.com/'."".$themeView->id_facebook}} target="_blank" rel="noopener"><img
                                     loading="lazy" class="alignnone size-medium wp-image-66"
-                                    src="{{asset('images/footer/face.png')}}" alt="" width="39"
+                                    src="{{asset('assets/image/footer/face.png')}}" alt="" width="39"
                                     height="39" /></a></li>
                         <li><a href={{'https://www.youtube.com/channel/'."".$themeView->id_youtobe}} target="_blank"
                                 rel="noopener"><img loading="lazy" class="alignnone size-medium wp-image-68"
-                                    src="{{asset('images/footer/youtube.png')}}" alt="" width="39"
+                                    src="{{asset('assets/image/footer/youtube.png')}}" alt="" width="39"
                                     height="39" /></a></li>
                     </ul>
                     <p><a href="http://online.gov.vn/Home/WebDetails/35561"><img loading="lazy"
                                 class="alignnone size-full wp-image-95"
-                                src="{{asset('images/footer/dathongbao.png')}}" alt="" width="160"
+                                src="{{asset('assets/image/footer/dathongbao.png')}}" alt="" width="160"
                                 height="61" /></a><br />
                         {{-- <a href="http://www.dmca.com/Protection/Status.aspx?ID=d6c9a045-e968-4399-a25a-d09775aebb41"
                             title="DMCA.com Protection Status" class="dmca-badge"> <img
