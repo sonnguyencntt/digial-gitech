@@ -60,18 +60,32 @@
                 
                 <div class="textwidget">
                     <ul class="fptft">
-                        <li><a href={{'https://zalo.me/'."".$themeView->id_zalo}} target="_blank" rel="noopener"><img
-                                    loading="lazy" class="alignnone size-full wp-image-65"
-                                    src="{{asset('assets/image/footer/zalo.png')}}" alt="" width="39"
-                                    height="39" /></a></li>
-                        <li><a href={{'https://www.facebook.com/'."".$themeView->id_facebook}} target="_blank" rel="noopener"><img
-                                    loading="lazy" class="alignnone size-medium wp-image-66"
-                                    src="{{asset('assets/image/footer/face.png')}}" alt="" width="39"
-                                    height="39" /></a></li>
+                        @if ($themeView->icon_zalo == null )
+                        
+                        @else
+                            <li><a href={{'https://zalo.me/'."".$themeView->id_zalo}} target="_blank" rel="noopener"><img
+                            loading="lazy" class="alignnone size-full wp-image-65"
+                            src="{{asset('assets/image/footer/zalo.png')}}" alt="" width="39"
+                            height="39" /></a></li>
+                        @endif
+                        @if( $themeView->icon_fb == null)
+                       
+                        
+                        @else
+                            <li><a href={{'https://www.facebook.com/'."".$themeView->id_facebook}} target="_blank" rel="noopener"><img
+                            loading="lazy" class="alignnone size-medium wp-image-66"
+                            src="{{asset('assets/image/footer/face.png')}}" alt="" width="39"
+                            height="39" /></a></li>
+                        @endif
+                        @if( $themeView->icon_yb == null)
+                       
+                        
+                        @else
                         <li><a href={{'https://www.youtube.com/channel/'."".$themeView->id_youtobe}} target="_blank"
                                 rel="noopener"><img loading="lazy" class="alignnone size-medium wp-image-68"
                                     src="{{asset('assets/image/footer/youtube.png')}}" alt="" width="39"
                                     height="39" /></a></li>
+                        @endif
                     </ul>
                     <p><a href="http://online.gov.vn/Home/WebDetails/35561"><img loading="lazy"
                                 class="alignnone size-full wp-image-95"
