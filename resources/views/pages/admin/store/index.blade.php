@@ -90,18 +90,24 @@
                                     <td>
                                         <button
                                         type="button" class="btn btn-primary btn-sm {{$value->status == "WAITING" ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận kích hoạt tài khoản' ,  '{{route('admin.store.active_store', $value->id)}}')"
-                                        data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i>Kích hoạt Shop</button>
+                                        data-toggle="modal" data-target="#updateModal">Kích hoạt Shop</button>
 
 
                                         <button
                                         type="button" class="btn btn-danger btn-sm {{$value->status == "WORKING"  ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận ngừng hoạt động tài khoản' ,  '{{route('admin.store.stop_store', $value->id)}}')"
-                                        data-toggle="modal" data-target="#updateModal"><i class="fa fa-trash"></i>Ngừng hoạt động</button>
+                                        data-toggle="modal" data-target="#updateModal">Ngừng hoạt động</button>
 
                                         
                                         <button
                                         type="button" class="btn btn-success btn-sm {{$value->status == "STOP_WORKING"   ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận  hoạt động tài khoản' ,  '{{route('admin.store.active_for_paid', $value->id)}}')"
-                                        data-toggle="modal" data-target="#updateModal"><i class="fa fa-trash"></i>Hoạt động</button>
+                                        data-toggle="modal" data-target="#updateModal">Hoạt động</button>
+
+                                        
+                                        <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
+                                        onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
+                                              class="fa fa-trash"></i></a>
                                           </td>
+
                                 </tr>
 
                                 @endforeach
@@ -125,6 +131,7 @@
         </div>
 
         @include('pages.admin.store.child.update_status');
+        @include('pages.admin.store.child.remove_popup');
 
 
         <!-- remove brand modal -->
@@ -133,7 +140,7 @@
 </div>
 @stop
 @section('javascript')
-{{-- <script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script> --}}
+<script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script>
 
 <script>
 
