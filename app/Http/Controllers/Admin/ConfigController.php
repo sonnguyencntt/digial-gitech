@@ -48,7 +48,7 @@ class ConfigController extends Controller
         try{
             AdminConfig::create([
             ]);
-            return redirect()->back()->with(["status"=> 201 , "status_code" => "success",  "msg"=>"Generate config thành công"]);
+            return redirect()->back()->with(["status"=> 201 , "alert" => "success",  "msg"=>"Generate config thành công"]);
         }
         catch(\throwable $err){
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");

@@ -4,6 +4,21 @@
 =======================*/
 
 
+.group-checkbox-social{
+  display: flex;
+}
+.group-checkbox-social input[type=text]
+{
+  flex: 4;
+
+}
+.group-checkbox-social .form-check
+{
+  flex: 1;
+  margin-left: 20px;
+}
+
+
 .page_404{  background:#fff; font-family: 'Arvo', serif;
 }
 

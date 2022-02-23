@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeTypeIframePostionToThemesTable extends Migration
+class ChangeValueDefaultToThemesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class ChangeTypeIframePostionToThemesTable extends Migration
     public function up()
     {
         Schema::table('themes', function (Blueprint $table) {
-            $table->text('iframe_position')->nullable()->change();
+            $table->smallInteger('show_icon_facebook')->default(0)->change();
+            $table->smallInteger('show_icon_zalo')->default(0)->change();
+            $table->smallInteger('show_icon_youtube')->default(0)->change();
 
+            
         });
     }
 

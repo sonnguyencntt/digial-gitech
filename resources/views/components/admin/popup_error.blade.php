@@ -12,7 +12,7 @@
     </div>
     <div id="messages">
         @if (\Session::has('status'))
-            <div class="alert alert-{{\Session::get('alert')}} alert-dismissible show"
+            <div class="alert alert-{{\Session::get('alert') ?? \Session::get('status_code')}} alert-dismissible show"
                 role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">×</span></button><strong>{{\Session::get('msg')}} <span

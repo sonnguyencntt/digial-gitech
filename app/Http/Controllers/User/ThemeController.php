@@ -52,8 +52,12 @@ class ThemeController extends Controller
 
     public function update(UpdateThemeRequest $request,$store_code, $id)
     {
-
         $fileName = null;
+        // $request->show_icon_zalo = $request->show_icon_zalo ? 1 :0;
+        // $request->show_icon_facebook = $request->show_icon_facebook ? 1 :0;
+        // $request->show_icon_youtube = $request->show_icon_youtube ? 1 :0;
+
+        // \dd($request->all());
         try {
             if ($request->has('logo')) {
                 $file = $request->logo;
