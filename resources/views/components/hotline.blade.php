@@ -4,7 +4,7 @@
         <div class="hotline-phone-ring-circle-fill"></div>
         <div class="hotline-phone-ring-img-circle">
             <a href="tel:0901793997" class="pps-btn-img occall">
-                <img src="{{asset('images/iconcall.png')}}"
+                <img src="{{asset('assets/image/iconcall.png')}}"
                     alt="Gọi điện thoại" width="50">
             </a>
         </div>
@@ -18,7 +18,9 @@
         </a>
     </div>
 </div>
-<div class="zalo-container" style="bottom:185px;">
+@if( $themeView->show_icon_zalo)
+
+<div  class="zalo-container"  style="bottom:185px;">
     <a id="zalo-btn oczalo" href="{{'https://zalo.me/'."".$themeView->id_zalo}}" target="_blank" rel="noopener noreferrer nofollow">
         <div class="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
         <div class="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
@@ -26,3 +28,4 @@
                 alt="Contact Me on Zalo"></span>
     </a>
 </div>
+@endif

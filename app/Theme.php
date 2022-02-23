@@ -20,7 +20,10 @@ class Theme extends Model
         "post_id_privacy_policy",
         "post_id_payment_policy",
         "post_id_website_terms_of_use",
-        "store_code"
+        "store_code",
+        "show_icon_zalo",
+        "show_icon_youtube",
+        "show_icon_facebook"
 
     ];
     public $timestamps = true;
@@ -37,6 +40,8 @@ class Theme extends Model
         else
         return;
     }
+
+
 
     public function store()
     {

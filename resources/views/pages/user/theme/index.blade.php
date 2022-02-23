@@ -26,13 +26,13 @@
           <div class="box-header">
             <h3 class="box-title">{{$title}}</h3>
           </div>
-         
-              @if($theme)
-              <form role="form" action="{{route("user.theme.update" , ["store_code"=>$badges->store_code , "theme" =>
-                $theme->id])}}" method="post" enctype="multipart/form-data" >
-                @csrf
-                @method('put')
-                <div class="box-body">
+
+          @if($theme)
+          <form role="form" action="{{route("user.theme.update" , ["store_code"=>$badges->store_code , "theme" =>
+            $theme->id])}}" method="post" enctype="multipart/form-data" >
+            @csrf
+            @method('put')
+            <div class="box-body">
               <div class="row">
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
@@ -71,16 +71,35 @@
                       value="{{$theme->email}}" autocomplete="off">
 
                   </div>
-                  <div class="form-group">
+                  <div class="form-group ">
                     <label for="email">ID Zalo</label>
-                    <input type="text" class="form-control" id="email" name="id_zalo" placeholder="Nhâp..."
-                      value="{{$theme->id_zalo}}" autocomplete="off">
+                    <div class="group-checkbox-social">
+                      <input type="text" class="form-control" id="email" name="id_zalo" placeholder="Nhâp..."
+                        value="{{$theme->id_zalo}}" autocomplete="off">
+                      <div class="form-check">
+                        <input type="checkbox" class="show_icon_zalo"  {{$theme->show_icon_zalo ? "checked" : ""}}
+                        id="id_show_icon_zalo">
+                        <input type="hidden" name="show_icon_zalo" value="{{$theme->show_icon_zalo}}"
+                        >
+                        <label class="form-check-label" for="id_show_icon_zalo">Hiển thị</label>
+                      </div>
+                    </div>
 
                   </div>
                   <div class="form-group">
                     <label for="email">ID Facebook</label>
-                    <input type="text" class="form-control" id="email" name="id_facebook" placeholder="Nhâp..."
-                      value="{{$theme->id_facebook}}" autocomplete="off">
+                    <div class="group-checkbox-social">
+                      <input type="text" class="form-control" id="email" name="id_facebook" placeholder="Nhâp..."
+                        value="{{$theme->id_facebook}}" autocomplete="off">
+
+                        <div class="form-check">
+                          <input type="checkbox" class="show_icon_facebook"  {{$theme->show_icon_facebook ? "checked" : ""}}
+                          id="id_show_icon_facebook">
+                          <input type="hidden" name="show_icon_facebook" value="{{$theme->show_icon_facebook}}"
+                          >
+                          <label class="form-check-label" for="id_show_icon_facebook">Hiển thị</label>
+                        </div>
+                    </div>
 
                   </div>
                 </div>
@@ -89,8 +108,20 @@
 
                   <div class="form-group">
                     <label for="email">ID Youtube</label>
-                    <input type="text" class="form-control" id="email" name="id_youtube" placeholder="Nhâp..."
-                      value="{{$theme->id_youtube}}" autocomplete="off">
+                    <div class="group-checkbox-social">
+                      <input type="text" class="form-control" id="email" name="id_youtube" placeholder="Nhâp..."
+                        value="{{$theme->id_youtube}}" autocomplete="off">
+
+                 
+                        <div class="form-check">
+                          <input type="checkbox" class="show_icon_youtube"  {{$theme->show_icon_youtube ? "checked" : ""}}
+                          id="id_show_icon_youtube">
+                          <input type="hidden" name="show_icon_youtube" value="{{$theme->show_icon_youtube}}"
+                          >
+                          <label class="form-check-label" for="id_show_icon_youtube">Hiển thị</label>
+                        </div>
+                    </div>
+
 
                   </div>
                   <div class="form-group">
@@ -145,6 +176,8 @@
                     </select>
                   </div>
                 </div>
+                {{-- thêm icon zalo fb và youtube --}}
+
               </div>
             </div>
             <!-- /.box-body -->
@@ -153,46 +186,53 @@
               <button type="submit" class="btn btn-primary ">Lưu</button>
             </div>
           </form>
-              @else
-              <div class="box-body">
-                <form role="form" action="{{route("user.theme.store" ,$badges->store_code )}}" method="post" >
-              <div style="display: flex ; height : 250px" >
-                <button type="submit" style="; margin : auto ;"  type="button" class="btn btn-success btn-sm"
-                ><i class="fa fa-plus"></i>Generate Theme</button>
-              </form>
+          @else
+          <div class="box-body">
+            <form role="form" action="{{route("user.theme.store" ,$badges->store_code )}}" method="post" >
+              <div style="display: flex ; height : 250px">
+                <button type="submit" style="; margin : auto ;" type="button" class="btn btn-success btn-sm"><i
+                    class="fa fa-plus"></i>Generate Theme</button>
+            </form>
 
-              </div>
-            </div>
-
-              @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+          </div>
         </div>
-        <!-- /.box -->
+
+        @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
-      <!-- col-md-12 -->
+      <!-- /.box -->
     </div>
-    <!-- /.row -->
+    <!-- col-md-12 -->
+</div>
+<!-- /.row -->
 
 
-  </section>
+</section>
 
 </div>
 @stop
 @section('javascript')
 <script src={{asset("/assets/admin/dist/js/blog.js?ver=05")}}></script>
-
+<script>
+  $(`input[type='checkbox']`).change(function() {
+    if(this.checked) 
+    $(`[name=${$(this).attr('class')}]`).val(1)
+    else
+    $(`[name=${$(this).attr('class')}]`).val(0)
+});
+</script>
 @endsection

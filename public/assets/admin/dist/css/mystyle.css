@@ -4,6 +4,21 @@
 =======================*/
 
 
+.group-checkbox-social{
+  display: flex;
+}
+.group-checkbox-social input[type=text]
+{
+  flex: 4;
+
+}
+.group-checkbox-social .form-check
+{
+  flex: 1;
+  margin-left: 20px;
+}
+
+
 .page_404{  background:#fff; font-family: 'Arvo', serif;
 }
 
@@ -11,7 +26,7 @@
 
 .four_zero_four_bg{
  
- background-image: url(../../../../images/404.png);
+ background-image: url(../../../../assets/image/404.png);
     height: 400px;
     background-position: center;
  }
