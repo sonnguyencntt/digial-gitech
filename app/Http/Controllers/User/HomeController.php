@@ -5,10 +5,15 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Store\StoreRepositoryInterface;
+use App\Repositories\Theme\ThemeRepository;
 use Auth;
+use App\Repositories\Theme\ThemeRepositoryInterface;
+
 class HomeController extends Controller
 {
     protected $storeRepo;
+    protected $themeRepo;
+
     protected $title = "Cửa hàng";
     protected $domain_name;
 
@@ -17,9 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(StoreRepositoryInterface $storeRepo)
+    public function __construct(StoreRepositoryInterface $storeRepo , ThemeRepository $themeRepo)
     {
         $this->storeRepo = $storeRepo;
+        $this->themeRepo = $themeRepo;
         $this->domain_name = \config("app.short_url");
 
     }

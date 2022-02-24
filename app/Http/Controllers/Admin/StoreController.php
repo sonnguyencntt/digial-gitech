@@ -141,6 +141,13 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->storeRepo->deleteById($id);
+           return redirect()->back()->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Xóa dữ liệu thành công"]);
+
+       } catch (\Throwable $th) {
+           throw $th;
+           return redirect()->back()->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Xóa dữ liệu không thành công"]);
+       }
     }
 }

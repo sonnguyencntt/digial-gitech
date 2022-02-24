@@ -62,7 +62,7 @@
     <link rel='stylesheet' id='flatsome-main-css' href={{
         URL::asset('wp-content/themes/vung5/assets/css/flatsome0fa4.css?ver=3.13.3') }} type='text/css' media='all' />
     <link rel='stylesheet' id='flatsome-style-css' href={{
-        URL::asset('wp-content/themes/vung5/style0fa4.css?ver=02') }} type='text/css' media='all' />
+        URL::asset('wp-content/themes/vung5/style0fa4.css?ver=03') }} type='text/css' media='all' />
     <link rel='stylesheet' id='flatsome-googlefonts-css'
         href='http://fonts.googleapis.com/css?family=%3Aregular%2C%2C%2C%7CDancing+Script%3Aregular%2C400&amp;display=swap&amp;ver=3.9'
         type='text/css' media='all' />

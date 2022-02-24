@@ -18,6 +18,16 @@
   margin-left: 20px;
 }
 
+.badge{
+  font-size: 14px;
+    padding: 5px;
+}
+.badge-success{
+  background-color: green;
+}
+.badge-danger{
+  background-color: red;
+}
 
 .page_404{  background:#fff; font-family: 'Arvo', serif;
 }

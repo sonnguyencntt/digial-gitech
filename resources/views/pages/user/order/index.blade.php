@@ -39,15 +39,16 @@
                                         <th>Tên KH</th>
 
                                         <th>Số điện thoại</th>
-                                        <th>Email
-                                        </th>
+                                    
                                         <th>Địa chỉ
                                         </th>
                                         <th>Danh mục
                                         </th>
                                         <th>Sản phẩm
                                         </th>
-                                        <th>Ngày Đăng</th>
+                                        <th>Trạng thái
+                                        </th>
+                                        <th>Ngày ĐK</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -56,20 +57,30 @@
 
 
                                     @foreach ($listOrders as $key => $value)
+                                    @php
+                                        $text_status = $value->status ? "Đã xác nhận" : "Chưa xác nhận";
+                                        $style_status = $value->status ? "success" : "danger";
+                                    @endphp
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->phone_number }}</td>
 
-                                        <td>{{ $value->email }}</td>
                                         <td>{{ $value->address }}</td>
 
                                         <td>{{ $value->internet->category == null ? null : $value->internet->category->name }}</td>
                                         <td>{{ $value->internet->name }}</td>
 
+                                        <td>
+                                            <span class="badge badge-{{$style_status}}">{{$text_status}}</span>
+                                        </td>
 
                                         <td>{{ $value->created_at }}</td>
-                                        <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
+                                        <td>
+                                            <button
+                                            type="button" class="btn btn-success btn-sm {{$value->status==0  ? "" : "hide"}}"   onclick="updateFunc('{{$value->id}}' ,'Xác nhận đơn hàng' ,  '{{route('user.order.accept', ['store_code' => $badges->store_code , 'order' =>$value->id])}}')"
+                                            data-toggle="modal" data-target="#updateModal">Xác nhận đơn hàng</button>
+                                            <a type="button" class="btn btn-danger" title="Chỉnh sửa"
                                                 href="tel:{{$value->phone_number}}"><i
                                                     class="fa fa-phone"></i></a> 
                                            
@@ -92,14 +103,20 @@
 
 
 
-            <!-- remove brand modal -->
-            @include('pages.user.banner.child.remove_popup');
+            <!-- remove brand modal -->   
+                 @include('pages.user.order.child.update_status');
+
           </section>
         <!-- /.content -->
     </div>
 @stop
 @section('javascript')
 <script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script>       
-
+<script>
+    function updateFunc($id , $name , $action) {
+    $('.alert-update').html(`<p>${$name}</p>`);
+    $('#postUpdate').attr('action', `${$action}`);
+  }
+</script>
 
 @endsection
