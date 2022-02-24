@@ -98,6 +98,9 @@ Route::group([
             });
             Route::group(['prefix' => 'order'], function () {
                 Route::get('/', 'User\OrderController@index')->name('user.order.index');
+                Route::post('/accept-order/{order}', 'User\OrderController@accept')->name('user.order.accept');
+
+
             });
             Route::group(['prefix' => 'service'], function () {
                 Route::group(['prefix' => 'category'], function () {

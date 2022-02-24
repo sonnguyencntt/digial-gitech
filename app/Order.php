@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        "name","phone_number","email","address","product_id" , "store_code"];
+        "name","phone_number","email","address","product_id" , "store_code" , "status"];
 
     public $timestamps = true;
     public function internet()
