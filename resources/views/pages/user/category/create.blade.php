@@ -53,6 +53,12 @@
     
                 </div>
                 <div class="form-group">
+                  <label for="product_name" >Thứ tự hiển thị</label>
+                  <input type="text" class="form-control" id="sort_number" name="sort_number" value = "{{old("sort_number")}}" placeholder="Nhập số" autocomplete="off" />
+                  <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
+    
+                </div>
+                <div class="form-group">
                   <label for="product_name" >Link Route</label>
                   <input type="text" class="form-control" id="title" name="link_url" value = "{{old("link_url")}}" placeholder="Nhập tiêu đề" autocomplete="off" />
                   <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
@@ -62,13 +68,13 @@
                 <div class="form-group">
                   <label for="description">Thông tin chi tiết</label>
                  
-                  <textarea id="detail"  name = "detail">{{old("detail")}}</textarea>
+                  <textarea id="details"  name = "details">{{old("details")}}</textarea>
 
                 </div>
                 <div class="form-group">
                   <label for="description">Ưu điểm</label>
                  
-                  <textarea id="advantage"  name = "description">{{old("advantage")}}</textarea>
+                  <textarea id="advantage"  name = "advantage">{{old("advantage")}}</textarea>
 
                 </div>
              
@@ -100,9 +106,9 @@
   <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
   
-  <script src={{asset("/assets/admin/ckeditor.js?ver=3")}}></script>      
+  <script src={{asset("/assets/admin/ckeditor.js?ver=4")}}></script>      
 
-  <script> load_ckeditor("detail") 
+  <script> load_ckeditor("details") 
   load_ckeditor("advantage") 
   </script>  
   @endsection

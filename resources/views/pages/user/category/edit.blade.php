@@ -62,7 +62,13 @@
                 <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
 
               </div>
-   
+              <div class="form-group">
+                <label for="product_name">Thứ tự hiển thị</label>
+                <input type="text" class="form-control" id="sort_number" value="{{$category->sort_number}}" name="sort_number"
+                  placeholder="Nhập số" autocomplete="off" />
+                <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
+
+              </div>
               <div class="form-group">
                 <label for="description">Thông tin chi tiết</label>
                
@@ -104,7 +110,7 @@
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
 
-<script src={{asset("/assets/admin/ckeditor.js?ver=3")}}></script>
+<script src={{asset("/assets/admin/ckeditor.js?ver=4")}}></script>
 
 <script> load_ckeditor("details") 
   load_ckeditor("advantage") 

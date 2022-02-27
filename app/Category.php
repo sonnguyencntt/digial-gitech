@@ -8,7 +8,7 @@ class Category extends Model
 {
     protected $table = 'categories';
     protected $primaryKey = 'id';
-    protected $fillable = ["name" , "image_url" , "store_code", "details" , "link_url" , "advantage"];
+    protected $fillable = ["name" , "image_url" , "store_code", "details" , "link_url" , "advantage" , "sort_number"];
     public $timestamps = true;
 
     public function internet()
