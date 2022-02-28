@@ -14,6 +14,11 @@
 
 //  administrator
 
+
+Route::get('/well-known/acme-challenge/{token}', function (string $token) {
+    return \Illuminate\Support\Facades\Storage::get('public/.well-known/acme-challenge/' . $token);
+});
+
 Route::group([
     'domain'    => config('app.short_url'),
 ], function () {
