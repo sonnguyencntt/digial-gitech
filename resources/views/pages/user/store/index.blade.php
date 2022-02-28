@@ -69,7 +69,9 @@
       <div class="col-md-12 col-xs-12">
         <div class="col-md-9 col-xs-9">
           @include('components.user.popup_error')
-
+          @php
+            $show
+          @endphp
 
           <div class="box">
             <div class="box-header">
@@ -86,8 +88,9 @@
                     <th>STT</th>
                     <th>Mã cửa hàng</th>
                     <th>Tên cửa hàng</th>
+           
+                    <th>Trỏ tên miền</th>
 
-                    <th>Link website</th>
                     <th>Trạng thái</th>
 
                     <th>Ngày tạo</th>
@@ -96,7 +99,9 @@
                 </thead>
                 <tbody>
 
-
+                  {{-- {{
+                    \dd($listStores->toArray())
+                  }} --}}
 
                   @foreach ($listStores as $key => $value)
                   @php
@@ -110,9 +115,18 @@
                     <td>{{$key+1}}</td>
                     <td>{{ $value->store_code }}</td>
                     <td><a href="{{route("user.dashboard.index" , $value->store_code)}}">{{ $value->name  }}</a></td>
+         
 
-                    <td><a href="{{"http://".$value->store_code . "." . $domain_name }}">{{ $value->store_code . "." . $domain_name }}</a></td>
-
+                    @if(isset($value->theme->domain))
+                    <td  class="">
+                      <a href="http://{{$value->theme->domain}}"><i>{{$value->theme->domain}}</i></a>
+                    </td>
+                    @else
+                    <td  class="">
+                      <i>Chưa có tên miền</i>
+                    </td>
+                    @endif
+               
 
 
                     <td style="font-weight: 700" class="text-{{$styleStatus}}">{{ $textStatus}}</td>

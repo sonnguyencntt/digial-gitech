@@ -33,6 +33,8 @@ class SendEmailVerifyResetPassword implements ShouldQueue
         $user = $this->user;
         Mail::send('pages.user.emails.forget_password', \compact("user"), function ($email) use ($user) {
             $email->subject("Thiết kế web Gitech - Quên mật khẩu");
+            $email->from(\env("MAIL_USERNAME"),'Thiết kế Web Gitech');
+
             $email->to($user->email, $user->name);
         });
     }

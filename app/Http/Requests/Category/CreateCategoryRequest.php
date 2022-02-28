@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\category;
+namespace App\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoryRequest extends FormRequest
+class CreateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,12 +30,16 @@ class UpdateCategoryRequest extends FormRequest
                 'link_url' => 'required|max:255',
                 'store_code' => 'required|exists:stores,store_code',
                 'name' => 'required|max:255',
+                'sort_number' => '|numeric|nullable',
+
             ];
         }
         else
         {
             return [
                 'name' => 'required|max:255',
+                'sort_number.numeric' => 'Số thứ tự phải là số',
+
                 // 'image_url' => 'required',
                 // 'details' => 'required|max:255',
                 // 'advantage' => 'required|max:255',

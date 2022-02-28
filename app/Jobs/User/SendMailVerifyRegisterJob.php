@@ -32,10 +32,16 @@ class SendMailVerifyRegisterJob implements ShouldQueue
      */
     public function handle()
     {
-        $user = $this->user;
-        Mail::send('pages.user.emails.register', \compact("user"), function ($email) use ($user) {
-            $email->subject("Thiết kế web Gitech - Xác nhận tài khoản");
-            $email->to($user->email, $user->name);
-        });
+        try {
+            $user = $this->user;
+            Mail::send('pages.user.emails.register', \compact("user"), function ($email) use ($user) {
+                $email->subject("Thiết kế web Gitech - Xác nhận tài khoản");
+                $email->from(\env("MAIL_USERNAME"),'Thiết kế Web Gitech');
+                $email->to($user->email, $user->name);
+                
+            });
+        } catch (\Throwable $th) {
+           \Log::channel("jobs")->info($th);
+        }
     }
 }

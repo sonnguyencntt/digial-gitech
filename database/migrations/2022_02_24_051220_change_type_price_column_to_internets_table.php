@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeTypeIframePostionToThemesTable extends Migration
+class ChangeTypePriceColumnToInternetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class ChangeTypeIframePostionToThemesTable extends Migration
      */
     public function up()
     {
-        Schema::table('themes', function (Blueprint $table) {
-            $table->text('iframe_position')->nullable()->change();
-
+        Schema::table('internets', function (Blueprint $table) {
+            $table->integer('price')->nullable()->change();
         });
     }
 
@@ -26,7 +25,7 @@ class ChangeTypeIframePostionToThemesTable extends Migration
      */
     public function down()
     {
-        Schema::table('themes', function (Blueprint $table) {
+        Schema::table('internets', function (Blueprint $table) {
             //
         });
     }

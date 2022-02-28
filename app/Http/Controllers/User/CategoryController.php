@@ -135,8 +135,11 @@ class CategoryController extends Controller
                 try {
                     $this->categoryRepo->updateByStore($id,$store_code,[
                         'name'=>$request->name,
-                
+                        'advantage' => $request->advantage,
+                        'details' => $request->details,
                         'image_url'=>$fileName,
+                        'sort_number'=>$request->sort_number,
+
     
                     ]);
                     $file_path = public_path($request->image_url_string);

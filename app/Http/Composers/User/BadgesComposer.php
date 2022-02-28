@@ -30,6 +30,7 @@ class BadgesComposer
             "store_code" => \request()->store_code ?? null,
             "is_sample" =>   $is_sample,
             "document_point_domain" => $document_point_domain,
+            "store_sample_code" => $admin_config->store_sample_code ?? null
             
         ];
     }

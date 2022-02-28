@@ -279,7 +279,8 @@ li {
 }
 
 .buttom-ft .dangkybt {
-  text-align: right
+  text-align: right;
+  cursor: pointer;
 }
 
 .buttom-ft .dangkybt a {

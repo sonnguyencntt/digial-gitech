@@ -72,27 +72,24 @@
                 
                 <div class="textwidget">
                     <ul class="fptft">
-                        @if ($themeView->icon_zalo == null )
+                        @if ($themeView->show_icon_zalo )
                         
-                        @else
                             <li><a href={{'https://zalo.me/'."".$themeView->id_zalo}} target="_blank" rel="noopener"><img
                             loading="lazy" class="alignnone size-full wp-image-65"
                             src="{{asset('assets/image/footer/zalo.png')}}" alt="" width="39"
                             height="39" /></a></li>
                         @endif
-                        @if( $themeView->icon_fb == null)
+                        @if( $themeView->show_icon_facebook)
                        
                         
-                        @else
                             <li><a href={{'https://www.facebook.com/'."".$themeView->id_facebook}} target="_blank" rel="noopener"><img
                             loading="lazy" class="alignnone size-medium wp-image-66"
                             src="{{asset('assets/image/footer/face.png')}}" alt="" width="39"
                             height="39" /></a></li>
                         @endif
-                        @if( $themeView->icon_yb == null)
+                        @if( $themeView->show_icon_youtube)
                        
                         
-                        @else
                         <li><a href={{'https://www.youtube.com/channel/'."".$themeView->id_youtobe}} target="_blank"
                                 rel="noopener"><img loading="lazy" class="alignnone size-medium wp-image-68"
                                     src="{{asset('assets/image/footer/youtube.png')}}" alt="" width="39"

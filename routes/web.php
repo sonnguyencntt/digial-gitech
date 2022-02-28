@@ -98,6 +98,9 @@ Route::group([
             });
             Route::group(['prefix' => 'order'], function () {
                 Route::get('/', 'User\OrderController@index')->name('user.order.index');
+                Route::post('/accept-order/{order}', 'User\OrderController@accept')->name('user.order.accept');
+
+
             });
             Route::group(['prefix' => 'service'], function () {
                 Route::group(['prefix' => 'category'], function () {
@@ -174,6 +177,8 @@ Route::group([
         Route::group(['prefix' => 'store'], function () {
             Route::get('/', 'Admin\StoreController@index')->name('admin.store.index');
             Route::put('/{store}', 'Admin\StoreController@update')->name('admin.store.update');
+            Route::delete('/{store}', 'Admin\StoreController@destroy')->name('admin.store.destroy');
+
             Route::put('/change-rent-shop/{store}', 'Admin\StoreController@changeRentShop')->name('admin.change_rent_shop.update');
 
             Route::post('/active-store/{store}', 'Admin\StoreController@active')->name('admin.store.active_store');

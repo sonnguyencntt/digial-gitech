@@ -18,7 +18,9 @@
         </a>
     </div>
 </div>
-<div class="zalo-container" style="bottom:185px;">
+@if( $themeView->show_icon_zalo)
+
+<div  class="zalo-container"  style="bottom:185px;">
     <a id="zalo-btn oczalo" href="{{'https://zalo.me/'."".$themeView->id_zalo}}" target="_blank" rel="noopener noreferrer nofollow">
         <div class="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
         <div class="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
@@ -26,3 +28,4 @@
                 alt="Contact Me on Zalo"></span>
     </a>
 </div>
+@endif

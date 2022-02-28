@@ -7,6 +7,7 @@
   <title>Administrator</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <meta name="google-site-verification" content="L1F2I4m6NWK3Gddoh9aXVV2C9_D5scj-qf3_aDhwl0s" >
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href={{asset("assets/admin/bower_components/font-awesome/css/font-awesome.min.css")}}>
   <link rel="stylesheet" href={{asset("assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css")}}>
@@ -18,7 +19,7 @@
   <link rel="stylesheet" href={{asset("assets/admin/bower_components/Ionicons/css/ionicons.min.css")}}>
   <!-- Theme style -->
   <link rel="stylesheet" href={{asset("assets/admin/dist/css/AdminLTE.min.css?ver=02")}}>
-  <link rel="stylesheet" href={{asset("assets/admin/dist/css/mystyle.css?v=04")}}>
+  <link rel="stylesheet" href={{asset("assets/admin/dist/css/mystyle.css?v=06")}}>
 
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
@@ -111,7 +112,7 @@
 <script src={{asset("assets/admin/dist/js/callajax.js?ver=01")}}></script>
 
 <script src={{asset("assets/admin/dist/js/chart.js")}}></script>
-<script src={{asset("js/datatable.js")}}></script>
+<script src={{asset("js/datatable.js?ver=01")}}></script>
 
 @yield('javascript')
 

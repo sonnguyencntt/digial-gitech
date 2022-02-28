@@ -85,6 +85,16 @@ class OrderController extends Controller
         //
     }
 
+    public function accept($store_code , $id)
+    {
+        try {
+            $this->orderRepo->updateByStore($id, $store_code , ["status" => 1]);
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Xác nhận hóa đơn thành công"]);
+        } catch (\throwable $err) {
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *

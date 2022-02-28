@@ -25,10 +25,8 @@
     $("#postForm").submit(function(e) {
         $(`[name = ${$name} ]`).val(description.getContents());
 
-        if ($("#advantage")[0])
-        $(`[name = advantage]`).val(description.getContents());
-        if ($("#details")[0])
-        $(`[name = details]`).val(description.getContents());
+        if ($(`#${$name}`)[0])
+        $(`[name = ${$name}]`).val(description.getContents());
 
         
       });
