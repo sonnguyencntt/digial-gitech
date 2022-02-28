@@ -7,7 +7,7 @@
   <title>Administrator</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <meta name="google-site-verification" content="L1F2I4m6NWK3Gddoh9aXVV2C9_D5scj-qf3_aDhwl0s" />
+  <meta content="L1F2I4m6NWK3Gddoh9aXVV2C9_D5scj-qf3_aDhwl0s" name="google-site-verification"  >
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href={{asset("assets/admin/bower_components/font-awesome/css/font-awesome.min.css")}}>
   <link rel="stylesheet" href={{asset("assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css")}}>
