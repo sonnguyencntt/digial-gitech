@@ -16,6 +16,7 @@
 
 
 Route::get('/.well-known/acme-challenge/{token}', function (string $token) {
+    \Log::channel("jobs")->info("well-know");
     return \Illuminate\Support\Facades\Storage::get('public/.well-known/acme-challenge/' . $token);
 });
 
