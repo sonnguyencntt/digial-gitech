@@ -68,7 +68,7 @@ class ThemeController extends Controller
 
             if ($fileName == null) {
                 $this->themeRepo->updateByStore($id, $store_code ,$request->except(["image_url_string", "logo"]));
-                CreateLetsEncryptSsl::dispatch();
+                CreateLetsEncryptSsl::dispatch($request->domain);
                 try {
                 } catch (\Throwable $th) {
                     return redirect()->back()->with(["status" => 400, "alert" => "danger",  "msg" => "Cập dữ không liệu thành công"]);

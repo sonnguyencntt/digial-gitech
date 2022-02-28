@@ -18,9 +18,10 @@ class CreateLetsEncryptSsl implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    protected $domain = "";
+    public function __construct($domain = null)
     {
-        //
+        $this->domain = $domain;
     }
 
     /**
@@ -31,7 +32,7 @@ class CreateLetsEncryptSsl implements ShouldQueue
     public function handle()
     {
         try {
-            LetsEncrypt::createNow('dep-digital-gitech.tk');
+            LetsEncrypt::createNow($this->domain);
             // LetsEncrypt::certificate('dep-digital-gitech.tk')
             // ->delay(5)
             // ->retryAfter(4)
