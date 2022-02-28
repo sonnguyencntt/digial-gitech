@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Repositories\Theme\ThemeRepositoryInterface;
 use App\Repositories\Posts\PostsRepositoryInterface;
-
+use App\Jobs\CreateLetsEncryptSsl;
 use App\Http\Requests\Theme\UpdateThemeRequest;
 
 use App\Http\Controllers\Controller;
@@ -68,6 +68,7 @@ class ThemeController extends Controller
 
             if ($fileName == null) {
                 $this->themeRepo->updateByStore($id, $store_code ,$request->except(["image_url_string", "logo"]));
+                CreateLetsEncryptSsl::dispatch();
                 try {
                 } catch (\Throwable $th) {
                     return redirect()->back()->with(["status" => 400, "alert" => "danger",  "msg" => "Cập dữ không liệu thành công"]);
@@ -80,7 +81,7 @@ class ThemeController extends Controller
                     if (File::exists($file_path))
                         File::delete($file_path);
                 } catch (\Throwable $th) {
-                    //throw $th;
+                    \Log::channel("jobs")->info("Lỗi letsEncrypt" . $th);
                 }
             }
 
