@@ -30,13 +30,15 @@ class UpdateCategoryRequest extends FormRequest
                 'link_url' => 'required|max:255',
                 'store_code' => 'required|exists:stores,store_code',
                 'name' => 'required|max:255',
+                'sort_number' => 'numeric|nullable',
+
             ];
         }
         else
         {
             return [
                 'name' => 'required|max:255',
-                // 'image_url' => 'required',
+                'sort_number.numeric' => 'Số thứ tự phải là số',
                 // 'details' => 'required|max:255',
                 // 'advantage' => 'required|max:255',
                 // 'link_url' => 'required|max:255',

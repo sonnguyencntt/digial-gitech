@@ -17,12 +17,12 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     }
     public function getAll($store_code=null)
     {
-        return $this->model->with("store")->where("store_code" , $store_code)->get();
+        return $this->model->with("store")->where("store_code" , $store_code)->orderBy('sort_number')->get();
     }
   
 
     public function distinct($store_code = null)
     {
-        return $this->model->where('name','<>','CAMERA FPT')->where("store_code" , $store_code)->with('internet' , 'store')->get();
+        return $this->model->where('name','<>','CAMERA FPT')->where("store_code" , $store_code)->with('internet' , 'store')->orderBy('sort_number')->get();
     }
 }
