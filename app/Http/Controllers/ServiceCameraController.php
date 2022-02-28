@@ -67,12 +67,18 @@ class ServiceCameraController extends Controller
     public function show(Request $request , $domain,$cameraID)
     {   
         $store_code = $request->store_code;
-
+        if(count($this->cameraRepo->getAll($store_code))==2){
         $getCategoryName=$this->cameraRepo->getCategoryName($store_code);
         $storage=$this->playRepo->getAllPlay($store_code,$getCategoryName->category->id);
         $getFirstID=$this->cameraRepo->getFirstID($store_code);
         $getSecondID=$this->cameraRepo->getSecondID($store_code);
-        
+        }
+        else{
+            $getCategoryName=null;
+            $getFirstID=null;
+            $getSecondID=null;
+            $storage=null;
+        }
         return view("pages.service_camera.index",['getFirstID'=>$getFirstID,'getSecondID'=>$getSecondID,'cateogryName'=>$getCategoryName,'storage'=>$storage,'status'=>200]) ;
     }
 
