@@ -7,7 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-// use Daanra\LaravelLetsEncrypt\Facades\LetsEncrypt;
+use Daanra\LaravelLetsEncrypt\Facades\LetsEncrypt;
 
 class CreateLetsEncryptSsl implements ShouldQueue
 {
@@ -31,7 +31,7 @@ class CreateLetsEncryptSsl implements ShouldQueue
     public function handle()
     {
         try {
-            \Daanra\LaravelLetsEncrypt\Facades\LetsEncrypt::createNow('dep-digital-gitech.tk');
+            LetsEncrypt::createNow('dep-digital-gitech.tk');
             // LetsEncrypt::certificate('dep-digital-gitech.tk')
             // ->delay(5)
             // ->retryAfter(4)
