@@ -15,7 +15,7 @@
 //  administrator
 
 
-Route::get('/well-known/acme-challenge/{token}', function (string $token) {
+Route::get('/.well-known/acme-challenge/{token}', function (string $token) {
     return \Illuminate\Support\Facades\Storage::get('public/.well-known/acme-challenge/' . $token);
 });
 
