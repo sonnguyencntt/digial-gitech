@@ -23,6 +23,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function distinct($store_code = null)
     {
-        return $this->model->where('link_url','<>','/service/internet')->where("store_code" , $store_code)->with('internet' , 'store')->orderBy('sort_number')->get();
+        return $this->model->where('link_url','/service/internet/')->where("store_code" , $store_code)->with('internet' , 'store')->orderBy('sort_number')->get();
     }
 }
