@@ -34,7 +34,7 @@
                                     @foreach ($listPosts as $posts)
                                     <div class="swiper-slide">
                                         <div class="col post-item">
-                                            @include('components.item_posts');
+                                            @include('components.item_posts')
             
                                         </div>
                                     </div>

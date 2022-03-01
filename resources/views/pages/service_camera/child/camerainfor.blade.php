@@ -1,3 +1,4 @@
+@if($getFirstID and $getSecondID)
 <div id="text-2439325895" class="text banggia-camera">
             
     <table border="1" width="100%">
@@ -80,3 +81,6 @@
     </tbody>
     </table>
                 </div>
+@else
+Vui lòng thêm 2 loại Camera
+@endif
