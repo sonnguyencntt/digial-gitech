@@ -5,7 +5,7 @@
        
 
 
-        <div class="swiper-container">
+        <div class="swiper-container swiper-slider">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
@@ -19,11 +19,11 @@
 
             </div>
             <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination swiper-pagination-slider"></div>
 
             <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-prev-slider"></div>
+            <div class="swiper-button-next swiper-button-next-slider"></div>
 
             <!-- If we need scrollbar -->
             <div class="swiper-scrollbar"></div>
@@ -50,22 +50,22 @@
 
 @section('javascript')
 <script>
- var mySwiper = new Swiper('.swiper-container', {
+ var sliderSwiper = new Swiper('.swiper-slider', {
       // Optional parameters
       loop: true,
       centeredSlides: true,
       slidesPerView: 1,
 
       pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination-slider',
         clickable: true,
       },
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next-slider',
+        prevEl: '.swiper-button-prev-slider',
       }
   })
   </script>
-
+@parent
 
 @endsection

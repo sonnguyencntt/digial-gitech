@@ -25,16 +25,34 @@
 
 
                         <div class="row large-columns-3 medium-columns-1 small-columns-1 slider row-slider slider-nav-circle slider-nav-push"
-                            data-flickity-options='{"imagesLoaded": true, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": true,"prevNextButtons": true,"percentPosition": true,"pageDots": false, "rightToLeft": false, "autoPlay" : 5000}'>
-                        @foreach ($listPosts as $posts)
-                            
-                        
-                            <div class="col post-item">
-                                @include('components.item_posts');
+                            >
 
+                            <div class="swiper-container swiper-posts">
+                                <!-- Additional required wrapper -->
+                                <div class="swiper-wrapper">
+                                    <!-- Slides -->
+                                    @foreach ($listPosts as $posts)
+                                    <div class="swiper-slide">
+                                        <div class="col post-item">
+                                            @include('components.item_posts');
+            
+                                        </div>
+                                    </div>
+                    
+                                    @endforeach
+                    
+                                </div>
+                                <!-- If we need pagination -->
+                                <div class="swiper-pagination swiper-pagination-posts"></div>
+                    
+                                <!-- If we need navigation buttons -->
+                                <div class="swiper-button-prev swiper-button-prev-posts"></div>
+                                <div class="swiper-button-next swiper-button-next-posts"></div>
+                    
+                                <!-- If we need scrollbar -->
+                                {{-- <div class="swiper-scrollbar"></div> --}}
                             </div>
-                           
-                            @endforeach
+                   
                            
                         </div>
                     </div>
@@ -46,3 +64,25 @@
 
 
 </div>
+
+@section('javascript')
+<script>
+ var postsSwiper = new Swiper('.swiper-posts', {
+      // Optional parameters
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: 3,
+
+      pagination: {
+        el: '.swiper-pagination-posts',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next-posts',
+        prevEl: '.swiper-button-prev-posts',
+      }
+  })
+  </script>
+@parent
+
+@endsection

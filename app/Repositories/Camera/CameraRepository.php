@@ -19,14 +19,14 @@ class CameraRepository extends BaseRepository implements CameraRepositoryInterfa
     }
     public function getAll($store_code = null)
     {
-        return $this->model->with('store', 'category')->where("store_code", $store_code)->get();
+        return $this->model->with('store', 'category')->where("store_code", $store_code)->orderBy('sort_number')->get();
     }
     public function getID($id)
     {
         return $this->model->with("store")->find($id);
     }
     public function getFirstID($store_code = null){
-        return $this->model->with("store")->where("store_code", $store_code)->first();
+        return $this->model->with("store")->where("store_code", $store_code)->orderBy('sort_number')->first();
     }
     public function getSecondID($store_code = null)
     {

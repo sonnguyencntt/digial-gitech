@@ -2,7 +2,6 @@
 @section('content')
 <main id="main" class="">
 
-
     <div id="content" role="main" class="content-area">
 
 

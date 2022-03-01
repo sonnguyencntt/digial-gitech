@@ -53,6 +53,7 @@ class ThemeController extends Controller
     public function update(UpdateThemeRequest $request,$store_code, $id)
     {
         $fileName = null;
+        $fileNameFavicon = null;
         // $request->show_icon_zalo = $request->show_icon_zalo ? 1 :0;
         // $request->show_icon_facebook = $request->show_icon_facebook ? 1 :0;
         // $request->show_icon_youtube = $request->show_icon_youtube ? 1 :0;
@@ -65,17 +66,31 @@ class ThemeController extends Controller
                 $fileName = time() . '-' . 'theme.' . $etx;
                 $file->move(public_path($this->linkFolder), $fileName);
             }
+            if ($request->has('favicon')) {
+                $file = $request->favicon;
+                $etx = $request->favicon->extension();
+                $fileNameFavicon = time() . '-' . 'theme.' . $etx;
+                $file->move(public_path($this->linkFolder), $fileNameFavicon);
+            }
+            
 
-            if ($fileName == null) {
-                $this->themeRepo->updateByStore($id, $store_code ,$request->except(["image_url_string", "logo"]));
-                CreateLetsEncryptSsl::dispatch($request->domain);
+            if ($fileName == null or $fileNameFavicon == null) {
+                if($fileName == null and $fileNameFavicon == null )
+                $data = $request->except(["image_url_string", "logo" ,"favicon"]);
+                else if($fileNameFavicon == null)
+                $data =array_merge($request->except(["favicon"]) ,  ['logo'=>$fileName] );
+                else
+                $data =array_merge($request->except(["logo"]) ,  ['favicon'=>$fileNameFavicon] );
+
+                $this->themeRepo->updateByStore($id, $store_code ,  $data);
                 try {
                 } catch (\Throwable $th) {
                     return redirect()->back()->with(["status" => 400, "alert" => "danger",  "msg" => "Cập dữ không liệu thành công"]);
                 }
-            } else {
+            } 
+            else {
                 try {
-                    $this->themeRepo->updateByStore($id, $store_code, array_merge($request->except(["image_url_string"]), ['logo' => $fileName]));
+                    $this->themeRepo->updateByStore($id, $store_code, array_merge($request->except(["image_url_string" , "favicon_url_string"]), ['logo' => $fileName , 'favicon'=>$fileNameFavicon]));
 
                     $file_path = public_path($request->image_url_string);
                     if (File::exists($file_path))

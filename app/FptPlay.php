@@ -8,7 +8,7 @@ class FptPlay extends Model
 {
     protected $table = "fpt_plays";
     protected $fillable = [
-        "price",  "description", "name", "category_id", "store_code" 
+        "price",  "description", "name", "category_id", "store_code" , "sort_number"
     ];
     public $timestamps = true;
     public function category()

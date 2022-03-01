@@ -52,7 +52,12 @@
                     </div>
 
                   </div>
+                  <div class="form-group">
+                    <label for="email">Tiêu đề</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Nhâp..."
+                      value="{{$theme->title}}" autocomplete="off">
 
+                  </div>
                   <div class="form-group">
                     <label for="email">Địa chỉ</label>
                     <input type="text" class="form-control" id="email" name="address" placeholder="Nhâp..."
@@ -70,6 +75,16 @@
                     <input type="text" class="form-control" id="email" name="email" placeholder="Nhâp..."
                       value="{{$theme->email}}" autocomplete="off">
 
+                  </div>
+                  <div class="form-group">
+                    <label for="status" >Hiển thị VAT</label>
+                    <select name="show_vat" id=""  class="form-control">
+                      <option value="1" {{$theme->show_vat == 1 ? "selected" : null}}>Hiển thị</option>
+                      <option value="0" {{$theme->show_vat == 0 ? "selected" : null}}>Tạm ẩn</option>
+  
+                    </select>
+                    <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
+      
                   </div>
                   <div class="form-group ">
                     <label for="email">ID Zalo</label>
@@ -102,10 +117,6 @@
                     </div>
 
                   </div>
-                </div>
-
-                <div class="col-md-6 col-xs-6">
-
                   <div class="form-group">
                     <label for="email">ID Youtube</label>
                     <div class="group-checkbox-social">
@@ -124,11 +135,41 @@
 
 
                   </div>
+            
+                </div>
+
+                <div class="col-md-6 col-xs-6">
+                  <div class="form-group">
+                    <label>Favicon Preview: </label>
+                    <img src="{{asset($theme->favicon)}}" width="150" height="150" class="img-circle">
+                    <input type="hidden" value="{{$theme->favicon}}" name="favicon_url_string" />
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="product_image">Ảnh</label>
+                    <div class="kv-avatar">
+                      <div class="file-loading">
+                        <input id="favicon" name="favicon" type="file">
+
+                      </div>
+                    </div>
+
+                  </div>
+
+        
+
+                  <div class="form-group">
+                    <label for="email">Danh sách Keyword (Ngăn cách nhau bởi dấu phẩy)</label>
+                    <textarea  class="form-control"  name="key_words" id="" cols="30" rows="3">{{$theme->key_words}}</textarea>
+
+                  </div>
+                  
                   <div class="form-group">
                     <label for="email">Tên miền trỏ đến</label>
                     <input type="text" class="form-control" id="email" name="domain" placeholder="VD:tenmiencuatoi.com"
                       value="{{$theme->domain}}" autocomplete="off">
-                    <i><a href="{{$badges->document_point_domain}}">Hướng dẫn trỏ tên miền</a></i>
+                    <i><a href="{{$badges->document_point_domain}}">Hướng dẫn trỏ tên miền (Sau khi trỏ tên miền vui lòng đợi 20 đến 30 phút)</a></i>
                   </div>
                   <div class="form-group">
                     <label for="email">Nhúng bản đồ vị trí</label>
@@ -175,6 +216,7 @@
                       @endforeach
                     </select>
                   </div>
+
                 </div>
                 {{-- thêm icon zalo fb và youtube --}}
 
@@ -226,7 +268,7 @@
 </div>
 @stop
 @section('javascript')
-<script src={{asset("/assets/admin/dist/js/blog.js?ver=05")}}></script>
+<script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script>
 <script>
   $(`input[type='checkbox']`).change(function() {
     if(this.checked) 

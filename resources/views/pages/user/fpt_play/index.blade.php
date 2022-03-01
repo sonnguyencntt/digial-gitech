@@ -5,31 +5,32 @@
         <section class="content-header">
             <h1>
                 Quản lý
-                <small>{{$title}}</small>
+                <small>{{ $title }}</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Bảng điều khiển</a></li>
-                <li class="active">Quản lý {{$title}}</li>
+                <li class="active">Quản lý {{ $title }}</li>
             </ol>
         </section>
 
         <!-- Main content -->
-  
+
 
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                  @include('components.user.popup_error')
+                    @include('components.user.popup_error')
 
-                    <a class="btn btn-primary" href="{{ route('user.service_play.create' , $badges->store_code) }}">Thêm mới {{$title}}</a>
+                    <a class="btn btn-primary" href="{{ route('user.service_play.create', $badges->store_code) }}">Thêm
+                        mới {{ $title }}</a>
 
                     <br /> <br />
 
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Danh sách {{$title}}</h3>
+                            <h3 class="box-title">Danh sách {{ $title }}</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -52,25 +53,25 @@
 
 
                                     @foreach ($listFptPlays as $key => $value)
-                                    <tr>
-                                        <td>{{$key+1}}</td>
-                                        <td>{{ $value->name }}</td>
-                                        <td>{{ $value->price }}</td>
-                                        <td>{{ $value->category !== null ? $value->category->name : null}}</td>
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->price }}</td>
+                                            <td>{{ $value->category !== null ? $value->category->name : null }}</td>
 
-                                          <td><span>
-                                            {!!Str::limit($value->description , 20)!!}
-                                            </span></td>
-                                        <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('user.service_play.edit', ["store_code"=>$badges->store_code , "fpt_play" => $value->id]) }}"><i
-                                                    class="fa fa-pencil"></i></a> 
-                                              <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
-                                              onclick="removeFunc('{{$value->id}}' , '{{$value->name}}')"><i
-                                                    class="fa fa-trash"></i></a>
-                                                 
-                                                  </td>
-                                                </tr>
+                                            <td><span>
+                                                    {!! Str::limit(strip_tags($value->description), 20) !!}...
+                                                </span></td>
+                                            <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
+                                                    href="{{ route('user.service_play.edit', ['store_code' => $badges->store_code, 'fpt_play' => $value->id]) }}"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a type="button" class="btn btn-default" title="Xóa" data-toggle="modal"
+                                                    data-target="#removeModal"
+                                                    onclick="removeFunc('{{ $value->id }}' , '{{ $value->name }}')"><i
+                                                        class="fa fa-trash"></i></a>
 
+                                            </td>
+                                        </tr>
                                     @endforeach
 
 
@@ -89,12 +90,12 @@
 
             <!-- remove brand modal -->
             @include('pages.user.fpt_play.child.remove_popup');
-          </section>
+        </section>
         <!-- /.content -->
     </div>
 @stop
 @section('javascript')
-<script src={{asset("/assets/admin/dist/js/blog.js?ver=06")}}></script>       
+    <script src={{ asset('/assets/admin/dist/js/blog.js?ver=06') }}></script>
 
 
 @endsection

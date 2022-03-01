@@ -61,7 +61,7 @@
                                         <td>{{ $value->category !== null ? $value->category->name : null}}</td>
 
                                           <td><span>
-                                            {!!Str::limit($value->description , 20)!!}
+                                            {!!Str::limit(strip_tags($value->description) , 20)!!}
                                             </span></td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
                                                 href="{{ route('user.service_internet.edit', ["store_code"=>$badges->store_code , "internet" => $value->id]) }}"><i
