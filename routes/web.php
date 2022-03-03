@@ -303,4 +303,6 @@ Route::group([
         Route::post('/', 'OrderController@store')->name('order.store');
     });
 
+    Route::fallback('FallBackController@notfound')->name('fallback.notfound');
+
 });
