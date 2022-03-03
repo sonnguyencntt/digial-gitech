@@ -54,7 +54,7 @@ function menu($current_route = "/", $guard = null, $store_code = null)
 
                 ["name" => "Cửa hàng", "title" => "store", "url" => route("admin.store.index"), "icon" => "fa fa-list", "sub_menu" => false],
                 ["name" => "Giá dịch vụ", "title" => "rent_shop", "url" => route("admin.rent_shop.index"), "icon" => "fa fa-money", "sub_menu" => false],
-                ["name" => "Thanh toán dịch vụ", "title" => "asda",  "url" => route("admin.store.index"), "icon" => "fa fa-money", "sub_menu" => false],
+                ["name" => "Thanh toán dịch vụ", "title" => "asda",  "url" => route("admin.payment_history.index"), "icon" => "fa fa-money", "sub_menu" => false],
 
 
                 ["name" => "Tài khoản", "title" => "profile", "url" => route("admin.profile.index"), "icon" => "fa fa-user", "sub_menu" => false],

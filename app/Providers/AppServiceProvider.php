@@ -65,6 +65,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\RentShop\RentShopRepositoryInterface::class,
             \App\Repositories\RentShop\RentShopRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\PaymentHistory\PaymentHistoryRepositoryInterface::class,
+            \App\Repositories\PaymentHistory\PaymentHistoryRepository::class
+        );
     }
 
     /**

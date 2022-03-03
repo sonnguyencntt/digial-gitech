@@ -219,6 +219,15 @@ Route::group([
             Route::delete('/{category}', 'Admin\CategoryController@destroy')->name('admin.category.destroy');
             Route::get('/{category}', 'Admin\CategoryController@show')->name('admin.category.show');
         });
+        Route::group(['prefix' => 'payment_history'], function () {
+            Route::get('/', 'Admin\PaymentHistoryController@index')->name('admin.payment_history.index');
+            Route::post('/', 'Admin\PaymentHistoryController@store')->name('admin.payment_history.store');
+            Route::get('/create', 'Admin\PaymentHistoryController@create')->name('admin.payment_history.create');
+            Route::get('/{payment_history}/edit', 'Admin\PaymentHistoryController@edit')->name('admin.payment_history.edit');
+            Route::put('/{payment_history}', 'Admin\PaymentHistoryController@update')->name('admin.payment_history.update');
+            Route::delete('/{payment_history}', 'Admin\PaymentHistoryController@destroy')->name('admin.payment_history.destroy');
+            Route::get('/{payment_history}', 'Admin\PaymentHistoryController@show')->name('admin.payment_history.show');
+        });
    
 
     });
