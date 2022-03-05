@@ -35,6 +35,7 @@ function menu($current_route = "/", $guard = null, $store_code = null)
             ]],
 
             ["name" => "KH Liên hệ", "title" => "customer", "url" => route("user.customer.index", ["store_code" => $store_code]), "icon" => "fa fa-users", "sub_menu" => false],
+            ["name" => "Lịch sử thanh toán", "title" => "payment_history",  "url" => route("payment_history.index", ["store_code" => $store_code]), "icon" => "fa fa-money", "sub_menu" => false],
 
             ["name" => "Cài đặt giao diện", "title" => "theme", "url" => route("user.theme.index", ["store_code" => $store_code]), "icon" => "fa fa-cogs", "sub_menu" => false],
 

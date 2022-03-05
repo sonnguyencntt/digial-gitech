@@ -12,8 +12,13 @@ class PaymentHistoryRepository extends BaseRepository implements PaymentHistoryR
     }
     public function getAll($store_code =null)
     {
-        return $this->model->with("store")->with("internet.category")->where("store_code" , $store_code)->get();
+        return $this->model->get();
     }
+    public function getByStore($store_code =null)
+    {
+        return $this->model->where("store_code" , $store_code)->orderBy('id' , "DESC")->get();
+    }
+
 
     public function getID($id){
         return $this->model->with("store")->find($id);

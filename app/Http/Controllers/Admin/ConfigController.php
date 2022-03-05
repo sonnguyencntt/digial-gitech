@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Store\StoreRepositoryInterface;
 use App\AdminConfig;
-
+use Cache;
 class ConfigController extends Controller
 {
 
@@ -23,7 +23,14 @@ class ConfigController extends Controller
      */
     public function index()
     {
+  
         $config = AdminConfig::first();
+        if($config)
+        {
+            if (!Cache::has('admin_configs')) {
+                Cache::put('admin_configs', $config);
+            }
+        }
         $listStores = $this->storeRepo->getWithUser();
         return \view("pages.admin.config.index", ["listStores" => $listStores, 'config' => $config, 'title' => $this->title]);
     }
@@ -46,8 +53,8 @@ class ConfigController extends Controller
     public function store(Request $request)
     {
         try{
-            AdminConfig::create([
-            ]);
+            $data = AdminConfig::create([]);
+            Cache::put('admin_configs', $data);
             return redirect()->back()->with(["status"=> 201 , "alert" => "success",  "msg"=>"Generate config thành công"]);
         }
         catch(\throwable $err){
@@ -89,7 +96,8 @@ class ConfigController extends Controller
         try {
             $result = AdminConfig::find($id);
             if ($result) {
-                $result->update(["store_sample_code" => $request->store_sample_code , "document_point_domain" => $request->document_point_domain]);
+                $data = $result->update($request->all());
+                Cache::put('admin_configs', $data);
             }
             return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {

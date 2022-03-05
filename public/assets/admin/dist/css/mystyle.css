@@ -12,6 +12,10 @@
   flex: 4;
 
 }
+.info-payment *{
+  color: red;
+  font-weight: 800;
+}
 .group-checkbox-social .form-check
 {
   flex: 1;

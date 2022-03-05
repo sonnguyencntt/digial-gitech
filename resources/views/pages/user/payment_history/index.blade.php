@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.user.app')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -22,10 +22,38 @@
                 <div class="col-md-12 col-xs-12">
                   @include('components.user.popup_error')
 
-                  <a class="btn btn-primary" href="{{ route('admin.payment_history.create') }}">Thêm mới {{$title}}</a>
 
-                  <br /> <br />
+                    @if($badges->admin_configs)
+                    @php
+                        $config = $badges->admin_configs;
+                    @endphp
+                    <div class="info-payment">
+                        <p>Khách hàng có thể thực hiện thanh toán qua</p>
+                        @php
+                            
+                        @endphp
+                        <div class="" style="display: flex">
+                            <div class="col-md-5">
+                                <p>-Tài khoản ngân hàng</p>
 
+                                <p><span>+Ngân hàng : {{$config->bank_name}}</span> </p>
+                                <p><span>+Tên chủ tài khoản : {{$config->bank_user_name}}</span> </p>
+                                <p><span>+Số tài khoản : {{$config->bank_number}}</span> </p>
+                            </div>
+                            <div class="col-md-5" >
+                                <p>-Momo</p>
+                                <p><span>+Tên người dùng : {{$config->momo_user_name}}</span> </p>
+                                <p><span>+Số điện thoại : {{$config->momo_phone}}</span> </p>
+                            </div>
+                        </div>
+                
+                        <p>***Lưu ý : Khi gửi quý khách vui lòng ghi nội dung theo cú pháp sau : {{$config->note_for_payment}}</p>
+
+
+
+                    </div>
+                    @endif
+                 
 
                     <div class="box">
                         <div class="box-header">
@@ -38,13 +66,11 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Mã đơn hàng</th>
-                                        <th>Mã cửa hàng</th>
 
                                         <th>Ngày đã đóng</th>
                                         <th>Thời hạn sử dụng</th>
                                         <th>Số tiền đã đóng</th>
                                         <th>Trạng thái</th>
-                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +85,6 @@
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{ $value->order_code }}</td>
-                                        <td>{{ $value->store_code }}</td>
 
                                         <td>{{ $value->date_paid }}</td>
                                         <td>{{ $value->date_expired }}</td>
@@ -69,14 +94,7 @@
                                         </td>
 
 
-                                        <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
-                                                href="{{ route('admin.payment_history.edit',$value->id) }}"><i
-                                                    class="fa fa-pencil"></i></a> 
-                                                    <a type="button" class="btn btn-default"  title="Xóa"  data-toggle="modal" data-target="#removeModal"
-                                                    onclick="removeFunc('{{$value->id}}' , '{{$value->order_code}}')"><i
-                                                          class="fa fa-trash"></i></a>
-                                                 
-                                                  </td>
+                                  
                                                 </tr>
 
                                     @endforeach
@@ -93,7 +111,7 @@
                 <!-- col-md-12 -->
             </div>
 
-            @include('pages.admin.payment_history.child.remove_popup');
+            @include('pages.user.payment_history.child.remove_popup');
 
 
             <!-- remove brand modal -->

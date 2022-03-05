@@ -6,6 +6,6 @@ use App\Repositories\RepositoryInterface;
 interface StoreRepositoryInterface extends RepositoryInterface
 {
     
-  
+
     
 }

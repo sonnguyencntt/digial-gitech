@@ -22,11 +22,15 @@
         <!-- Messages: style can be found in dropdown.less-->
       
         <!-- Notifications: style can be found in dropdown.less -->
+        @if($badges->date_expired)
+        <div style="text-align: center; margin: auto;padding-right: 20px;color: #f7f4f4;
+        text-decoration: underline;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Bạn còn {{$badges->date_expired}} ngày nữa là hết thời hạn sử dụng Shop!</div>
+        @endif
      
         <!-- Tasks: style can be found in dropdown.less -->
         <li class="">
           {{-- {{\app("App\Helpers\QueryHelper")->getAllStore()}} --}}
-            <div class="select-store" style="display: flex; height: 100%;">
+            <div class="select-store" style="display: flex; height: 100%">
               <select style="margin: auto" name="" class="form-control" onchange="location=this.value" id="">
                 @php
                     $listStores = $stores;

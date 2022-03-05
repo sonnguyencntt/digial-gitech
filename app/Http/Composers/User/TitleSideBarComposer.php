@@ -10,7 +10,7 @@ class TitleSideBarComposer
 
     protected $listTitle = [
         
-        "dashboard", "theme", "customer", "category", "internet" , "order" , "banner" , "fpt_play" , "posts", "profile" ,"store" 
+        "dashboard", "theme", "customer", "category", "internet" , "order" , "banner" , "fpt_play" , "posts", "profile" ,"store", "payment_history"
     ];
 
     public function __construct()

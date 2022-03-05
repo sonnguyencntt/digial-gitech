@@ -27,10 +27,8 @@ class UpdatePaymentHistoryRequest extends FormRequest
         if($type_menu == "admin.")
         {
             return [
-                'paid_amount' => 'required|numeric',
                 'store_code' => 'required|exists:stores,store_code',
                 'date_expired' => 'required|max:255',
-                'date_paid' => 'required',
                 'payment_status' => 'required|boolean',
 
 
