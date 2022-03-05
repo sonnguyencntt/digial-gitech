@@ -52,12 +52,13 @@ class ChangeStatusOrderCommand extends Command
 
 
                 $minutesConfig = strtotime($adminConfigs->created_at) / 60;
+
                 $minutesNow = strtotime($now) / 60;
+        \Log::channel("jobs")->info("Đã chạy cron job : " . $minutesNow );
 
 
                 if (($minutesConfig - $minutesNow) % $cronTime == 0) {
                     $stores = $storeRepo->getWithUser();
-                    \Log::channel("jobs")->info($stores);
 
                     foreach ($stores as $key => $store) {
                         if ($store->status  == "WORKING") {
