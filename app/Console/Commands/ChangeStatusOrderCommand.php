@@ -41,7 +41,7 @@ class ChangeStatusOrderCommand extends Command
      */
     public function handle(StoreRepositoryInterface $storeRepo , PaymentHistoryRepositoryInterface $paymentRepo)
     {
-
+\Log::channel('jobs')->info("cron đã chạy");
         try {
             if (Cache::has('admin_configs')) {
                 $adminConfigs = Cache::get('admin_configs');
