@@ -20,6 +20,7 @@ Route::get('/.well-known/acme-challenge/{token}', function (string $token) {
     return \Illuminate\Support\Facades\Storage::get('public/.well-known/acme-challenge/' . $token);
 });
 
+
 Route::group([
     'domain'    => config('app.short_url'),
 ], function () {
@@ -315,6 +316,11 @@ Route::group([
     Route::group(['prefix' => 'order'], function () {
         Route::post('/', 'OrderController@store')->name('order.store');
     });
+
+    Route::get('/sitemap.xml', 'SitemapController@xml')->name('sitemap.add');
+    Route::get('/robots.txt', 'SitemapController@robots')->name('robots.add');
+
+
 
     Route::fallback('FallBackController@notfound')->name('fallback.notfound');
 
