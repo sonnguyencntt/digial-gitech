@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\Commands\ChangeStatusOrderCommand',
         'App\Console\Commands\UpdateSiteMap'
-
     ];
 
     /**
@@ -27,9 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('order:change_status')->everyMinute()->withoutOverlapping();
-        $schedule->command('sitemap:update')->everyThirtyMinutes()->withoutOverlapping();
-
-
+        // $schedule->command('sitemap:update')->everyThirtyMinutes()->withoutOverlapping();
     }
 
     /**
