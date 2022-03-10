@@ -27,7 +27,7 @@ class ConfigController extends Controller
         $config = AdminConfig::first();
         if($config)
         {
-            if (!Cache::has('admin_configs')) {
+            if (!Cache::has('admin_configs') || !isset(Cache::has('admin_configs')->cron_time_for_order)) {
                 Cache::put('admin_configs', $config);
             }
         }
@@ -97,7 +97,7 @@ class ConfigController extends Controller
             $result = AdminConfig::find($id);
             if ($result) {
                 $data = $result->update($request->all());
-                Cache::put('admin_configs', $data);
+                Cache::put('admin_configs', AdminConfig::find($id));
             }
             return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {

@@ -43,7 +43,7 @@ class ChangeStatusOrderCommand extends Command
     {
 \Log::channel('jobs')->info("cron đã chạy");
         try {
-            if (Cache::has('admin_configs')) {
+            if (Cache::has('admin_configs') and isset(Cache::get('admin_configs')->cron_time_for_order)) {
                 $adminConfigs = Cache::get('admin_configs');
                 $cronTime = $adminConfigs->cron_time_for_order;
                 $now = Carbon::now();
