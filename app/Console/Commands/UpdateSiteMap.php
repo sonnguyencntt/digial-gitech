@@ -83,43 +83,49 @@ class UpdateSiteMap extends Command
         ThemeRepositoryInterface $themeRepo
     ) {
 
-        $themes = $themeRepo->all();
-        $this->delFileNotExsit($theme ?? []);
-        foreach ($themes as $key => $theme) {
-            if($theme->domain)
-            {
-
-                $sitemap = \App::make("sitemap");
-                $sitemap->add("https://".$theme->domain, Carbon::now(), '1.0', 'daily');
-
-                $store_code = $theme->store_code;
-                $posts = $postRepo->getAll($store_code);
-                $categories = $cateRepo->getAll($store_code);
-                $cameras = $cameraRepo->getAll($store_code);
-                $internets = $internetRepo->getAll($store_code);
-                $plays = $playRepo->getAll($store_code);
-
-                foreach ($posts as $post) {
-                    $sitemap->add(route("posts.show" ,["domain" => $theme->domain  , "posts" => $post->id]), $post->created_at, '0.6', 'daily');
-                }
-                \Log::channel("jobs")->info($categories);
-                foreach ($categories as $category) {
-                    $sitemap->add("https://".$theme->domain."/".$category->link_url."/".$category->id, $post->created_at, '0.6', 'daily');
-                }
-       
-
+        try {
+            $themes = $themeRepo->all();
+            $this->delFileNotExsit($theme ?? []);
+            foreach ($themes as $key => $theme) {
+                if($theme->domain)
+                {
+    
+                    $sitemap = \App::make("sitemap");
+                    $sitemap->add("https://".$theme->domain, Carbon::now(), '1.0', 'daily');
+    
+                    $store_code = $theme->store_code;
+                    $posts = $postRepo->getAll($store_code);
+                    $categories = $cateRepo->getAll($store_code);
+                    $cameras = $cameraRepo->getAll($store_code);
+                    $internets = $internetRepo->getAll($store_code);
+                    $plays = $playRepo->getAll($store_code);
+    
+                    foreach ($posts as $post) {
+                        $sitemap->add(route("posts.show" ,["domain" => $theme->domain  , "posts" => $post->id]), $post->created_at, '0.6', 'daily');
+                    }
+                    \Log::channel("jobs")->info($categories);
+                    foreach ($categories as $category) {
+                        $sitemap->add("https://".$theme->domain."/".$category->link_url."/".$category->id, $post->created_at, '0.6', 'daily');
+                    }
            
-                if(!File::isDirectory(public_path() . '/sitemap'))
-                    File::makeDirectory(public_path() . '/sitemap');
-                
-        
-                    $sitemap->store('xml', $theme->domain , public_path() . '/sitemap'  );
-                if (File::exists(public_path() . '/sitemap/'.$theme->domain.'.xml')) {
-                    chmod(public_path() . '/sitemap/'.$theme->domain.'.xml', 0777);
+    
+               
+                    if(!File::isDirectory(public_path() . '/sitemap'))
+                        File::makeDirectory(public_path() . '/sitemap');
+                    
+            
+                        $sitemap->store('xml', $theme->domain , public_path() . '/sitemap'  );
+                    if (File::exists(public_path() . '/sitemap/'.$theme->domain.'.xml')) {
+                        chmod(public_path() . '/sitemap/'.$theme->domain.'.xml', 0777);
+                    }
                 }
             }
-        }
+            \Log::channel("jobs")->info("create sitemap success");
+    
+        } catch (\Throwable $th) {
+            \Log::channel("jobs")->info("create sitemap fail");
 
+        }
 
      
     }
