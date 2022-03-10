@@ -82,6 +82,8 @@ class UpdateSiteMap extends Command
         CameraRepositoryInterface $cameraRepo,
         ThemeRepositoryInterface $themeRepo
     ) {
+        \Log::channel('jobs')->info("cron " . $this->signature . "đang chạy...");
+
 
         try {
             $themes = $themeRepo->all();

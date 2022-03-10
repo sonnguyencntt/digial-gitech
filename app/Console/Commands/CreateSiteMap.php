@@ -54,6 +54,9 @@ class CreateSiteMap extends Command
         ThemeRepositoryInterface $themeRepo
     ) {
 
+        \Log::channel('jobs')->info("cron " . $this->signature . "đang chạy...");
+
+
         try {
             $themes = $themeRepo->all();
 

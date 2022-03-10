@@ -8,6 +8,7 @@ use App\Repositories\Store\StoreRepositoryInterface;
 use App\Repositories\PaymentHistory\PaymentHistoryRepositoryInterface;
 use Carbon\Carbon;
 use DB;
+
 class ChangeStatusOrderCommand extends Command
 {
     /**
@@ -39,9 +40,9 @@ class ChangeStatusOrderCommand extends Command
      *
      * @return mixed
      */
-    public function handle(StoreRepositoryInterface $storeRepo , PaymentHistoryRepositoryInterface $paymentRepo)
+    public function handle(StoreRepositoryInterface $storeRepo, PaymentHistoryRepositoryInterface $paymentRepo)
     {
-\Log::channel('jobs')->info("cron đã chạy");
+        \Log::channel('jobs')->info("cron " . $this->signature . "đang chạy...");
         try {
             if (Cache::has('admin_configs') and isset(Cache::get('admin_configs')->cron_time_for_order)) {
                 $adminConfigs = Cache::get('admin_configs');
