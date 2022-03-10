@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('order:change_status')->everyMinute()->withoutOverlapping();
-        $schedule->command('sitemap:update')->daily()->withoutOverlapping();
+        $schedule->command('sitemap:update')->everyThirtyMinutes()->withoutOverlapping();
 
 
     }
