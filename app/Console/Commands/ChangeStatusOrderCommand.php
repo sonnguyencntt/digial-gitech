@@ -40,7 +40,9 @@ class ChangeStatusOrderCommand extends Command
      *
      * @return mixed
      */
-    public function handle(StoreRepositoryInterface $storeRepo, PaymentHistoryRepositoryInterface $paymentRepo)
+    // public function handle(StoreRepositoryInterface $storeRepo, PaymentHistoryRepositoryInterface $paymentRepo)
+    public function handle()
+
     {
         \Log::channel('jobs')->info("cron " . $this->signature . "đang chạy...");
         // try {
