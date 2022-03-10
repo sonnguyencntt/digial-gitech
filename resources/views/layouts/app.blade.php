@@ -14,8 +14,8 @@
     <!-- Mirrored from fptvienthong.net/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Dec 2021 03:19:34 GMT -->
     <!-- Added by HTTrack -->
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-    <meta content="L1F2I4m6NWK3Gddoh9aXVV2C9_D5scj-qf3_aDhwl0s" name="google-site-verification">
     <meta charset="UTF-8" />
+<meta name="google-site-verification" content="SmTe2NW8628wF2jX93SJz3HMK8MGviCWgtunebSYqng" />
 
     <title>{{$themeView->title ?? null}}</title>
 
