@@ -26,6 +26,8 @@ class CreateStoreRequest extends FormRequest
         return [
             'store_code' => 'required|max:255|unique:stores',
             'name' => 'required|max:255',
+            'address' => 'required|max:255',
+
         ];
     }
 
@@ -34,6 +36,8 @@ class CreateStoreRequest extends FormRequest
         return [
             'store_code.required' => 'Mã không được còn trống ',
             'name.required' => 'Tên không được để trống',
+            'address.required' => 'Địa chỉ không được để trống',
+
             'store_code.unique' => 'Đã tồn tại mà cửa hàng, xin vui lòng chọn mã khác',
 
             

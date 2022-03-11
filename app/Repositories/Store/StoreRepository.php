@@ -26,7 +26,7 @@ class StoreRepository extends BaseRepository implements StoreRepositoryInterface
     }
     public function getAll($user = null)
     {
-        return $this->model->with("user" , "theme")->where("user_id", $user)->get();
+        return $this->model->with("user" , "theme" , "rent_shop")->where("user_id", $user)->get();
     }
     public function countByStatus($status)
     {

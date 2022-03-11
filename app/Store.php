@@ -20,7 +20,7 @@ class Store extends Model
     }
     public function rent_shop()
     {
-        return $this->hasOne(RentShop::class , "id" , "user_id");
+        return $this->hasOne(RentShop::class , "id" , "rent_shop_id");
     }
     public function payment_history()
     {

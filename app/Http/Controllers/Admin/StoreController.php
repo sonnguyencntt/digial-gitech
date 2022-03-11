@@ -32,6 +32,7 @@ class StoreController extends Controller
     {
         $listStores = $this->storeRepo->getWithUser();
         $listRentShops = $this->rentShopRepo->getAll();
+        // \dd($listStores);
         return \view("pages.admin.store.index", [ "listRentShops" => $listRentShops ,  'title' => $this->title, 'listStores' => $listStores, 'title' => $this->title]);
     }
 
