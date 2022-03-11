@@ -46,6 +46,8 @@ class ChangeStatusOrderCommand extends Command
         \Log::channel('jobs')->info("cron_time_for_order " . Cache::get('admin_configs') );
         try {
             if (Cache::has('admin_configs') and isset(Cache::get('admin_configs')->cron_time_for_order)) {
+                \Log::channel('jobs')->info("running on time  " . Cache::get('admin_configs')->cron_time_for_order );
+
                 $adminConfigs = Cache::get('admin_configs');
                 $cronTime = $adminConfigs->cron_time_for_order;
                 $now = Carbon::now();
@@ -68,11 +70,14 @@ class ChangeStatusOrderCommand extends Command
                                 $timeExpired = $store->payment_history->date_expired;
 
                                 $carbonConfig = Carbon::parse($timeExpired);
-                                $subtract = $carbonNow->diffInDays($carbonConfig, false);
+                                $subtract = $carbonConfig->diffInDays($carbonNow, false);
+                                \Log::channel('jobs')->info("running for check status..." . $store->payment_history->payment_status . $subtract . $store->status );
+
                                 if ($store->payment_history->payment_status == 0 and $subtract > 3 and $store->status !== "STOP_WORKING") {
+
                                     $storeRepo->updateById($store->id, ["status" => "STOP_WORKING"]);
                                 } else if ($store->payment_history->payment_status == 1) {
-                                    if ($subtract <= -2) {
+                                    if ($subtract >= -2 && $subtract <=3) {
                                         try {
                                             DB::beginTransaction();
 
