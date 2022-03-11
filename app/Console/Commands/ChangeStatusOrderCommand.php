@@ -76,8 +76,8 @@ class ChangeStatusOrderCommand extends Command
                                 if ($store->payment_history->payment_status == 0 and $subtract > 3 and $store->status !== "STOP_WORKING") {
 
                                     $storeRepo->updateById($store->id, ["status" => "STOP_WORKING"]);
-                                } else if ($store->payment_history->payment_status == 1) {
-                                    if ($subtract >= -2 && $subtract <=3) {
+                                } else if ($store->payment_history->payment_status == 1 and $store->status == "WORKING") {
+                                    if ($subtract >= -2 and $subtract <=3) {
                                         try {
                                             DB::beginTransaction();
 
