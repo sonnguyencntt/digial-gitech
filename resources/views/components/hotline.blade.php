@@ -1,3 +1,4 @@
+@if($themeView)
 <div class="hotline-phone-ring-wrap">
     <div class="hotline-phone-ring">
         <div class="hotline-phone-ring-circle"></div>
@@ -28,4 +29,5 @@
                 alt="Contact Me on Zalo"></span>
     </a>
 </div>
+@endif
 @endif

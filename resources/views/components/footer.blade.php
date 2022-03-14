@@ -1,3 +1,4 @@
+@if($themeView)
 <footer id="footer" class="footer-wrapper">
 
 
@@ -130,3 +131,4 @@
         id="top-link"><i class="icon-angle-up"></i></a>
 
 </footer>
+@endif

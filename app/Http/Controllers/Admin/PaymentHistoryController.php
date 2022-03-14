@@ -28,7 +28,7 @@ class PaymentHistoryController extends Controller
      */
     public function index()
     {
-        $listPaymentHistories = $this->paymentRepo->all();
+        $listPaymentHistories = $this->paymentRepo->getAll();
         return \view("pages.admin.payment_history.index" , [ 'listPaymentHistories' => $listPaymentHistories , 'title' => $this->title]);
     }
 

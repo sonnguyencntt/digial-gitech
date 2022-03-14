@@ -1,3 +1,4 @@
+@if($themeView)
 <header id="header" class="header has-sticky sticky-jump">
     <div class="header-wrapper">
         <div id="top-bar" class="header-top hide-for-sticky nav-dark">
@@ -119,3 +120,4 @@
         </div>
     </div>
 </header>
+@endif
