@@ -143,7 +143,7 @@
 
                     <td>{{$value->payment_history->date_expired ?? null}}</td>
                     <td style="font-weight: 700" class="text-{{$styleStatus}}">{{ $textStatus}}</td>
-                    <td class="{{$styleStatusPayment}}">{{ $textStatusPayment }} <a href=''>&nbsp;Chi tiết</a></td>
+                    <td class="{{$styleStatusPayment}}">{{ $textStatusPayment }} <a href='{{route("payment_history.index" , $value->store_code)}}'>&nbsp;Chi tiết</a></td>
                     <td>{{ $value->rent_shop->price ?? 0 }}</td>
 
 
