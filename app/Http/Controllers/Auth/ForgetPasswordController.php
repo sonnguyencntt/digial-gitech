@@ -49,6 +49,7 @@ class ForgetPasswordController extends Controller
             SendEmailVerifyResetPassword::dispatch($user);
             return \redirect()->back()->with(["message" => "Đã gửi", "status_code" => "success"]);
         } catch (\Throwable $th) {
+            \Log::channel("jobs")->info($th);
             return \redirect()->back()->with(["message" => "Đã xãy ra lỗi", "status_code" => "danger"]);
         }
     }
