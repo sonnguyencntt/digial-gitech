@@ -149,7 +149,7 @@ class ServiceCameraController extends Controller
                 try {
                   
                 } catch (\Throwable $th) {
-                    return redirect("/service/camera")->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
+                    return redirect()->route("user.service_camera.index" , $store_code)->with(["status"=> 400 , "alert" => "danger" ,  "msg"=>"Cập dữ không liệu thành công"]);
                 }
             }
             else
@@ -162,7 +162,7 @@ class ServiceCameraController extends Controller
             }
 
 
-            return redirect("/service/camera")->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
+            return redirect()->route("user.service_camera.index" , $store_code)->with(["status"=> 204 , "alert" => "success" ,  "msg"=>"Cập nhật dữ liệu thành công"]);
         }
 
         catch(\throwable $err){

@@ -62,6 +62,7 @@
                 <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
 
               </div>
+
               <div class="form-group">
                 <label for="product_name">Thứ tự hiển thị</label>
                 <input type="text" class="form-control" id="sort_number" value="{{$category->sort_number}}" name="sort_number"
@@ -69,6 +70,17 @@
                 <p id="err_title" class="hide-elm text-danger">Tiêu đề không được để trống</p>
 
               </div>
+              @if($badges->is_sample)
+              <div class="form-group">
+                <label for="product_name">Link URL</label>
+                <input type="text" class="form-control" id="link_url" value="{{$category->link_url}}" name="link_url"
+                  placeholder="Nhập..." autocomplete="off" />
+
+              </div>
+              @endif
+          
+
+
               <div class="form-group">
                 <label for="description">Thông tin chi tiết</label>
                

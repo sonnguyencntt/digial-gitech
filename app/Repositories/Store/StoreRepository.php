@@ -2,7 +2,6 @@
 namespace App\Repositories\Store;
 
 use App\Repositories\BaseRepository;
-use Auth;
 class StoreRepository extends BaseRepository implements StoreRepositoryInterface
 {
     public function getModel()
@@ -19,10 +18,15 @@ class StoreRepository extends BaseRepository implements StoreRepositoryInterface
        return $this->model->with("user")->where("status" , $status_code)->where("user_id" , $user_id)->count();
 
     }
- 
+
+    public function findByStoreCode($store_code = null)
+    {
+        return $this->model->where("store_code", $store_code)->first();
+
+    }
     public function getAll($user = null)
     {
-        return $this->model->with("user" , "theme")->where("user_id", $user)->get();
+        return $this->model->with("user" , "theme" , "rent_shop")->where("user_id", $user)->get();
     }
     public function countByStatus($status)
     {

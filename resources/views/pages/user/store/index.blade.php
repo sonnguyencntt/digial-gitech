@@ -90,10 +90,14 @@
                     <th>Tên cửa hàng</th>
            
                     <th>Trỏ tên miền</th>
+                    <th>Thời hạn</th>
+
 
                     <th>Trạng thái</th>
 
-                    <th>Ngày tạo</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Số tiền</th>
+
                     <th>Hành động</th>
                   </tr>
                 </thead>
@@ -109,7 +113,16 @@
                   hoạt động" : "Ngừng hoạt động");
                   $styleStatus = $value->status == "WAITING" ? "warning" : ($value->status == "WORKING" ? "success" :
                   "danger");
-               
+                  $textStatusPayment = null;
+                                $styleStatusPayment = null;
+
+                                if($value->payment_history)
+                                {
+                                $textStatusPayment = $value->payment_history->payment_status == "1" ? "Đã thanh toán"
+                                : "Chưa thanh toán";
+                                $styleStatusPayment = $value->payment_history->payment_status == "1" ?
+                                "active-column-success" : "active-column-failure";
+                                }
                   @endphp
                   <tr>
                     <td>{{$key+1}}</td>
@@ -128,15 +141,16 @@
                     @endif
                
 
-
+                    <td>{{$value->payment_history->date_expired ?? null}}</td>
                     <td style="font-weight: 700" class="text-{{$styleStatus}}">{{ $textStatus}}</td>
+                    <td class="{{$styleStatusPayment}}">{{ $textStatusPayment }} <a href='{{route("payment_history.index" , $value->store_code)}}'>&nbsp;Chi tiết</a></td>
+                    <td>{{ $value->rent_shop->price ?? 0 }}</td>
 
-                    <td>{{ $value->created_at }}</td>
+
 
 
                     <td><a type="button" class="btn btn-default" title="Chỉnh sửa"
                         href="{{ route('user.store.edit', $value->id) }}"><i class="fa fa-pencil"></i></a>
-
 
                     </td>
                   </tr>

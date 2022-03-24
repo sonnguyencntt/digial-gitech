@@ -45,16 +45,14 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-        //     $type_menu = getNameSubdomain();
-        //     if ($type_menu == "") {
-        //         return response()->view('errors.user.404', ["userFromPageNotFound" => \Auth::user()->name], 404);
-        //     } else if ($type_menu == "admin.") {
-        //         return \view("errors.admin.404");
-        //     } else {
-        //         return \view("errors.404");
-        //     }
-        // }
+        if ($exception instanceof \GuzzleHttp\Exception\ServerException) {
+            $type_menu = getNameSubdomain();
+            if ($type_menu == "") {
+            } else if ($type_menu == "admin.") {
+            } else {
+                return \response()->view("errors.404" , ["msg" => "Đã xảy ra lỗi, vui lòng liên hệ chủ Shop để khắc phục"] , 500);
+            }
+        }
         return parent::render($request, $exception);
     }
 

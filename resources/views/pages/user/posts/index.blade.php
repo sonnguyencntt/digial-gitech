@@ -58,7 +58,7 @@
                                         <td><img src={{asset("$value->image_url")}} style="    width: 150px;
                                           height: 100px;" loading="lazy"></td>
                                           <td><span>
-                                            {!!Str::limit($value->description , 20)!!}
+                                            {!!Str::limit(strip_tags($value->description) , 20)!!}
                                             </span></td>
                                         <td>{{ $value->created_at }}</td>
                                         <td><a type="button" class="btn btn-default" title="Chỉnh sửa"

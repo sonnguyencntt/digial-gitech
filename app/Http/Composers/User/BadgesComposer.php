@@ -4,13 +4,16 @@ namespace App\Http\Composers\User;
 
 use Illuminate\View\View;
 use App\AdminConfig;
+use App\Repositories\Store\StoreRepositoryInterface;
+use Carbon\Carbon;
 class BadgesComposer
 {
     protected $fillable = [];
     protected $fillable_contains = ["user"];
-
-    public function __construct()
+    protected $storeRepo;
+    public function __construct(StoreRepositoryInterface $storeRepo)
     {
+        $this->storeRepo = $storeRepo;
     }
 
     public function get()
@@ -20,6 +23,27 @@ class BadgesComposer
         $document_point_domain = $admin_config?$admin_config->document_point_domain : null;
 
         $store_code = \request()->store_code ?? null;
+        $date_expired = null;
+        if($store_code)
+        {
+            $store = $this->storeRepo->findByStoreCode($store_code);
+
+            if($store->status == "WORKING" and $store->payment_history)
+            {
+
+                if($store->payment_history->payment_status == "1")
+                {
+                    $now = Carbon::now();
+                    $carbonNow = Carbon::parse($now);
+                    $carbonExpired = Carbon::parse($store->payment_history->date_expired);
+                    $subtract = $carbonExpired->diffInDays($carbonNow, false);
+                    if($subtract < 7)
+                    {
+                        $date_expired = $subtract;
+                    }
+                }
+            }
+        }
         if($store_sample_code == null or $store_code == null)
         $is_sample = false;
         else if($store_sample_code === $store_code)
@@ -30,7 +54,9 @@ class BadgesComposer
             "store_code" => \request()->store_code ?? null,
             "is_sample" =>   $is_sample,
             "document_point_domain" => $document_point_domain,
-            "store_sample_code" => $admin_config->store_sample_code ?? null
+            "store_sample_code" => $admin_config->store_sample_code ?? null,
+            "date_expired" => $date_expired ?? null,
+            "admin_configs" => $admin_config
             
         ];
     }

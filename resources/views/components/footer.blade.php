@@ -1,3 +1,4 @@
+@if($themeView)
 <footer id="footer" class="footer-wrapper">
 
 
@@ -37,15 +38,26 @@
                 <div class="is-divider small"></div>
                 <div class="menu-ve-chung-toi-container">
                     <ul id="menu-ve-chung-toi" class="menu">
+                        @if($themeView->post_id_privacy_policy)
                         <li id="menu-item-91"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-91">
-                            <a href="{{ route('posts.show',["domain"=>$badges->domain , "post" => $themeView->post_id_privacy_policy])}}">Chính sách bảo mật</a></li>
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-91">
+                        <a href="{{ route('posts.show',["domain"=>$badges->domain , "post" => $themeView->post_id_privacy_policy])}}">Chính sách bảo mật</a></li>
+                  
+                        @endif
+
+                        @if($themeView->post_id_payment_policy)
                         <li id="menu-item-92"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92"><a
-                                href="{{ route('posts.show',["domain"=>$badges->domain ,'post' => $themeView->post_id_payment_policy])}}">Chính sách thanh toán</a></li>
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92"><a
+                            href="{{ route('posts.show',["domain"=>$badges->domain ,'post' => $themeView->post_id_payment_policy])}}">Chính sách thanh toán</a></li>
+                        @endif
+                      
+                            
+                        @if($themeView->post_id_website_terms_of_use)
                         <li id="menu-item-93"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-93"><a
-                                href="{{ route('posts.show',["domain"=>$badges->domain ,'post' =>$themeView->post_id_website_terms_of_use])}}">Điều khoản sử dụng website</a></li>
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-93"><a
+                            href="{{ route('posts.show',["domain"=>$badges->domain ,'post' =>$themeView->post_id_website_terms_of_use])}}">Điều khoản sử dụng website</a></li>
+                        @endif
+                     
                         <li id="menu-item-94"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-94"><a
                                 href="{{ route('contact.index' , $badges->domain)}}">Liên hệ</a></li>
@@ -119,3 +131,4 @@
         id="top-link"><i class="icon-angle-up"></i></a>
 
 </footer>
+@endif

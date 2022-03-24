@@ -36,10 +36,12 @@
     @includeWhen(count($list_internet) > 0, 'pages.service_internet.child.combo' )
 
 
-    <div class="hhv-uu-dai box-element-detail" data-v-55576caf="">
-    <p style="text-align: center;">* Phạm vi áp dụng: <strong>Tại </strong><strong>TP Hồ Chí Minh.</strong></p>
-    <p style="text-align: center;">Giá trên chưa bao gồm VAT*</p>
-    </div>
+        @if($themeView->show_vat)
+        <div class="hhv-uu-dai box-element-detail" data-v-55576caf="">
+            <p style="text-align: center;">* Phạm vi áp dụng: <strong>Tại </strong><strong>TP Hồ Chí Minh.</strong></p>
+            <p style="text-align: center;">Giá trên chưa bao gồm VAT*</p>
+            </div>
+        @endif
     <div class="hhv-pay-total box-element-detail" data-v-55576caf=""></div>
             </div>
                 </div>

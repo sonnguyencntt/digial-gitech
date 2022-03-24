@@ -6,18 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Store\StoreRepositoryInterface;
 use App\Repositories\RentShop\RentShopRepositoryInterface;
-
+use App\Repositories\PaymentHistory\PaymentHistoryRepositoryInterface;
 use Carbon\Carbon;
 use App\Jobs\User\CreateSampleStore;
 class StoreController extends Controller
 {
     protected $storeRepo;
     protected $rentShopRepo;
+    protected $paymentHistoryRepo;
+
     protected $title = "Cửa hàng";
-    public function __construct(StoreRepositoryInterface $storeRepo , RentShopRepositoryInterface $rentShopRepo )
+    public function __construct(StoreRepositoryInterface $storeRepo , RentShopRepositoryInterface $rentShopRepo , PaymentHistoryRepositoryInterface $paymentHistoryRepo  )
     {
         $this->storeRepo = $storeRepo;
         $this->rentShopRepo = $rentShopRepo;
+        $this->paymentHistoryRepo = $paymentHistoryRepo;
+
     }
     /**
      * Display a listing of the resource.
@@ -28,6 +32,7 @@ class StoreController extends Controller
     {
         $listStores = $this->storeRepo->getWithUser();
         $listRentShops = $this->rentShopRepo->getAll();
+        // \dd($listStores);
         return \view("pages.admin.store.index", [ "listRentShops" => $listRentShops ,  'title' => $this->title, 'listStores' => $listStores, 'title' => $this->title]);
     }
 
@@ -59,6 +64,16 @@ class StoreController extends Controller
         }
     }
 
+    public function paidAccept(Request $request , $order_id)
+    {
+        try {
+            $this->paymentHistoryRepo->updateById($order_id, ["payment_status" => "1"]);
+            return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
+    }
+
     public function stop($id)
     {
         try {
@@ -77,7 +92,7 @@ class StoreController extends Controller
     public function activeForPaid($id)
     {
         try {
-            $this->storeRepo->updateById($id, ["status" => "WORKING"]);
+            $this->storeRepo->updateById($id, ["status" => "1"]);
             return redirect()->back()->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
         } catch (\throwable $err) {
             return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
@@ -116,9 +131,13 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($store_code)
     {
-        //
+        $paymentHistories = $this->paymentHistoryRepo->getByStore($store_code);
+        $store = $this->storeRepo->findByStoreCode($store_code);
+
+
+        return \view("pages.admin.store.edit", ['store' => $store , 'paymentHistories' =>$paymentHistories , 'title' => $this->title]);
     }
 
     /**
@@ -130,7 +149,12 @@ class StoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $this->storeRepo->updateById($id, $request->all());
+            return redirect()->route("admin.store.index")->with(["status" => 204, "alert" => "success",  "msg" => "Cập nhật dữ liệu thành công"]);
+        } catch (\throwable $err) {
+            return redirect()->back()->withErrors("Đã xãy ra lỗi, vui lòng kiểm tra lại");
+        }
     }
 
     /**

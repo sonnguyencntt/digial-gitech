@@ -22,7 +22,7 @@ class InternetRepository extends BaseRepository implements InternetRepositoryInt
     
     public function getAll($store_code = null)
     {
-        return $this->model->with("store", "category")->where("store_code", $store_code)->get();
+        return $this->model->with("store", "category")->where("store_code", $store_code)->orderBy('sort_number')->get();
     }
     public function count($store_code = null)
     {
@@ -31,7 +31,7 @@ class InternetRepository extends BaseRepository implements InternetRepositoryInt
 
     
     public function getAllInternet($id){
-        $results = $this->model->with('category')->where('category_id' ,'=' ,$id)->get();
+        $results = $this->model->with('category')->where('category_id' ,'=' ,$id)->orderBy('sort_number')->get();
         return $results;
     }
     public function getCategoryName($id){

@@ -23,7 +23,11 @@ class Theme extends Model
         "store_code",
         "show_icon_zalo",
         "show_icon_youtube",
-        "show_icon_facebook"
+        "show_icon_facebook",
+        "title",
+        "key_words",
+        "favicon",
+        "show_vat"
 
     ];
     public $timestamps = true;
@@ -32,6 +36,16 @@ class Theme extends Model
     public $overrideLogoAttr = null;
 
     public function getLogoAttribute($value)
+    {
+        if(!$this->overrideLogoAttr)
+        return $this->link_folder . $value;
+        else if($this->overrideLogoAttr == "ogrinal")
+        return $value;
+        else
+        return;
+    }
+
+    public function getFaviconAttribute($value)
     {
         if(!$this->overrideLogoAttr)
         return $this->link_folder . $value;

@@ -6,7 +6,7 @@
 
             <div class="container section-title-container">
                 <h3 class="section-title section-title-normal"><b></b><span
-                        class="section-title-main">CAMERA FPT</span><b></b></h3>
+                        class="section-title-main">{{$listCamera[0]->category->name ?? "CAMERA"}}</span><b></b></h3>
             </div>
             <div id="gap-2144562054" class="gap-element clearfix" style="display:block; height:auto;">
 

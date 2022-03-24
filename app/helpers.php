@@ -35,6 +35,7 @@ function menu($current_route = "/", $guard = null, $store_code = null)
             ]],
 
             ["name" => "KH Liên hệ", "title" => "customer", "url" => route("user.customer.index", ["store_code" => $store_code]), "icon" => "fa fa-users", "sub_menu" => false],
+            ["name" => "Lịch sử thanh toán", "title" => "payment_history",  "url" => route("payment_history.index", ["store_code" => $store_code]), "icon" => "fa fa-money", "sub_menu" => false],
 
             ["name" => "Cài đặt giao diện", "title" => "theme", "url" => route("user.theme.index", ["store_code" => $store_code]), "icon" => "fa fa-cogs", "sub_menu" => false],
 
@@ -54,7 +55,7 @@ function menu($current_route = "/", $guard = null, $store_code = null)
 
                 ["name" => "Cửa hàng", "title" => "store", "url" => route("admin.store.index"), "icon" => "fa fa-list", "sub_menu" => false],
                 ["name" => "Giá dịch vụ", "title" => "rent_shop", "url" => route("admin.rent_shop.index"), "icon" => "fa fa-money", "sub_menu" => false],
-                ["name" => "Thanh toán dịch vụ", "title" => "asda",  "url" => route("admin.store.index"), "icon" => "fa fa-money", "sub_menu" => false],
+                ["name" => "Thanh toán dịch vụ", "title" => "asda",  "url" => route("admin.payment_history.index"), "icon" => "fa fa-money", "sub_menu" => false],
 
 
                 ["name" => "Tài khoản", "title" => "profile", "url" => route("admin.profile.index"), "icon" => "fa fa-user", "sub_menu" => false],

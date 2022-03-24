@@ -56,6 +56,12 @@
 
                                         </div>
                                         <div class="form-group">
+                                            <label for="product_name">Thứ tự hiển thị</label>
+                                            <input type="text" class="form-control" id="name" name="sort_number"
+                                                value="{{ old("sort_number")}}" placeholder="Nhập tên" autocomplete="off" />
+
+                                        </div>
+                                        <div class="form-group">
                                             <label for="product_name">Giá</label>
                                             <input type="text" class="form-control" id="name" name="price"
                                             value="{{ old("price")}}" placeholder="Nhập giá" autocomplete="off" />

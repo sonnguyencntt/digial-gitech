@@ -25,7 +25,7 @@ class ThemeComposer
     public function compose(View $view)
     {
 
-        $view->with('themeView', $this->themeRepo ?? (object) []);
+        $view->with('themeView', $this->themeRepo);
         
     }
 }

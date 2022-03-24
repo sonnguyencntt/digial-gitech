@@ -2,7 +2,7 @@
     <ul class="goi_cuoc_home">
         @foreach($list_internet as $combo)
             <li class="col_li-{{count($list_internet ?? 0)}} internet-ca-nhan">
-                @include('components.item_internet');
+                @include('components.item_internet')
 
                 {{-- <h3>{{$internet->name}}</h3> 
                 <div class="thongtin-goicuoc">

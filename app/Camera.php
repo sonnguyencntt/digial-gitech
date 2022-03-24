@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Camera extends Model
 {
     protected $fillable = [
-         "name", "image_url", "discount", "price", "category_id", "description", "color",    "storage", "resolution",    "connection",    "noise_reduction_in_low_light",    "balance_white_light", "water_resistant", "insurance", "customer_care", "store_code"
+         "name", "image_url", "discount", "price", "category_id", "description", "color",    "storage", "resolution",    "connection",    "noise_reduction_in_low_light",    "balance_white_light", "water_resistant", "insurance", "customer_care", "sort_number", "store_code"
     ];
     public $timestamps = true;
     protected $link_folder = "/images/camera/";

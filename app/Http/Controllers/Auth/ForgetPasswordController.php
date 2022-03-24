@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Customer;
 use App\Http\Controllers\Controller;
-use App\Jobs\user\SendEmailVerifyResetPassword;
+use App\Jobs\User\SendEmailVerifyResetPassword;
 use App\User;
 use Illuminate\Http\Request;
 use Hash;
@@ -49,6 +49,7 @@ class ForgetPasswordController extends Controller
             SendEmailVerifyResetPassword::dispatch($user);
             return \redirect()->back()->with(["message" => "Đã gửi", "status_code" => "success"]);
         } catch (\Throwable $th) {
+            \Log::channel("jobs")->info($th);
             return \redirect()->back()->with(["message" => "Đã xãy ra lỗi", "status_code" => "danger"]);
         }
     }

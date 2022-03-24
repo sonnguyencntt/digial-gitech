@@ -15,10 +15,10 @@
                 <div class="box-text-inner blog-post-inner">
 
 
-                    <h5 class="post-title is-large ">{{str_limit($posts->title, $limit = 100, $end = '[...]')}}</h5>
+                    <h5 class="post-title is-large ">{{str_limit(strip_tags($posts->title), $limit = 100, $end = '[...]')}}</h5>
                     <div class="post-meta is-small op-8">{{$posts->created_at->format('d/m/Y')}}</div>
                     <div class="is-divider"></div>
-                    <p class="from_the_blog_excerpt ">	{!! str_limit($posts->description, $limit = 100, $end = '[...]') !!} </p>
+                    <p class="from_the_blog_excerpt ">	{!! str_limit(strip_tags($posts->description), $limit = 100, $end = '[...]') !!} </p>
 
 
 

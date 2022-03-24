@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
         $this->app->singleton(
             \App\Repositories\Category\CategoryRepositoryInterface::class,
             \App\Repositories\Category\CategoryRepository::class
@@ -64,6 +65,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Repositories\RentShop\RentShopRepositoryInterface::class,
             \App\Repositories\RentShop\RentShopRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\PaymentHistory\PaymentHistoryRepositoryInterface::class,
+            \App\Repositories\PaymentHistory\PaymentHistoryRepository::class
         );
     }
 

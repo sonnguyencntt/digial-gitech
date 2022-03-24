@@ -14,6 +14,13 @@
 
 //  administrator
 
+
+Route::get('/.well-known/acme-challenge/{token}', function (string $token) {
+    \Log::channel("jobs")->info("well-know");
+    return \Illuminate\Support\Facades\Storage::get('public/.well-known/acme-challenge/' . $token);
+});
+
+
 Route::group([
     'domain'    => config('app.short_url'),
 ], function () {
@@ -50,13 +57,22 @@ Route::group([
             Route::get('/', 'User\ProfileController@index')->name('user.profile.index');
             Route::put('/{user}', 'User\ProfileController@update')->name('user.profile.update');
         });
+
         Route::group([
             'prefix' => '/store/{store_code}',
             'middleware' => ["CheckForExsitStore", "CheckForStatusStore"]
 
         ], function () {
             Route::get('/dashboard', 'User\DashboardController@index')->name('user.dashboard.index');
-
+            Route::group(['prefix' => 'payment_history'], function () {
+                Route::get('/', 'User\PaymentHistoryController@index')->name('payment_history.index');
+                // Route::post('/', 'Admin\PaymentHistoryController@store')->name('admin.payment_history.store');
+                // Route::get('/create', 'Admin\PaymentHistoryController@create')->name('admin.payment_history.create');
+                // Route::get('/{payment_history}/edit', 'Admin\PaymentHistoryController@edit')->name('admin.payment_history.edit');
+                // Route::put('/{payment_history}', 'Admin\PaymentHistoryController@update')->name('admin.payment_history.update');
+                // Route::delete('/{payment_history}', 'Admin\PaymentHistoryController@destroy')->name('admin.payment_history.destroy');
+                // Route::get('/{payment_history}', 'Admin\PaymentHistoryController@show')->name('admin.payment_history.show');
+            });
             Route::group(['prefix' => 'category'], function () {
                 Route::get('/', 'User\CategoryController@index')->name('user.category.index');
                 Route::post('/', 'User\CategoryController@store')->name('user.category.store');
@@ -176,6 +192,8 @@ Route::group([
 
         Route::group(['prefix' => 'store'], function () {
             Route::get('/', 'Admin\StoreController@index')->name('admin.store.index');
+            Route::get('/{store}', 'Admin\StoreController@edit')->name('admin.store.edit');
+
             Route::put('/{store}', 'Admin\StoreController@update')->name('admin.store.update');
             Route::delete('/{store}', 'Admin\StoreController@destroy')->name('admin.store.destroy');
 
@@ -184,6 +202,8 @@ Route::group([
             Route::post('/active-store/{store}', 'Admin\StoreController@active')->name('admin.store.active_store');
             Route::post('/stop-store/{store}', 'Admin\StoreController@stop')->name('admin.store.stop_store');
             Route::post('/active-for-paid/{store}', 'Admin\StoreController@activeForPaid')->name('admin.store.active_for_paid');
+            Route::post('/paid_accept/{store}', 'Admin\StoreController@paidAccept')->name('admin.store.paid_accept');
+
 
         });
 
@@ -212,6 +232,15 @@ Route::group([
             Route::put('/{category}', 'Admin\CategoryController@update')->name('admin.category.update');
             Route::delete('/{category}', 'Admin\CategoryController@destroy')->name('admin.category.destroy');
             Route::get('/{category}', 'Admin\CategoryController@show')->name('admin.category.show');
+        });
+        Route::group(['prefix' => 'payment_history'], function () {
+            Route::get('/', 'Admin\PaymentHistoryController@index')->name('admin.payment_history.index');
+            Route::post('/', 'Admin\PaymentHistoryController@store')->name('admin.payment_history.store');
+            Route::get('/create', 'Admin\PaymentHistoryController@create')->name('admin.payment_history.create');
+            Route::get('/{payment_history}/edit', 'Admin\PaymentHistoryController@edit')->name('admin.payment_history.edit');
+            Route::put('/{payment_history}', 'Admin\PaymentHistoryController@update')->name('admin.payment_history.update');
+            Route::delete('/{payment_history}', 'Admin\PaymentHistoryController@destroy')->name('admin.payment_history.destroy');
+            Route::get('/{payment_history}', 'Admin\PaymentHistoryController@show')->name('admin.payment_history.show');
         });
    
 
@@ -287,5 +316,12 @@ Route::group([
     Route::group(['prefix' => 'order'], function () {
         Route::post('/', 'OrderController@store')->name('order.store');
     });
+
+    Route::get('/sitemap.xml', 'SitemapController@xml')->name('sitemap.add');
+    Route::get('/robots.txt', 'SitemapController@robots')->name('robots.add');
+
+
+
+    Route::fallback('FallBackController@notfound')->name('fallback.notfound');
 
 });

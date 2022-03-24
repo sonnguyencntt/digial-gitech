@@ -4,7 +4,7 @@ var btnCust = '<button type="button" class="btn btn-secondary" title="Add pictur
  'onclick="alert(\'Call your custom code here.\')">' +
  '<i class="glyphicon glyphicon-tag"></i>' +
  '</button>'; 
-   $("[name=image] , #image").fileinput({
+   $("[name=image] , #image , #favicon").fileinput({
  overwriteInitial: true,
  maxFileSize: 1500,
  showClose: false,

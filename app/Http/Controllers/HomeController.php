@@ -31,6 +31,7 @@ class HomeController extends Controller
         $listBanner=$this->bannerRepo->getAll($store_code);
         $listInternet=$this->categoryRepo->distinct($store_code);
         $listCamera=$this->cameraRepo->getAll($store_code);
+       
         $listposts=$this->postsRepo->getAll($store_code);
 
         

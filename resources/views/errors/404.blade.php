@@ -31,7 +31,7 @@
                                     @endif
                                 </p>
         
-                                <a href="{{route("home.index" , $badges->store_code)}}" class="link_404">Trở về trang chủ</a>
+                                <a href="/" class="link_404">Trở về trang chủ</a>
                             </div>
                         </div>
                     </div>

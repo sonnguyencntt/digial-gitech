@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Internet extends Model
 {
     protected $fillable = [
-        "price", "size", "description", "name", "category_id", "store_code"
+        "price", "size", "description", "name", "category_id", "store_code", "sort_number"
     ];
     public $timestamps = true;
     public function category()

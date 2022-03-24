@@ -8,7 +8,7 @@
     <p class="gia-goicuoc">{{number_format($listPlay->price,0, ',', '.')}}<span class="dongia">đ/Tháng</span></p>
     <div class="linebt"></div>
     <div class="mota_goicuoc">
-    {{$listPlay->description}}
+    {!!$listPlay->description!!}
     </div>
     </p></div>
     <div class="bt_dangky"><a href="#" d onclick="showModalOrder({{$listPlay->id}} , '{{$listPlay->name}}' , '{{$badges->store_code}}')" class="dangkyngay-bt pum-trigger" style="cursor: pointer;">ĐĂNG KÝ NGAY</a></div>

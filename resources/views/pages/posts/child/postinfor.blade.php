@@ -19,7 +19,7 @@
                     <div class="box-text-inner blog-post-inner">
                                         <h5 class="post-title is-large ">{{$itemList->title}}</h5>
                                         <div class="is-divider"></div>
-                                        <p class="from_the_blog_excerpt ">	{!! str_limit($itemList->description, $limit = 100, $end = '...') !!}		</p>
+                                        <p class="from_the_blog_excerpt ">	{!! str_limit(strip_tags($itemList->description), $limit = 100, $end = '...') !!}		</p>
                     </div>
                     </div>
                                     </div>
