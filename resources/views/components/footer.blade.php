@@ -1,6 +1,6 @@
-@if($themeView)
 <footer id="footer" class="footer-wrapper">
 
+    @if($themeView)
 
     <!-- FOOTER 1 -->
     <div class="footer-widgets footer footer-1">
@@ -111,6 +111,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <!-- FOOTER 2 -->
 
@@ -131,4 +132,3 @@
         id="top-link"><i class="icon-angle-up"></i></a>
 
 </footer>
-@endif
