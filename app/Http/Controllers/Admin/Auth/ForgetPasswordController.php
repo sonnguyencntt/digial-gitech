@@ -43,6 +43,9 @@ class ForgetPasswordController extends Controller
 
         $token = \strtoupper(\Str::random(10));
         $admin->token = $token;
+        \Log::channel("jobs")->info($token);
+
+
         try {
             $admin->save();
             SendEmailVerifyResetPassword::dispatch($admin);
