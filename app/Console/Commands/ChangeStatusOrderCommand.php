@@ -42,11 +42,8 @@ class ChangeStatusOrderCommand extends Command
      */
     public function handle(StoreRepositoryInterface $storeRepo, PaymentHistoryRepositoryInterface $paymentRepo)
     {
-        \Log::channel('jobs')->info("cron " . $this->signature . "đang chạy...");
-        \Log::channel('jobs')->info("cron_time_for_order " . Cache::get('admin_configs') );
         try {
             if (Cache::has('admin_configs') and isset(Cache::get('admin_configs')->cron_time_for_order)) {
-                \Log::channel('jobs')->info("running on time  " . Cache::get('admin_configs')->cron_time_for_order );
 
                 $adminConfigs = Cache::get('admin_configs');
                 $cronTime = $adminConfigs->cron_time_for_order;
@@ -71,8 +68,7 @@ class ChangeStatusOrderCommand extends Command
 
                                 $carbonConfig = Carbon::parse($timeExpired);
                                 $subtract = $carbonConfig->diffInDays($carbonNow, false);
-                                \Log::channel('jobs')->info("running for check status..." . $store->payment_history->payment_status . $subtract . $store->status );
-
+                                
                                 if ($store->payment_history->payment_status == 0 and $subtract > 3 and $store->status !== "STOP_WORKING") {
 
                                     $storeRepo->updateById($store->id, ["status" => "STOP_WORKING"]);

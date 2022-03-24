@@ -54,7 +54,6 @@ class CreateSiteMap extends Command
         ThemeRepositoryInterface $themeRepo
     ) {
 
-        \Log::channel('jobs')->info("cron " . $this->signature . "đang chạy...");
 
 
         try {
@@ -77,7 +76,6 @@ class CreateSiteMap extends Command
                     foreach ($posts as $post) {
                         $sitemap->add(route("posts.show" ,["domain" => $theme->domain  , "posts" => $post->id]), $post->created_at, '0.6', 'daily');
                     }
-                    \Log::channel("jobs")->info($categories);
                     foreach ($categories as $category) {
                         $sitemap->add("https://".$theme->domain."/".$category->link_url."/".$category->id, $post->created_at, '0.6', 'daily');
                     }

@@ -5,7 +5,7 @@
         <p>
             <a 
             style="display: inline-block; background: green; color:#fff ; padding : 7px 25px"
-             href="{{route('super.reset_password.index' , ['admin'=>$admin->id , 'token'=>$admin->token])}}">Kích hoạt tài khoản</a>
+             href="{{route('admin.reset_password.index' , ['admin'=>$admin->id , 'token'=>$admin->token])}}">Kích hoạt tài khoản</a>
         </p>
     </div>
 </div>
