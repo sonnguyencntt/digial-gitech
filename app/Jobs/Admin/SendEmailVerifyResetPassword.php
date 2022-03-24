@@ -30,10 +30,18 @@ class SendEmailVerifyResetPassword implements ShouldQueue
      */
     public function handle()
     {
-        $admin = $this->admin;
-        Mail::send('pages.admin.emails.forget_password', \compact("admin"), function ($email) use ($admin) {
-            $email->subject("Thiết kế web Gitech - Quên mật khẩu");
-            $email->to($admin->email, $admin->name);
-        });
+        try {
+            \Log::channel("jobs")->info("đã vào forget password admin");
+
+            $admin = $this->admin;
+            Mail::send('pages.admin.emails.forget_password', \compact("admin"), function ($email) use ($admin) {
+                $email->subject("Thiết kế web Gitech - Quên mật khẩu");
+                $email->to($admin->email, $admin->name);
+            });        } 
+            catch (\Throwable $th) {
+                \Log::channel("jobs")->info("forget_password admin" . $th);
+
+        }
+  
     }
 }

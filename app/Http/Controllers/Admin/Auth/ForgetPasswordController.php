@@ -43,12 +43,15 @@ class ForgetPasswordController extends Controller
 
         $token = \strtoupper(\Str::random(10));
         $admin->token = $token;
+        \Log::channel("jobs")->info($token);
+
+
         try {
             $admin->save();
             SendEmailVerifyResetPassword::dispatch($admin);
             return \redirect()->back()->with(["message" => "Đã gửi", "status_code" => "success"]);
         } catch (\Throwable $th) {
-            \dd($th);
+            \Log::channel("jobs")->info($th);
             return \redirect()->back()->with(["message" => "Đã xãy ra lỗi", "status_code" => "danger"]);
         }
     }
