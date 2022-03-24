@@ -3,5 +3,5 @@
         <b>Version</b> 0.1.0
       </div>
       <strong>Copyright &copy; 2018 - 2021.</strong> All rights
-      reserved.
+      reserved. {{\env('APP_ENV')}}
     </footer>

@@ -122,7 +122,7 @@
 
             <div class="footer-primary pull-left">
                 <div class="copyright-footer">
-                    Copyright 2021 © <strong>Fptmiennam.vn</strong> </div>
+                    Copyright 2021 © <strong>Fptmiennam.vn {{\env('APP_ENV')}}</strong> </div>
             </div>
         </div>
     </div>
